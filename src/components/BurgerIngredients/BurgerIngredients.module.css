@@ -1,0 +1,67 @@
+.title {
+  margin-bottom: 20px;
+}
+
+.container{
+    height: 80vh;
+    overflow-y: auto;
+    margin: 40px 0;
+
+}
+.ingredients::-webkit-scrollbar-track {
+    margin-bottom: 52px;
+}
+
+.category {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+    row-gap: 32px;
+    margin: 24px 16px 40px;
+    padding: 0;
+}
+
+/*
+.main {
+  max-width: 600px;
+  grid-area: ingredients;
+  justify-self: end;
+}
+
+.title {
+  padding-bottom: 20px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.ingredientSectionName {
+  padding-top: 40px;
+  padding-bottom: 24px;
+}
+
+.ingredientsContainer {
+  max-height: 67vh;
+  overflow-y: scroll;
+}
+
+.ingredientsContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ingredientsContainer::-webkit-scrollbar-track {
+  background: #2f2f37;
+}
+
+.ingredientsContainer::-webkit-scrollbar-thumb {
+  background: #8585ad;
+}
+
+.cardsContainer {
+  margin: 0;
+  padding: 0 8px 0 16px;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+*/
