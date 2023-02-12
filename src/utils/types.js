@@ -1,3 +1,5 @@
+//  Старая версия  //
+
 import PropTypes from 'prop-types';
 
 export const ingredientType = {

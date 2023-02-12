@@ -2,7 +2,7 @@
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import OrderDetailsStyles from './order-details.module.css'
 
-export const OrderDetails = (props) => {
+const OrderDetails = (props) => {
   return(
     <div className={OrderDetailsStyles.container}>
       <p className={`${OrderDetailsStyles.number} text text_type_digits-large`}>034536</p>
@@ -17,3 +17,5 @@ export const OrderDetails = (props) => {
     </div>
   )
 }
+
+export default OrderDetails;

@@ -34,6 +34,12 @@ const SetConstructorElements = (props) => {
   );
 }
 
+SetConstructorElements.propTypes = {
+  image: PropTypes.string,
+  name: PropTypes.string,
+  price: PropTypes.number,
+};
+
 //  Надо вынести в отдельный компонент на рефакторе  //
 const SetConstructorElementsStuff = ({ ingredients }) => {
   return (
@@ -47,6 +53,12 @@ const SetConstructorElementsStuff = ({ ingredients }) => {
     </div>
   );
 }
+
+SetConstructorElementsStuff.propTypes = {
+  image: PropTypes.string,
+  name: PropTypes.string,
+  price: PropTypes.number,
+}; 
 
 const BurgerConstructor = ({ ingredients }) => {
   const stuffing = ingredients.filter((ingredient) => ingredient.type !== "bun");

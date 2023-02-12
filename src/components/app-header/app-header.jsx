@@ -15,28 +15,28 @@ export default function AppHeader() {
         <ul className={AppHeaderStyle.navContainer}>
           <li className={`${AppHeaderStyle.navItem} text text_type_main-default`}>
             <BurgerIcon type="primary" />
-            <a className={AppHeaderStyle.link} href="index.html">
+            <a className={AppHeaderStyle.link} href="./index.html">
               Конструктор
             </a>
           </li>
 
           <li className={`${AppHeaderStyle.navItem} text text_type_main-default text_color_inactive`}>
             <ListIcon type="secondary" />
-            <a className={AppHeaderStyle.link} href="index.html">
+            <a className={AppHeaderStyle.link} href="./feed">
               Лента заказов
             </a>
           </li>
         </ul>
 
         <li className={`${AppHeaderStyle.navItem} ${AppHeaderStyle.navItem_type_logo}`}>
-          <a className={AppHeaderStyle.link} href="index.html">
+          <a className={AppHeaderStyle.link} href="./index.html">
             <Logo />
           </a>
         </li>
 
         <li className={`${AppHeaderStyle.navItem} text text_type_main-default text_color_inactive`}>
           <ProfileIcon type="secondary" />
-          <a className={AppHeaderStyle.link} href="index.html">
+          <a className={AppHeaderStyle.link} href="./profile">
             Личный кабинет
           </a>
         </li>

@@ -2,7 +2,7 @@ import { ingredientType } from "../../utils/types";
 import PropTypes from 'prop-types';
 import IngredientDetailsStyle from "./ingredient-details.module.css";
 
-export const IngredientDetails = ({ingredient}) => {
+const IngredientDetails = ({ingredient}) => {
   return (
     <div className={IngredientDetailsStyle.mainContainer}>
       <h2 className={`${IngredientDetailsStyle.mainTitle} text text_type_main-large`}>
@@ -49,3 +49,4 @@ IngredientDetails.propTypes = {
   ingredient: PropTypes.shape(ingredientType),
 };
 
+export default IngredientDetails;

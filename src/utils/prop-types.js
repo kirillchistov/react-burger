@@ -1,3 +1,4 @@
+//  Взято из https://reactjs.org/docs/typechecking-with-proptypes.html  //
 import PropTypes from "prop-types";
 
 const cardPropTypes = PropTypes.shape({
