@@ -1,0 +1,33 @@
+.mainContainer {
+  margin: 0;
+  padding: 0;
+}
+
+.mainTitle {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.image {
+  border: none;
+}
+
+.imageContainer {
+  text-align: center;
+}
+
+.caption {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nutritionTable {
+  margin: 0 auto;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 20px 8px;
+}
+
+.nutritionCell {
+  width: 120px;
+}

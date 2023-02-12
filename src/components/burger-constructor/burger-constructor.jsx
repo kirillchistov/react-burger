@@ -2,14 +2,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } 
-import BurgerConstructorStyle from "./burger-constructor.module.css";
   from "@ya.praktikum/react-developer-burger-ui-components";
+import BurgerConstructorStyle from './burger-constructor.module.css';
+
 
 //  Сначала форматирование шапки конструктора  //
 //  Потом верхняя булка (без скроллера и drag&drop)  //
 //  Внизу нижняя булка (тоже без скроллера и drag&drop)  //
 //  см. https://yandex-practicum.github.io/react-developer-burger-ui-components/docs/constructor-element  //
 
+//  Надо вынести в отдельный компонент на рефакторе  //
 const SetConstructorElements = (props) => {
   return (
     <div className={BurgerConstructorStyle.topOrderElement}>
@@ -32,6 +34,7 @@ const SetConstructorElements = (props) => {
   );
 }
 
+//  Надо вынести в отдельный компонент на рефакторе  //
 const SetConstructorElementsStuff = ({ ingredients }) => {
   return (
     <div className={BurgerConstructorStyle.middleOrderElement}>

@@ -80,6 +80,6 @@ const SelectTab = () => {
 
 BurgerIngredients.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
-}; 
+};
 
 export default BurgerIngredients;

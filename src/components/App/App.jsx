@@ -13,7 +13,7 @@ import AppStyle from './app.module.css';
 
 const App = () => {
   return (
-    <div className={ AppStyle.mainContainer }>
+    <div className={AppStyle.mainContainer}>
       <AppHeader />
       <BurgerIngredients ingredients={ ingredientsData } />
       <BurgerConstructor ingredients={ ingredientsData } />
