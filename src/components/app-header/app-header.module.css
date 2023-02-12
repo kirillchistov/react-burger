@@ -1,0 +1,41 @@
+.mainContainer {
+  grid-area: header;
+  width: 100%;
+  background: #1c1c1c;
+}
+
+.navbar {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 0;
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  align-items: center;
+  list-style: none;
+}
+
+.navContainer {
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  list-style: none;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.navItem {
+  padding: 16px 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.navItem:last-child {
+  justify-self: end;
+}
+
+.navItem_type_logo {
+  padding: 0;
+}
