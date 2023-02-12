@@ -11,6 +11,7 @@
 import React, { useState } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientCard from "../ingredient-card/ingredient-card";
+import PropTypes from 'prop-types';
 import BurgerIngredientsStyle from "./burger-ingredients.module.css";
 
 const BurgerIngredients = ({ingredients}) => {
@@ -76,5 +77,9 @@ const SelectTab = () => {
     </div>
   );
 }
+
+BurgerIngredients.propTypes = {
+  ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
+}; 
 
 export default BurgerIngredients;

@@ -1,7 +1,8 @@
 //  Блок (правый) с конструктором заказа бургера из выбранных ингридиентов  //
 import React from 'react';
-import BurgerConstructorStyle from "./burger-constructor.module.css";
+import PropTypes from 'prop-types';
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } 
+import BurgerConstructorStyle from "./burger-constructor.module.css";
   from "@ya.praktikum/react-developer-burger-ui-components";
 
 //  Сначала форматирование шапки конструктора  //
@@ -72,5 +73,9 @@ const BurgerConstructor = ({ ingredients }) => {
     </section>
   );
 }
+
+BurgerConstructor.propTypes = {
+  ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default BurgerConstructor;
