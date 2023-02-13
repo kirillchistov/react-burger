@@ -17,3 +17,17 @@
   display: flex;
   justify-content: space-around;
 }
+
+.mainContainer {
+  width: 100%;
+  max-width: 1920px;
+  margin-top: 40px;
+  display: grid;
+  gap: 40px;
+  grid-template-areas: 
+  'header header'
+  'ingredients constructor';
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* @media screen and (max-width: 768px) {} */

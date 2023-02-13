@@ -3,7 +3,7 @@
 //  Клик по ингредиенту - модальное окно с его описанием  //
 //  Клик по кнопке «Оформить заказ» - окно с описанием заказа //
 //  Закрытие:  клик по иконке "X", ModalOverlay или “Esc”  //
-//  Из UI-библиотеки используйте типографику и иконки.  //
+//  Из UI-библиотеки используйте типографику и иконки  //
 
 import React from 'React';
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -22,6 +22,7 @@ export const Modal = ({ children, onClose }) => {
   );
 }
 
+//  Валдидируем пропсы  //
 Modal.propTypes = {
   children: PropTypes.element.isRequired,
   onClose: PropTypes.func.isRequired,

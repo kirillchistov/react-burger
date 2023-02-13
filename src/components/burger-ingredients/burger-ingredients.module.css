@@ -15,7 +15,7 @@
 
 /* Для списка ингридиентов включаем вертикальную прокрутку */
 .ingredientsContainer {
-  max-height: 70vh;
+  max-height: 87vh;
   overflow-y: scroll;
 }
 
