@@ -1,10 +1,11 @@
 //  Делаем порталом https://reactjs.org/docs/portals.html  //
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { modalsRoot } from "../../utils/data";
+import { modalsRoot } from "../../utils/constants";
 import PropTypes from 'prop-types';
 import ModalOverlayStyle from "./modal-overlay.module.css";
 
-export const ModalOverlay = ({onClose, children}) => {
+const ModalOverlay = ({onClose, children}) => {
 
   return ReactDOM.createPortal(
     <>
@@ -23,3 +24,5 @@ ModalOverlay.propTypes = {
   children: PropTypes.element.isRequired,
   onClose: PropTypes.func.isRequired,
 };
+
+export default ModalOverlay;

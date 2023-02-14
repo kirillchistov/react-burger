@@ -14,61 +14,67 @@ import IngredientCard from "../ingredient-card/ingredient-card";
 import PropTypes from 'prop-types';
 import BurgerIngredientsStyle from "./burger-ingredients.module.css";
 
-const BurgerIngredients = ({ingredients}) => {
+const BurgerIngredients = ({ ingredients, openIngredientDetails }) => {
   const buns = ingredients.filter((bun) => bun.type === "bun");
   const sauces = ingredients.filter((sauce) => sauce.type === "sauce");
   const main = ingredients.filter((main) => main.type === "main");
-
+  
   return (
-    <section className={BurgerIngredientsStyle.mainContainer}>
-      <h1 
-        className={`${BurgerIngredientsStyle.mainTitle} text text_type_main-large`}
-      >Соберите бургер</h1>
-      <SelectTab />
-      <div className={BurgerIngredientsStyle.ingredientsContainer}>
-        <h2
-          className={`${BurgerIngredientsStyle.ingredientSection} text text_type_main-medium`}
-          id="buns"
-        >Булки</h2>
-        <ul className={BurgerIngredientsStyle.cardsContainer}>
-          {buns.map((ingredient) => {
-            return <IngredientCard ingredients={ingredient} key={ingredient._id} />;
-          })}
-        </ul>
+    <div>
+      <section className={BurgerIngredientsStyle.mainContainer}>
+        <h1 
+          className={`${BurgerIngredientsStyle.mainTitle} text text_type_main-large`}
+        >Соберите бургер</h1>
+        <Tabs />
+        <div className={BurgerIngredientsStyle.ingredientsContainer}>
+          <h2
+            className={`${BurgerIngredientsStyle.ingredientSection} text text_type_main-medium`}
+            id="buns"
+          >Булки</h2>
+          <ul className={BurgerIngredientsStyle.cardsContainer}>
+            {buns.map((ingredient) => {
+              return <IngredientCard ingredients={ingredient} key={ingredient._id} />;
+            })}
+          </ul>
 
-        <h2
-          className={`${BurgerIngredientsStyle.ingredientSectionName} text text_type_main-medium`}
-          id="sauces"
-        >Соусы</h2>
-        <ul className={BurgerIngredientsStyle.cardsContainer}>
-          {sauces.map((ingredient) => {
-            return <IngredientCard ingredients={ingredient} key={ingredient._id} />;
-          })}
-        </ul>
+          <h2
+            className={`${BurgerIngredientsStyle.ingredientSectionName} text text_type_main-medium`}
+            id="sauces"
+          >Соусы</h2>
+          <ul className={BurgerIngredientsStyle.cardsContainer}>
+            {sauces.map((ingredient) => {
+              return <IngredientCard ingredients={ingredient} key={ingredient._id} />;
+            })}
+          </ul>
 
-        <h2
-          className={`${BurgerIngredientsStyle.ingredientSectionName} text text_type_main-medium`}
-          id="main"
-        >Начинки</h2>
-        <ul className={BurgerIngredientsStyle.cardsContainer}>
-          {main.map((ingredient) => {
-            return <IngredientCard ingredients={ingredient} key={ingredient._id} />;
-          })}
-        </ul>
-      </div>
-    </section>
+          <h2
+            className={`${BurgerIngredientsStyle.ingredientSectionName} text text_type_main-medium`}
+            id="main"
+          >Начинки</h2>
+          <ul className={BurgerIngredientsStyle.cardsContainer}>
+            {main.map((ingredient) => {
+              return <IngredientCard 
+                  ingredients={ingredient}
+                  onClick={() => openIngredientDetails(ingredient)}
+                  key={ingredient._id} 
+              />;
+            })}
+          </ul>
+        </div>
+      </section>
+    </div>
   );
 }
 
-//  Надо вынести в отдельный компонент  //
-const SelectTab = () => {
+//  Вынести в отдельный компонент  //
+const Tabs = () => {
   const [current, setCurrent] = useState("bun");
   return (
     <div style={{ display: "flex" }}>
       <Tab value="bun" active={current === "bun"} onClick={setCurrent}>
         Булки
       </Tab>
-      <Tab value="sause" active={current === "sause"} onClick={setCurrent}>
+      <Tab value="sauce" active={current === "sauce"} onClick={setCurrent}>
         Соусы
       </Tab>
       <Tab value="main" active={current === "main"} onClick={setCurrent}>
@@ -78,6 +84,7 @@ const SelectTab = () => {
   );
 }
 
+//  Валдидируем пропсы  //
 BurgerIngredients.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

@@ -9,66 +9,91 @@ import React, { useState, useEffect } from 'react';
 import AppHeader from '../app-header/app-header'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import { ingredientsData } from '../../utils/data'
+import IngredientDetails from '../ingredient-details/ingredient-details';
+import OrderDetails from '../order-details/order-details';
+import Modal from "../modal/modal";
+
+import { ingredientsData } from '../../utils/data';
+//  import { getIngredients } from '../../utils/api';  //
 import { BASEURL } from "../../utils/constants";
 import AppStyle from './app.module.css';
 
 const App = () => {
-  
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
 
-  const getServerData = async () => {
-    fetch(BASEURL)
-      .then((response) => {
-        if (response.ok) {
-          return response.json()
-        } 
-        return Promise.reject(`Ошибка получения данных ${response.status}`)
-      })
-      .then((result) => {
-        setData(result.data)
-        console.log(data)
-      })
-      .catch((error) => {
-        setError(error.message)
-        console.log(error)
-      })
-  }
+//  Состояния для работы с массивом ингридиентов  //
+  const [ingredients, setIngredients] = useState([]);
+
+//  Состояния для работы с выбором ингридиента  //
+  const [currentIngredient, setCurrentIngredient] = useState({});
+
+//  Состояния для открытия и закрытия модальных окон  //
+  const [isIngredientDetailsModalOpen, setIsIngredientDetailsModalOpen] = useState(false);
+  const [isOrderDetailsModalOpen, setIsOrderDetailsModalOpen] = useState(false);
+
+//  Обработчики для закрытия модальных окон  //
+  const closeModalIngredientDetails = () => {
+    setIsIngredientDetailsModalOpen(false);
+  };
+
+  const closeModalOrderDetails = () => {
+    setIsOrderDetailsModalOpen(false);
+  };
+
+//  Перепишу fetch на async await try и вынесу в /api  //
+  const getServerData = (res) => {
+    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+  };
 
   useEffect(() => {
-    getServerData();
-  },[])
+    fetch(`${BASEURL}/ingredients`, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then((res) => getServerData(res))
+      .then((res) => setIngredients(res.data))
+      .catch((res) => console.log(res))
+  }, []);
 
-  console.log(error);
-  
+  const handleClickIngredient = (ingredient) => {
+    setCurrentIngredient(ingredient);
+    isIngredientDetailsModalOpen(true);
+  };
+
+  const handleClickOrder = () => {
+    setIsOrderDetailsModalOpen(true);
+  };
 
   return (
-    <div className={AppStyle.mainContainer}>
+    <>
       <AppHeader />
-      <BurgerIngredients ingredients={ ingredientsData } />
-      <BurgerConstructor ingredients={ ingredientsData } />
-    </div>
-  )
-}
+      <main className={AppStyle.mainContainer}>
+        <div className={AppStyle.mainContent}>
+          <section>
+            <BurgerIngredients 
+              ingredients={ ingredients } 
+              openIngredientDetails={handleClickIngredient}
+            />
+          </section>
+          <section className={'mt-25 ml-10'}>
+            <BurgerConstructor ingredients={ ingredientsData } handleOrder={handleClickOrder} />
+          </section>
+        </div>
+      </main>  
+      {isIngredientDetailsModalOpen && (
+        <Modal onClose={closeModalIngredientDetails} modalTitle={ "Детали ингредиента" }>
+          <IngredientDetails ingredient={ currentIngredient } />
+        </Modal>
+      )}
+      {isOrderDetailsModalOpen && (
+        <Modal onClose={closeModalOrderDetails} modalTitle={ "Детали заказа" }>
+          <OrderDetails />
+        </Modal>
+      )}
+    </>
+  );
+};
 
-/*
-  return (
-    {error ? (
-    <div className={AppStyle.mainContainer}>
-      <AppHeader />
-      <h1>Ошибка получения данных</h1>
-      <BurgerIngredients ingredients={ ingredientsData } />
-      <BurgerConstructor ingredients={ ingredientsData } />
-    </div>
-    ) : (
-    <div className={AppStyle.mainContainer}>
-      <BurgerIngredients ingredients={ data } />
-      <BurgerConstructor ingredients={ data } />
-    )}
-    </div>
-  )
-}
-*/
+//  Валдидируем пропсы  //
 
 export default App;

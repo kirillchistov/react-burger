@@ -2,10 +2,11 @@
 import React from 'react';
 import { CurrencyIcon, Button } 
   from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from 'prop-types';
 
 import ConstructorElements from '../constructor-elements/constructor-elements';
 import ConstructorElementsFill from '../constructor-elements-fill/constructor-elements-fill';
+
+import PropTypes from 'prop-types';
 
 import BurgerConstructorStyle from './burger-constructor.module.css';
 
@@ -19,8 +20,9 @@ import BurgerConstructorStyle from './burger-constructor.module.css';
 
 //  Вынес ConstructorElementsFill в отдельный компонент  //
 
-const BurgerConstructor = ({ ingredients }) => {
+const BurgerConstructor = ({ ingredients, handleOrder }) => {
   const filling = ingredients.filter((ingredient) => ingredient.type !== "bun");
+
   return (
     <section className={BurgerConstructorStyle.mainContainer}>
       <ConstructorElements ingredients={ingredients[0]}>
@@ -40,7 +42,7 @@ const BurgerConstructor = ({ ingredients }) => {
           <p className="text text_type_digits-medium">620</p>
           <CurrencyIcon />
         </div>
-        <Button type="primary" size="large">
+        <Button type="primary" size="large" onClick={console.log('клик-клик')}>
           Оформить заказ
         </Button>
       </div>

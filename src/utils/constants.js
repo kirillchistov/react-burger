@@ -1,11 +1,14 @@
-export const BASEURL = "https://norma.nomoreparties.space/api/ingredients";
-
+export const BASEURL = 'https://norma.nomoreparties.space/api';
+export const modalsRoot = document.querySelector('#react-modals');
 /*
-//  Вынесем обработку ответа в константы попозже  //
-export const checkServerResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Ошибка получения данных ${res.status}`);
+//  Вынесем сюда обработку ответа сервера попозже  //
+const checkResponse = (res) => {
+  return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
+
+const getIngredients = () => {
+  return fetch(`${BASEURL}/ingredients`).then(checkResponse);
+}
+
+export default getIngredients;
 */
