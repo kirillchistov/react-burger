@@ -5,27 +5,89 @@
 }
 
 .mainTitle {
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
   text-align: left;
+}
+
+.mainTabsContainer {
+  display: flex;
 }
 
 .ingredientSection {
   padding: 40px 0 24px 0;
 }
 
+.cardsContainer {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.ingredients{
+  max-height: 70vh;
+  overflow-x: hidden;
+  max-width: 600px;
+}
+
+.li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 272px;
+}
+
+
+.ingredientName {
+  font-size: 16px;
+  line-height: 24px;
+  min-height: 48px;
+}
+
+
+.ingredientCard {
+  height: 208px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.ingredientImage {
+  padding: 0 16px;
+  display: block;
+}
+
+.ingredientCost {
+  text-decoration: none;
+}
+
+.ingredientCurrency {
+  text-decoration: none;
+}
+
+.ingredientCostContainer {
+  display: flex;
+  gap: 8px;
+}
+
+.ingredientCounter {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
 /* Для списка ингридиентов включаем вертикальную прокрутку */
 .ingredientsContainer {
   max-height: 87vh;
   overflow-y: scroll;
-}
-
-.cardsContainer {
-  margin: 0;
-  padding: 0 8px 0 16px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  list-style: none;
 }
 
 /* Кастом скролбар: https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
