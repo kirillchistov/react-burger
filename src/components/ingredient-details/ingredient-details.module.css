@@ -4,16 +4,24 @@
 }
 
 .mainTitle {
+  margin: 0 auto;
   padding-top: 8px;
   padding-bottom: 8px;
 }
 
-.image {
+.imageContainer {
   border: none;
 }
 
-.imageContainer {
-  text-align: center;
+.boxContainer {
+  margin: 32px auto 60px;
+  display: grid;
+  gap: 8px 20px;
+  grid-template-columns: repeat(4, max-content );  
+}
+
+.nutritionInfo {
+  margin: 0 auto;
 }
 
 .caption {
@@ -31,3 +39,6 @@
 .nutritionCell {
   width: 120px;
 }
+
+
+/* ==============  */
