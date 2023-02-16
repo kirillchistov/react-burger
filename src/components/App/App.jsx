@@ -18,7 +18,7 @@ const App = () => {
 //  Вместо заглушки делаем запрос к серверу из api в useEffect //
   React.useEffect(() => {
     getIngredients(setIngredients);
-  }, [ingredients]);
+  }, []);
 
 //  Если ингридиенты не вернулись (массив 0), ничего не возвращаем  //
   if (ingredients.length === 0) { 
