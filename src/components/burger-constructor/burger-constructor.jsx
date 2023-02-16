@@ -1,93 +1,58 @@
 //  Блок (правый) с конструктором заказа бургера из выбранных ингридиентов  //
-import React, {useMemo} from 'react';
-import { ConstructorElement, DragIcon, CurrencyIcon, Button } 
 
-  from "@ya.praktikum/react-developer-burger-ui-components";
-//  Вынесем в отдельные компоненты чуть позже  //
-//  import ConstructorElements from '../constructor-elements/constructor-elements';  //
-//  import ConstructorElementsFill from '../constructor-elements-fill/constructor-elements-fill';  //
-
+import React from 'react';
+//  import {ingredientType} from '../../utils/types';  //
+import Modal from '../modal/modal';
+import OrderDetails from '../order-details/order-details';
+import ConstructorTotal from '../constructor-total/constructor-total';
+import ConstructorElements from '../constructor-elements/constructor-elements';
+import {Button} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types';
+import burgerConstructorStyle from './burger-constructor.module.css';
 
-import BurgerConstructorStyle from './burger-constructor.module.css';
 
+const BurgerConstructor = (props) => {
+  //  Создаем состояние для модальных окон  //
+  const [isOpen, setIsOpen] = React.useState(false);
 
-//  Сначала форматирование шапки конструктора  //
-//  Потом верхняя булка (без скроллера и drag&drop)  //
-//  Внизу нижняя булка (тоже без скроллера и drag&drop)  //
-//  см. https://yandex-practicum.github.io/react-developer-burger-ui-components/docs/constructor-element  //
+  //  Находим в ингридиентах первую встречную булку  //
+  const bun = props.ingredientsData.find((element) => element.type === 'bun');
 
-//  Вынести ConstructorElements и ConstructorElementsFill в отдельные компоненты  //
+  let totalSum = 0;
 
-const BurgerConstructor = ({ ingredients, handleClickOrder }) => {
-
+  //  Находим по id и возвращаем ингридиент для начинки бурера в конструкторе  //
+  const findElementByID = (elementID) => {
+    const burgerElementData = props.ingredientsData.find((element) => element._id === elementID);
+    return burgerElementData;        
+  }
+  
   return (
-    <>
-    { ingredients[0] && (
-    <div className={`mr-4 ${BurgerConstructorStyle.topOrderElement}`} key={ingredients[0]._id}>
-      <ConstructorElement
-      type="top"
-      isLocked={true}
-      text={`${ingredients[0].name} (верх)`}
-      price={ingredients[0].price}
-      thumbnail={ingredients[0].image_mobile}
-      />
-    </div> )}
-      <div className={`pr-2 ${BurgerConstructorStyle.mainContainer}`}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          {ingredients
-            .filter((ingredient) => ingredient.type !== "bun")
-            .map((ingredient) => (
-              <>
-                <div  key={ingredient._id} className={BurgerConstructorStyle.middleOrderElement}>
-                  <DragIcon type="primary" />
-                  <ConstructorElement
-                    text={ingredient.name}
-                    price={ingredient.price}
-                    thumbnail={ingredient.image_mobile}
-                  />
-                </div>
-              </>
-          ))}
+    <div>
+      <section className={`mt-25 ml-4 ${burgerConstructorStyle.elements}`}>
+        <ConstructorElements elementData={bun} bunType={'top'} isLocked={true} bunTypeName={' (верх)'} />
+        <div className={`pr-2 ${burgerConstructorStyle.elements_middle}`}> 
+          {props.ingredientsData.map((element) => { 
+            if (element.type !== 'bun') {
+              totalSum += element.price;
+              return (<ConstructorElements elementData={findElementByID(element._id)} bunType={''} isLocked={false} bunTypeName={''} key={element._id} />);
+            }
+          })}
         </div>
-      </div>
-      { ingredients[0] && (<div  key={ingredients[0]._id} className={`mr-4 ${BurgerConstructorStyle.orderButton}`}>
-        <ConstructorElement
-          type="bottom"
-          isLocked={true}
-          text={`${ingredients[0].name} (низ)`}
-          price={ingredients[0].price}
-          thumbnail={ingredients[0].image_mobile}
-        />
-      </div>)}
-      <Order data={ingredients} handleOrder={handleClickOrder}/>
-    </>
+        <ConstructorElements elementData={bun} bunType={'bottom'} isLocked={true} bunTypeName={' (низ)'} />
+        <div className={`mt-10 ${burgerConstructorStyle.constructor_total}`}>
+          <ConstructorTotal total={totalSum + bun.price * 2} />
+          <Button type='primary' size='large' htmlType='button' onClick={() => setIsOpen(true)}>Оформить заказ</Button>
+        </div>
+      </section>
+      <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen} title={''}>
+        <OrderDetails />
+      </Modal>
+   </div>
   )
 }
 
-//  Вынести в отдельный компонент на следующем рефакторе   //
-const Order = ({data, handleOrder}) => {
-  const endPrice  = useMemo(() => data.reduce(
-    (total, data) => total + data.price, 0), [data]
-  )
-
-
-  return (
-    <div className={" mt-10 " + BurgerConstructorStyle.priceContainer}>
-    <p className="mr-10 text text_type_digits-medium">
-      {endPrice}
-      <CurrencyIcon type="primary" />
-    </p>
-    <Button type="primary" size="large" onClick={handleOrder}>
-      Оформить заказ
-    </Button>
-  </div>
-  )
-}
-
-//  Валдидируем пропсы  //
 BurgerConstructor.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+  ingredientsData: PropTypes.array.isRequired  
+}
 
 export default BurgerConstructor;

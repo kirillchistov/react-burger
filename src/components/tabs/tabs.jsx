@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import TabsStyle from "./tabs.module.css";
+import React, { useState } from 'react';
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import TabsStyle from './tabs.module.css';
 
 //  Надо дописать хуки и состояние перед выносом в отдельный компонент  //
 const Tabs = () => {
-  const [current, setCurrent] = useState("bun");
+  const [current, setCurrent] = useState('bun');
 /*
-  const buns = ingredients.filter((bun) => bun.type === "bun");
-  const sauces = ingredients.filter((sauce) => sauce.type === "sauce");
-  const main = ingredients.filter((main) => main.type === "main");
+  const buns = ingredients.filter((bun) => bun.type === 'bun');
+  const sauces = ingredients.filter((sauce) => sauce.type === 'sauce');
+  const main = ingredients.filter((main) => main.type === 'main');
 */
 
   return (
     <div style={`${TabsStyle.mainContainer}`}>
-      <Tab value="bun" active={current === "bun"} onClick={setCurrent}>
+      <Tab value='bun' active={current === 'bun'} onClick={setCurrent}>
         Булки
       </Tab>
-      <Tab value="sauce" active={current === "sauce"} onClick={setCurrent}>
+      <Tab value='sauce' active={current === 'sauce'} onClick={setCurrent}>
         Соусы
       </Tab>
-      <Tab value="main" active={current === "main"} onClick={setCurrent}>
+      <Tab value='main' active={current === 'main'} onClick={setCurrent}>
         Начинки
       </Tab>
     </div>

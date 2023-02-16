@@ -1,37 +1,11 @@
-.orderContainer {
-  padding: 80px 0;
-  display: grid;
-  justify-items: center;
-  box-sizing: border-box;
+.container {
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
 }
 
-.orderNumber {
-  text-decoration: none;
-}
-
-.orderCaption {
-  padding-top: 32px;
-}
-
-.orderAccepted {
+.image {
   width: 120px;
   height: 120px;
-  margin: 60px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url(../../images/done.svg) no-repeat;
-  background-position: center;
-  opacity: 0.6;
-}
-
-.statusContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-}
-
-.statusMessage {
-  text-decoration: none;
+  margin: 9px 0;
 }

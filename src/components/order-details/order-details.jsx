@@ -1,26 +1,16 @@
-
-//  Компонент OrderDetails содержит тестовые данные. Тексты из макета  //
-//  Скоро будет функциональность создания заказа, номер заказа и др. придут с сервера  //
-//  Надо подумать о месте для хранения тестовых данных (props -> localStorage, не cookie же?) //
-import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import OrderDetailsStyle from './order-details.module.css'
+import orderDetailsStyle from './order-details.module.css';
+import orderStatusImage from '../../images/graphics.svg'
 
 const OrderDetails = () => {
   return(
-    <div className={OrderDetailsStyle.orderContainer}>
-      <p className={`${OrderDetailsStyle.orderNumber} text text_type_digits-large`}>034537</p>
-      <p className={`${OrderDetailsStyle.orderCaption} text text_type_main-medium`}>идентификатор заказа</p>
-      <div className={OrderDetailsStyle.orderAccepted}>
-        <CheckMarkIcon type="primary" />     
-      </div>
-      <div className={OrderDetailsStyle.statusContainer}>
-        <p className={`${OrderDetailsStyle.statusMessage} text text_type_main-default`}>Ваш заказ начали готовить</p>
-        <p className={`${OrderDetailsStyle.statusMessage} text text_type_main-default text_color_inactive`}>Дождитесь готовности на орбите</p>
-      </div>
-    </div>
-  )
+    <div className={orderDetailsStyle.container}>
+      <p className='mt-4 mb-8 text text_type_digits-large'>034536</p>
+      <p className='mb-15 text text_type_main-medium'>идентификатор заказа</p>
+      <img className={orderDetailsStyle.image} src={orderStatusImage} alt='галочка подтверждения заказа'></img>
+      <p className='mt-15 mb-2 text text_type_main-default'>Ваш заказ начали готовить</p>
+      <p className='mb-15 text text_type_main-default text_color_inactive'>Дождитесь готовности на орбитальной станции</p>
+    </div>  
+  )    
 }
-
-//  Валдидировать нечего - пропсов пока нет  //
 
 export default OrderDetails;

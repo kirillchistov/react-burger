@@ -1,54 +1,56 @@
-//  Компонент модального окна: шапка с заголовком и иконка закрытия  //
-//  Открывается по клику на соответствующий элемент страницы  //
-//  Клик по ингредиенту - модальное окно с его описанием  //
-//  Клик по кнопке «Оформить заказ» - окно с описанием заказа //
-//  Закрытие:  клик по иконке "X", ModalOverlay или “Esc”  //
-//  Из UI-библиотеки используйте типографику и иконки  //
+//  Общее модальное окно для просмотра ингридиента и кнопки заказа  //
+//  Должно открывать кликнутую карточку ингридиента  //
+//  При клике на кнопку открывает пока статичное окно заказа  //
+//  Окно должно закрываться при клике на x или Esc  //
 
-import React from 'react';
-import ReactDOM from "react-dom";
-import ModalOverlay from "../modal-overlay/modal-overlay";
-import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import React, {useEffect} from 'react';
+import ReactDOM from 'react-dom';
+import ModalOverlay from '../modal-overlay/modal-overlay';
+import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components'
+import {modalsRoot} from '../../utils/constants';
 import PropTypes from 'prop-types';
-import { modalsRoot } from '../../utils/constants';
-import ModalStyle from "./modal.module.css";
+import modalStyle from './modal.module.css';
 
-const Modal = ({ onClose, children, modalTitle}) => {
-
-
-
-  React.useEffect((onClose) => {
-
-    const handleCloseByEsc = (e) => {
-      e.key === "Escape" && onClose();
-    };
-
-    document.addEventListener("keydown", handleCloseByEsc);
-
+//  Если уже открыто, ничего не делаем  //
+//  При монтировании вешаем слушатель на Esc  //
+//  При размонтировании убираем слушатель //
+const Modal = ({children, isOpen, handleClose, title}) => {
+  useEffect(() => {
+    if (!isOpen) return;
+    const closeByEscape = (e) =>(e.key === 'Escape' ? handleClose() : null)
+    document.body.addEventListener('keydown', closeByEscape);
     return () => {
-      document.removeEventListener("keydown", handleCloseByEsc);
+      document.body.removeEventListener('keydown', closeByEscape);  
     };
-  }, []);
+  }, [handleClose, isOpen]);
+  if (!isOpen) return null;
 
-  return ReactDOM.createPortal(
-    <>
-    <div className={ModalStyle.box}>
-      <h2 className="mt-10 ml-10 text text_type_main-large">{modalTitle}</h2>
-      <button type="button" className={ModalStyle.button}>
-        <CloseIcon type="primary" onClick={onClose} />
-      </button>
-      {children}
-      </div>
-      <ModalOverlay onClick={onClose} />
-    </>,
+//  Вначале рисуем оверлей, поверх него размещаем окно  //
+//  Чтобы вставить модалку мимо основного корня, сделали в index #modals  //
+  return ReactDOM.createPortal (
+    (
+      <ModalOverlay handleClose={handleClose}>
+        <div className={`pt-10 pr-10 pb-15 pl-10 ${modalStyle.container}`} onClick={(e) => e.stopPropagation()}>
+          <div className={`pt-3 pb-3 ${modalStyle.header}`}>  
+            <p className='text text_type_main-large'>{title}</p> 
+            <button className={modalStyle.button_close} onClick={handleClose}>
+              <CloseIcon type='primary'/> 
+            </button>
+          </div>
+          {children}
+        </div>
+      </ModalOverlay>
+    ),
     modalsRoot
-  );
-};
+  )    
+}
 
-//  Валдидируем пропсы  //
+//  Проверяем пропсы  //
 Modal.propTypes = {
   children: PropTypes.element.isRequired,
-  onClose: PropTypes.func.isRequired,
-};
+  title: PropTypes.string,
+  isOpen: PropTypes.bool,
+  handleClose: PropTypes.func
+}
 
 export default Modal;

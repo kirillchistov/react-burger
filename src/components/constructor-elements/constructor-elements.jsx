@@ -1,38 +1,39 @@
 import React from 'react';
-import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
+import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
+import {ingredientType} from '../../utils/types';
 
-//  import ConstructorElements from '../constructor-elements/constructor-elements';
 import ConstructorElementsStyle from './constructor-elements.module.css';
 
 
-const ConstructorElements = (props) => {
+const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName}) => {
+  const isDraggable = () => {
+    if (bunType === '') {
+      return <DragIcon type='primary' />              
+    }
+  }
+  
   return (
-    <div className={ConstructorElementsStyle.topOrderElement}>
-      <ConstructorElement
-        type="top"
-        isLocked={true}
-        text={`${props.ingredients.name} (верх)`}
-        price={props.ingredients.price}
-        thumbnail={props.ingredients.image}
-      />
-      {props.children}
-      <ConstructorElement
-        type="bottom"
-        isLocked={true}
-        text={`${props.ingredients.name} (низ)`}
-        price={props.ingredients.price}
-        thumbnail={props.ingredients.image}
-      />
+    <div className={ConstructorElementsStyle.element}>
+      {isDraggable()}
+      <div className={ConstructorElementsStyle.element_width}>
+        <ConstructorElement
+          type={bunType}
+          isLocked={isLocked}
+          text={elementData.name + bunTypeName} 
+          price={elementData.price}
+          thumbnail={elementData.image}
+        />
+      </div>      
     </div>
   );
-}
+}; 
 
-//  Валдидируем пропсы  //
 ConstructorElements.propTypes = {
-  image: PropTypes.string,
-  name: PropTypes.string,
-  price: PropTypes.number,
+  elementData: ingredientType.isRequired,
+  bunType: PropTypes.string.isRequired,
+  bunTypeName: PropTypes.string.isRequired,
+  isLocked: PropTypes.bool.isRequired,
 };
 
 export default ConstructorElements;

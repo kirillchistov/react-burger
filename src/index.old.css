@@ -1,10 +1,6 @@
-@import url(./vendor/normalize.css);
-
-/*
 * {
     box-sizing: border-box;
 }
-*/
 
 body {
   margin: 0;
@@ -13,10 +9,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --color-header: #1C1C21;
-  --color-scrollbar: #2F2F37;
-  --color-scrollbar-thumb: #8585AD;
+}
 
+#root {
+  width: 100vw;
 }
 
 code {
@@ -24,6 +20,12 @@ code {
     monospace;
 }
 
-a {
-  text-decoration: none;
+/* 
+#rootold {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 }
+*/
+
+

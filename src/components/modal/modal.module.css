@@ -1,28 +1,20 @@
-.mainContainer {
-  max-width: 720px;
-  width: 720px;
-  padding: 40px;
-  box-sizing: border-box;
-  background: #1c1c21;
-  border: 1px solid rgba(76, 76, 255, 0.2);
+.container {
+  width: 640px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: #1c1c21;
   border-radius: 40px;
-  box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04),
-    0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04),
-    0px 0px 1px rgba(0, 0, 0, 0.04);
-  position: relative;
-  cursor: default;
+  transform: translate(-50%, -50%);
 }
 
-.closeButton {
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 60px;
-  right: 40px;
-  border: 0;
-  background-color: transparent;
-  cursor: pointer;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.closeButton:hover {
-  opacity: 0.6;
+
+.button_close {
+  border: none;
+  background-color: transparent;
 }

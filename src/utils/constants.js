@@ -1,5 +1,5 @@
 export const BASEURL = 'https://norma.nomoreparties.space/api';
-export const modalsRoot = document.querySelector('#react-modals');
+export const modalsRoot = document.querySelector('#modals');
 /*
 //  Вынесем сюда обработку ответа сервера попозже  //
 const checkResponse = (res) => {

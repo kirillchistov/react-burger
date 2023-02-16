@@ -1,33 +1,38 @@
-import { ingredientType } from "../../utils/types";
-import PropTypes from 'prop-types';
+//  Компонент для отображения в модальном окне при клике на ингридиент  //
 
-import IngredientDetailsStyle from "./ingredient-details.module.css";
+//  import PropTypes from 'prop-types';  //
+import {ingredientType} from '../../utils/types';
+import ingredientDetailsStyle from './ingredient-details.module.css';
 
-const IngredientDetails = ({ ingredient }) => {
+//  Вложенный компонент КБЖУ свойства ингридиента - вынести в отдельный  //
+const IngredientNutrition = (props) => {
   return (
-    <>
-      <figure className={IngredientDetailsStyle.imageContainer}>
-        <img src={ingredient.image_large} alt={ingredient.name} />
-        <figcaption className={`mt-4 text text_type_main-medium ${IngredientDetailsStyle.mainTitle}`}>
-            {ingredient.name}
-        </figcaption>
-      </figure>
-      <div className={IngredientDetailsStyle.boxContainer }>
-        <p className="text text_type_main-default text_color_inactive">Калории,ккал</p>
-        <p className="text text_type_main-default text_color_inactive">Белки, г</p>
-        <p className="text text_type_main-default text_color_inactive">Жиры, г</p>
-        <p className="text text_type_main-default text_color_inactive">Углеводы, г</p>
-        <p className={`text text_type_digits-default text_color_inactive ${IngredientDetailsStyle.nutritionInfo}`}>{ingredient.calories}</p>
-        <p className={`text text_type_digits-default text_color_inactive ${IngredientDetailsStyle.nutritionInfo}`}>{ingredient.proteins}</p>
-        <p className={`text text_type_digits-default text_color_inactive ${IngredientDetailsStyle.nutritionInfo}`}>{ingredient.fat}</p>
-        <p className={`text text_type_digits-default text_color_inactive ${IngredientDetailsStyle.nutritionInfo}`}>{ingredient.carbohydrates}</p>
-      </div>
-    </>
+    <div className={ingredientDetailsStyle.nutrition}>
+      <p className='mb-2 text text_type_main-default text_color_inactive'>{props.type}</p>
+      <p className='text text_type_digits-default text_color_inactive'>{props.amount}</p>
+    </div>
   )
-};
+}  
+
+//  Сводный компонент с гридом свойств  //
+const IngredientDetails = (props) => {
+  return(
+    <div className={ingredientDetailsStyle.general}>
+      <img className={ingredientDetailsStyle.image} src={props.item.image} alt={props.item.name}></img>
+      <p className='mt-4 mb-8 text text_type_main-medium'>{props.item.name}</p>
+      <div className={ingredientDetailsStyle.details}>
+        <IngredientNutrition type={'Калории, ккал'} amount={props.item.calories} />
+        <IngredientNutrition type={'Белки, г'} amount={props.item.proteins} />
+        <IngredientNutrition type={'Жиры, г'} amount={props.item.fat} />
+        <IngredientNutrition type={'Углеводы, г'} amount={props.item.carbohydrates} />
+      </div>
+    </div>  
+  )    
+}
 
 IngredientDetails.propTypes = {
-  ingredient: PropTypes.shape(ingredientType),
+  item: ingredientType.isRequired,
 };
 
 export default IngredientDetails;
+ 

@@ -1,28 +1,14 @@
-//  Делаем порталом https://reactjs.org/docs/portals.html  //
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { modalsRoot } from "../../utils/constants";
-import PropTypes from 'prop-types';
-import ModalOverlayStyle from "./modal-overlay.module.css";
+//  Оверлей при открытии модального окна, затемняет фон  //
 
-const ModalOverlay = ({onClose, children}) => {
+import modalOverlayStyles from './modal-overlay.module.css';
 
-  return ReactDOM.createPortal(
-    <>
-      <div
-        onClick={onClose}
-        className={`${ModalOverlayStyle.mainContainer} ${ModalOverlayStyle.mainContainerOpened}`}
-      >
+//  При клике на оверлей закрываем открытое модальное окно  //
+const ModalOverlay = ({children, handleClose}) => {
+  return(
+    <div className={modalOverlayStyles.container} onClick={handleClose}>
         {children}
-      </div>
-    </>,
-    modalsRoot
-  );
+    </div>  
+  )    
 }
-
-ModalOverlay.propTypes = {
-  children: PropTypes.element.isRequired,
-  onClose: PropTypes.func.isRequired,
-};
 
 export default ModalOverlay;

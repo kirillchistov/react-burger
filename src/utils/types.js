@@ -1,7 +1,13 @@
-//  Старая версия  //
-
 import PropTypes from 'prop-types';
 
+export const ingredientType = PropTypes.shape({
+  name: PropTypes.string,
+  image: PropTypes.string,
+  price: PropTypes.number
+});
+
+//  Рефактор: расширить  //
+/*
 export const ingredientType = { data: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string,
@@ -19,4 +25,4 @@ export const ingredientType = { data: PropTypes.arrayOf(
     })
   ),
 };
-
+*/

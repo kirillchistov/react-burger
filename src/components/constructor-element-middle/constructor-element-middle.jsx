@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 
 //  import ConstructorElements from '../constructor-elements/constructor-elements';

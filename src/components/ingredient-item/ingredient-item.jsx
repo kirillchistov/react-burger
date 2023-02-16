@@ -1,37 +1,37 @@
 //  Карточка ингридиента, используемая в BurgerIngredients  //
 //  Из UI-библиотеки: счётчики, иконку валюты, типо, отступы  //
 
-import IngredientItemStyle from "./ingredient-item.module.css";
-import { Counter, CurrencyIcon } 
-  from "@ya.praktikum/react-developer-burger-ui-components";
+import React from 'react';
 
-const IngredientCards = ({ingredients}) => {
+import IngredientDetails from '../ingredient-details/ingredient-details';
+import IngredientPrice from '../ingredient-price/ingredient-price';
+import Modal from '../modal/modal';
+import { Counter } 
+  from '@ya.praktikum/react-developer-burger-ui-components';
+//  import PropTypes from 'prop-types';  //
+import {ingredientType} from '../../utils/types';
+import IngredientItemStyle from './ingredient-item.module.css';
+
+const IngredientItem = ({ingredientData}) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
-    <li className={IngredientItemStyle.card}>
-      <img
-        className={IngredientItemStyle.image}
-        src={ingredients.image}
-        alt={ingredients.name}
-      />
-      <div className={IngredientItemStyle.costContainer}>
-        <p className={`${IngredientItemStyle.cost} text text_type_digits-default`}>
-          {ingredients.price}
-        </p>
-        <CurrencyIcon
-          className={IngredientItemStyle.currency}
-          type="primary"
-        />
+    <div>
+      <div className={IngredientItemStyle.ingredient} onClick={() => setIsOpen(true)}>
+        <Counter className={IngredientItemStyle.counter} count={1} size='default' />
+        <img src={ingredientData.image} alt={ingredientData.name}></img>
+        <IngredientPrice price={ingredientData.price} />
+        <p className={`mb-6 text text_type_main-default ${IngredientItemStyle.name}`}>{ingredientData.name}</p>
       </div>
-      <h2 className={`${IngredientItemStyle.name} text text_type_main-small`}>
-        {ingredients.name}
-      </h2>
-      <Counter
-        className={IngredientItemStyle.counter}
-        count={1}
-        size="default"
-      />
-    </li>
+      <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen} title={'Детали ингредиента'}>
+        <IngredientDetails item={ingredientData} />
+      </Modal>
+    </div>
   );
-}
+};  
 
-export default IngredientCards;
+IngredientItem.propTypes = {
+  ingredientData: ingredientType.isRequired
+}; 
+
+export default IngredientItem;

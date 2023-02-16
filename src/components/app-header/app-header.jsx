@@ -3,48 +3,31 @@
 //  @ya.praktikum/react-developer-burger-ui-components  //
 //  Адаптив и бургер-меню под мобилку сделаем позже  //
 
-import { Logo, BurgerIcon, ListIcon, ProfileIcon } 
-  from "@ya.praktikum/react-developer-burger-ui-components";
-
-import AppHeaderStyle from "./app-header.module.css";
+import React from 'react';
+import { Logo, BurgerIcon, ListIcon,  ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import AppHeaderStyle from './app-header.module.css';
 
 const AppHeader = () => {
   return (
-    <>
-      <header className={`pt-4 pb-4 ${AppHeaderStyle.mainContainer}`}>
-        <nav className={AppHeaderStyle.navbar}>
-          <ul className={AppHeaderStyle.navContainer}>
-            <li className={`text text_type_main-default ${AppHeaderStyle.navItem}`}>
-              <BurgerIcon type="primary" />
-              <a className={`text text_type_main-small ml-2 ${AppHeaderStyle.link}`} href="./index.html">
-                Конструктор
-              </a>
-            </li>
-
-            <li className={`${AppHeaderStyle.navItem}`}>
-              <ListIcon type="secondary" />
-              <a className={`text text_type_main-small ml-2 text_color_inactive ${AppHeaderStyle.link}`} href="./feed">
-                Лента заказов
-              </a>
-            </li>
-          </ul>
-
-          <li className={`${AppHeaderStyle.navItem} ${AppHeaderStyle.navItem_logo}`}>
-            <a className={`text text_type_main-small ml-2 text_color_inactive ${AppHeaderStyle.link}`} href="./index.html">
-              <Logo />
-            </a>
-          </li>
-
-          <li className={`${AppHeaderStyle.navItem} text text_type_main-default text_color_inactive`}>
-            <ProfileIcon type="secondary" />
-            <a className={AppHeaderStyle.link} href="./profile">
-              Личный кабинет
-            </a>
-          </li>
-        </nav>
-      </header>
-    </>
+    <header className={`mb-10 pt-4 pb-4 ${AppHeaderStyle.header}`}>  
+      <nav className={AppHeaderStyle.navbar}>
+        <a href='/' className={`mt-4 mr-7 mb-4 ${AppHeaderStyle.navitem}`}>  
+          <BurgerIcon type='primary' />
+          <p className='ml-2 text text_type_main-default'>Конструктор</p>
+        </a>
+        <a href='/feed' className={`mt-4 mr-5 mb-4 ml-5 ${AppHeaderStyle.navitem}`}>  
+          <ListIcon type='secondary' />
+          <p className='ml-2 text text_type_main-default text_color_inactive'>Лента заказов</p>
+        </a>
+        <a href='/' className={AppHeaderStyle.logo}>  
+          <Logo />
+        </a>
+        <a href='/profile' className={`mt-4 mb-4 ml-5 ${AppHeaderStyle.navitem}`}>  
+          <ProfileIcon type='secondary' />
+          <p className='ml-2 text text_type_main-default text_color_inactive'>Личный кабинет</p>
+        </a>
+      </nav>
+    </header>
   );
 }
-
-export default AppHeader;
+  export default AppHeader;
