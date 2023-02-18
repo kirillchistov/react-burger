@@ -1,7 +1,7 @@
 import React from 'react';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
-import {ingredientType} from '../../utils/types';
+//  import {ingredientType} from '../../utils/types';  //
 
 import ConstructorElementsStyle from './constructor-elements.module.css';
 
@@ -30,7 +30,7 @@ const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName}) => 
 }; 
 
 ConstructorElements.propTypes = {
-  elementData: ingredientType.isRequired,
+  elementData: PropTypes.object.isRequired,
   bunType: PropTypes.string.isRequired,
   bunTypeName: PropTypes.string.isRequired,
   isLocked: PropTypes.bool.isRequired,

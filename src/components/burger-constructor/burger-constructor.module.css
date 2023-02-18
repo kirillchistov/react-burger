@@ -46,6 +46,7 @@
   height: calc(100vh - 604px);
   display: grid;
   gap: 16px;
+  align-content: flex-start;  
   overflow-y: auto;
 }
 

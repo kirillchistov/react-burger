@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 //  Блок (левый) с выбором ингридиентов по типам  //
 //  Из UI-библиотеки: счётчики, иконки, переключатели, типо, отступы  //
 //  https://yandex-practicum.github.io/react-developer-burger-ui-components/docs/tab  //
@@ -14,7 +15,7 @@ import React from 'react';
 //  import IngredientPrice from '../ingredient-price/ingredient-price';  //
 import IngredientItem from '../ingredient-item/ingredient-item';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
-//  import PropTypes from 'prop-types';  //
+import PropTypes from 'prop-types';
 //  import {ingredientType} from '../../utils/types'; //
 import BurgerIngredientsStyle from './burger-ingredients.module.css';
 
@@ -22,7 +23,7 @@ import BurgerIngredientsStyle from './burger-ingredients.module.css';
 //  IngredientItem  Вынесли в отдельный компонент  //
 
      
-const BurgerIngredients = (props) => {
+const BurgerIngredients = ({ingredientsData}) => {
   return (
     <section className={`mr-10 ${BurgerIngredientsStyle.ingredients}`}> 
       <h1 className='mb-5 text text_type_main-large'>Соберите бургер</h1>
@@ -34,25 +35,25 @@ const BurgerIngredients = (props) => {
       <div className={BurgerIngredientsStyle.ingredient_types}>
         <h2 className='mt-10 mb-6 text text_type_main-medium'>Булки</h2>
         <div className={BurgerIngredientsStyle.ingredient_type}>
-          {props.ingredientsData.map((element) => { 
+          {ingredientsData.map((element) => { 
             if (element.type === 'bun') {
-              return (<IngredientItem ingredientData={element}  key={element._id} />);
+              return (<IngredientItem item={element}  key={element._id} />);
             }
           })}
         </div>
         <h2 className='mt-10 mb-6 text text_type_main-medium'>Соусы</h2>
         <div className={BurgerIngredientsStyle.ingredient_type}>
-          {props.ingredientsData.map((element) => { 
+          {ingredientsData.map((element) => { 
             if (element.type === 'sauce') {
-              return (<IngredientItem ingredientData={element}  key={element._id} />);
+              return (<IngredientItem item={element}  key={element._id} />);
             }
           })}
         </div>
         <h2 className='mt-10 mb-6 text text_type_main-medium'>Начинки</h2>
         <div className={BurgerIngredientsStyle.ingredient_type}>
-          {props.ingredientsData.map((element) => { 
+          {ingredientsData.map((element) => { 
             if (element.type === 'main') {
-              return (<IngredientItem ingredientData={element}  key={element._id} />);
+              return (<IngredientItem item={element}  key={element._id} />);
             }
           })}
         </div>
@@ -60,4 +61,9 @@ const BurgerIngredients = (props) => {
     </section>
   );
 }
+
+BurgerIngredients.propTypes = {
+  ingredientsData: PropTypes.array.isRequired  
+}
+
 export default BurgerIngredients;

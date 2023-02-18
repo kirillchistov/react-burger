@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 //  Блок (правый) с конструктором заказа бургера из выбранных ингридиентов  //
 
 import React from 'react';
@@ -11,27 +12,28 @@ import PropTypes from 'prop-types';
 import burgerConstructorStyle from './burger-constructor.module.css';
 
 
-const BurgerConstructor = (props) => {
+const BurgerConstructor = ({ingredientsData}) => {
   //  Создаем состояние для модальных окон  //
   const [isOpen, setIsOpen] = React.useState(false);
 
   //  Находим в ингридиентах первую встречную булку  //
-  const bun = props.ingredientsData.find((element) => element.type === 'bun');
+  const bun = ingredientsData.find((element) => element.type === 'bun');
 
   let totalSum = 0;
 
   //  Находим по id и возвращаем ингридиент для начинки бурера в конструкторе  //
   const findElementByID = (elementID) => {
-    const burgerElementData = props.ingredientsData.find((element) => element._id === elementID);
+    const burgerElementData = ingredientsData.find((element) => element._id === elementID);
     return burgerElementData;        
   }
-  
+
+    
   return (
     <div>
       <section className={`mt-25 ml-4 ${burgerConstructorStyle.elements}`}>
         <ConstructorElements elementData={bun} bunType={'top'} isLocked={true} bunTypeName={' (верх)'} />
         <div className={`pr-2 ${burgerConstructorStyle.elements_middle}`}> 
-          {props.ingredientsData.map((element) => { 
+          {ingredientsData.map((element) => { 
             if (element.type !== 'bun') {
               totalSum += element.price;
               return (<ConstructorElements elementData={findElementByID(element._id)} bunType={''} isLocked={false} bunTypeName={''} key={element._id} />);

@@ -1,5 +1,6 @@
 import IngredientItem from '../ingredient-item/ingredient-item';
 import PropTypes from 'prop-types';
+import {ingredientType} from '../../utils/types';
 
 const IngredientFilter = ({ ingredients, type, openModal }) => {
   const filteredIngredients = ingredients.filter(
@@ -22,7 +23,7 @@ const IngredientFilter = ({ ingredients, type, openModal }) => {
 }
 
 IngredientFilter.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
+  ingredients: PropTypes.arrayOf(ingredientType.isRequired).isRequired,
   type: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,
 };
