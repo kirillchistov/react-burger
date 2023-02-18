@@ -12,7 +12,7 @@ const Tabs = () => {
 */
 
   return (
-    <div style={`${TabsStyle.mainContainer}`}>
+    <div className={TabsStyle.mainContainer}>
       <Tab value='bun' active={current === 'bun'} onClick={setCurrent}>
         Булки
       </Tab>

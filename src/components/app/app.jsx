@@ -15,6 +15,9 @@ const App = () => {
 //  Заводим состояние для хранения списка ингридиентов  //
   const [ingredients, setIngredients] = React.useState([]);
 
+//  Заводим состояние загрузки для показа и отключения загрузчка  //
+//  const [isLoading, setIsLoading] = React.useState(true);  //
+
 //  Вместо заглушки делаем запрос к серверу из api в useEffect //
   React.useEffect(() => {
     getIngredients(setIngredients);
