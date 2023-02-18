@@ -47,7 +47,7 @@ const BurgerConstructor = ({ingredientsData}) => {
           <Button type='primary' size='large' htmlType='button' onClick={() => setIsOpen(true)}>Оформить заказ</Button>
         </div>
       </section>
-      <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen} title={''}>
+      <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen} title={'Детали заказа'}>
         <OrderDetails />
       </Modal>
    </div>
