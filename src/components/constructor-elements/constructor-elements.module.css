@@ -1,6 +1,25 @@
+.element {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: auto auto;
+  justify-content: end;
+  align-items: center;
+}
+
 .topOrderElement {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 16px;
+}
+
+.middleOrderElement {
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.elementWidth {
+  width: 536px;
 }

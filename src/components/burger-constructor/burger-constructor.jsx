@@ -26,7 +26,6 @@ const BurgerConstructor = ({ingredientsData}) => {
     const burgerElementData = ingredientsData.find((element) => element._id === elementID);
     return burgerElementData;        
   }
-
     
   return (
     <div>

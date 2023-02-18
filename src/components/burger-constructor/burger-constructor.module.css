@@ -1,16 +1,17 @@
+.elements {
+  display: grid;
+  gap: 16px;
+}
+
 .container {
   display: flex;
   align-items: center;
 }
 
-.element_width {
+.elementWidth {
   width: 536px;
 }
 
-.elements {
-  display: grid;
-  gap: 16px;
-}
 
 .element {
   display: grid;
@@ -42,11 +43,11 @@
 }
 
 .elements_middle {
-  max-width: 584px;
+/*  max-width: 584px;  */
   height: calc(100vh - 604px);
   display: grid;
   gap: 16px;
-  align-content: flex-start;  
+/*  align-content: flex-start;  */
   overflow-y: auto;
 }
 

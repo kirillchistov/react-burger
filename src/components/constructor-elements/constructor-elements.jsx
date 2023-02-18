@@ -16,7 +16,7 @@ const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName}) => 
   return (
     <div className={ConstructorElementsStyle.element}>
       {isDraggable()}
-      <div className={ConstructorElementsStyle.element_width}>
+      <div className={ConstructorElementsStyle.elementWidth}>
         <ConstructorElement
           type={bunType}
           isLocked={isLocked}

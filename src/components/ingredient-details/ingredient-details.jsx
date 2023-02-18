@@ -5,19 +5,14 @@ import {ingredientType} from '../../utils/types';
 import ingredientDetailsStyle from './ingredient-details.module.css';
 
 //  Вложенный компонент КБЖУ свойства ингридиента - вынести в отдельный  //
-const IngredientNutrition = ({type, price}) => {
+const IngredientNutrition = ({type, amount}) => {
   return (
     <div className={ingredientDetailsStyle.nutrition}>
       <p className='mb-2 text text_type_main-default text_color_inactive'>{type}</p>
-      <p className='text text_type_digits-default text_color_inactive'>{price}</p>
+      <p className='text text_type_digits-default text_color_inactive'>{amount}</p>
     </div>
   )
-}
-
-IngredientNutrition.propTypes = {
-  type: ingredientType.isRequired,
-  price: ingredientType.number
-};
+}  
 
 //  Сводный компонент с гридом свойств  //
 const IngredientDetails = ({item}) => {
@@ -36,8 +31,11 @@ const IngredientDetails = ({item}) => {
 }
 
 IngredientDetails.propTypes = {
-  item: PropTypes.object.isRequired
+  item: ingredientType,
+  calories: PropTypes.number,
+  proteins: PropTypes.number,
+  fat: PropTypes.number,
+  carbohydrates: PropTypes.number
 };
 
 export default IngredientDetails;
- 
