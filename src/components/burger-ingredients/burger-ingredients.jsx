@@ -66,4 +66,10 @@ BurgerIngredients.propTypes = {
   ingredientsData: PropTypes.array.isRequired  
 }
 
+/*
+BurgerConstructor.propTypes = {
+  ingredientsData: ingredientType.isRequired,
+};
+*/
+
 export default BurgerIngredients;

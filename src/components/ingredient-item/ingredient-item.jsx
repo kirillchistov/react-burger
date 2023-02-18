@@ -28,13 +28,11 @@ const IngredientItem = ({item}) => {
       </Modal>
     </div>
   );
-};  
-
+};
 
 IngredientItem.propTypes = {
 //  item: PropTypes.objectOf(ingredientType.isRequired).isRequired   //
   item: PropTypes.object.isRequired,
-  type: PropTypes.string,
 };
 
 export default IngredientItem;

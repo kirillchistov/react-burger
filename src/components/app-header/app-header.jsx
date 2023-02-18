@@ -2,6 +2,7 @@
 //  Из UI-библиотеки: лого, иконки, типо, отступы  //
 //  @ya.praktikum/react-developer-burger-ui-components  //
 //  Адаптив и бургер-меню под мобилку сделаем позже  //
+//  Надо переделать на Link для роутинга  //
 
 import React from 'react';
 import { Logo, BurgerIcon, ListIcon,  ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components';

@@ -26,7 +26,9 @@ const BurgerConstructor = ({ingredientsData}) => {
     const burgerElementData = ingredientsData.find((element) => element._id === elementID);
     return burgerElementData;        
   }
-    
+
+  // Отображаем часть компонентов, а не выбранные. Стоимость пока суммируем  //
+
   return (
     <div>
       <section className={`mt-25 ml-4 ${burgerConstructorStyle.elements}`}>
@@ -55,5 +57,11 @@ const BurgerConstructor = ({ingredientsData}) => {
 BurgerConstructor.propTypes = {
   ingredientsData: PropTypes.array.isRequired  
 }
+
+/*
+BurgerConstructor.propTypes = {
+  ingredientsData: ingredientType.isRequired,
+};
+*/
 
 export default BurgerConstructor;

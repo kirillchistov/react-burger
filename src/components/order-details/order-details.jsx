@@ -13,4 +13,6 @@ const OrderDetails = () => {
   )    
 }
 
+//  пропсов пока нет, не надо валидировать  //
+
 export default OrderDetails;

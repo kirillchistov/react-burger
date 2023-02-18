@@ -22,9 +22,9 @@ const ConstructorElementsFill = ({ ingredients }) => {
 
 //  Валдидируем пропсы  //
 ConstructorElementsFill.propTypes = {
-  image: PropTypes.string,
-  name: PropTypes.string,
-  price: PropTypes.number,
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
 }; 
 
 export default ConstructorElementsFill;
