@@ -2,7 +2,7 @@
 //  Блок (правый) с конструктором заказа бургера из выбранных ингридиентов  //
 
 import React from 'react';
-//  import {ingredientType} from '../../utils/types';  //
+import {ingredientType} from '../../utils/types';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import ConstructorTotal from '../constructor-total/constructor-total';
@@ -54,14 +54,8 @@ const BurgerConstructor = ({ingredientsData}) => {
   )
 }
 
-BurgerConstructor.propTypes = {
-  ingredientsData: PropTypes.array.isRequired  
-}
-
-/*
-BurgerConstructor.propTypes = {
-  ingredientsData: ingredientType.isRequired,
+BurgerConstructor.propTypes = { 
+  ingredientsData: PropTypes.arrayOf(ingredientType).isRequired, 
 };
-*/
 
 export default BurgerConstructor;

@@ -31,7 +31,6 @@ const IngredientItem = ({item}) => {
 };
 
 IngredientItem.propTypes = {
-//  item: PropTypes.objectOf(ingredientType.isRequired).isRequired   //
   item: PropTypes.object.isRequired,
 };
 

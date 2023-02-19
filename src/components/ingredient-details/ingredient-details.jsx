@@ -12,7 +12,12 @@ const IngredientNutrition = ({type, amount}) => {
       <p className='text text_type_digits-default text_color_inactive'>{amount}</p>
     </div>
   )
-}  
+}
+
+IngredientNutrition.propTypes = {
+  type: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired
+};
 
 //  Сводный компонент с гридом свойств  //
 const IngredientDetails = ({item}) => {
@@ -30,9 +35,10 @@ const IngredientDetails = ({item}) => {
   )    
 }
 
+IngredientDetails.propTypes = ingredientType.isRequired;
+/*
 IngredientDetails.propTypes = {
   item: PropTypes.object.isRequired,  
-/*
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
@@ -40,7 +46,7 @@ IngredientDetails.propTypes = {
   proteins: PropTypes.number.isRequired,
   fat: PropTypes.number.isRequired,
   carbohydrates: PropTypes.number.isRequired
-*/
 };
+*/
 
 export default IngredientDetails;

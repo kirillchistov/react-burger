@@ -16,7 +16,7 @@ import React from 'react';
 import IngredientItem from '../ingredient-item/ingredient-item';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types';
-//  import {ingredientType} from '../../utils/types'; //
+import {ingredientType} from '../../utils/types';
 import BurgerIngredientsStyle from './burger-ingredients.module.css';
 
 //  IngredientPrice вынесли в отдельный компонент  //
@@ -62,14 +62,8 @@ const BurgerIngredients = ({ingredientsData}) => {
   );
 }
 
-BurgerIngredients.propTypes = {
-  ingredientsData: PropTypes.array.isRequired  
-}
-
-/*
-BurgerConstructor.propTypes = {
-  ingredientsData: ingredientType.isRequired,
+BurgerIngredients.propTypes = { 
+  ingredientsData: PropTypes.arrayOf(ingredientType).isRequired, 
 };
-*/
 
 export default BurgerIngredients;
