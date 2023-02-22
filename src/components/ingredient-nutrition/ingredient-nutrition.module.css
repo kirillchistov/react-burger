@@ -1,0 +1,25 @@
+.nutrition {
+  display: flex;  
+  flex-direction: column;
+  align-items: center;
+}
+
+/*
+.ingredient_general {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ingredient_image {
+  width: 520px;
+  height: 240px;
+}
+
+.ingredient_details {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 20px;
+  justify-items: center;
+}
+*/

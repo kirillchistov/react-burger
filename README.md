@@ -1,3 +1,40 @@
+# react-burger
+Репозиторий фронтенда дипломного проекта Stellar Burgers. Это приложение для заказа космических бургеров и заодно учебный проект в курсе react-разработчик ЯП.
+
+# Автор
+* [Кирилл Чистов](https://github.com/kirillchistov), студент (когорта 23)
+
+# Стек технологий
+* [x] HTML, CSS (БЭМ Flat, адаптив Flex + Grid)
+* [x] JavaScript (ES6, React)
+* [x] Back-end (Node.js, MongoDB, Express, Nginx)
+* [x] Git, WebPack, Babel (позже redux и пр.) и т.д.
+
+## [Pull Request Step-2](https://github.com/kirillchistov/movies-explorer-frontend/pull/34)
+
+* [x] [Макет в Figma](общий)
+# Репозитории:
+* [x] [Step 2] (https://github.com/kirillchistov/react-burger/tree/sprint1/step2)
+
+## Навигация пока отсутствует
+* [x] `app.jsx` — точка входа
+* [x] `/components` — основные компоненты проекта
+* [x] `/contexts` — будут контексты 
+* [x] `/hooks` — будут хуки 
+* [x] `/images` - все изображения проекта
+* [x] `/utils` - константы, API и прочие утилиты
+* [x] `/vendor` - внешние скрипты, шрифты и прочие внешние ресурсы
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

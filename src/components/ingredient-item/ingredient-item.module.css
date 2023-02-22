@@ -1,0 +1,64 @@
+.ingredient {
+  max-width: 272px;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  position: relative;
+  cursor: pointer;
+}
+
+
+.counter {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.name {
+  text-decoration: none;
+  align-content: center;
+}
+
+/*
+.card {
+  height: 208px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.image {
+  padding: 0 16px;
+  display: block;
+}
+
+.name {
+  text-decoration: none;
+}
+
+.cost {
+  text-decoration: none;
+}
+
+.currency {
+  text-decoration: none;
+}
+
+.costContainer {
+  display: flex;
+  gap: 8px;
+}
+
+.counter {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+*/

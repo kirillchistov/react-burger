@@ -1,0 +1,43 @@
+.ingredients {
+  width: 600px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.ingredient_type {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.ingredient {
+  max-width: 272px;
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.ingredient_types {
+  height: calc(100vh - 324px);
+  overflow-y: auto;
+}
+
+.ingredient_types::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--color-scrollbar);
+}
+
+.ingredient_types::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar-thumb);
+}
+
+.counter {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

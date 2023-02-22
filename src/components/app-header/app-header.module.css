@@ -1,0 +1,32 @@
+.header {
+  padding-left: calc((100vw - 1320px)/2);
+  padding-right: calc((100vw - 1320px)/2);
+  background-color: var(--color-header);
+}
+  
+.navbar {
+  display: flex;  
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+}
+
+.navitem {
+  display: flex;  
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+}
+
+.navitem:active {
+  color: #fff;
+}
+
+.navitem:first-child {
+  color: #fff;
+}
+
+.logo {
+  height: 40px;
+  margin: 8px 289px 8px 112px;
+}

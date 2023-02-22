@@ -1,0 +1,11 @@
+.mainContainer {
+  margin-right: calc((100vw - 1320px)/2);
+  margin-left: calc((100vw - 1320px)/2);
+  display: flex;
+}
+
+.loading {
+  padding-top: 40px;
+  grid-area: loading;
+  justify-self: center;
+}
