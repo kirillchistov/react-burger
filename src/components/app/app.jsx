@@ -8,6 +8,7 @@ import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import {getIngredients} from '../../utils/api';
+import {AppContext} from '../../services/app-context';
 
 import AppStyle from './app.module.css';
 
@@ -32,8 +33,10 @@ const App = () => {
     <div className='pt-10 pr-10 pb-10 pl-10'>
       <AppHeader />
       <main className={AppStyle.mainContainer}>
-        <BurgerIngredients ingredientsData={ingredients.data} />
-        <BurgerConstructor ingredientsData={ingredients.data}/>
+        <AppContext.Provider value={ingredients.data} >
+          <BurgerIngredients ingredientsData={ingredients.data} />
+          <BurgerConstructor ingredientsData={ingredients.data}/>
+        </AppContext.Provider>
       </main>
     </div>
   );
