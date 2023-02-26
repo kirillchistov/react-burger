@@ -36,17 +36,5 @@ const IngredientDetails = ({item}) => {
 }
 
 IngredientDetails.propTypes = ingredientType.isRequired;
-/*
-IngredientDetails.propTypes = {
-  item: PropTypes.object.isRequired,  
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  calories: PropTypes.number.isRequired,
-  proteins: PropTypes.number.isRequired,
-  fat: PropTypes.number.isRequired,
-  carbohydrates: PropTypes.number.isRequired
-};
-*/
 
 export default IngredientDetails;

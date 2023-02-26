@@ -8,8 +8,8 @@ import IngredientPrice from '../ingredient-price/ingredient-price';
 import Modal from '../modal/modal';
 import { Counter } 
   from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
-//  import {ingredientType} from '../../utils/types';  //
+//  import PropTypes from 'prop-types';  //
+import {ingredientType} from '../../utils/types';
 import IngredientItemStyle from './ingredient-item.module.css';
 
 const IngredientItem = ({item}) => {
@@ -30,8 +30,16 @@ const IngredientItem = ({item}) => {
   );
 };
 
+
+IngredientItem.propTypes = {
+  item: ingredientType
+};
+
+/*
 IngredientItem.propTypes = {
   item: PropTypes.object.isRequired,
 };
+*/
+
 
 export default IngredientItem;

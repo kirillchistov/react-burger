@@ -7,8 +7,8 @@ import React from 'react';
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import {getIngredients} from '../../utils/api';
-import {AppContext} from '../../services/app-context';
+import { getIngredients } from '../../utils/api';
+import { AppContext } from '../../services/app-context';
 
 import AppStyle from './app.module.css';
 
