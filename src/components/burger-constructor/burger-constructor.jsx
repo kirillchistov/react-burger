@@ -1,27 +1,31 @@
 /* eslint-disable array-callback-return */
 //  Блок (правый) с конструктором заказа бургера из выбранных ингридиентов  //
 
-import React from 'react';
-import {ingredientType} from '../../utils/types';
+import React, {useState, useContext} from 'react';
+import { ingredientType } from '../../utils/types';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import ConstructorTotal from '../constructor-total/constructor-total';
 import ConstructorElements from '../constructor-elements/constructor-elements';
-import {Button} from '@ya.praktikum/react-developer-burger-ui-components'
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types';
+//  Использую общий контекст  //
+import { AppContext } from '../../services/app-context';
+
 import burgerConstructorStyle from './burger-constructor.module.css';
 
 
-const BurgerConstructor = ({ingredientsData}) => {
+const BurgerConstructor = (props) => {
   //  Создаем состояние для модальных окон  //
-  const [isOpen, setIsOpen] = React.useState(false);
-
+  const [isOpen, setIsOpen] = useState(false);
+  //  Теперь берем данные не из props, а из контекста  //
+  const ingredientsData = useContext(AppContext);
   //  Находим в ингридиентах первую встречную булку  //
   const bun = ingredientsData.find((element) => element.type === 'bun');
 
   let totalSum = 0;
 
-  //  Находим по id и возвращаем ингридиент для начинки бурера в конструкторе  //
+  //  Функция ищет ингридиенты по id в заказе и возвращаем данные для начинки бурера в конструкторе  //
   const findElementByID = (elementID) => {
     const burgerElementData = ingredientsData.find((element) => element._id === elementID);
     return burgerElementData;        
@@ -33,7 +37,7 @@ const BurgerConstructor = ({ingredientsData}) => {
     <div>
       <section className={`mt-25 ml-4 ${burgerConstructorStyle.elements}`}>
         <ConstructorElements elementData={bun} bunType={'top'} isLocked={true} bunTypeName={' (верх)'} />
-        <div className={`pr-2 ${burgerConstructorStyle.elements_middle}`}> 
+        <div className={`pr-2 ${burgerConstructorStyle.elements_midstuff}`}> 
           {ingredientsData.map((element) => { 
             if (element.type !== 'bun') {
               totalSum += element.price;
@@ -55,7 +59,7 @@ const BurgerConstructor = ({ingredientsData}) => {
 }
 
 BurgerConstructor.propTypes = { 
-  ingredientsData: PropTypes.arrayOf(ingredientType).isRequired, 
+  ingredientsData: PropTypes.arrayOf(ingredientType).isRequired,
 };
 
 export default BurgerConstructor;

@@ -37,12 +37,12 @@
   justify-content: flex-end;
 }
 
-.icon_middle{
+.icon_midstuff{
   width: 36px;
   height: 36px;
 }
 
-.elements_middle {
+.elements_midstuff {
 /*  max-width: 584px;  */
   height: calc(100vh - 604px);
   display: grid;
@@ -51,11 +51,11 @@
   overflow-y: auto;
 }
 
-.elements_middle::-webkit-scrollbar {
+.elements_midstuff::-webkit-scrollbar {
   width: 8px;
   background-color: var(--color-scrollbar);
 }
 
-.elements_middle::-webkit-scrollbar-thumb {
+.elements_midstuff::-webkit-scrollbar-thumb {
   background-color: var(--color-scrollbar-thumb);
 }
