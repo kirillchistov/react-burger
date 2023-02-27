@@ -36,7 +36,6 @@ const App = () => {
       <AppHeader />
       <main className={AppStyle.mainContainer}>
         <IngredientContext.Provider value={ingredients.data} >
-          {console.log(ingredients.data)}
           <BurgerIngredients />
           <BurgerConstructor />
         </IngredientContext.Provider>

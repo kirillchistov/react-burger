@@ -7,7 +7,7 @@
 //  Подумать над ограничением высоты блока на разных разрешениях   //
 //  Фильтруем ингридиенты по типам и кладем в массивы  //
 //  Затем в разметку вставляем карточки ингридиентов по типам  //
-//  Убрать все инлайн стили,добавить отступы, убрать SelectTab в отд.компонент  //
+//  Убрать все инлайн стили, добавить отступы, убрать SelectTab в отд.компонент  //
 
 import React, { useContext } from 'react';
 //  import Modal from '../modal/modal';  //
@@ -28,6 +28,7 @@ const BurgerIngredients = (props) => {
 
     //  Теперь берем данные не из props, а из контекста  //
   const ingredientsData = useContext(IngredientContext);
+  console.log(ingredientsData);
 
   return (
     <section className={`mr-10 ${BurgerIngredientsStyle.ingredients}`}> 
@@ -67,8 +68,10 @@ const BurgerIngredients = (props) => {
   );
 }
 
+/*
 BurgerIngredients.propTypes = { 
   ingredientsData: PropTypes.arrayOf(ingredientType).isRequired, 
 };
+*/
 
 export default BurgerIngredients;

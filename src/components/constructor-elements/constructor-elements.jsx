@@ -49,7 +49,7 @@ ConstructorElements.propTypes = {
   bunType: PropTypes.string.isRequired,
   bunTypeName: PropTypes.string.isRequired,
   isLocked: PropTypes.bool.isRequired,
-  onDelete: PropTypes.func.isRequired
+  onDelete: PropTypes.func
 };
 
 export default ConstructorElements;

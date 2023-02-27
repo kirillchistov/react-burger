@@ -16,11 +16,12 @@ import { IngredientContext, PriceContext, OrderContext } from '../../services/ap
 import burgerConstructorStyle from './burger-constructor.module.css';
 
 
-const BurgerConstructor = () => {
+const BurgerConstructor = (props) => {
   //  Создаем состояние для модальных окон  //
   const [isOpen, setIsOpen] = useState(false);
-  //  Теперь берем данные не из props, а из контекста  //
+    //  Теперь берем данные не из props, а из контекста  //
   const ingredientsData = useContext(IngredientContext);
+  console.log(ingredientsData);
   //  Создаем состояние для номера и редюсер для суммы заказа  //
   const [orderNumber, setOrderNumber] = useState(null);
   
@@ -41,20 +42,23 @@ const initialTotal = { price: 0 };
 
 const [totalState, priceDispatcher] = useReducer(reducer, initialTotal);
 
-  //  Нахожу в ингридиентах первую встречную булку  //
+  //  Нахожу в ингридиентах первые встречные: булку, начинку, соус  //
   const bun = ingredientsData.find((element) => element.type === 'bun');
+  const main = ingredientsData.find((element) => element.type === 'main');
+  const sauce = ingredientsData.find((element) => element.type === 'sauce');
   
   //  Создаю начальный массив закааа с булками без начинки  //
-    const arrIngredients = [];
+    const arrIngredients = [bun, main, sauce, bun];
 
   // Считаю сумму заказа с мемоизацией, не понятно, как прописать зависимости...  //
   const totalAmount = useMemo(() => {
     let orderTotal = 0;
-    //  const arrIngredients = [bun, bun];
+    //  const arrIngredients = [bun, main, sauce, bun];
     arrIngredients.forEach(element => orderTotal += element.price);    
     priceDispatcher({type: 'setTotalAmount', payload: orderTotal});
+    console.log(orderTotal);
   },[ingredientsData]);
-  console.log(totalAmount);
+  
 
   //  Функция ищет ингридиенты по id в заказе и возвращаем данные для начинки бурера в конструкторе  //
   const findElementByID = (elementID) => {
@@ -62,8 +66,7 @@ const [totalState, priceDispatcher] = useReducer(reducer, initialTotal);
     return burgerElementData;        
   }
 
-  //  Функция создания заказа в конструкторе  //
-  //  Пример ответа:
+  //  Пример ответа от сервера при успешной отправке заказа:  //
   /*
   {
     "success": true,
@@ -73,7 +76,9 @@ const [totalState, priceDispatcher] = useReducer(reducer, initialTotal);
     }
   }
   */
-
+  //  Функция создания заказа в конструкторе  //
+  //  Для каждого элемента берем его id и складываем в массив, передаем на сервер  //
+  //  В ответ получаем название и номер заказа - пример ответа см. выше  //
   const createOrder = () => {
     const arrIngredientsId = arrIngredients.map((element) => {
       return element._id;
@@ -90,8 +95,8 @@ const [totalState, priceDispatcher] = useReducer(reducer, initialTotal);
     });
   }
   
-  // Отображаем часть компонентов, а не выбранные. Стоимость пока суммируем  //
-
+  // В конструкторе пока набор булок и по одному первому элементу начинки и соуса, не выбор  //
+  // Цены суммируем и выводим в конструкторе, в попапе выводим номер заказа  //
   return (
     <div>
       <section className={`mt-25 ml-4 ${burgerConstructorStyle.elements}`}>
@@ -119,9 +124,10 @@ const [totalState, priceDispatcher] = useReducer(reducer, initialTotal);
    </div>
   )
 }
-
+/*
 BurgerConstructor.propTypes = { 
   ingredientsData: PropTypes.arrayOf(ingredientType).isRequired,
 };
+*/
 
 export default BurgerConstructor;
