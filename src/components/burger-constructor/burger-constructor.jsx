@@ -11,7 +11,7 @@ import Modal from '../modal/modal';
 import { postOrder } from '../../utils/api';
 import PropTypes from 'prop-types';
 //  Использую общий контекст  //
-import { IngredientContext, PriceContext, OrderContext } from '../../services/appContext';
+import { IngredientContext, PriceContext, OrderContext } from '../../services/app-context';
 
 import burgerConstructorStyle from './burger-constructor.module.css';
 

@@ -20,14 +20,14 @@ import { ingredientType } from '../../utils/types';
 //  IngredientPrice вынес в отдельный компонент  //
 //  IngredientItem вынес в отдельный компонент  //
 //  Использую общий контекст  //
-import { AppContext } from '../../services/app-context';
+import { IngredientContext } from '../../services/app-context';
 
 import BurgerIngredientsStyle from './burger-ingredients.module.css';
      
 const BurgerIngredients = (props) => {
 
     //  Теперь берем данные не из props, а из контекста  //
-  const ingredientsData = useContext(AppContext);
+  const ingredientsData = useContext(IngredientContext);
 
   return (
     <section className={`mr-10 ${BurgerIngredientsStyle.ingredients}`}> 

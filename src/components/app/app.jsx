@@ -12,6 +12,7 @@ import { getIngredients } from '../../utils/api';
 import { IngredientContext } from '../../services/app-context';
 
 import AppStyle from './app.module.css';
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 
 const App = () => {
 //  Заводим состояние для хранения списка ингридиентов  //
@@ -35,6 +36,7 @@ const App = () => {
       <AppHeader />
       <main className={AppStyle.mainContainer}>
         <IngredientContext.Provider value={ingredients.data} >
+          {console.log(ingredients.data)}
           <BurgerIngredients />
           <BurgerConstructor />
         </IngredientContext.Provider>

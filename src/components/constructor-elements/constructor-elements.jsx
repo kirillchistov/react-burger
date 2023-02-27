@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 //  import {ingredientType} from '../../utils/types';  //
-import { PriceContext } from '../../services/appContext';
+import { PriceContext } from '../../services/app-context';
 
 import ConstructorElementsStyle from './constructor-elements.module.css';
 
