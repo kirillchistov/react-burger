@@ -1,5 +1,6 @@
 //  Упрощенный API для получения данных с сервера  //
-import { BASEURL } from './constants';
+//  BASEURL = 'https://norma.nomoreparties.space/api' убрать в .env  //
+import {BASEURL} from './constants';
 
 //  Обрабатываю ответ сервера - возвращаю json или ошибку  //
 export const checkResponse = async (res) => {
@@ -24,8 +25,9 @@ export const getIngredients = async (setIngredients) => {
   }
 }
 
-//  Отправляю заказ на сервер, post fetch, преобразую JSON в строку  //
-export const sendOrder = async (ingredientsID) => {
+//  Отправляю заказ на сервер, post fetch в /orders  //
+//  преобразую JSON с id ингридиентов в строку  //
+export const postOrder = async (ingredientsID) => {
   try {
     return await fetch(`${BASEURL}/orders`, {
       method: 'POST',
@@ -37,7 +39,8 @@ export const sendOrder = async (ingredientsID) => {
       })   
     })
     .then(checkResponse)
-      } catch (err) {
+    //  Возвращаем номер заказа в createOrder в конструкторе  //
+  } catch (err) {
     console.log(`Ошибка отправки заказа: ${err}`);
   }
 };
