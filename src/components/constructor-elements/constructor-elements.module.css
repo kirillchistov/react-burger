@@ -4,6 +4,7 @@
   grid-template-columns: auto auto;
   justify-content: end;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .topOrderElement {
@@ -20,6 +21,6 @@
   gap: 8px;
 }
 
-.elementWidth {
-  width: 536px;
+.elementShrink {
+  width: 530px;
 }

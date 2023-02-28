@@ -8,7 +8,7 @@
   align-items: center;
 }
 
-.elementWidth {
+.elementShrink {
   width: 536px;
 }
 
@@ -43,11 +43,10 @@
 }
 
 .elements_midstuff {
-/*  max-width: 584px;  */
   height: calc(100vh - 604px);
   display: grid;
   gap: 16px;
-/*  align-content: flex-start;  */
+  overflow-x: hidden;
   overflow-y: auto;
 }
 

@@ -15,21 +15,24 @@ const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName}) => 
   
   //  Все элементы, кроме булки, можно перетаскивать  //
   //  Refactor: переименовать функцию, она возвращает компонент, а не буль  //
+  //  Если булка, то рисую иконку перетаскивания слева от элемента  //
   const isDraggable = () => {
     if (bunType === '') {
       return <DragIcon type='primary' />              
     }
   }
 
-  //  Будем вычитать стоимость элемента при его удалении из заказа  //
+  //  Буду вычитать стоимость элемента при его удалении из заказа  //
   const deductPrice = () => {
     priceDispatcher({type: 'delete', payload: elementData.price});
   };
   
+  //  Возвращаю конструкцию в зависимости от типа ингридиента  //
+  //  Если iDraggable, то слева от элемента рисую иконку
   return (
     <div className={ConstructorElementsStyle.element}>
       {isDraggable()}
-      <div className={ConstructorElementsStyle.elementWidth}>
+      <div className={ConstructorElementsStyle.elementShrink}>
         <ConstructorElement
           type={bunType}
           isLocked={isLocked}
@@ -43,6 +46,7 @@ const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName}) => 
   );
 }; 
 
+//  Здесь есть пропсы, проверяю типизацию  //
 ConstructorElements.propTypes = {
   elementData: PropTypes.object.isRequired,
   bunType: PropTypes.string.isRequired,
