@@ -2,14 +2,14 @@
 //  Блок (правый) с конструктором заказа бургера из выбранных ингридиентов  //
 
 import React, { useState, useContext, useReducer, useMemo } from 'react';
-import { ingredientType } from '../../utils/types';
+//  { ingredientType } из '../../utils/types' больше не нужен  //
 import ConstructorElements from '../constructor-elements/constructor-elements';
 import OrderDetails from '../order-details/order-details';
 import ConstructorTotal from '../constructor-total/constructor-total';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import Modal from '../modal/modal';
 import { postOrder } from '../../utils/api';
-import PropTypes from 'prop-types';
+//  PropTypes пока больше не нужен  //
 //  Использую общий контекст  //
 import { IngredientContext, PriceContext, OrderContext } from '../../services/app-context';
 
@@ -17,12 +17,11 @@ import burgerConstructorStyle from './burger-constructor.module.css';
 
 
 const BurgerConstructor = (props) => {
-  //  Создаем состояние для модальных окон  //
+  //  Создаю состояние для модальных окон  //
   const [isOpen, setIsOpen] = useState(false);
-    //  Теперь берем данные не из props, а из контекста  //
+    //  Теперь беру данные не из props, а из контекста  //
   const ingredientsData = useContext(IngredientContext);
-  console.log(ingredientsData);
-  //  Создаем состояние для номера и редюсер для суммы заказа  //
+  //  Создаю состояние для номера и редюсер для суммы заказа  //
   const [orderNumber, setOrderNumber] = useState(null);
   
   
@@ -37,7 +36,7 @@ const BurgerConstructor = (props) => {
   }
 } 
 
-//  Объявляем начальное нулевое значение суммы заказа  //
+//  Объявляю начальное нулевое значение суммы заказа  //
 const initialTotal = { price: 0 };
 
 const [totalState, priceDispatcher] = useReducer(reducer, initialTotal);
@@ -53,29 +52,18 @@ const [totalState, priceDispatcher] = useReducer(reducer, initialTotal);
   // Считаю сумму заказа с мемоизацией, не понятно, как прописать зависимости...  //
   const totalAmount = useMemo(() => {
     let orderTotal = 0;
-    //  const arrIngredients = [bun, main, sauce, bun];
     arrIngredients.forEach(element => orderTotal += element.price);    
     priceDispatcher({type: 'setTotalAmount', payload: orderTotal});
-    console.log(orderTotal);
-  },[ingredientsData]);
+    
+  },[ingredientsData]);  //  Вот как сюда вписать arrIngredients?
   
-
   //  Функция ищет ингридиенты по id в заказе и возвращаем данные для начинки бурера в конструкторе  //
   const findElementByID = (elementID) => {
     const burgerElementData = ingredientsData.find((element) => element._id === elementID);
     return burgerElementData;        
   }
 
-  //  Пример ответа от сервера при успешной отправке заказа:  //
-  /*
-  {
-    "success": true,
-    "name": "Бессмертный экзо-плантаго традиционный-галактический краторный бургер",
-    "order": {
-        "number": 7414
-    }
-  }
-  */
+  //  Ответ от сервера на заказ: success: true, name: строка, order: {number}  //
   //  Функция создания заказа в конструкторе  //
   //  Для каждого элемента берем его id и складываем в массив, передаем на сервер  //
   //  В ответ получаем название и номер заказа - пример ответа см. выше  //
@@ -124,10 +112,6 @@ const [totalState, priceDispatcher] = useReducer(reducer, initialTotal);
    </div>
   )
 }
-/*
-BurgerConstructor.propTypes = { 
-  ingredientsData: PropTypes.arrayOf(ingredientType).isRequired,
-};
-*/
+// propTypes: ingredientsData не нужен, беру из контекста?  //
 
 export default BurgerConstructor;

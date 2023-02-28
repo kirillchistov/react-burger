@@ -1,5 +1,4 @@
 //  Компонент для отображения в модальном окне при клике на ингридиент  //
-
 import PropTypes from 'prop-types';
 import {ingredientType} from '../../utils/types';
 import ingredientDetailsStyle from './ingredient-details.module.css';

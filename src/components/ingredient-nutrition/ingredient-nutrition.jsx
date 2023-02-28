@@ -1,6 +1,4 @@
 //  Вложенный компонент КБЖУ свойств ингридиента  //
-
-//  import PropTypes from 'prop-types';  //
 import {ingredientType} from '../../utils/types';
 import IngredientNutritionStyle from './ingredient-nutrition.module.css';
 

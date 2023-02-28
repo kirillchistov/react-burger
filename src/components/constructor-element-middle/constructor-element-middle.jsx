@@ -1,15 +1,15 @@
-
+//  Этот элемент будет нужен позже, сейчас достаточно constructor-elements  //
 
 import React from 'react';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 
 //  import ConstructorElements from '../constructor-elements/constructor-elements';
-import ConstructorElementsFillStyle from './constructor-elements-fill.module.css';
+import ConstructorElementsMiddleStyle from './constructor-elements-middle.module.css';
 
-const ConstructorElementsFill = ({ ingredients }) => {
+const ConstructorElementsMiddle = ({ ingredients }) => {
   return (
-    <div className={ConstructorElementsFillStyle.middleOrderElement}>
+    <div className={ConstructorElementsMiddleStyle.middleOrderElement}>
       <DragIcon />
       <ConstructorElement
         text={ingredients.name}
@@ -21,10 +21,10 @@ const ConstructorElementsFill = ({ ingredients }) => {
 }
 
 //  Валдидируем пропсы  //
-ConstructorElementsFill.propTypes = {
+ConstructorElementsMiddle.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
 }; 
 
-export default ConstructorElementsFill;
+export default ConstructorElementsMiddle;

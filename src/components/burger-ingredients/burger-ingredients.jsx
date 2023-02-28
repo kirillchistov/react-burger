@@ -10,25 +10,18 @@
 //  Убрать все инлайн стили, добавить отступы, убрать SelectTab в отд.компонент  //
 
 import React, { useContext } from 'react';
-//  import Modal from '../modal/modal';  //
-//  import IngredientDetails from '../ingredient-details/ingredient-details';  //
-//  import IngredientPrice from '../ingredient-price/ingredient-price';  //
+//  Modal, IngredientDetails и IngredientPrice теперь в IngredientItem  //
 import IngredientItem from '../ingredient-item/ingredient-item';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from 'prop-types';
-import { ingredientType } from '../../utils/types';
-//  IngredientPrice вынес в отдельный компонент  //
-//  IngredientItem вынес в отдельный компонент  //
-//  Использую общий контекст  //
+//  PropTypes и { ingredientType } пока не нужны  //
 import { IngredientContext } from '../../services/app-context';
 
 import BurgerIngredientsStyle from './burger-ingredients.module.css';
      
-const BurgerIngredients = (props) => {
+const BurgerIngredients = () => {
 
-    //  Теперь берем данные не из props, а из контекста  //
+  //  Теперь берем данные не из props, а из контекста  //
   const ingredientsData = useContext(IngredientContext);
-  console.log(ingredientsData);
 
   return (
     <section className={`mr-10 ${BurgerIngredientsStyle.ingredients}`}> 
@@ -68,10 +61,6 @@ const BurgerIngredients = (props) => {
   );
 }
 
-/*
-BurgerIngredients.propTypes = { 
-  ingredientsData: PropTypes.arrayOf(ingredientType).isRequired, 
-};
-*/
+//  propTypes ingredientsData больше не нужен, беру из контекста?  //
 
 export default BurgerIngredients;

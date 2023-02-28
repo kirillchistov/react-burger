@@ -1,19 +1,18 @@
 //  Карточка ингридиента, используемая в BurgerIngredients  //
 //  Из UI-библиотеки: счётчики, иконку валюты, типо, отступы  //
-
-import React from 'react';
+import { useState } from 'react';
 
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import IngredientPrice from '../ingredient-price/ingredient-price';
 import Modal from '../modal/modal';
 import { Counter } 
   from '@ya.praktikum/react-developer-burger-ui-components';
-//  import PropTypes from 'prop-types';  //
-import {ingredientType} from '../../utils/types';
+// PropTypes from 'prop-types' пока не нужны  //
+import { ingredientType } from '../../utils/types';
 import IngredientItemStyle from './ingredient-item.module.css';
 
-const IngredientItem = ({item}) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+const IngredientItem = ( {item} ) => {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
@@ -30,16 +29,8 @@ const IngredientItem = ({item}) => {
   );
 };
 
-
 IngredientItem.propTypes = {
   item: ingredientType
 };
-
-/*
-IngredientItem.propTypes = {
-  item: PropTypes.object.isRequired,
-};
-*/
-
 
 export default IngredientItem;

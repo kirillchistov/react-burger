@@ -4,29 +4,42 @@
 //  Медиа-запросы под мобильные разрешения сделаем позже  //
 
 import { useState, useEffect } from 'react';
+import { compose, createStore, applyMiddleware } from 'redux';
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { getIngredients } from '../../utils/api';
-//  import { AppContext } from '../../services/app-context';  //
+//  Разбил { AppContext } на 3 разных  //
 import { IngredientContext } from '../../services/app-context';
 
 import AppStyle from './app.module.css';
-import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+//  Вынес { ConstructorElement } из UI-библиотки в B-Contructor  //
 
 const App = () => {
 //  Заводим состояние для хранения списка ингридиентов  //
   const [ingredients, setIngredients] = useState([]);
 
-//  Заводим состояние загрузки для показа и отключения загрузчка  //
-//  const [isLoading, setIsLoading] = useState(true);  //
+  //  Пока не заводим состояние заставки-загрузчка [isLoading, setIsLoading] //
+  
+  //   Код для расширения Redux Devtools  //
+  const composeEnhancers =
+    typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+      : compose;
 
-//  Вместо заглушки делаем запрос к серверу из api в useEffect //
+  //   Корневой редюсер пока пуст  //
+  let rootReducer = () => {};
+  //   Композитный расширитель для Redux стора  //
+  const enhancer = composeEnhancers();
+  //   Стор пока пуст  //
+  const store = createStore(rootReducer, enhancer);
+  
+  //  Вместо заглушки делаем запрос к серверу из api в useEffect //
   useEffect(() => {
     getIngredients(setIngredients);
   }, []);
 
-//  Если ингридиенты не вернулись (массив 0), ничего не возвращаем  //
+  //  Если ингридиенты не вернулись (массив 0), ничего не возвращаем  //
   if (ingredients.length === 0) { 
     return null
   };
@@ -44,6 +57,6 @@ const App = () => {
   );
 }
 
-//  пока нет пропсов, типизация не нужна  //
+//  Здесь нет (и не будет) пропсов, типизация не нужна  //
 
 export default App;

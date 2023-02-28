@@ -1,13 +1,12 @@
 //  Компонент элемента/компонента бургера для конструктора заказа  //
-//  Состоит из булки (верх+низ) и ингридиентов (начинка, соус)  //
+//  Может быть булка bun (верх / низ) или начинка main или соус sauce //
 import React, { useContext } from 'react';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
-//  import {ingredientType} from '../../utils/types';  //
+//  {ingredientType} from '../../utils/types' пока не нужен//
 import { PriceContext } from '../../services/app-context';
 
 import ConstructorElementsStyle from './constructor-elements.module.css';
-
 
 const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName}) => {
 

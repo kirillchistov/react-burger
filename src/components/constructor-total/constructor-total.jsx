@@ -1,7 +1,7 @@
 import React from 'react';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types';
-//  import { ingredientType } from '../../utils/types';
+//  { ingredientType } from '../../utils/types' пока не нужен?;
 import ConstructorTotalStyle from './constructor-total.module.css';
 
 export const ConstructorTotal = ( {total} ) => {

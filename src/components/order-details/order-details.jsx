@@ -1,3 +1,4 @@
+//  Компонент для показа в модальном окне по нажатию кнопки "Заказать"  //
 import { useContext } from 'react';
 import orderDetailsStyle from './order-details.module.css';
 import orderStatusImage from '../../images/graphics.svg'
@@ -5,9 +6,9 @@ import { OrderContext } from '../../services/app-context';
 
 const OrderDetails = () => {
   
-  //  Теперь используем контекст заказа для получения номера заказа  //
+  //  Теперь использую контекст заказа для получения номера заказа  //
   const orderNumber = useContext(OrderContext);
-  //  Вставляем в разметку номер заказа из контекста  //
+  //  Вставляю в разметку номер заказа из контекста  //
   return(
     <div className={orderDetailsStyle.container}>
       <p className='mt-4 mb-8 text text_type_digits-large'>{orderNumber}</p>
