@@ -11,18 +11,18 @@ export const REMOVE_INGREDIENT = "REMOVE_INGREDIENT";
 export const ADD_BUN = "ADD_BUN";
 
 //  Действия с заказом бургера: Отправка, ОК или ошибка, удаление  //
-export const POST_ORDER_API = "POST_ORDER_REQUEST";
+export const POST_ORDER_API = "POST_ORDER_API";
 export const POST_ORDER_API_OK = "POST_ORDER_API_OK";
 export const POST_ORDER_API_FAIL = "POST_ORDER_API_FAIL";
 export const DELETE_ORDER = "DELETE_ORDER";
 
 //  Получение и обновление номера заказа в модальном окне O-Details  //
-export const dispatchOrder = (burgerDataID) => {
+export const dispatchOrder = (orderDataID) => {
   return function (dispatch) {
     dispatch({
       type: POST_ORDER_API,
     });
-    postOrder(burgerDataID).then((res) => {
+    postOrder(orderDataID).then((res) => {
       if (res && res.success) {
         dispatch({
           type: POST_ORDER_API_OK,
