@@ -1,62 +1,57 @@
-//  Точка входа. Первый спринт  //
+//  Точка входа. Второй спринт  //
 //  Шапка, список ингридиентов и конструктор заказа, футера нет  //
-//  В пропсы списку и конструктору передаем массив-заглушку data.js  //
-//  Медиа-запросы под мобильные разрешения сделаем позже  //
+//  Медиа-запросы под мобильные разрешения сделаю позже  //
 
 import { useState, useEffect } from 'react';
-import { compose, createStore, applyMiddleware } from 'redux';
+//  import { compose, createStore, applyMiddleware } from 'redux';  //
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { getIngredients } from '../../utils/api';
 //  Разбил { AppContext } на 3 разных  //
 import { IngredientContext } from '../../services/app-context';
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
 
 import AppStyle from './app.module.css';
 //  Вынес { ConstructorElement } из UI-библиотки в B-Contructor  //
 
 const App = () => {
-//  Заводим состояние для хранения списка ингридиентов  //
+//  Завожу состояние для хранения списка ингридиентов  //
   const [ingredients, setIngredients] = useState([]);
 
-  //  Пока не заводим состояние заставки-загрузчка [isLoading, setIsLoading] //
+  //  Пока не завожу состояние заставки-загрузчика [isLoading, setIsLoading] //
   
-  //   Код для расширения Redux Devtools  //
-  const composeEnhancers =
-    typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-      : compose;
+  //   Код для расширения Redux Devtools (composeEnhancers) вынес в отдельный файл в utils  //
 
-  //   Корневой редюсер пока пуст  //
-  let rootReducer = () => {};
-  //   Композитный расширитель для Redux стора  //
-  const enhancer = composeEnhancers();
-  //   Стор пока пуст  //
-  const store = createStore(rootReducer, enhancer);
+  //   Корневой редюсер (rootReducer) вынес в папку /services/reducers //
   
-  //  Вместо заглушки делаем запрос к серверу из api в useEffect //
+  //   Стор Redux (store) вынес в /services/store  //
+  
+  //  Вместо заглушки делаю запрос к серверу из api в useEffect //
   useEffect(() => {
     getIngredients(setIngredients);
   }, []);
 
-  //  Если ингридиенты не вернулись (массив 0), ничего не возвращаем  //
+  //  Если ингридиенты не вернулись (массив 0), ничего не возвращаю  //
   if (ingredients.length === 0) { 
     return null
   };
 
+  //  Добавил провайдер для DragNDrop  //
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
       <AppHeader />
       <main className={AppStyle.mainContainer}>
         <IngredientContext.Provider value={ingredients.data} >
+        <DndProvider backend={HTML5Backend}>
           <BurgerIngredients />
           <BurgerConstructor />
+        </DndProvider>
         </IngredientContext.Provider>
       </main>
     </div>
   );
 }
-
-//  Здесь нет (и не будет) пропсов, типизация не нужна  //
 
 export default App;

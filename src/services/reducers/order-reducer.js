@@ -64,9 +64,27 @@ export const orderReducer = (state = initialOrderState, action) => {
       };
     }
     case MOVE_INGREDIENT: {
-      //  Здесь будет логика с DND, пока не докрутил пример из тренажера  //
+      //  Здесь докрутил пример из тренажера  //
+      const { whichIngredientDroppedUid, onWhichIngredientDroppedUid } =
+        action.payload;
+
+      const orderData = [...state.orderData];
+      const draggedItemIndex = orderData.findIndex(
+        (ingredient) => ingredient._uid === whichIngredientDroppedUid
+      );
+      const hoveredItemIndex = orderData.findIndex(
+        (ingredient) => ingredient._uid === onWhichIngredientDroppedUid
+      );
+
+      const draggedItem = orderData[draggedItemIndex];
+      const hoveredItem = orderData[hoveredItemIndex];
+
+      orderData[draggedItemIndex] = hoveredItem;
+      orderData[hoveredItemIndex] = draggedItem;
+
       return {
-        ...state
+        ...state,
+        orderData,
       };
     }
     //  Для отправки заказа возвращаем новое состояние с содержанием и включаем запрос  //

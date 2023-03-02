@@ -1,15 +1,14 @@
 /* eslint-disable array-callback-return */
 //  Блок (левый) с выбором ингридиентов по типам  //
-//  Из UI-библиотеки: счётчики, иконки, переключатели, типо, отступы  //
-//  https://yandex-practicum.github.io/react-developer-burger-ui-components/docs/tab  //
 //  Для табов (типы ингридиентов) делаем состояние выбора таба  //
-//  У компонента свой кастомизированный скроллбар (берем из webkit)  // 
 //  Подумать над ограничением высоты блока на разных разрешениях   //
 //  Фильтруем ингридиенты по типам и кладем в массивы  //
 //  Затем в разметку вставляем карточки ингридиентов по типам  //
 //  Убрать все инлайн стили, добавить отступы, убрать SelectTab в отд.компонент  //
 
 import React, { useContext } from 'react';
+//  Добавил хуки для работы с Redux  //
+import { useSelector, useDispatch } from "react-redux";
 //  Modal, IngredientDetails и IngredientPrice теперь в IngredientItem  //
 import IngredientItem from '../ingredient-item/ingredient-item';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
