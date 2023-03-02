@@ -1,13 +1,14 @@
 //  Компонент для показа в модальном окне по нажатию кнопки 'Заказать' //
-import { useContext } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+//  import { OrderContext } from '../../services/app-context';  //
 import orderDetailsStyle from './order-details.module.css';
 import orderStatusImage from '../../images/graphics.svg'
-import { OrderContext } from '../../services/app-context';
 
-const OrderDetails = () => {
+const OrderDetails = ({ orderNumber }) => {
   
   //  Теперь использую контекст заказа для получения номера заказа  //
-  const orderNumber = useContext(OrderContext);
+  //  const orderNumber = useContext(OrderContext);  //
   //  Вставляю в разметку номер заказа из контекста  //
   return(
     <div className={orderDetailsStyle.container}>
@@ -19,5 +20,8 @@ const OrderDetails = () => {
     </div>  
   )    
 }
+OrderDetails.propTypes = {
+  orderNumber: PropTypes.number,
+};
 
 export default OrderDetails;

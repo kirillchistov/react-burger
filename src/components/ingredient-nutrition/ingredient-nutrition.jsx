@@ -1,8 +1,8 @@
 //  Вложенный компонент КБЖУ свойств ингридиента  //
-import {ingredientType} from '../../utils/types';
+import { ingredientType } from '../../utils/types';
 import IngredientNutritionStyle from './ingredient-nutrition.module.css';
 
-const IngredientNutrition = ({type, amount}) => {
+const IngredientNutrition = ({ type, amount }) => {
   return (
     <div className={IngredientNutritionStyle.nutrition}>
       <p className='mb-2 text text_type_main-default text_color_inactive'>{type}</p>

@@ -1,6 +1,6 @@
 //  Карточка ингридиента, используемая в BurgerIngredients  //
 //  Из UI-библиотеки: счётчики, иконку валюты, типо, отступы  //
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
 
@@ -15,19 +15,21 @@ import {
   CLOSE_INGREDIENT_DETAILS,
 } from '../../services/actions/ingredient-actions';
 
-import { ingredientType } from '../../utils/types';
+//  import { ingredientType } from '../../utils/types';  //
 import IngredientItemStyle from './ingredient-item.module.css';
 
 export const IngredientItem = ( { ingredientData } ) => {
   //  состояния [isOpen, setIsOpen] больше не нужны  //
-  //  Активируем хуки для работы с redux  //
+  //  Активирую хуки для работы с redux  //
   const dispatch = useDispatch();
   const ingredientDetails = useSelector(
     (state) => state.ingredientDetails.ingredientDetails
   );
+  //  Получаем состояние (содержание) заказа из стора redux  //
   const orderData = useSelector((state) => state.order.orderData);
 
-  const orderCount = React.useCallback(
+  //  Считаю сколько ингридиентов в заказе  //
+  const orderCount = useCallback(
     (ingredientData) => {
       const { _id, type } = ingredientData;
       const ingredientsCount = orderData.filter(
@@ -68,6 +70,8 @@ export const IngredientItem = ( { ingredientData } ) => {
   );
 };
 
+/* 
 IngredientItem.propTypes = {
   ingredientData: ingredientType.isRequired
 };
+*/

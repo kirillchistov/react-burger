@@ -4,7 +4,7 @@ import { ingredientType } from '../../utils/types';
 import ingredientDetailsStyle from './ingredient-details.module.css';
 
 //  Вложенный компонент КБЖУ свойства ингридиента - вынести в отдельный  //
-const IngredientNutrition = ( {type, amount} ) => {
+const IngredientNutrition = ({ type, amount }) => {
   return (
     <div className={ingredientDetailsStyle.nutrition}>
       <p className='mb-2 text text_type_main-default text_color_inactive'>{type}</p>
@@ -19,7 +19,7 @@ IngredientNutrition.propTypes = {
 };
 
 //  Сводный компонент с гридом свойств  //
-const IngredientDetails = ( {item} ) => {
+const IngredientDetails = ({ item }) => {
   return(
     <div className={ingredientDetailsStyle.general}>
       <img className={ingredientDetailsStyle.image} src={item.image} alt={item.name}></img>
