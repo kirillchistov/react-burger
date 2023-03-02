@@ -4,9 +4,9 @@
 //  { useState, useContext, useReducer } больше не нужны //
 import React, { useMemo } from 'react';
 //  Добавил хуки для работы с Redux  //
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 //  Добавил хуки для работы с DND  - здесь не нужен useDrag  //
-import { useDrop } from "react-dnd";
+import { useDrop } from 'react-dnd';
 //  { ingredientType } из '../../utils/types' больше не нужен  //
 import ConstructorElements from '../constructor-elements/constructor-elements';
 import OrderDetails from '../order-details/order-details';
@@ -14,11 +14,11 @@ import ConstructorTotal from '../constructor-total/constructor-total';
 import { Button, ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import Modal from '../modal/modal';
 //  вместо { postOrder } теперь берем actions из redux  //
-import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from "../../services/actions/order-actions";
+import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../services/actions/order-actions';
 //  Контекст { IngredientContext, PriceContext, OrderContext } больше не нужен --> redux  //
 //  Импортировал actions для работы с ингридиентами в конструкторе заказа  //
 //  Добавил универсальный генератор уникальных идентификаторов для элементов без id  //
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
 import burgerConstructorStyle from './burger-constructor.module.css';
 
@@ -34,11 +34,11 @@ const BurgerConstructor = () => {
   //  Редюсеры со свитчем и действия вынес в отдельные файлы  //
   //  Вместо первых встречных теперь нахожу выбранные элементы  //
   const bun = orderData.find(function (element) {
-    return element.type === "bun";
+    return element.type === 'bun';
   });
   //  Пока что начинку и соус можно не разделять, т.к. логика едина  //
-  const ingredientsMidStuff = orderData.filter((element) => element.type !== "bun");
-  console.log(orderData);
+  const ingredientsMidStuff = orderData.filter((element) => element.type !== 'bun');
+  //  console.log(orderData);  //
   
   //  Начальный массив заказа с булками без начинки больше не нужен  //
 
@@ -48,7 +48,7 @@ const BurgerConstructor = () => {
     //  let orderTotal = 0; переделал на объект orderData и reduce  //
     if (orderData.length > 0) {
       return orderData
-        .map((element) => element.price * (element.type === "bun" ? 2 : 1))
+        .map((element) => element.price * (element.type === 'bun' ? 2 : 1))
         .reduce((sum, price) => sum + price, 0);
     } else {
       //  Если в заказе нет данных, то возвращаем 0  //
@@ -57,7 +57,7 @@ const BurgerConstructor = () => {
   }, [orderData]);
     
     const onDropIngredient = (ingredient) => {
-    if (ingredient.type === "bun") {
+    if (ingredient.type === 'bun') {
       dispatch({
         type: ADD_BUN,
         payload: { _uid: uuidv4(), ...ingredient },
@@ -71,7 +71,7 @@ const BurgerConstructor = () => {
   };
 
   const [, dropTarget] = useDrop({
-    accept: "ingredient",
+    accept: 'ingredient',
     drop: (ingredientData) => onDropIngredient(ingredientData),
   });
 
@@ -114,7 +114,7 @@ const BurgerConstructor = () => {
   return (
     <>
       <section className={`mt-25 ml-4 ${burgerConstructorStyle.elements}`} ref={dropTarget}>
-        <div className="ml-8">
+        <div className='ml-8'>
           {bun && (
             <ConstructorElement 
               type={'top'}
@@ -139,12 +139,12 @@ const BurgerConstructor = () => {
             );
           })}
           {!ingredientsMidStuff.length && (
-            <span className="text mt-30 ml-30 text_type_main-default">
+            <span className='text mt-30 ml-30 text_type_main-default'>
               Добавьте ингредиенты для Вашего бургера!
             </span>
           )}
         </div>
-        <div className="ml-8">
+        <div className='ml-8'>
           {bun && (
             <ConstructorElement 
               type={'bottom'} 
@@ -155,7 +155,7 @@ const BurgerConstructor = () => {
             />
           )}
         </div>
-          <ConstructorElements elementData={bun} bunType={'bottom'} isLocked={true} bunTypeName={' (низ)'} />
+          {/* <ConstructorElements elementData={bun} bunType={'bottom'} isLocked={true} bunTypeName={' (низ)'} /> */}
           <div className={`mt-10 ${burgerConstructorStyle.constructor_total}`}>
             <ConstructorTotal total={totalAmount} />
             <Button type='primary' size='large' htmlType='button' onClick={handleOpenIngredientModal}>Оформить заказ</Button>

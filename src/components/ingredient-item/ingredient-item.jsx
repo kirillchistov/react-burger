@@ -1,8 +1,8 @@
 //  Карточка ингридиента, используемая в BurgerIngredients  //
 //  Из UI-библиотеки: счётчики, иконку валюты, типо, отступы  //
 import React from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { useDrag } from "react-dnd";
+import { useSelector, useDispatch } from 'react-redux';
+import { useDrag } from 'react-dnd';
 
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import IngredientPrice from '../ingredient-price/ingredient-price';
@@ -13,12 +13,12 @@ import { Counter }
 import {
   OPEN_INGREDIENT_DETAILS,
   CLOSE_INGREDIENT_DETAILS,
-} from "../../services/actions/ingredient-actions";
+} from '../../services/actions/ingredient-actions';
 
 import { ingredientType } from '../../utils/types';
 import IngredientItemStyle from './ingredient-item.module.css';
 
-const IngredientItem = ( {ingredientData} ) => {
+export const IngredientItem = ( { ingredientData } ) => {
   //  состояния [isOpen, setIsOpen] больше не нужны  //
   //  Активируем хуки для работы с redux  //
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const IngredientItem = ( {ingredientData} ) => {
       const ingredientsCount = orderData.filter(
         (element) => element._id === _id
       ).length;
-      return type === "bun" ? ingredientsCount * 2 : ingredientsCount;
+      return type === 'bun' ? ingredientsCount * 2 : ingredientsCount;
     },
     [orderData]
   );
@@ -47,7 +47,7 @@ const IngredientItem = ( {ingredientData} ) => {
   };
 
   const [, dragRef] = useDrag({
-    type: "ingredient",
+    type: 'ingredient',
     item: ingredientData,
   });
 
@@ -71,5 +71,3 @@ const IngredientItem = ( {ingredientData} ) => {
 IngredientItem.propTypes = {
   ingredientData: ingredientType.isRequired
 };
-
-export default IngredientItem;

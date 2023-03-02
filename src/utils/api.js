@@ -14,8 +14,8 @@ export const checkResponse = async (res) => {
   }
 };
 
-//  Получаю ингридиенты с сервера и записываем в массив  //
-export const getIngredients = async (setIngredients) => {
+//  Получаю ингридиенты с сервера и записываю в массив  //
+export const fetchIngredients = async (setIngredients) => {
   try {
     return await fetch(`${BASEURL}/ingredients`)
       .then(checkResponse)

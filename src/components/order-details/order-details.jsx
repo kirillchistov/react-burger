@@ -1,4 +1,4 @@
-//  Компонент для показа в модальном окне по нажатию кнопки "Заказать"  //
+//  Компонент для показа в модальном окне по нажатию кнопки 'Заказать' //
 import { useContext } from 'react';
 import orderDetailsStyle from './order-details.module.css';
 import orderStatusImage from '../../images/graphics.svg'

@@ -2,14 +2,14 @@
 //  Может быть булка bun (верх / низ) или начинка main или соус sauce //
 import React from 'react';
 //  Добавил хуки для работы с Redux  //
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 //  Добавил хуки для работы с ReactDND  //
-import { useDrag, useDrop } from "react-dnd";
+import { useDrag, useDrop } from 'react-dnd';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 //  {ingredientType} from '../../utils/types' пока не нужен//
 //  { PriceContext } больше не нужен from '../../services/app-context';
-import { MOVE_INGREDIENT } from "../../services/actions/order-actions";
+import { MOVE_INGREDIENT } from '../../services/actions/order-actions';
 
 import ConstructorElementsStyle from './constructor-elements.module.css';
 
@@ -35,7 +35,7 @@ const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName, inde
 
   //  Взять из тренажера  //
   const [, dropRef] = useDrop({
-    accept: "ingredientInConstructor",
+    accept: 'ingredientInConstructor',
     collect(monitor) {
       return {
         handlerId: monitor.getHandlerId(),
@@ -78,7 +78,7 @@ const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName, inde
   });
 
   const [, dragRef] = useDrag({
-    type: "ingredientInConstructor",
+    type: 'ingredientInConstructor',
     item: () => ({ elementData, index }),
   });
 
@@ -88,7 +88,7 @@ const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName, inde
   //  Если iDraggable, то слева от элемента рисую иконку
   return (
     <div className={ConstructorElementsStyle.element} ref={ref}>
-      <DragIcon type="primary" />
+      <DragIcon type='primary' />
       <div className={ConstructorElementsStyle.elementShrink}>
         <ConstructorElement
           type={bunType}

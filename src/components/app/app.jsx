@@ -7,11 +7,11 @@ import { useState, useEffect } from 'react';
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import { getIngredients } from '../../utils/api';
+import { fetchIngredients } from '../../utils/api';
 //  Разбил { AppContext } на 3 разных  //
 import { IngredientContext } from '../../services/app-context';
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { DndProvider } from "react-dnd";
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
 
 import AppStyle from './app.module.css';
 //  Вынес { ConstructorElement } из UI-библиотки в B-Contructor  //
@@ -30,7 +30,7 @@ const App = () => {
   
   //  Вместо заглушки делаю запрос к серверу из api в useEffect //
   useEffect(() => {
-    getIngredients(setIngredients);
+    fetchIngredients(setIngredients);
   }, []);
 
   //  Если ингридиенты не вернулись (массив 0), ничего не возвращаю  //
