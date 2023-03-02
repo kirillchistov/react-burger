@@ -25,10 +25,10 @@ export const IngredientItem = ( { ingredientData } ) => {
   const ingredientDetails = useSelector(
     (state) => state.ingredientDetails.ingredientDetails
   );
-  //  Получаем состояние (содержание) заказа из стора redux  //
+  //  Получаю состояние (содержание) заказа из стора redux  //
   const orderData = useSelector((state) => state.order.orderData);
 
-  //  Считаю сколько ингридиентов в заказе  //
+  //  Считаю сколько ингридиентов в заказе, булки на 2 //
   const orderCount = useCallback(
     (ingredientData) => {
       const { _id, type } = ingredientData;
@@ -40,19 +40,23 @@ export const IngredientItem = ( { ingredientData } ) => {
     [orderData]
   );
 
+  //  Перенес обработку клика по модальному окну в функцию с отправкой состава заказа в стор  //
   const handleOpenIngredientModal = () => {
     dispatch({ type: OPEN_INGREDIENT_DETAILS, payload: ingredientData });
   };
 
+  //  Заркытие модального окна с ингридиентами  //
   const handleCloseIngredientModal = () => {
     dispatch({ type: CLOSE_INGREDIENT_DETAILS });
   };
 
+  //  Делаем ингридиенты перетаскиваемыми  //
   const [, dragRef] = useDrag({
     type: 'ingredient',
     item: ingredientData,
   });
 
+  //  Модальное окно открывается только когда массив ингридиентов не пуст  //
   return (
     <div>
       <div className={IngredientItemStyle.ingredient} onClick={handleOpenIngredientModal} ref={dragRef}>

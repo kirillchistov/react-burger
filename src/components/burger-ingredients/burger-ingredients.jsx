@@ -24,7 +24,7 @@ const BurgerIngredients = () => {
   //  Включаю хуки для получения и отправки данные в redux  //
   const ingredients = useSelector((state) => state.ingredients.ingredients);
   const dispatch = useDispatch();
-  //  По умолчанию мой ингридиент = булка  //
+  //  По умолчанию мой ингридиент = булка, без булки нельзя  //
   const [current, setCurrent] = useState('bun');
   
   //  При монтировании получаем список ингридиентов  //
@@ -47,7 +47,7 @@ const BurgerIngredients = () => {
   );
 
   //  Здесь по тренажеру  //
-  //  Нахожу по id ближайший контейнер, привязываюсь к координатам
+  //  Нахожу по id контейнер, привязываюсь к его координатам, чтобы выделять разделы  //
   const scrollToCategory = () => {
     const topTop = document
       .getElementById('typeContainer')
@@ -57,6 +57,7 @@ const BurgerIngredients = () => {
       .getElementById('sauce')
       .getBoundingClientRect().top;
 
+    //  topTop - верх раздела, butTop - верх "булок", sauceTop - соусов  //
     if (bunTop + topTop > topTop + 60) {
       setCurrent('bun');
     } else if (sauceTop + topTop > 110) {
@@ -66,8 +67,12 @@ const BurgerIngredients = () => {
     }
   };
 
-  //  Теперь берем данные не из props, а из контекста  //
-  
+  //  Переключатели по типам ингридиентов использую как панель навигации  //
+  //  Когда пользователь скроллит ингредиенты, выделяю активным нужный переключатель  //
+  //  Считаю, какой заголовок в контейнере ближе к его верхней левой границе //
+  //  Заголовок не обязательно в поле зрения, но находится ближе всего к html-элементу с ингредиентами  //
+  //  Только в этом случае переключатель становится активным  //
+  //  Нажатие на переключатель пока не делал  //
   return (
     <section className={`mr-10 ${BurgerIngredientsStyle.ingredients}`}> 
       <h1 className='mb-5 text text_type_main-large'>Соберите бургер</h1>
@@ -77,33 +82,9 @@ const BurgerIngredients = () => {
         <Tab active={current === 'main'}>Начинки</Tab>
       </nav>
       <div className={BurgerIngredientsStyle.ingredient_types} id='typeContainer' onScroll={scrollToCategory}>
-        {/* <h2 className='mt-10 mb-6 text text_type_main-medium'>Булки</h2>
-        <div className={BurgerIngredientsStyle.ingredient_type}>
-          {ingredientsData.map((element) => { 
-            if (element.type === 'bun') {
-              return (<IngredientItem item={element}  key={element._id} />);
-            }
-          })}
-        </div>
-        <h2 className='mt-10 mb-6 text text_type_main-medium'>Соусы</h2>
-        <div className={BurgerIngredientsStyle.ingredient_type}>
-          {ingredientsData.map((element) => { 
-            if (element.type === 'sauce') {
-              return (<IngredientItem item={element}  key={element._id} />);
-            }
-          })}
-        </div>
-        <h2 className='mt-10 mb-6 text text_type_main-medium'>Начинки</h2>
-        <div className={BurgerIngredientsStyle.ingredient_type}>
-          {ingredientsData.map((element) => { 
-            if (element.type === 'main') {
-              return (<IngredientItem item={element}  key={element._id} />);
-            }
-          })}
-        </div> */}
-        <IngredientCategory id='bun' type={'Булки'} typeList={buns} />
-        <IngredientCategory id='sauce' type={'Соусы'} typeList={sauces} />
-        <IngredientCategory id='main' type={'Начинки'} typeList={mains} />
+        <IngredientCategory type={'Булки'} typeList={buns} id='bun' />
+        <IngredientCategory type={'Соусы'} typeList={sauces} id='sauce' />
+        <IngredientCategory type={'Начинки'} typeList={mains} id='main' />
       </div>
     </section>
   );
