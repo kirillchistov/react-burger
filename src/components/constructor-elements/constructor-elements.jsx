@@ -1,19 +1,19 @@
 //  Компонент элемента/компонента бургера для конструктора заказа  //
 //  Может быть булка bun (верх / низ) или начинка main или соус sauce //
-import React, { useContext } from 'react';
+import React from 'react';
 //  Добавил хуки для работы с Redux  //
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 //  Добавил хуки для работы с ReactDND  //
 import { useDrag, useDrop } from "react-dnd";
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 //  {ingredientType} from '../../utils/types' пока не нужен//
-import { PriceContext } from '../../services/app-context';
-import { REMOVE_INGREDIENT, MOVE_INGREDIENT } from "../../services/actions/order-actions";
+//  { PriceContext } больше не нужен from '../../services/app-context';
+import { MOVE_INGREDIENT } from "../../services/actions/order-actions";
 
 import ConstructorElementsStyle from './constructor-elements.module.css';
 
-const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName}) => {
+const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName, index }) => {
 
   //  Убрал функцию-диспетчер для редюсера - заменил на dispatch  //
   //  const priceDispatcher = useContext(PriceContext);  //
@@ -33,7 +33,7 @@ const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName}) => 
     dispatch({ type: 'REMOVE_INGREDIENT', payload: elementDataUid });
   };
 
-  //  Взял из тренажера  //
+  //  Взять из тренажера  //
   const [, dropRef] = useDrop({
     accept: "ingredientInConstructor",
     collect(monitor) {

@@ -1,26 +1,22 @@
 /* eslint-disable array-callback-return */
 //  Блок (правый) с конструктором заказа бургера из выбранных ингридиентов  //
 
-//  import React, { useState, useContext, useReducer, useMemo } from 'react';  //
+//  { useState, useContext, useReducer } больше не нужны //
 import React, { useMemo } from 'react';
 //  Добавил хуки для работы с Redux  //
 import { useDispatch, useSelector } from "react-redux";
-//  Добавил хуки для работы с DND  //
-//  import { useDrag, useDrop } from "react-dnd";  //
+//  Добавил хуки для работы с DND  - здесь не нужен useDrag  //
 import { useDrop } from "react-dnd";
 //  { ingredientType } из '../../utils/types' больше не нужен  //
 import ConstructorElements from '../constructor-elements/constructor-elements';
 import OrderDetails from '../order-details/order-details';
 import ConstructorTotal from '../constructor-total/constructor-total';
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Button, ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import Modal from '../modal/modal';
-//  import { postOrder } from '../../utils/api';
+//  вместо { postOrder } теперь берем actions из redux  //
 import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from "../../services/actions/order-actions";
-//  PropTypes пока больше не нужен  //
-//  Использую общий контекст  //
-//  import { IngredientContext, PriceContext, OrderContext } from '../../services/app-context';
+//  Контекст { IngredientContext, PriceContext, OrderContext } больше не нужен --> redux  //
 //  Импортировал actions для работы с ингридиентами в конструкторе заказа  //
-//  import { REMOVE_INGREDIENT, MOVE_INGREDIENT } from "../../services/actions/order-actions";  //
 //  Добавил универсальный генератор уникальных идентификаторов для элементов без id  //
 import { v4 as uuidv4 } from "uuid";
 
@@ -36,20 +32,13 @@ const BurgerConstructor = () => {
   const { orderData, orderNumber } = useSelector((state) => state.order);
   
   //  Редюсеры со свитчем и действия вынес в отдельные файлы  //
-  
-
-
   //  Вместо первых встречных теперь нахожу выбранные элементы  //
-  //  const bun = ingredientsData.find((element) => element.type === 'bun');
-  //  const main = ingredientsData.find((element) => element.type === 'main');
-  //  const sauce = ingredientsData.find((element) => element.type === 'sauce');
   const bun = orderData.find(function (element) {
     return element.type === "bun";
   });
   //  Пока что начинку и соус можно не разделять, т.к. логика едина  //
-  const ingredientsMidStuff = orderData.filter(
-    (element) => element.type !== "bun"
-  );
+  const ingredientsMidStuff = orderData.filter((element) => element.type !== "bun");
+  console.log(orderData);
   
   //  Начальный массив заказа с булками без начинки больше не нужен  //
 
@@ -65,7 +54,7 @@ const BurgerConstructor = () => {
       //  Если в заказе нет данных, то возвращаем 0  //
       return 0;
     }
-  }, [bun, ingredientsMidStuff]);
+  }, [orderData]);
     
     const onDropIngredient = (ingredient) => {
     if (ingredient.type === "bun") {
@@ -127,8 +116,8 @@ const BurgerConstructor = () => {
       <section className={`mt-25 ml-4 ${burgerConstructorStyle.elements}`} ref={dropTarget}>
         <div className="ml-8">
           {bun && (
-            <ConstructorElements 
-              type={'top'} 
+            <ConstructorElement 
+              type={'top'}
               isLocked={true} 
               text={`${bun.name} (верх)`} 
               price={bun.price}
@@ -153,6 +142,17 @@ const BurgerConstructor = () => {
             <span className="text mt-30 ml-30 text_type_main-default">
               Добавьте ингредиенты для Вашего бургера!
             </span>
+          )}
+        </div>
+        <div className="ml-8">
+          {bun && (
+            <ConstructorElement 
+              type={'bottom'} 
+              isLocked={true} 
+              text={`${bun.name} (низ)`} 
+              price={bun.price}
+              thumbnail={bun.image} 
+            />
           )}
         </div>
           <ConstructorElements elementData={bun} bunType={'bottom'} isLocked={true} bunTypeName={' (низ)'} />

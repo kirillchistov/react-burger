@@ -8,7 +8,7 @@
 
 import React, { useContext } from 'react';
 //  Добавил хуки для работы с Redux  //
-import { useSelector, useDispatch } from "react-redux";
+//  import { useSelector, useDispatch } from "react-redux";  //
 //  Modal, IngredientDetails и IngredientPrice теперь в IngredientItem  //
 import IngredientItem from '../ingredient-item/ingredient-item';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
