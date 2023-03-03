@@ -23,7 +23,7 @@ const App = () => {
   
   //   Код для расширения Redux Devtools (composeEnhancers) вынес в отдельный файл в utils  //
 
-  //   Корневой редюсер (rootReducer) вынес в папку /services/reducers //
+  //   Корневой редьюсер (rootReducer) вынес в папку /services/reducers //
   
   //   Стор Redux (store) вынес в /services/store  //
   

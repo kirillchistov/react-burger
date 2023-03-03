@@ -4,10 +4,12 @@ import ReactDOM from 'react-dom/client';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
+//  Подключаем корневой редьюсер и усилитель  //
 import { rootReducer } from './services/reducers/root-reducer';
 import { enhancer } from './services/store/store';
 import './index.css';
 
+//  Создал подключение к redux store с усилителем  //
 const store = createStore(rootReducer, enhancer); 
 
 const root = ReactDOM.createRoot(

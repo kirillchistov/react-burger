@@ -1,4 +1,4 @@
-//  Редюсер для обработки действий с ингредиентами в redux store   //
+//  Редьюсер для обработки действий с ингредиентами в redux store   //
 //  Импортирую actions для ингредиентов  //
 import {
   GET_INGREDIENTS_API,
@@ -46,8 +46,8 @@ const initialIngredientDetailsState = {
   ingredientDetails: null,
 };
 
-//  Refactor: вынести редюсер в отдельный файл  //
-//  Редюсер для обработки действий с деталями ингредиента в redux store (открыть/закрыть)  //
+//  Refactor: вынести редьюсер в отдельный файл  //
+//  Редьюсер для обработки действий с деталями ингредиента в redux store (открыть/закрыть)  //
 export const ingredientDetailsReducer = (
   state = initialIngredientDetailsState,
   action

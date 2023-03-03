@@ -29,7 +29,7 @@ const BurgerConstructor = () => {
   const dispatch = useDispatch();
   const { orderData, orderNumber } = useSelector((state) => state.order);
   
-  //  Редюсеры со свитчем и действия вынес в отдельные файлы  //
+  //  Редьюсеры со свитчем и действия вынес в отдельные файлы  //
   //  Вместо первых встречных теперь нахожу выбранные элементы  //
   const bun = orderData.find(function (element) {
     return element.type === 'bun';

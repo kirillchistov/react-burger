@@ -1,4 +1,4 @@
-//  Cоздаю корневой редюсер и комбинируем в нем остальные  //
+//  Cоздаю корневой редьюсер и комбинируем в нем остальные  //
 import { combineReducers } from 'redux';
 import { ingredientsReducer, ingredientDetailsReducer } from './ingredient-reducer';
 import { orderReducer } from './order-reducer';

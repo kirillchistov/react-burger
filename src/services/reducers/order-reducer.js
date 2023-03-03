@@ -1,4 +1,4 @@
-//  Редюсер для обработки заказов в redux store   //
+//  Редьюсер для обработки заказов в redux store   //
 //  Импортирую actions для заказов  //
 import {
   ADD_INGREDIENT,
