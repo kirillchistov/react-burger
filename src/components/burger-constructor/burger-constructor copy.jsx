@@ -89,64 +89,55 @@ const BurgerConstructor = () => {
   //  Показываю сумму заказа и кнопку, только если выбраны ингредиенты (кроме булок)  //
   return (
     <>
-      <section className={`${burgerConstructorStyle.element__section}`} ref={dropTarget}>
-        <div className={`${burgerConstructorStyle.element__container}`}>
-          <ul className={`${burgerConstructorStyle.element__list}`}>
+      <section className={`mt-25 ml-4 ${burgerConstructorStyle.elements}`} ref={dropTarget}>
+        <div className='ml-8'>
           {bun && (
-            <li className={`${burgerConstructorStyle.element__bun}`}>
-              <ConstructorElement 
-                type={'top'}
-                isLocked={true} 
-                text={`${bun.name} (верх)`} 
-                price={bun.price}
-                thumbnail={bun.image} 
-              />
-            </li>
+            <ConstructorElement 
+              type={'top'}
+              isLocked={true} 
+              text={`${bun.name} (верх)`} 
+              price={bun.price}
+              thumbnail={bun.image} 
+            />
           )}
-
-            <ul className={`${burgerConstructorStyle.element_midstuff}`}>
-            {ingredientsMidStuff.map((element, index) => { 
-              return (
-                <li key={element._id} className={burgerConstructorStyle.element}>
-                  <ConstructorElements 
-                    elementData={element}
-                    bunType={''} 
-                    bunTypeName={''} 
-                    isLocked={false} 
-                    index={index}
-                    key={element._id} 
-                  />
-                </li>
-              );
-            })}
-            {ingredientsMidStuff.length === 0 && (
-              <li className={burgerConstructorStyle.element}>
-                <span className='text mt-30 ml-30 text_type_main-default'>
-                  Добавьте ингредиенты для Вашего бургера!
-                </span>
-              </li>
-            )}
-            </ul>
-          {bun && (
-            <li className={`${burgerConstructorStyle.element__bun}`}>
-              <ConstructorElement 
-                type={'bottom'} 
-                isLocked={true} 
-                text={`${bun.name} (низ)`} 
-                price={bun.price}
-                thumbnail={bun.image} 
-              />
-            </li>
-          )}
-        </ul>
-      </div>
-      {ingredientsMidStuff.length > 0 && 
-        <div className={`mt-10 ${burgerConstructorStyle.constructor_total}`}>
-          <ConstructorTotal total={totalAmount} />
-        
-          <Button type='primary' size='large' htmlType='button' onClick={handleOpenIngredientModal}>Оформить заказ</Button>
         </div>
-      }
+        <div className={`pr-2 ${burgerConstructorStyle.elements_midstuff}`}> 
+          {ingredientsMidStuff.map((element, index) => { 
+            return (
+              <ConstructorElements 
+                elementData={element}
+                bunType={''} 
+                bunTypeName={''} 
+                isLocked={false} 
+                index={index}
+                key={element._id} 
+              />
+            );
+          })}
+          {ingredientsMidStuff.length === 0 && (
+            <span className='text mt-30 ml-30 text_type_main-default'>
+              Добавьте ингредиенты для Вашего бургера!
+            </span>
+          )}
+        </div>
+        <div className='ml-8'>
+          {bun && (
+            <ConstructorElement 
+              type={'bottom'} 
+              isLocked={true} 
+              text={`${bun.name} (низ)`} 
+              price={bun.price}
+              thumbnail={bun.image} 
+            />
+          )}
+        </div>
+        {ingredientsMidStuff.length > 0 && 
+          <div className={`mt-10 ${burgerConstructorStyle.constructor_total}`}>
+            <ConstructorTotal total={totalAmount} />
+          
+            <Button type='primary' size='large' htmlType='button' onClick={handleOpenIngredientModal}>Оформить заказ</Button>
+          </div>
+        }
       </section>
       {orderNumber && 
         (
