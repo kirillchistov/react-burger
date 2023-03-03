@@ -1,5 +1,5 @@
 //  Редюсер для обработки действий с ингредиентами в redux store   //
-//  Импортирую actions для ингридиентов  //
+//  Импортирую actions для ингредиентов  //
 import {
   GET_INGREDIENTS_API,
   GET_INGREDIENTS_API_OK,
@@ -8,7 +8,7 @@ import {
   CLOSE_INGREDIENT_DETAILS,
 } from '../actions/ingredient-actions';
 
-//  Начальное состояние стора ингридиентов: пустой массив, нет запроса, нет ошибок  //
+//  Начальное состояние стора ингредиентов: пустой массив, нет запроса, нет ошибок  //
 const initialIngredientsState = {
   ingredients: [],
   ingredientsRequest: false,
@@ -41,7 +41,7 @@ export const ingredientsReducer = (state = initialIngredientsState, action) => {
   }
 };
 
-//  Обнуленное начальное состояние стора инфо по ингридиенту  //
+//  Обнуленное начальное состояние стора инфо по ингредиенту  //
 const initialIngredientDetailsState = {
   ingredientDetails: null,
 };

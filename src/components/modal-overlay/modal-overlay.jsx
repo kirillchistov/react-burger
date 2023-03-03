@@ -12,6 +12,7 @@ const ModalOverlay = ({children, handleClose}) => {
   )
 }
 
+//  Здесь есть пропсы, проверяю типизацию  //
 ModalOverlay.propTypes = {
   children: PropTypes.element.isRequired,
   handleClose: PropTypes.func.isRequired

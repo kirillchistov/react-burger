@@ -7,17 +7,14 @@ import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
-//  {ingredientType} from '../../utils/types' пока не нужен//
-//  { PriceContext } больше не нужен from '../../services/app-context';
+//  {ingredientType} from '../../utils/types' пока не нужен  //
+//  Контекст больше не нужен;
 import { MOVE_INGREDIENT } from '../../services/actions/order-actions';
-
 import ConstructorElementsStyle from './constructor-elements.module.css';
 
 const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName, index }) => {
 
-  //  Убрал функцию-диспетчер для редюсера - заменил на dispatch  //
-  //  const priceDispatcher = useContext(PriceContext);  //
-
+  //  Убрал контекст функцию-диспетчер заменил на dispatch  //
   //  Активирую dispatch и ref  //
   const dispatch = useDispatch();
   const ref = React.useRef(null);
@@ -27,7 +24,7 @@ const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName, inde
   //  Убрал функцию isDraggable за ненадобностью  //
   
   //  Буду вычитать стоимость элемента при его удалении из заказа  //
-  //  Заменил deductPrice на обработчик удаления ингридиента на dispatch - перенес  //
+  //  Заменил deductPrice на обработчик удаления ингредиента на dispatch - перенес  //
 
   const onDeductIngredient = (elementDataUid) => {
     dispatch({ type: 'REMOVE_INGREDIENT', payload: elementDataUid });
@@ -84,7 +81,7 @@ const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName, inde
 
   dragRef(dropRef(ref));
   
-  //  Возвращаю конструкцию в зависимости от типа ингридиента  //
+  //  Возвращаю конструкцию в зависимости от типа ингредиента  //
   //  Если iDraggable, то слева от элемента рисую иконку
   return (
     <div className={ConstructorElementsStyle.element} ref={ref}>
@@ -109,7 +106,7 @@ ConstructorElements.propTypes = {
   bunType: PropTypes.string.isRequired,
   bunTypeName: PropTypes.string.isRequired,
   isLocked: PropTypes.bool.isRequired,
-//  onDelete: PropTypes.func  //
+  index: PropTypes.number.isRequired,
 };
 
 export default ConstructorElements;

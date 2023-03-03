@@ -1,4 +1,4 @@
-//  Начальные actions для ингридиентов B-Ingredients и B-Constructor  //
+//  Начальные actions для ингредиентов B-Ingredients и B-Constructor  //
 
 import { fetchIngredients } from '../../utils/api';
 //  Все константы экспортирую, потом, видимо, вынесу в отдельный файл  //
@@ -11,7 +11,7 @@ export const GET_INGREDIENTS_API_FAIL = 'GET_INGREDIENTS_API_FAIL';
 export const OPEN_INGREDIENT_DETAILS = 'OPEN_INGREDIENT_DETAILS';
 export const CLOSE_INGREDIENT_DETAILS = 'CLOSE_INGREDIENT_DETAILS';
 
-//  Добавил dispatch для получения результата запроса ингридиентов в API  //
+//  Добавил dispatch для получения результата запроса ингредиентов в API  //
 export const getIngredients = () => {
   return function (dispatch) {
     dispatch({

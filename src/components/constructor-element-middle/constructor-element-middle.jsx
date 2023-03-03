@@ -1,5 +1,5 @@
-//  Этот элемент будет нужен позже, сейчас достаточно constructor-elements  //
-
+//  Этот элемент скорей всего не нужен, модифицирую constructor-elements  //
+//  
 import React from 'react';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';

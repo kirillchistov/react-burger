@@ -1,9 +1,9 @@
 /* eslint-disable array-callback-return */
-//  Блок (левый) с выбором ингридиентов по типам  //
-//  Для табов (типы ингридиентов) делаем состояние выбора таба  //
+//  Блок (левый) с выбором ингредиентов по типам  //
+//  Для табов (типы ингредиентов) делаем состояние выбора таба  //
 //  Подумать над ограничением высоты блока на разных разрешениях   //
-//  Фильтруем ингридиенты по типам и кладем в массивы  //
-//  Затем в разметку вставляем карточки ингридиентов по типам  //
+//  Фильтруем ингредиенты по типам и кладем в массивы  //
+//  Затем в разметку вставляем карточки ингредиентов по типам  //
 //  Убрать все инлайн стили, добавить отступы, убрать SelectTab в отд.компонент  //
 
 import React, { useState, useEffect, useMemo } from 'react';
@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { IngredientCategory } from '../ingredient-category/ingredient-category';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import { getIngredients } from '../../services/actions/ingredient-actions';
+//  import PropTypes from 'prop-types';
 //  PropTypes и { ingredientType } пока не нужны  //
 //  { IngredientContext } больше не нужен  //
 import BurgerIngredientsStyle from './burger-ingredients.module.css';
@@ -24,15 +25,15 @@ const BurgerIngredients = () => {
   //  Включаю хуки для получения и отправки данные в redux  //
   const ingredients = useSelector((state) => state.ingredients.ingredients);
   const dispatch = useDispatch();
-  //  По умолчанию мой ингридиент = булка, без булки нельзя  //
+  //  По умолчанию мой ингредиент = булка, без булки нельзя  //
   const [current, setCurrent] = useState('bun');
   
-  //  При монтировании получаем список ингридиентов  //
+  //  При монтировании получаем список ингредиентов  //
   useEffect(() => {
     dispatch(getIngredients());
   }, []);
 
-  //  Фильтрую массив по типу нужного ингридиента  //
+  //  Фильтрую массив по типу нужного ингредиента  //
   const buns = useMemo(
     () => ingredients.filter((item) => item.type === 'bun'),
     [ingredients]
@@ -67,7 +68,7 @@ const BurgerIngredients = () => {
     }
   };
 
-  //  Переключатели по типам ингридиентов использую как панель навигации  //
+  //  Переключатели по типам ингредиентов использую как панель навигации  //
   //  Когда пользователь скроллит ингредиенты, выделяю активным нужный переключатель  //
   //  Считаю, какой заголовок в контейнере ближе к его верхней левой границе //
   //  Заголовок не обязательно в поле зрения, но находится ближе всего к html-элементу с ингредиентами  //
@@ -90,6 +91,7 @@ const BurgerIngredients = () => {
   );
 }
 
-//  propTypes ingredientsData больше не нужен, беру из контекста?  //
+//  propTypes и типизация не нужны, нет пропсов  //
+
 
 export default BurgerIngredients;

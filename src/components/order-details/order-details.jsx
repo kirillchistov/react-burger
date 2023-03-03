@@ -7,9 +7,8 @@ import orderStatusImage from '../../images/graphics.svg'
 
 const OrderDetails = ({ orderNumber }) => {
   
-  //  Теперь использую контекст заказа для получения номера заказа  //
-  //  const orderNumber = useContext(OrderContext);  //
-  //  Вставляю в разметку номер заказа из контекста  //
+  //  Теперь не использую контекст заказа для получения номера заказа  //
+  //  Вставляю в разметку номер заказа из пропс  //
   return(
     <div className={orderDetailsStyle.container}>
       <p className='mt-4 mb-8 text text_type_digits-large'>{orderNumber}</p>
@@ -20,6 +19,8 @@ const OrderDetails = ({ orderNumber }) => {
     </div>  
   )    
 }
+
+//  Здесь есть пропсы, проверяю типизацию  //
 OrderDetails.propTypes = {
   orderNumber: PropTypes.number,
 };

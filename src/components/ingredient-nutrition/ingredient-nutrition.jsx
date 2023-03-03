@@ -1,4 +1,4 @@
-//  Вложенный компонент КБЖУ свойств ингридиента  //
+//  Вложенный компонент КБЖУ свойств ингредиента  //
 import { ingredientType } from '../../utils/types';
 import IngredientNutritionStyle from './ingredient-nutrition.module.css';
 
@@ -11,6 +11,7 @@ const IngredientNutrition = ({ type, amount }) => {
   )
 }
 
+//  Здесь есть пропсы, проверяю типизацию  //
 IngredientNutrition.propTypes = {
   type: ingredientType.string.isRequired,
   amount: ingredientType.number.isRequired

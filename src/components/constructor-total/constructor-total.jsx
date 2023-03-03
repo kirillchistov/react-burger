@@ -13,6 +13,7 @@ export const ConstructorTotal = ( {total} ) => {
   )
 }
 
+//  Типизация есть  //
 ConstructorTotal.propTypes = {
   total: PropTypes.number.isRequired
 };

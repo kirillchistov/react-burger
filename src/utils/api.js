@@ -14,19 +14,19 @@ export const checkResponse = async (res) => {
   }
 };
 
-//  Получаю ингридиенты с сервера и записываю в массив  //
+//  Получаю ингредиенты с сервера и записываю в массив  //
 export const fetchIngredients = async (setIngredients) => {
   try {
     return await fetch(`${BASEURL}/ingredients`)
       .then(checkResponse)
       .then(setIngredients)
   } catch (err) {
-    console.log(`Ошибка получения ингридиентов: ${err}`);
+    console.log(`Ошибка получения ингредиентов: ${err}`);
   }
 }
 
 //  Отправляю заказ на сервер, post fetch в /orders  //
-//  преобразую JSON с id ингридиентов в строку  //
+//  преобразую JSON с id ингредиентов в строку  //
 export const postOrder = async (ingredientsID) => {
   try {
     return await fetch(`${BASEURL}/orders`, {

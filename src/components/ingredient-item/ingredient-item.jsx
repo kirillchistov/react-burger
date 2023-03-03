@@ -1,4 +1,4 @@
-//  Карточка ингридиента, используемая в BurgerIngredients  //
+//  Карточка ингредиента, используемая в BurgerIngredients  //
 //  Из UI-библиотеки: счётчики, иконку валюты, типо, отступы  //
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,13 +9,14 @@ import IngredientPrice from '../ingredient-price/ingredient-price';
 import Modal from '../modal/modal';
 import { Counter } 
   from '@ya.praktikum/react-developer-burger-ui-components';
-// импортирую redux actions для модульного окна ингридиентов  //
+// импортирую redux actions для модульного окна ингредиентов  //
 import {
   OPEN_INGREDIENT_DETAILS,
   CLOSE_INGREDIENT_DETAILS,
 } from '../../services/actions/ingredient-actions';
 
-//  import { ingredientType } from '../../utils/types';  //
+//  import { ingredientType } from '../../utils/types';
+import PropTypes from 'prop-types';
 import IngredientItemStyle from './ingredient-item.module.css';
 
 export const IngredientItem = ( { ingredientData } ) => {
@@ -28,7 +29,7 @@ export const IngredientItem = ( { ingredientData } ) => {
   //  Получаю состояние (содержание) заказа из стора redux  //
   const orderData = useSelector((state) => state.order.orderData);
 
-  //  Считаю сколько ингридиентов в заказе, булки на 2 //
+  //  Считаю сколько ингредиентов в заказе, булки на 2 //
   const orderCount = useCallback(
     (ingredientData) => {
       const { _id, type } = ingredientData;
@@ -45,19 +46,19 @@ export const IngredientItem = ( { ingredientData } ) => {
     dispatch({ type: OPEN_INGREDIENT_DETAILS, payload: ingredientData });
   };
 
-  //  Заркытие модального окна с ингридиентами  //
+  //  Заркытие модального окна с ингредиентами  //
   const handleCloseIngredientModal = () => {
     dispatch({ type: CLOSE_INGREDIENT_DETAILS });
   };
 
-  //  Делаем ингридиенты перетаскиваемыми  //
+  //  Делаем ингредиенты перетаскиваемыми  //
   const [, dragRef] = useDrag({
     type: 'ingredient',
     item: ingredientData,
   });
 
-  //  Модальное окно открывается только когда массив ингридиентов не пуст  //
-  //  Показываю счетчик ингридиента (сколько в конструкторе), если он > 0  //
+  //  Модальное окно открывается только когда массив ингредиентов не пуст  //
+  //  Показываю счетчик ингредиента (сколько в конструкторе), если он > 0  //
   return (
     <div>
       <div className={IngredientItemStyle.ingredient} onClick={handleOpenIngredientModal} ref={dragRef}>
@@ -77,8 +78,7 @@ export const IngredientItem = ( { ingredientData } ) => {
   );
 };
 
-/* 
+//  Здесь есть пропсы, проверяю типизацию  //
 IngredientItem.propTypes = {
-  ingredientData: ingredientType.isRequired
+  elementData: PropTypes.object
 };
-*/

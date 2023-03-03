@@ -1,10 +1,10 @@
-//  Компонент категории ингридиентов для работы с навигацией по табам  //
+//  Компонент категории ингредиентов для работы с навигацией по табам  //
 
 import PropTypes from 'prop-types';
 import { IngredientItem } from '../ingredient-item/ingredient-item';
 import IngredientCategoryStyle from './ingredient-category.module.css';
 
-//  В разметке div с заголовком и вложенным div-списком ингридиентов заданной категории  //
+//  В разметке div с заголовком и вложенным div-списком ингредиентов заданной категории  //
 export function IngredientCategory({ id, type, typeList }) {
   return (
     <div id={id}>
@@ -18,8 +18,9 @@ export function IngredientCategory({ id, type, typeList }) {
   );
 }
 
-//  Добавил типизацию для пропсов  //
+//  Добавил типизацию для id  //
 IngredientCategory.propTypes = {
   type: PropTypes.string.isRequired,
   typeList: PropTypes.array.isRequired,
+  id: PropTypes.string
 };

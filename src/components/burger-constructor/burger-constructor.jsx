@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-//  Блок (правый) с конструктором заказа бургера из выбранных ингридиентов  //
+//  Блок (правый) с конструктором заказа бургера из выбранных ингредиентов  //
 
 //  { useState, useContext, useReducer } больше не нужны //
 import React, { useMemo } from 'react';
@@ -16,7 +16,7 @@ import Modal from '../modal/modal';
 //  вместо { postOrder } теперь берем actions из redux  //
 import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../services/actions/order-actions';
 //  Контекст { IngredientContext, PriceContext, OrderContext } больше не нужен --> redux  //
-//  Импортировал actions для работы с ингридиентами в конструкторе заказа  //
+//  Импортировал actions для работы с ингредиентами в конструкторе заказа  //
 //  Добавил универсальный генератор уникальных идентификаторов для элементов без id  //
 import { v4 as uuidv4 } from 'uuid';
 
@@ -82,36 +82,12 @@ const BurgerConstructor = () => {
     dispatch({ type: DELETE_ORDER });
   };
   
-  //  Функция findElementByID для поиска ингридиентов по id в заказе не нужна  //
-
-
-  //  Ответ от сервера на заказ: success: true, name: строка, order: {number}  //
-  //  Функция создания заказа в конструкторе  //
-  //  Для каждого элемента берем его id и складываем в массив, передаем на сервер  //
-  //  В ответ получаем название и номер заказа - пример ответа см. выше  //
-  /* const createOrder = () => {
-    const arrIngredientsId = arrIngredients.map((element) => {
-      return element._id;
-    })
-    postOrder(arrIngredientsId)
-    .then((result) => {
-      setOrderNumber(result.order.number);
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    })
-    .finally(() => {
-      setIsOpen(true);             
-    });
-  }
-  */
-  
   //  В конструкторе пока набор булок и по одному первому элементу начинки и соуса, не выбор  //
   //  Цены суммирую и вывожу в конструкторе, в попапе вывожу номер заказа  //
   //  Добавил ref, отключил контекст провайдер, теперь беру состояние из redux-стора  //
-  //  Открытие окна с деталями ингридиента вынес в отдельную функцию handleOpenIngredientModal  //
+  //  Открытие окна с деталями ингредиента вынес в отдельную функцию handleOpenIngredientModal  //
   //  Открываю окно заказа при условии, что есть номер заказа, закрытие вынес в handleCloseOrderModal  //
-  //  Показываю сумму заказа и кнопку, только если выбраны ингридиенты (кроме булок)  //
+  //  Показываю сумму заказа и кнопку, только если выбраны ингредиенты (кроме булок)  //
   return (
     <>
       <section className={`mt-25 ml-4 ${burgerConstructorStyle.elements}`} ref={dropTarget}>
@@ -131,15 +107,15 @@ const BurgerConstructor = () => {
             return (
               <ConstructorElements 
                 elementData={element}
-                index={index}
                 bunType={''} 
-                isLocked={false} 
                 bunTypeName={''} 
+                isLocked={false} 
+                index={index}
                 key={element._id} 
               />
             );
           })}
-          {!ingredientsMidStuff.length && (
+          {ingredientsMidStuff.length === 0 && (
             <span className='text mt-30 ml-30 text_type_main-default'>
               Добавьте ингредиенты для Вашего бургера!
             </span>
@@ -174,5 +150,7 @@ const BurgerConstructor = () => {
    </>
   )
 }
+
+//  Типизация не нужна, нет пропсов  //
 
 export default BurgerConstructor;

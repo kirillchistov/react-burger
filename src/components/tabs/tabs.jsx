@@ -1,3 +1,4 @@
+//  Этот компонент пока не используем - все делаем внутри B-Ingredients //
 import React, { useState } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import TabsStyle from './tabs.module.css';

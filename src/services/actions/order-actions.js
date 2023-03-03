@@ -3,7 +3,7 @@
 import { postOrder } from '../../utils/api';
 
 //  Все константы экспортирую, потом, видимо, вынесу в отдельный файл  //
-//  Действия с ингридиентами в конструкторе: CruD  //
+//  Действия с ингредиентами в конструкторе: CruD  //
 //  Для булки только добавление - без булки нельзя собрать бургер, к сож  //
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 export const MOVE_INGREDIENT = 'MOVE_INGREDIENT';

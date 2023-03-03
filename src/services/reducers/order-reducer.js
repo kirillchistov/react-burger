@@ -46,14 +46,14 @@ export const orderReducer = (state = initialOrderState, action) => {
         orderData: orderIngredients
       };
     }
-    //  Для добавления другого ингридиента просто добавляю состав (payload) в копию массива  //
+    //  Для добавления другого ингредиента просто добавляю состав (payload) в копию массива  //
     //  И возвращаю состояние с новым содержанием заказа  //
     case ADD_INGREDIENT:
       return {
         ...state,
         orderData: [...state.orderData, action.payload]
       };
-    //  Для удаления ингридиента сокращаю массив фильтром по id удаленного ингридиента  //
+    //  Для удаления ингредиента сокращаю массив фильтром по id удаленного ингредиента  //
     //  И возвращаю состояние с новым содержанием заказа  //
     case REMOVE_INGREDIENT: {
       return {
