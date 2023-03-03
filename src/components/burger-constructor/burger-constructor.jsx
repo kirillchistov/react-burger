@@ -1,7 +1,6 @@
 /* eslint-disable array-callback-return */
 //  Блок (правый) с конструктором заказа бургера из выбранных ингредиентов  //
 
-//  { useState, useContext, useReducer } больше не нужны //
 import React, { useMemo } from 'react';
 //  Добавил хуки для работы с Redux  //
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,7 +14,6 @@ import { Button, ConstructorElement } from '@ya.praktikum/react-developer-burger
 import Modal from '../modal/modal';
 //  вместо { postOrder } теперь берем actions из redux  //
 import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../services/actions/order-actions';
-//  Контекст { IngredientContext, PriceContext, OrderContext } больше не нужен --> redux  //
 //  Импортировал actions для работы с ингредиентами в конструкторе заказа  //
 //  Добавил универсальный генератор уникальных идентификаторов для элементов без id  //
 import { v4 as uuidv4 } from 'uuid';
@@ -25,7 +23,7 @@ import burgerConstructorStyle from './burger-constructor.module.css';
 
 const BurgerConstructor = () => {
   //  Теперь состояния храню в сторе redux, а не в пропсах или контексте  //
-  //  Состояние [isOpen, setIsOpen] и IngredientContext не нужны  //
+  //  Состояние [isOpen, setIsOpen] и контекст не нужны  //
   //  Получаю из стора состояние для номера состава заказа  //
   
   const dispatch = useDispatch();

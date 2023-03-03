@@ -14,9 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { IngredientCategory } from '../ingredient-category/ingredient-category';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import { getIngredients } from '../../services/actions/ingredient-actions';
-//  import PropTypes from 'prop-types';
-//  PropTypes и { ingredientType } пока не нужны  //
-//  { IngredientContext } больше не нужен  //
+//  PropTypes и контекст больше не нужны  //
 import BurgerIngredientsStyle from './burger-ingredients.module.css';
      
 const BurgerIngredients = () => {

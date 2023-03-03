@@ -1,7 +1,6 @@
 //  Компонент для показа в модальном окне по нажатию кнопки 'Заказать' //
 import React from 'react';
 import PropTypes from 'prop-types';
-//  import { OrderContext } from '../../services/app-context';  //
 import orderDetailsStyle from './order-details.module.css';
 import orderStatusImage from '../../images/graphics.svg'
 

@@ -10,7 +10,7 @@
 * [x] Back-end (Node.js, MongoDB, Express, Nginx)
 * [x] Git, WebPack, Babel (позже redux и пр.) и т.д.
 
-## [Pull Request Sprint-2 Step-2]()
+## [Pull Request Sprint-2 Step-2](https://github.com/kirillchistov/react-burger/pull/32)
 ## [Pull Request Sprint-2 Step-1](https://github.com/kirillchistov/react-burger/pull/22)
 ## [Pull Request Sprint-1 Step-2](https://github.com/kirillchistov/react-burger/pull/14)
 
@@ -21,7 +21,6 @@
 ## Навигация пока отсутствует
 * [x] `app.jsx` — точка входа
 * [x] `/components` — основные компоненты проекта
-* [x] `/contexts` — контексты 
 * [x] `/hooks` — будут хуки 
 * [x] `/images` - все изображения проекта
 * [x] `/services` — actions, reducers etc. 
