@@ -57,10 +57,13 @@ export const IngredientItem = ( { ingredientData } ) => {
   });
 
   //  Модальное окно открывается только когда массив ингридиентов не пуст  //
+  //  Показываю счетчик ингридиента (сколько в конструкторе), если он > 0  //
   return (
     <div>
       <div className={IngredientItemStyle.ingredient} onClick={handleOpenIngredientModal} ref={dragRef}>
-        <Counter className={IngredientItemStyle.counter} count={orderCount(ingredientData)} size='default' />
+        {orderCount(ingredientData) > 0 &&
+          <Counter className={IngredientItemStyle.counter} count={orderCount(ingredientData)} size='default' />
+        }
         <img src={ingredientData.image} alt={ingredientData.name}></img>
         <IngredientPrice price={ingredientData.price} />
         <p className={`mb-6 text text_type_main-default ${IngredientItemStyle.name}`}>{ingredientData.name}</p>
