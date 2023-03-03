@@ -17,6 +17,7 @@ import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../serv
 //  Импортировал actions для работы с ингредиентами в конструкторе заказа  //
 //  Добавил универсальный генератор уникальных идентификаторов для элементов без id  //
 import { v4 as uuidv4 } from 'uuid';
+import { selectorOrders } from "../../utils/constants";
 
 import burgerConstructorStyle from './burger-constructor.module.css';
 
@@ -27,7 +28,7 @@ const BurgerConstructor = () => {
   //  Получаю из стора состояние для номера состава заказа  //
   
   const dispatch = useDispatch();
-  const { orderData, orderNumber } = useSelector((state) => state.order);
+  const { orderData, orderNumber } = useSelector(selectorOrders);
   
   //  Редьюсеры со свитчем и действия вынес в отдельные файлы  //
   //  Вместо первых встречных теперь нахожу выбранные элементы  //
