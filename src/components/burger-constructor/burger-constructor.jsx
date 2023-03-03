@@ -111,6 +111,7 @@ const BurgerConstructor = () => {
   //  Добавил ref, отключил контекст провайдер, теперь беру состояние из redux-стора  //
   //  Открытие окна с деталями ингридиента вынес в отдельную функцию handleOpenIngredientModal  //
   //  Открываю окно заказа при условии, что есть номер заказа, закрытие вынес в handleCloseOrderModal  //
+  //  Показываю сумму заказа и кнопку, только если выбраны ингридиенты (кроме булок)  //
   return (
     <>
       <section className={`mt-25 ml-4 ${burgerConstructorStyle.elements}`} ref={dropTarget}>
@@ -155,11 +156,13 @@ const BurgerConstructor = () => {
             />
           )}
         </div>
-          {/* <ConstructorElements elementData={bun} bunType={'bottom'} isLocked={true} bunTypeName={' (низ)'} /> */}
+        {ingredientsMidStuff.length > 0 && 
           <div className={`mt-10 ${burgerConstructorStyle.constructor_total}`}>
             <ConstructorTotal total={totalAmount} />
+          
             <Button type='primary' size='large' htmlType='button' onClick={handleOpenIngredientModal}>Оформить заказ</Button>
           </div>
+        }
       </section>
       {orderNumber && 
         (
