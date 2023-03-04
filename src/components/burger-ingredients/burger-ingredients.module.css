@@ -1,5 +1,7 @@
 .ingredients {
   width: 600px;
+  height: 912px;
+  margin: 0;
 }
 
 .navbar {
@@ -23,7 +25,8 @@
 }
 
 .ingredient_types {
-  height: calc(100vh - 324px);
+  /* height: calc(100vh - 324px); */
+  height: 756px;
   overflow-y: auto;
 }
 

@@ -1,3 +1,4 @@
+//  Пока этот компонент не используем, все делаем внутри I-Item  //
 import IngredientItem from '../ingredient-item/ingredient-item';
 import PropTypes from 'prop-types';
 import {ingredientType} from '../../utils/types';

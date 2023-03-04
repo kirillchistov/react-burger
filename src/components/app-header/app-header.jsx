@@ -31,4 +31,6 @@ const AppHeader = () => {
     </header>
   );
 }
-  export default AppHeader;
+
+//  Типизация не нужна, нет пропсов  //
+export default AppHeader;

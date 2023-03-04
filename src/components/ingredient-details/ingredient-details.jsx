@@ -1,11 +1,10 @@
-//  Компонент для отображения в модальном окне при клике на ингридиент  //
-
+//  Компонент для отображения в модальном окне при клике на ингредиент  //
 import PropTypes from 'prop-types';
-import {ingredientType} from '../../utils/types';
+//  import { ingredientType } from '../../utils/types';  //
 import ingredientDetailsStyle from './ingredient-details.module.css';
 
-//  Вложенный компонент КБЖУ свойства ингридиента - вынести в отдельный  //
-const IngredientNutrition = ({type, amount}) => {
+//  Вложенный компонент КБЖУ свойства ингредиента - вынести в отдельный  //
+const IngredientNutrition = ({ type, amount }) => {
   return (
     <div className={ingredientDetailsStyle.nutrition}>
       <p className='mb-2 text text_type_main-default text_color_inactive'>{type}</p>
@@ -14,13 +13,14 @@ const IngredientNutrition = ({type, amount}) => {
   )
 }
 
+//  Типизация есть  //
 IngredientNutrition.propTypes = {
   type: PropTypes.string.isRequired,
   amount: PropTypes.number.isRequired
 };
 
 //  Сводный компонент с гридом свойств  //
-const IngredientDetails = ({item}) => {
+const IngredientDetails = ({ item }) => {
   return(
     <div className={ingredientDetailsStyle.general}>
       <img className={ingredientDetailsStyle.image} src={item.image} alt={item.name}></img>
@@ -35,18 +35,9 @@ const IngredientDetails = ({item}) => {
   )    
 }
 
-IngredientDetails.propTypes = ingredientType.isRequired;
-/*
+//  Здесь есть пропсы, проверяю типизацию, но не через ingredientType  //
 IngredientDetails.propTypes = {
-  item: PropTypes.object.isRequired,  
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  calories: PropTypes.number.isRequired,
-  proteins: PropTypes.number.isRequired,
-  fat: PropTypes.number.isRequired,
-  carbohydrates: PropTypes.number.isRequired
+  item: PropTypes.object.isRequired,
 };
-*/
 
 export default IngredientDetails;

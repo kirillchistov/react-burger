@@ -10,18 +10,20 @@
 * [x] Back-end (Node.js, MongoDB, Express, Nginx)
 * [x] Git, WebPack, Babel (позже redux и пр.) и т.д.
 
-## [Pull Request Step-2](https://github.com/kirillchistov/movies-explorer-frontend/pull/34)
+## [Pull Request Sprint-2 Step-2](https://github.com/kirillchistov/react-burger/pull/32)
+## [Pull Request Sprint-2 Step-1](https://github.com/kirillchistov/react-burger/pull/22)
+## [Pull Request Sprint-1 Step-2](https://github.com/kirillchistov/react-burger/pull/14)
 
 * [x] [Макет в Figma](общий)
 # Репозитории:
-* [x] [Step 2] (https://github.com/kirillchistov/react-burger/tree/sprint1/step2)
+* [x] [Main] (https://github.com/kirillchistov/react-burger/)
 
 ## Навигация пока отсутствует
 * [x] `app.jsx` — точка входа
 * [x] `/components` — основные компоненты проекта
-* [x] `/contexts` — будут контексты 
 * [x] `/hooks` — будут хуки 
 * [x] `/images` - все изображения проекта
+* [x] `/services` — actions, reducers etc. 
 * [x] `/utils` - константы, API и прочие утилиты
 * [x] `/vendor` - внешние скрипты, шрифты и прочие внешние ресурсы
 
