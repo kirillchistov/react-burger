@@ -31,3 +31,7 @@
   height: 40px;
   margin: 8px 289px 8px 112px;
 }
+
+.activeMenu {
+  color: #f2f2f3;
+}

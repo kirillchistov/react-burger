@@ -17,7 +17,7 @@ import { getIngredients } from '../../services/actions/ingredient-actions';
 //  PropTypes и контекст больше не нужны  //
 import BurgerIngredientsStyle from './burger-ingredients.module.css';
      
-const BurgerIngredients = () => {
+export const BurgerIngredients = () => {
 
   //  Теперь получаю состояние из redux, а не из контекста  //
   //  Включаю хуки для получения и отправки данные в redux  //
@@ -90,6 +90,3 @@ const BurgerIngredients = () => {
 }
 
 //  propTypes и типизация не нужны, нет пропсов  //
-
-
-export default BurgerIngredients;

@@ -10,11 +10,7 @@ import { useNavigate } from 'react-router-dom';
 //  { useDispatch } и { useForm } пока не делаю  //
 import { AppHeader } from '../components/app-header/app-header';
 //  Из библиотеки беру кнопку, поле ввода обычно и поле пароля  //
-import {
-  Button,
-  Input,
-  PasswordInput,
-} from '@ya.praktikum/react-developer-burger-ui-components';
+import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 // нужен action регистрации для redux  //
 import RegisterStyle from './login.module.css';
 
@@ -72,7 +68,7 @@ export const RegistrationPage = () => {
             htmlType='button'
             type='secondary'
             size='medium'
-            className='pt-4 pr-1 pb-2 pl-1'
+
           >
             Войти
           </Button>

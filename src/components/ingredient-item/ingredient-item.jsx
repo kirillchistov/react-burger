@@ -4,9 +4,9 @@ import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
 
-import IngredientDetails from '../ingredient-details/ingredient-details';
+import { IngredientDetails } from '../ingredient-details/ingredient-details';
 import IngredientPrice from '../ingredient-price/ingredient-price';
-import Modal from '../modal/modal';
+import { Modal } from '../modal/modal';
 import { Counter } 
   from '@ya.praktikum/react-developer-burger-ui-components';
 // импортирую redux actions для модульного окна ингредиентов  //

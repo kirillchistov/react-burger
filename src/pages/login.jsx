@@ -8,11 +8,7 @@
 //  Нужна шапка  //
 import { AppHeader } from '../components/app-header/app-header';
 //  Из библиотеки беру кнопку, поле ввода обычно и поле пароля  //
-import {
-  Button,
-  Input,
-  PasswordInput,
-} from '@ya.praktikum/react-developer-burger-ui-components';
+import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useNavigate } from 'react-router-dom';
 // Хуки { useDispatch } и для формы { useForm } пока не подключаем //
 // нужен action логина для redux  //
@@ -33,6 +29,8 @@ export const LoginPage = () => {
     e.preventDefault();
     //  здесь будет dispatch, пока заглушка  //
   };
+
+  //  Добавить отступы к зарег и вспомнить  //
 
   //  Разметка: шапка, flex-контейнер с grid-формой внутри  //
   return (
@@ -66,7 +64,7 @@ export const LoginPage = () => {
             htmlType='button'
             type='secondary'
             size='medium'
-            className='pt-4 pr-1 pb-2 pl-1'
+            
           >
             Зарегистрироваться
           </Button>
@@ -78,7 +76,7 @@ export const LoginPage = () => {
             htmlType='button'
             type='secondary'
             size='medium'
-            className='pt-2 pr-1 pb-1 pl-1'
+
           >
             Восстановить пароль
           </Button>

@@ -11,7 +11,7 @@ import ConstructorElements from '../constructor-elements/constructor-elements';
 import OrderDetails from '../order-details/order-details';
 import ConstructorTotal from '../constructor-total/constructor-total';
 import { Button, ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
-import Modal from '../modal/modal';
+import { Modal } from '../modal/modal';
 //  вместо { postOrder } теперь берем actions из redux  //
 import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../services/actions/order-actions';
 //  Импортировал actions для работы с ингредиентами в конструкторе заказа  //
@@ -22,7 +22,7 @@ import { selectorOrders } from "../../utils/constants";
 import burgerConstructorStyle from './burger-constructor.module.css';
 
 
-const BurgerConstructor = () => {
+export const BurgerConstructor = () => {
   //  Теперь состояния храню в сторе redux, а не в пропсах или контексте  //
   //  Состояние [isOpen, setIsOpen] и контекст не нужны  //
   //  Получаю из стора состояние для номера состава заказа  //
@@ -160,5 +160,3 @@ const BurgerConstructor = () => {
 }
 
 //  Типизация не нужна, нет пропсов  //
-
-export default BurgerConstructor;

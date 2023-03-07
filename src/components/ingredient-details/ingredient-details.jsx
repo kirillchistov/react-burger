@@ -20,7 +20,7 @@ IngredientNutrition.propTypes = {
 };
 
 //  Сводный компонент с гридом свойств  //
-const IngredientDetails = ({ item }) => {
+export const IngredientDetails = ({ item }) => {
   return(
     <div className={ingredientDetailsStyle.general}>
       <img className={ingredientDetailsStyle.image} src={item.image} alt={item.name}></img>
@@ -40,4 +40,3 @@ IngredientDetails.propTypes = {
   item: PropTypes.object.isRequired,
 };
 
-export default IngredientDetails;

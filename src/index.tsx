@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom/client';
 //  Поддержка redux  //
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import App from './components/app/app';
+//  import App from './components/app/app';
+import App from './app';
+
 //  Добавил поддержку роутера  // 
 import { BrowserRouter } from "react-router-dom";
 //  Корневой редьюсер и усилитель  //
