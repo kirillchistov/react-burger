@@ -29,6 +29,8 @@ export const RegistrationPage = () => {
     //  здесь будет dispatch, пока заглушка  //
   };
 
+  //  Разметка: шапка, flex-контейнер с grid-формой внутри  //
+  //  Стили заимствовал из логина  //
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
       <AppHeader />
@@ -68,7 +70,6 @@ export const RegistrationPage = () => {
             htmlType='button'
             type='secondary'
             size='medium'
-
           >
             Войти
           </Button>
