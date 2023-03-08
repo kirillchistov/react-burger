@@ -44,12 +44,12 @@ export const LoginPage = () => {
             type={'email'}
             placeholder={'E-mail'}
             onChange={handleChange}
-            value={() => console.log('здесь будет функция email')}
+            value={'e-mail'}
             name={'email'}
           />
           <PasswordInput
             onChange={handleChange}
-            value={() => console.log('здесь будет функция пароля')}
+            value={'пароль123pass'}
             name={'password'}
             icon='ShowIcon'
           />

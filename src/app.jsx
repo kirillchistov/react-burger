@@ -1,10 +1,6 @@
 //  Вернул app.jsx в корень как разводяющую с роутингом по остальным  //
 //  Здесь добавил все для роутинга  //
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-
-//  import { ProtectedRouteElement } from './components/protected-route';
-import { IngredientDetails } from './components/ingredient-details/ingredient-details';
-import { Modal } from './components/modal/modal';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 //  Импортирую все странички из разводящего index файла //
 import {
@@ -19,13 +15,16 @@ import {
   FeedPage,
   NotFoundPage,
 } from './pages';
+import { IngredientDetails } from './components/ingredient-details/ingredient-details';
+import { Modal } from './components/modal/modal';
 
 
-export default function App() {
+const App = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  //  const location = useLocation();
 
-  const isHomeLocation = location.state && location.state.ingredientModal;
+  const isHomeLocation = false
+
   return (
     <Routes>
       <Route path='/' element={<HomePage />} />
@@ -69,3 +68,5 @@ export default function App() {
     </Routes>
   );
 }
+
+export default App;
