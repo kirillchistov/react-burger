@@ -17,7 +17,7 @@ import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../serv
 //  Импортировал actions для работы с ингредиентами в конструкторе заказа  //
 //  Добавил универсальный генератор уникальных идентификаторов для элементов без id  //
 import { v4 as uuidv4 } from 'uuid';
-import { selectorOrders } from "../../utils/constants";
+import { selectorOrders } from '../../utils/constants';
 
 import burgerConstructorStyle from './burger-constructor.module.css';
 

@@ -42,20 +42,20 @@ export const RegistrationPage = () => {
             type={'text'}
             placeholder={'Имя'}
             onChange={handleChange}
-            value={() => console.log('здесь будет имя')}
+            value={'name'}
             name={'name'}
           />
           <Input
             type={'email'}
             placeholder={'E-mail'}
             onChange={handleChange}
-            value={() => console.log('здесь будет email')}
+            value={'e@mail.ru'}
             name={'email'}
           />
           <PasswordInput
             type={'password'}
             onChange={handleChange}
-            value={() => console.log('здесь будет пароль')}
+            value={'abc123pass'}
             name={'password'}
             icon='ShowIcon'
           />

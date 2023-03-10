@@ -56,7 +56,7 @@ export const BurgerIngredients = () => {
       .getElementById('sauce')
       .getBoundingClientRect().top;
 
-    //  topTop - верх раздела, butTop - верх "булок", sauceTop - соусов  //
+    //  topTop - верх раздела, butTop - верх 'булок', sauceTop - соусов  //
     if (bunTop + topTop > topTop + 60) {
       setCurrent('bun');
     } else if (sauceTop + topTop > 110) {

@@ -28,20 +28,20 @@ export const ResetPasswordPage = () => {
         <form className={PasswordStyles.form} onSubmit={submitForgotPassword}>
           <h1 className='text text_type_main-medium'>Восстановление пароля</h1>
           <PasswordInput
-            placeholder={"Введите новый пароль"}
+            placeholder={'Введите новый пароль'}
             onChange={handleChange}
             value={() => console.log('здесь будет функция пароля')}
-            name={"password"}
-            icon="ShowIcon"
+            name={'password'}
+            icon='ShowIcon'
           />
           <Input
-            type={"text"}
-            placeholder={"Введите код из письма"}
+            type={'text'}
+            placeholder={'Введите код из письма'}
             onChange={handleChange}
             value={() => console.log('здесь будет функция токена')}
-            name={"token"}
+            name={'token'}
           />
-          <Button htmlType="submit" type="primary" size="medium">
+          <Button htmlType='submit' type='primary' size='medium'>
             Сохранить
           </Button>
         </form>

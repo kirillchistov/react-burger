@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import App from './app';
 
 //  Добавил поддержку роутера  // 
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 //  Корневой редьюсер и усилитель  //
 import { rootReducer } from './services/reducers/root-reducer';
 import { enhancer } from './services/store/store';

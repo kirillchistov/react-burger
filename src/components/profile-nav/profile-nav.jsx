@@ -1,14 +1,14 @@
-import { NavLink } from "react-router-dom";
-import PropTypes from "prop-types";
+import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import ProfileNavSyle from "./profile-nav.module.css";
+import ProfileNavSyle from './profile-nav.module.css';
 
 export const ProfileNav = ({ navTip }) => {
   //  Здесь будет dispatch  //
   //  Здесь будет refreshToken  //
 
   /*
-    activeColor: "#F2F2F3",
+    activeColor: '#F2F2F3',
   */
   //  Здесь будет функция подсветки  //
 
@@ -21,27 +21,27 @@ export const ProfileNav = ({ navTip }) => {
     <div className={ProfileNavSyle.container}>
       <nav className={`mb-20 ${ProfileNavSyle.navbar}`}>
         <NavLink
-          to="/profile"
+          to='/profile'
           end
           className={`text text_type_main-medium text_color_inactive pt-4 pb-4 ${ProfileNavSyle.link}`}
         >
           Профиль
         </NavLink>
         <NavLink
-          to="/profile/orders"
+          to='/profile/orders'
           className={`text text_type_main-medium text_color_inactive pt-4 pb-4 ${ProfileNavSyle.link}`}
         >
           История заказов
         </NavLink>
         <NavLink
-          to="/login"
+          to='/login'
           className={`text text_type_main-medium text_color_inactive pt-4 pb-4 ${ProfileNavSyle.link}`}
           onClick={logout}
         >
           Выход
         </NavLink>
       </nav>
-      <p className="text text_type_main-default text_color_inactive">{navTip}</p>
+      <p className='text text_type_main-default text_color_inactive'>{navTip}</p>
     </div>
   );
 }
