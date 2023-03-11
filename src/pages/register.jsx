@@ -7,8 +7,8 @@
 */
 //  Нужна шапка, хуки  //
 import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from "react-redux";
-import { useForm } from "../hooks/useForm";
+// import { useDispatch } from 'react-redux';
+import { useForm } from '../hooks/useForm';
 import { AppHeader } from '../components/app-header/app-header';
 //  Из библиотеки беру кнопку, поле ввода обычно и поле пароля  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';

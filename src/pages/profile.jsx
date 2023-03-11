@@ -7,9 +7,9 @@
 5 позже) Ссылка «Выход» пока ничего не делает. Потом logout наверное
 */
 //  хуки для состояний и обновления полей ввода формы  //
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useForm } from "../hooks/useForm";
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useForm } from '../hooks/useForm';
 //  шапка и левая навигация профиля  //
 import { AppHeader } from '../components/app-header/app-header';
 import { ProfileNav } from '../components/profile-nav/profile-nav';
@@ -23,6 +23,7 @@ export const ProfilePage = () => {
   //  по ТЗ пока не делаю реальный пароль и валидацию  //
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным об пользователе. PROFIT!  //
+  //  Примерно как в тренажере  //
   const dispatch = useDispatch(); 
   const passwordValue = '******';
   const user = useSelector((state) => state.auth.user);
@@ -48,7 +49,7 @@ export const ProfilePage = () => {
         email: data.email,
         name: data.name,
         password:
-        data.password !== passwordValue ? data.password : "abc123pass",
+        data.password !== passwordValue ? data.password : 'abc123pass',
       })
     );
     setIsChanged(false);

@@ -1,25 +1,35 @@
 //  Страница для воспоминаний о пароле  //
-//  Нужны будут хуки для redux  //
-import { useNavigate } from 'react-router-dom';
+/*  На /forgot-password пользователь вводит адрес email и нажимает «Восстановить». 
+После этого происходит POST запрос к эндпоинту /password-reset  */
+//  Нужны хуки для redux  //
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+//  хук для работы с формами  //
+import { useForm } from '../hooks/useForm';
+import { requestCode } from '../services/actions/auth';
+//  Шапка и компоненты из UX-библиотеки  //
 import { AppHeader } from '../components/app-header/app-header';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
-//  Стили берем из login  //
+//  Стили пока беру из login  //
 import PasswordStyles from './login.module.css';
 
 export const ForgotPasswordPage = () => {
   const navigate = useNavigate();
-  //  const dispatch = useDispatch();
-
+  const dispatch = useDispatch();
+  //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
+  //  С помощью useSelector получаю доступ к данным пользователя. PROFIT!  //
+  const { gotResetPassCode } = useSelector((state) => state.auth);
+  const { data, handleChange,  } = useForm({ email: '' });
   
   const submitForgotPassword = (e) => {
     e.preventDefault();
-    //  здесь будет dispatch  //
+    dispatch(requestCode(data));
   };
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    //  здесь будет обработчик  //
-  };
+  //  если уже есть код, отправляю на reset-password  //
+  if (gotResetPassCode) {
+    return <Navigate to={'/reset-password'} />;
+  }
 
   //  Разметка: шапка, flex-контейнер с grid-формой внутри  //
   return (
@@ -32,7 +42,7 @@ export const ForgotPasswordPage = () => {
             type={'email'}
             placeholder={'Укажите e-mail'}
             onChange={handleChange}
-            value={() => console.log('здесь будет функция email')}
+            value={data.email}
             name={'email'}
           />
           <Button htmlType='submit' type='primary' size='medium'>
