@@ -20,8 +20,8 @@ import burgerConstructorStyle from './burger-constructor.module.css';
 
 
 export const BurgerConstructor = () => {
-  //  Отправляем экшен, после успешного запроса, записываем данные в Redux  //
-  //  С помощью useSelector получаем доступ к данным о заказах. PROFIT!  //
+  //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
+  //  С помощью useSelector получаю доступ к данным о заказах. PROFIT!  //
 
   const dispatch = useDispatch();
   const { orderData, orderNumber } = useSelector(selectorOrders);

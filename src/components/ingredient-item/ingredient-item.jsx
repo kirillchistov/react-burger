@@ -21,7 +21,8 @@ import IngredientItemStyle from './ingredient-item.module.css';
 
 export const IngredientItem = ( { ingredientData } ) => {
   //  состояния [isOpen, setIsOpen] больше не нужны  //
-  //  Активирую хуки для работы с redux  //
+  //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
+  //  С помощью useSelector получаю доступ к данным об ингридиенте. PROFIT!  //
   const dispatch = useDispatch();
   const ingredientDetails = useSelector(
     (state) => state.ingredientDetails.ingredientDetails

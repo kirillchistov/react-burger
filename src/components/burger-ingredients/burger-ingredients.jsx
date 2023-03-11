@@ -14,13 +14,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { IngredientCategory } from '../ingredient-category/ingredient-category';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import { getIngredients } from '../../services/actions/ingredient-actions';
-//  PropTypes и контекст больше не нужны  //
 import BurgerIngredientsStyle from './burger-ingredients.module.css';
      
 export const BurgerIngredients = () => {
 
   //  Теперь получаю состояние из redux, а не из контекста  //
   //  Включаю хуки для получения и отправки данные в redux  //
+  //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
+  //  С помощью useSelector получаю доступ к данным об ингридиентах. PROFIT!  //
   const ingredients = useSelector((state) => state.ingredients.ingredients);
   const dispatch = useDispatch();
   //  По умолчанию мой ингредиент = булка, без булки нельзя  //

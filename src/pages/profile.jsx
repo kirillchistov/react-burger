@@ -6,11 +6,14 @@
 4 позже) Клик по заказу в «Истории заказов» открывает экран /profile/orders/:id.
 5 позже) Ссылка «Выход» пока ничего не делает. Потом logout наверное
 */
-//  здесь нужны useState, useSelector, useDispatch и useForm //
-//  нужна шапка
+//  хуки  + хук для обновления полей ввода  //
+//  import { useState } from "react";
+//  import { useSelector } from "react-redux";
+// import { useForm } from "../hooks/useForm";
+//  шапка и левая навигация профиля  //
 import { AppHeader } from '../components/app-header/app-header';
 import { ProfileNav } from '../components/profile-nav/profile-nav';
-//  беру кнопку, поля ввода и пароля из библиотеки  //
+//  кнопка, поле ввода и поле пароля из библиотеки  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 //  нужен action для обновления профиля через redux  //
 
@@ -18,7 +21,11 @@ import ProfileStyle from './profile.module.css';
 
 export const ProfilePage = () => {
   //  по ТЗ пока не делаем реальный пароль и валидацию  //
+  //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
+  //  С помощью useSelector получаю доступ к данным об пользователе. PROFIT!  //
+  
   //  const passwordValue = '******';
+  //  const user = useSelector((state) => state.auth.user);
  
   const onChange = (e) => {
     e.preventDefault();

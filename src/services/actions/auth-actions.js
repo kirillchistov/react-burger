@@ -48,6 +48,28 @@ export const LOGOUT_USER_API = 'LOGOUT_USER_API';
 export const LOGOUT_USER_API_OK = 'LOGOUT_USER_API_OK';
 export const LOGOUT_USER_API_FAIL = 'LOGOUT_USER_API_FAIL';
 
+//  Action логина нового пользователя - добавить propTypes? //
+export const loginUser = ({ email, password }) => {
+  return function (dispatch) {
+    dispatch({
+      type: LOGIN_USER_API,
+    });
+    loginApi({ email, password }).then((res) => {
+      if (res && res.success) {
+        setCookies(res.accessToken, res.refreshToken);
+        dispatch({
+          type: LOGIN_USER_API_OK,
+          payload: res.user,
+        });
+      } else {
+        dispatch({
+          type: LOGIN_USER_API_FAIL,
+        });
+      }
+    });
+  };
+};
+
 //  Action регистрации нового пользователя - добавить propTypes? //
 export const registerUser = ({ email, password, name }) => {
   return function (dispatch) {
@@ -70,22 +92,42 @@ export const registerUser = ({ email, password, name }) => {
   };
 };
 
-//  Action логина нового пользователя - добавить propTypes? //
-export const loginUser = ({ email, password }) => {
+//  Action запроса на получение профиля  //
+export const getUserProfile = () => {
   return function (dispatch) {
     dispatch({
-      type: LOGIN_USER_API,
+      type: GET_USER_PROFILE_API,
     });
-    loginApi({ email, password }).then((res) => {
+    getUserProfileApi().then((res) => {
       if (res && res.success) {
-        setCookies(res.accessToken, res.refreshToken);
         dispatch({
-          type: LOGIN_USER_API_OK,
+          type: GET_USER_PROFILE_API_OK,
           payload: res.user,
         });
       } else {
         dispatch({
-          type: LOGIN_USER_API_FAIL,
+          type: GET_USER_PROFILE_API_FAIL,
+        });
+      }
+    });
+  };
+};
+
+//  Action запроса на обновление профиля - добавить propTypes?  //
+export const updateUserProfile = ({ email, password, name }) => {
+  return function (dispatch) {
+    dispatch({
+      type: UPDATE_USER_PROFILE_API,
+    });
+    updateUserProfileApi({ email, password, name }).then((res) => {
+      if (res && res.success) {
+        dispatch({
+          type: UPDATE_USER_PROFILE_API_OK,
+          payload: res.user,
+        });
+      } else {
+        dispatch({
+          type: UPDATE_USER_PROFILE_API_FAIL,
         });
       }
     });
@@ -133,7 +175,7 @@ export const requestCode = (email) => {
   };
 };
 
-//  Action запроса на смену пароля - добавить propTypes? //
+//  Action запроса на смену пароля - добавить propTypes?  //
 export const changePassword = ({ password, token }) => {
   return function (dispatch) {
     dispatch({
@@ -153,7 +195,7 @@ export const changePassword = ({ password, token }) => {
   };
 };
 
-//  Action запроса на выход из системы - добавить propTypes? //
+//  Action запроса на выход из системы - добавить propTypes?  //
 export const logoutUser = (refreshToken) => {
   return function (dispatch) {
     dispatch({
@@ -169,48 +211,6 @@ export const logoutUser = (refreshToken) => {
       } else {
         dispatch({
           type: LOGOUT_USER_API_FAIL,
-        });
-      }
-    });
-  };
-};
-
-//  Action запроса на получение профиля  //
-export const getUserProfile = () => {
-  return function (dispatch) {
-    dispatch({
-      type: GET_USER_PROFILE_API,
-    });
-    getUserProfileApi().then((res) => {
-      if (res && res.success) {
-        dispatch({
-          type: GET_USER_PROFILE_API_OK,
-          payload: res.user,
-        });
-      } else {
-        dispatch({
-          type: GET_USER_PROFILE_API_FAIL,
-        });
-      }
-    });
-  };
-};
-
-//  Action запроса на обновление профиля - добавить propTypes  //
-export const updateUserProfile = ({ email, password, name }) => {
-  return function (dispatch) {
-    dispatch({
-      type: UPDATE_USER_PROFILE_API,
-    });
-    updateUserProfileApi({ email, password, name }).then((res) => {
-      if (res && res.success) {
-        dispatch({
-          type: UPDATE_USER_PROFILE_API_OK,
-          payload: res.user,
-        });
-      } else {
-        dispatch({
-          type: UPDATE_USER_PROFILE_API_FAIL,
         });
       }
     });
