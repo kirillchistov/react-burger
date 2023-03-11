@@ -21,7 +21,7 @@ export const AppHeader = () => {
   //   loginPage: '/login',
   //   profilePage: '/profile',
   //   forgotPassPage: '/forgot-password',
-  //   resetPassPage: '/reset-password',
+  //   resetPasswordPage: '/reset-password',
   //   ingredientsPage: '/ingredients',
   //   feedPage: '/feed',
   //   ordersPage: '/orders',

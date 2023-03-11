@@ -20,7 +20,6 @@ import PropTypes from 'prop-types';
 import IngredientItemStyle from './ingredient-item.module.css';
 
 export const IngredientItem = ( { ingredientData } ) => {
-  //  состояния [isOpen, setIsOpen] больше не нужны  //
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным об ингридиенте. PROFIT!  //
   const dispatch = useDispatch();

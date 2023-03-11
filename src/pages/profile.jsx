@@ -6,39 +6,65 @@
 4 позже) Клик по заказу в «Истории заказов» открывает экран /profile/orders/:id.
 5 позже) Ссылка «Выход» пока ничего не делает. Потом logout наверное
 */
-//  хуки  + хук для обновления полей ввода  //
-//  import { useState } from "react";
-//  import { useSelector } from "react-redux";
-// import { useForm } from "../hooks/useForm";
+//  хуки для состояний и обновления полей ввода формы  //
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useForm } from "../hooks/useForm";
 //  шапка и левая навигация профиля  //
 import { AppHeader } from '../components/app-header/app-header';
 import { ProfileNav } from '../components/profile-nav/profile-nav';
 //  кнопка, поле ввода и поле пароля из библиотеки  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 //  нужен action для обновления профиля через redux  //
-
+import { updateUserProfile } from '../services/actions/auth-actions';
 import ProfileStyle from './profile.module.css';
 
 export const ProfilePage = () => {
-  //  по ТЗ пока не делаем реальный пароль и валидацию  //
+  //  по ТЗ пока не делаю реальный пароль и валидацию  //
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным об пользователе. PROFIT!  //
+  const dispatch = useDispatch(); 
+  const passwordValue = '******';
+  const user = useSelector((state) => state.auth.user);
+  const [isChanged, setIsChanged] = useState(false);
   
-  //  const passwordValue = '******';
-  //  const user = useSelector((state) => state.auth.user);
- 
+  //  Задаю начальные значения для профиля  //
+  const { data, setData } = useForm({
+    email: user.email,
+    password: passwordValue,
+    name: user.name,
+  });
+
+  //  Обрабатываю изменения в поле ввода  //
   const onChange = (e) => {
-    e.preventDefault();
-    //  здесь будут функции dispatch? или локальное управление состянием, пока хз  //
+    setData({ ...data, [e.target.name]: e.target.value });
+    setIsChanged(true);
   };
 
+  //  Обрабатываю отправку формы  //
   const submitForm = (e) => {
-    e.preventDefault();
-    //  здесь будет dispatch и др, пока хз  //
+    dispatch(
+      updateUserProfile({
+        email: data.email,
+        name: data.name,
+        password:
+        data.password !== passwordValue ? data.password : "abc123pass",
+      })
+    );
+    setIsChanged(false);
   };
 
-  let isChanged = false;
+  //  Обрабатываю отмену отправку формы  //
+  const cancelSubmit = () => {
+    setData({
+      email: user.email,
+      name: user.name,
+      password: passwordValue,
+    });
+    setIsChanged(false);
+  };
 
+  //  Разметка: контейнер, шапка, навменю, форма с полями ввода, кнопка  //
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
       <AppHeader />
@@ -52,7 +78,7 @@ export const ProfilePage = () => {
               type={'text'}
               placeholder={'Имя'}
               onChange={onChange}
-              value={'name'}
+              value={data.name}
               name={'name'}
               icon='EditIcon'
             />
@@ -60,14 +86,14 @@ export const ProfilePage = () => {
               type={'email'}
               placeholder={'Логин'}
               onChange={onChange}
-              value={'e@mail.ru'}
+              value={data.email}
               name={'email'}
               icon='EditIcon'
             />
             <PasswordInput
               type={'password'}
               onChange={onChange}
-              value={'abc123pass'}
+              value={data.password}
               name={'password'}
               icon='EditIcon'
             />
@@ -77,7 +103,7 @@ export const ProfilePage = () => {
                   type='secondary'
                   size='medium'
                   htmlType='button'
-                  onClick={() => console.log('какое-то действие')}
+                  onClick={cancelSubmit}
                 >
                   Отмена
                 </Button>
