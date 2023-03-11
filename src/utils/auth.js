@@ -1,15 +1,16 @@
 //  Здесь все утилиты для регистрации и авторизации. Все как в тренажере  //
 //  Функция для удобного доступа к cookie - линтер ругается на лишние экраны //
 
-
+//  Получаю куки  //
 export const getCookie = (name) => {
-  //  создаю массив cookie, подходящих под regex  //
+  //  создаю массив cookie, подходящих под regex (линтер ругается, quick fixed)  //
   const matches = document.cookie.match(
-    new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
+  //  new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
+    new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)')
   );
-  //  если массив не нулевой, возвращаю второй (почему?) элемент или undefined  //
+  //  если массив не нулевой, возвращаю второй (узнать почему?) элемент или undefined  //
   return matches ? decodeURIComponent(matches[1]) : undefined;
-} 
+}
 
 //  Сохраняю полученный токен в куку  //
 export const setCookie = (name, value, props) => {
@@ -35,6 +36,7 @@ export const setCookie = (name, value, props) => {
   document.cookie = updatedCookie;
 }
 
+//  Сохраняю и обновляю куки  //
 export const setCookies = (accessToken, refreshToken) => {
   const expirationAt = new Date(new Date().getTime() + 20 * 60 * 1000);
   setCookie('accessToken', accessToken.split('Bearer ')[1], {
@@ -43,6 +45,7 @@ export const setCookies = (accessToken, refreshToken) => {
   setCookie('refreshToken', refreshToken);
 };
 
+//  Получение токена и рефреш токена из куки  //
 export const authTokens = () => {
   const accessToken = getCookie('accessToken');
   const refreshToken = getCookie('refreshToken');

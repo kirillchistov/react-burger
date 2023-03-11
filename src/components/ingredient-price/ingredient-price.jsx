@@ -18,6 +18,6 @@ const IngredientPrice = ( {price} ) => {
 //  Проверяем пропсы  //
 IngredientPrice.propTypes = {
   price: PropTypes.number.isRequired
-}; 
+};
 
 export default IngredientPrice;

@@ -30,7 +30,7 @@ export const ProfilePage = () => {
     //  здесь будет dispatch и др, пока хз  //
   };
 
-  let isDataChanged = false;
+  let isChanged = false;
 
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
@@ -64,7 +64,7 @@ export const ProfilePage = () => {
               name={'password'}
               icon='EditIcon'
             />
-            {isDataChanged && (
+            {isChanged && (
               <div className={ProfileStyle.profile__button_container}>
                 <Button
                   type='secondary'

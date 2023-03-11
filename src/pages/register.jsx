@@ -5,9 +5,10 @@
 Клик на «Войти» направляет пользователя на маршрут /login .
 Клик на «Восстановить пароль» направляет пользователя на маршрут /forgot-password.
 */
-//  Нужна шапка  //
+//  Нужна шапка, хуки  //
 import { useNavigate } from 'react-router-dom';
-//  { useDispatch } и { useForm } пока не делаю  //
+// import { useDispatch } from "react-redux";
+import { useForm } from "../hooks/useForm";
 import { AppHeader } from '../components/app-header/app-header';
 //  Из библиотеки беру кнопку, поле ввода обычно и поле пароля  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -16,17 +17,24 @@ import RegisterStyle from './login.module.css';
 
 export const RegistrationPage = () => {
   const navigate = useNavigate();
-  // dispatch пока не создаем  //
-  // хук для стейтов поля ввода useForm тоже пока не делаю  //
+  //  const dispatch = useDispatch();
+  const { data, setData } = useForm({
+    email: 'e@mail',
+    password: 'abc123pass',
+    name: 'user name',
+  });
 
+  //  Обработка нажатия на кнопку регистрации  //
   const submitRegistration = (e) => {
     e.preventDefault();
-    //  здесь будет dispatch, пока заглушка  //
+    //  здесь будет dispatch, но нужен user
   };
 
+  //  Обработка изменений в полях ввода  //
   const handleChange = (e) => {
     e.preventDefault();
-    //  здесь будет dispatch, пока заглушка  //
+    const { value, name } = e.target;
+    setData({ ...data, [name]: value });
   };
 
   //  Разметка: шапка, flex-контейнер с grid-формой внутри  //
@@ -42,20 +50,20 @@ export const RegistrationPage = () => {
             type={'text'}
             placeholder={'Имя'}
             onChange={handleChange}
-            value={'name'}
+            value={data.name}
             name={'name'}
           />
           <Input
             type={'email'}
             placeholder={'E-mail'}
             onChange={handleChange}
-            value={'e@mail.ru'}
+            value={data.email}
             name={'email'}
           />
           <PasswordInput
             type={'password'}
             onChange={handleChange}
-            value={'abc123pass'}
+            value={data.password}
             name={'password'}
             icon='ShowIcon'
           />

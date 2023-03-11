@@ -2,17 +2,14 @@
 //  Блок (правый) с конструктором заказа бургера из выбранных ингредиентов  //
 
 import React, { useMemo } from 'react';
-//  Добавил хуки для работы с Redux  //
 import { useDispatch, useSelector } from 'react-redux';
 //  Добавил хуки для работы с DND  - здесь не нужен useDrag  //
 import { useDrop } from 'react-dnd';
-//  { ingredientType } из '../../utils/types' больше не нужен  //
 import ConstructorElements from '../constructor-elements/constructor-elements';
 import OrderDetails from '../order-details/order-details';
 import ConstructorTotal from '../constructor-total/constructor-total';
 import { Button, ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Modal } from '../modal/modal';
-//  вместо { postOrder } теперь берем actions из redux  //
 import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../services/actions/order-actions';
 //  Импортировал actions для работы с ингредиентами в конструкторе заказа  //
 //  Добавил универсальный генератор уникальных идентификаторов для элементов без id  //
@@ -23,10 +20,9 @@ import burgerConstructorStyle from './burger-constructor.module.css';
 
 
 export const BurgerConstructor = () => {
-  //  Теперь состояния храню в сторе redux, а не в пропсах или контексте  //
-  //  Состояние [isOpen, setIsOpen] и контекст не нужны  //
-  //  Получаю из стора состояние для номера состава заказа  //
-  
+  //  Отправляем экшен, после успешного запроса, записываем данные в Redux  //
+  //  С помощью useSelector получаем доступ к данным о заказах. PROFIT!  //
+
   const dispatch = useDispatch();
   const { orderData, orderNumber } = useSelector(selectorOrders);
   
@@ -37,10 +33,7 @@ export const BurgerConstructor = () => {
   });
   //  Пока что начинку и соус можно не разделять, т.к. логика едина  //
   const ingredientsMidStuff = orderData.filter((element) => element.type !== 'bun');
-  //  console.log(orderData);  //
   
-  //  Начальный массив заказа с булками без начинки больше не нужен  //
-
   //  Считаю сумму заказа с мемоизацией  //
   //  Прибавляю к старой сумме заказа (если не пуст) цены элементов (булки * 2)  //
   const totalAmount = useMemo(() => {
@@ -55,7 +48,7 @@ export const BurgerConstructor = () => {
     }
   }, [orderData]);
     
-    const onDropIngredient = (ingredient) => {
+  const onDropIngredient = (ingredient) => {
     if (ingredient.type === 'bun') {
       dispatch({
         type: ADD_BUN,
@@ -81,7 +74,6 @@ export const BurgerConstructor = () => {
     dispatch({ type: DELETE_ORDER });
   };
   
-  //  В конструкторе пока набор булок и по одному первому элементу начинки и соуса, не выбор  //
   //  Цены суммирую и вывожу в конструкторе, в попапе вывожу номер заказа  //
   //  Добавил ref, отключил контекст провайдер, теперь беру состояние из redux-стора  //
   //  Открытие окна с деталями ингредиента вынес в отдельную функцию handleOpenIngredientModal  //

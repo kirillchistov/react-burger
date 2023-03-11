@@ -29,6 +29,7 @@ export const BurgerIngredients = () => {
   //  При монтировании получаем список ингредиентов  //
   useEffect(() => {
     dispatch(getIngredients());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //  Фильтрую массив по типу нужного ингредиента  //
