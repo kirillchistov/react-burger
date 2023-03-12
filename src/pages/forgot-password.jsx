@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 //  хук для работы с формами  //
 import { useForm } from '../hooks/useForm';
-import { requestCode } from '../services/actions/auth';
+import { requestCode } from '../services/actions/auth-actions';
 //  Шапка и компоненты из UX-библиотеки  //
 import { AppHeader } from '../components/app-header/app-header';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -21,6 +21,7 @@ export const ForgotPasswordPage = () => {
   const { gotResetPassCode } = useSelector((state) => state.auth);
   const { data, handleChange,  } = useForm({ email: '' });
   
+  //  Обрабатываю нажатие кнопки Забыли пароль - отправляю экшен  //
   const submitForgotPassword = (e) => {
     e.preventDefault();
     dispatch(requestCode(data));

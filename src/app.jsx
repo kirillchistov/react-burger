@@ -1,10 +1,10 @@
 //  Вернул app.jsx в корень как разводяющую с роутингом по остальным  //
 //  Здесь добавил все для роутинга  //
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 
 //  Импортирую все странички из разводящего index файла //
 import {
-  RegistrationPage,
+  RegisterPage,
   LoginPage,
   ForgotPasswordPage,
   ResetPasswordPage,
@@ -15,26 +15,28 @@ import {
   FeedPage,
   NotFoundPage,
 } from './pages';
+import { ProtectedRouteElement } from './components/protected-route/protected-route';
 import { IngredientDetails } from './components/ingredient-details/ingredient-details';
 import { Modal } from './components/modal/modal';
 
 
 const App = () => {
   const navigate = useNavigate();
-  //  const location = useLocation();
+  const location = useLocation();
 
-  const isHomeLocation = false
+  const isHomeLocation = location.state && location.state.ingredientModal;
 
   return (
     <Routes>
-      <Route path='/' element={<HomePage />} />
+      <Route path='/' element={
+        <HomePage />} />
       <Route
         path='/login'
         element={<LoginPage />}
       />
       <Route
         path='/register'
-        element={<RegistrationPage />}
+        element={<RegisterPage />}
       />
       <Route
         path='/forgot-password'
@@ -45,12 +47,20 @@ const App = () => {
         element={<ResetPasswordPage />}
       />
       <Route
-        path='/profile'
-        element={<ProfilePage />}
+        path="/profile"
+        element={
+          <ProtectedRouteElement
+            element={<ProfilePage />}
+          />
+        }
       />
       <Route
         path='/profile/orders'
-        element={<OrdersPage />}
+        element={
+          <ProtectedRouteElement
+            element={<OrdersPage />}
+          />
+        }
       />
       <Route path='/feed' element={<FeedPage />} />
       {isHomeLocation && (

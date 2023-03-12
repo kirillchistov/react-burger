@@ -115,7 +115,7 @@ export const updateUserProfileApi = async ({ email, password, name }) => {
   }).then(checkResponse);
 };
 
-//  Отправляю пост-запрос на получение или рефреш токена  //
+//  Отправляю пост-запрос на получение / рефреш токена  //
 export const accessTokenApi = async (refreshToken) => {
   return await fetch(`${BASEURL}/auth/token`, {
     method: 'POST',

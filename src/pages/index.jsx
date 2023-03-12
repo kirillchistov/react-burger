@@ -1,5 +1,5 @@
 //  Разводящая index-страница - коллекция всех страниц  //
-import { RegistrationPage } from './register';
+import { RegisterPage } from './register';
 import { LoginPage } from './login';
 import { ForgotPasswordPage } from './forgot-password';
 import { ResetPasswordPage } from './reset-password';
@@ -11,7 +11,7 @@ import { FeedPage } from './feed';
 import { NotFoundPage } from './not-found';
 
 export {
-  RegistrationPage,
+  RegisterPage,
   LoginPage,
   ForgotPasswordPage,
   ResetPasswordPage,

@@ -7,8 +7,8 @@
 5 позже) Ссылка «Выход» пока ничего не делает. Потом logout наверное
 */
 //  хуки для состояний и обновления полей ввода формы  //
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from '../hooks/useForm';
 //  шапка и левая навигация профиля  //
 import { AppHeader } from '../components/app-header/app-header';
@@ -28,7 +28,8 @@ export const ProfilePage = () => {
   const passwordValue = '******';
   const user = useSelector((state) => state.auth.user);
   const [isChanged, setIsChanged] = useState(false);
-  
+  console.log(user);
+
   //  Задаю начальные значения для профиля  //
   const { data, setData } = useForm({
     email: user.email,
@@ -55,7 +56,7 @@ export const ProfilePage = () => {
     setIsChanged(false);
   };
 
-  //  Обрабатываю отмену отправку формы  //
+  //  Обрабатываю отмену отправки формы  //
   const cancelSubmit = () => {
     setData({
       email: user.email,

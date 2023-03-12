@@ -36,7 +36,7 @@ export const setCookie = (name, value, props) => {
   document.cookie = updatedCookie;
 }
 
-//  Сохраняю и обновляю куки  //
+//  Сохраняю и обновляю куки, Срок жизни токена — 20 минут  //
 export const setCookies = (accessToken, refreshToken) => {
   const expirationAt = new Date(new Date().getTime() + 20 * 60 * 1000);
   setCookie('accessToken', accessToken.split('Bearer ')[1], {
@@ -44,6 +44,11 @@ export const setCookies = (accessToken, refreshToken) => {
   });
   setCookie('refreshToken', refreshToken);
 };
+
+//  Удаляю куки и выставляю таймер, чтобы протухала сразу  //
+export const deleteCookie = (name) => {
+  setCookie(name, null, { expires: -1 });
+}
 
 //  Получение токена и рефреш токена из куки  //
 export const authTokens = () => {

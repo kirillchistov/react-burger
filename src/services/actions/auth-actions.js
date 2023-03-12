@@ -49,6 +49,9 @@ export const LOGOUT_USER_API_OK = 'LOGOUT_USER_API_OK';
 export const LOGOUT_USER_API_FAIL = 'LOGOUT_USER_API_FAIL';
 
 //  Action логина нового пользователя - добавить propTypes? //
+//  accessToken для внутренних запросов — получения / обновления данных о пользователе  //
+//  Второй токен — refreshToken (если первый протух) — сохраняю в куки  //
+//  Рефреш-токен для выхода из системы и для нового accessToken, если просрочился  //
 export const loginUser = ({ email, password }) => {
   return function (dispatch) {
     dispatch({
@@ -71,6 +74,7 @@ export const loginUser = ({ email, password }) => {
 };
 
 //  Action регистрации нового пользователя - добавить propTypes? //
+//  Второй токен — refreshToken — сохраняю в куки  //
 export const registerUser = ({ email, password, name }) => {
   return function (dispatch) {
     dispatch({
@@ -135,6 +139,7 @@ export const updateUserProfile = ({ email, password, name }) => {
 };
 
 //  Action доступа к токену / рефреш - добавить propTypes? //
+//  Второй токен — refreshToken — сохраняю в куки  //
 export const getAccessToken = (refreshToken) => {
   return function (dispatch) {
     dispatch({
@@ -196,6 +201,7 @@ export const changePassword = ({ password, token }) => {
 };
 
 //  Action запроса на выход из системы - добавить propTypes?  //
+//  Второй токен — refreshToken — удаляю из куки  //
 export const logoutUser = (refreshToken) => {
   return function (dispatch) {
     dispatch({

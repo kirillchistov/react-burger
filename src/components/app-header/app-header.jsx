@@ -7,12 +7,14 @@
 import React from 'react';
 //  Позже сделаем импорт хуков для управления состоянием меню  //
 import { NavLink } from 'react-router-dom';
+//  import { useLocation, NavLink, matchPath } from 'react-router-dom';  //
 import { Logo, BurgerIcon, ListIcon,  ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import AppHeaderStyle from './app-header.module.css';
 
 export const AppHeader = () => {
-  //  Для управления меню нужен будет location и matchPath как в тренажере  //
-  //  const location = useLocation();
+  // const location = useLocation();  //
+
+  //  const aProfile = matchPath(location.pathname, "/profile");  //
 
   // Нужен массив или объект с урлами страниц, чтобы подсвечивать активное меню  // 
   // const pageUrls = {
@@ -29,7 +31,6 @@ export const AppHeader = () => {
   //   notFoundPage: '/*',
   // };
 
-  // const activeMenu = 'AppHeaderStyle.activeMenu';
 
   return (
     <header className={`mb-10 pt-4 pb-4 ${AppHeaderStyle.header}`}>  

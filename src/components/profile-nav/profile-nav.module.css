@@ -17,3 +17,7 @@
   text-align: start;
   padding: 17px 0;
 }
+
+.activeMenu {
+  color: #f2f2f3;
+}
