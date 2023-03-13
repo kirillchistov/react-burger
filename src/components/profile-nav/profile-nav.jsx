@@ -1,22 +1,27 @@
+//  Хуки для навигации и подсветки активного меню  //
 import { useLocation, NavLink, matchPath } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { authTokens } from '../../utils/auth';
+import { logoutUser } from '../../services/actions/auth-actions';
 import PropTypes from 'prop-types';
 
 import ProfileNavSyle from './profile-nav.module.css';
 
 export const ProfileNav = ({ navTip }) => {
-  //  Здесь будет dispatch  //
-  //  Здесь будет refreshToken  //
+  const dispatch = useDispatch();
+  const { refreshToken } = authTokens();
+  
   const location = useLocation();
   
   //  вынести URLы в контстанты  //
-  const activeProfileHome = matchPath(location.pathname, "/profile");
-  const activeOrders = matchPath(location.pathname, "/profile/orders");
+  //  Определяем активный маршрут для подсветки меню  //
+  const activeProfileHome = matchPath(location.pathname, '/profile');
+  const activeOrders = matchPath(location.pathname, '/profile/orders');
   
-  //  Здесь будет функция подсветки  //
-
+  //  Выход из системы при клкие, отправляю action в redux  //
   const logout = (e) => {
     e.preventDefault();
-    //  Здесь будет dispatch  //
+    dispatch(logoutUser(refreshToken));
   };
   //  В разметке использую prop end для NavLink, чтобы учитывать вложенность  //
   //  В зависимости от пути / URL строки, подсвечиваю активное меню  //

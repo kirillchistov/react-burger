@@ -1,7 +1,7 @@
 //  Карточка ингредиента, используемая в BurgerIngredients  //
 //  Из UI-библиотеки: счётчики, иконку валюты, типо, отступы  //
 import { useCallback } from 'react';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 

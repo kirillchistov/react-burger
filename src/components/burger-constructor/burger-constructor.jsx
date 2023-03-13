@@ -2,6 +2,7 @@
 //  Блок (правый) с конструктором заказа бургера из выбранных ингредиентов  //
 
 import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 //  Добавил хуки для работы с DND  - здесь не нужен useDrag  //
 import { useDrop } from 'react-dnd';
@@ -24,7 +25,11 @@ export const BurgerConstructor = () => {
   //  С помощью useSelector получаю доступ к данным о заказах. PROFIT!  //
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  //  Получаю из redux store данные заказа  //
   const { orderData, orderNumber } = useSelector(selectorOrders);
+  //  Получаю из redux store состояние авторизации пользователя  //
+  const user = useSelector((state) => state.auth.user);
   
   //  Редьюсеры со свитчем и действия вынес в отдельные файлы  //
   //  Вместо первых встречных теперь нахожу выбранные элементы  //
@@ -67,9 +72,13 @@ export const BurgerConstructor = () => {
     drop: (ingredientData) => onDropIngredient(ingredientData),
   });
 
+  //  Если авторизован, открываю окно с деталями заказа, если нет -> логин  //
   const handleOpenIngredientModal = () => {
-    dispatch(dispatchOrder(orderData.map((ingredient) => ingredient._id)));
+    (user) 
+    ? dispatch(dispatchOrder(orderData.map((ingredient) => ingredient._id)))
+    : navigate('/login')
   };
+
   const handleCloseOrderModal = () => {
     dispatch({ type: DELETE_ORDER });
   };

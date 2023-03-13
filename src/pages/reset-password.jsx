@@ -21,7 +21,7 @@ export const ResetPasswordPage = () => {
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным пользователя. PROFIT!  //
   const { hasResetCode } = useSelector((state) => state.auth);
-  const { data, handleChange,  } = useForm({ password: '', token: '' });
+  const { data, handleDataChange,  } = useForm({ password: '', token: '' });
 
   const submitForgotPassword = (e) => {
     e.preventDefault();
@@ -42,7 +42,7 @@ export const ResetPasswordPage = () => {
           <h1 className='text text_type_main-medium'>Восстановление пароля</h1>
           <PasswordInput
             placeholder={'Введите новый пароль'}
-            onChange={handleChange}
+            onChange={handleDataChange}
             value={data.password}
             name={'password'}
             icon='ShowIcon'
@@ -50,7 +50,7 @@ export const ResetPasswordPage = () => {
           <Input
             type={'text'}
             placeholder={'Введите код из письма'}
-            onChange={handleChange}
+            onChange={handleDataChange}
             value={data.token}
             name={'token'}
           />

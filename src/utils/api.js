@@ -193,10 +193,10 @@ export const resetPasswordApi = async ({ password, token }) => {
 
 //  Отправляю пост-запрос на выход из системы - очистку лок.хранилища и пр.  //
 /*  
-    Выход из системы - в теле запроса refreshToken: { "token": "значение refreshToken" }
+    Выход из системы - в теле запроса refreshToken: { 'token': 'значение refreshToken' }
     Для выхода или обновления токена используется именно refreshToken, 
     который можно получить после успешной регистрации или авторизации.
-    Тело ответа при выходе: { "success": true, "message": "Successful logout" }
+    Тело ответа при выходе: { 'success': true, 'message': 'Successful logout' }
 */
 export const logoutApi = async (refreshToken) => {
   try {
