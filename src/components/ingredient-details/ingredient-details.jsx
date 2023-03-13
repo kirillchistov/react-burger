@@ -1,13 +1,12 @@
 //  Компонент для отображения в модальном окне при клике на ингредиент  //
-//  Нужны хуки react, router-dom и redux  //
+//  Хуки react, router-dom и redux  //
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-//  экшен получения ингридиентов из redux store  //
+//  Action для получения ингридиентов из redux store  //
 import { getIngredients } from '../../services/actions/ingredient-actions';
 //  Компонент КБЖУ свойства ингредиента - вынес в отдельный  //
 import { IngredientNutrition } from '../ingredient-nutrition/ingredient-nutrition';
-//  import PropTypes from 'prop-types';  //
 import ingredientDetailsStyle from './ingredient-details.module.css';
 
 //  Сводный компонент с гридом свойств  //
@@ -34,7 +33,7 @@ export const IngredientDetails = () => {
     }
   }, [id, items, dispatch, navigate]);  
   
-  //  если есть item, отображаю карточку  //
+  //  если есть item, отображаю карточку КБЖУ  //
   if (item) {
     return(
       <div className={ingredientDetailsStyle.general}>
@@ -51,9 +50,3 @@ export const IngredientDetails = () => {
   } 
 }
 
-//  Здесь больше нет пропсов, проверяю типизацию, но не через ingredientType  //
-/*
-IngredientDetails.propTypes = {
-  item: PropTypes.object.isRequired,
-};
-*/

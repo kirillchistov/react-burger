@@ -5,32 +5,38 @@
 Клик на «Зарегистрироваться» направляет пользователя на маршрут /register.
 Клик на «Восстановить пароль» направляет пользователя на маршрут /forgot-password.
 */
+//  Хуки react, router-dom, redux, useForm  //
+//  import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useForm } from '../hooks/useForm';
 //  Нужна шапка  //
 import { AppHeader } from '../components/app-header/app-header';
 //  Из библиотеки беру кнопку, поле ввода обычный инпут и поле пароля  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useNavigate } from 'react-router-dom';
-// Хуки { useDispatch } и для формы { useForm } пока не подключаем //
-// нужен action логина для redux  //
+//  action логина для redux  //
+import { loginUser } from '../services/actions/auth-actions';
+//  Стиль  //
 import LoginStyle from './login.module.css';
 
 export const LoginPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // dispatch пока не создаем  //
   // хук для стейтов поля ввода useForm тоже пока не делаю  //
+  //  Задаю начальное состояние данных пользователя  //
+  const { data, handleDataChange } = useForm({
+    email: '',
+    password: ''
+  });
 
   const submitLogin = (e) => {
     e.preventDefault();
-    //  здесь будет dispatch, пока заглушка  //
+    dispatch(loginUser(data));
   };
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    //  здесь будет dispatch, пока заглушка  //
-  };
+//  const handleChange = (e) => {};  //
 
-  //  Добавить отступы к зарег и вспомнить  //
 
   //  Разметка: шапка, flex-контейнер с grid-формой внутри  //
   return (
@@ -43,13 +49,13 @@ export const LoginPage = () => {
           <Input
             type={'email'}
             placeholder={'E-mail'}
-            onChange={handleChange}
-            value={'e-mail'}
+            onChange={handleDataChange}
+            value={data.email}
             name={'email'}
           />
           <PasswordInput
-            onChange={handleChange}
-            value={'пароль123pass'}
+            onChange={handleDataChange}
+            value={data.password}
             name={'password'}
             icon='ShowIcon'
           />
@@ -58,7 +64,7 @@ export const LoginPage = () => {
           </Button>
         </form>
         <p className='text text_type_main-default'>
-          Вы — новый пользователь?
+          Вы&nbsp;— новый пользователь?
           <Button
             onClick={() => navigate('/register')}
             htmlType='button'

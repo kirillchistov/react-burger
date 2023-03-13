@@ -27,7 +27,7 @@ export const RegisterPage = () => {
   const { data, handleDataChange } = useForm({
     email: '',
     password: '',
-    name: '',
+    name: ''
   });
 
   //  Обработка нажатия на кнопку регистрации  //
