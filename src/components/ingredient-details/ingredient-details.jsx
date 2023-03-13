@@ -15,13 +15,14 @@ export const IngredientDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [item, setItem] = useState(null);
-  const { items } = useSelector((state) => state.ingredients);
+  const ingredients = useSelector((state) => state.ingredients.ingredients);
 
   //  При монтировании проверяю, есть ли ингредиент с этим id  //
   //  Если нет, перевожу на главную. Если есть, беру из store  //
+  //  Если нет вообще ингридиентов отправляю запрос в store  //
   useEffect(() => {
-    if (items.length > 0) {
-      const ingredient = items.find((el) => el._id === id);
+    if (ingredients.length > 0) {
+      const ingredient = ingredients.find((el) => el._id === id);
       if (!ingredient) {
         setItem(null);
         navigate('/', { replace: true });
@@ -31,7 +32,7 @@ export const IngredientDetails = () => {
     } else {
       dispatch(getIngredients());
     }
-  }, [id, items, dispatch, navigate]);  
+  }, [id, ingredients, dispatch, navigate]);  
   
   //  если есть item, отображаю карточку КБЖУ  //
   if (item) {
