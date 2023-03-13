@@ -18,7 +18,8 @@ export const ProfileNav = ({ navTip }) => {
     e.preventDefault();
     //  Здесь будет dispatch  //
   };
-
+  //  В разметке использую prop end для NavLink, чтобы учитывать вложенность  //
+  //  В зависимости от пути / URL строки, подсвечиваю активное меню  //
   return (
     <div className={ProfileNavSyle.container}>
       <nav className={`mb-20 ${ProfileNavSyle.navbar}`}>

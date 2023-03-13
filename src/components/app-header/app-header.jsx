@@ -6,7 +6,6 @@
 
 import React from 'react';
 //  Позже сделаем импорт хуков для управления состоянием меню  //
-//  import { NavLink } from 'react-router-dom';
 import { useLocation, NavLink, matchPath } from 'react-router-dom';
 import { Logo, BurgerIcon, ListIcon,  ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import AppHeaderStyle from './app-header.module.css';
@@ -23,7 +22,6 @@ export const AppHeader = () => {
   const activeRegister = matchPath(location.pathname, "/register");
   const activeProfile = activeProfileHome || activeOrders || activeLogin || activeRegister;
 
-  //  let activeMenu = { color: '#f2f2f3' };
 
   return (
     <header className={`mb-10 pt-4 pb-4 ${AppHeaderStyle.header}`}>  
