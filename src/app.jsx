@@ -37,56 +37,67 @@ const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  //  Смотрю как открывают ингридиент и показываю модалку или страницу  //
   const isBackground = location.state && location.state.ingredientModal;
 
+  //  Маршруты для всех: home, ingredient, feed?,  404 //
+  //  ...для авторизованных: profile, profile/orders, profile/orders/:id  //
+  //  ...для не-авторизованных: login, register?, forgot-password, reset-password?  //
   return (
     <Routes>
-      <Route path='/' element={
-        <HomePage />} />
-      <Route
-        path='/login'
-        element={<LoginPage />}
-      />
-      <Route
-        path='/register'
-        element={<RegisterPage />}
-      />
-      <Route
-        path='/forgot-password'
-        element={<ForgotPasswordPage />}
-      />
-      <Route
-        path='/reset-password'
-        element={<ResetPasswordPage />}
-      />
-      <Route
-        path='/profile'
-        element={
-          <ProtectedRouteElement
-            element={<ProfilePage />}
-            accessType="authorized"
-          />
-        }
-      />
-      <Route
-        path='/profile/orders'
-        element={
-          <ProtectedRouteElement
-            element={<OrdersPage />}
-            accessType="authorized"
-          />
-        }
-      />
-      <Route path='/feed' element={<FeedPage />} />
-      {isBackground && (
-        <Route
-          path='/ingredients/:id'
-          element={
-            <Modal handleClose={() => navigate(-1)} title='Детали ингредиента'>
-              <IngredientDetails />
-            </Modal>
-          }
+      <Route path='/' element={<HomePage />} />
+      <Route path='/register' element={
+        <ProtectedRouteElement
+          element={<RegisterPage />}
+          showWhen='notLoggedIn'
         />
+      } />
+      <Route path='/login' element={
+        <ProtectedRouteElement
+          element={<LoginPage />}
+          showWhen='notLoggedIn'
+        />
+      } />
+      <Route path='/forgot-password' element={
+        <ProtectedRouteElement
+          element={<ForgotPasswordPage />}
+          showWhen='notLoggedIn'
+        />
+      } />
+      { /* здесь надо сделать развилку - авторизованных переспрашивать */ }
+      <Route path='/reset-password' element={
+        <ProtectedRouteElement
+          element={<ResetPasswordPage />}
+          showWhen='notLoggedIn'
+        />
+      } />
+      { /* здесь надо сделать развилку - неавторизованных отправлять на логин */ }
+      <Route path='/profile' element={
+        <ProtectedRouteElement
+          element={<ProfilePage />}
+          showWhen='loggedIn'
+        />
+      } />
+      <Route path='/profile/orders' element={
+        <ProtectedRouteElement
+          element={<OrdersPage />}
+          showWhen='loggedIn'
+        />
+      } />
+      { /* не ясно, что будет в ленте для неавторизованных - номера чужих заказов? */ }
+      {/* <Route path='/feed' element={<FeedPage />} /> */}
+      <Route path='/feed' element={
+        <ProtectedRouteElement
+          element={<FeedPage />}
+          showWhen='notLoggedIn'
+        />
+      } />
+      {isBackground && (
+        <Route path='/ingredients/:id' element={
+          <Modal handleClose={() => navigate(-1)} title='Детали ингредиента'>
+            <IngredientDetails />
+          </Modal>
+        } />
       )}
       <Route path='/ingredients/:id' element={<IngredientPage />} />
       <Route path='*' element={<NotFoundPage />} />

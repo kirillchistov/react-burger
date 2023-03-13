@@ -33,6 +33,7 @@ export const ForgotPasswordPage = () => {
   }
 
   //  Разметка: шапка, flex-контейнер с grid-формой внутри  //
+  //  Кнопки  ...  //
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
       <AppHeader />
