@@ -23,7 +23,7 @@ export const ProfileNav = ({ navTip }) => {
         <NavLink
           to='/profile'
           end
-          className={`text text_type_main-medium text_color_inactive pt-4 pb-4 ${ProfileNavSyle.link}`}
+          className={`text text_type_main-medium text_color_primary pt-4 pb-4 activeMenu ${ProfileNavSyle.link}`}
         >
           Профиль
         </NavLink>

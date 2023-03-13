@@ -1,38 +1,55 @@
 //  Компонент для отображения в модальном окне при клике на ингредиент  //
+//  Нужны хуки react, router-dom и redux  //
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+//  экшен получения ингридиентов из redux store  //
+import { getIngredients } from '../../services/actions/ingredient-actions';
+import { IngredientNutrition } from '../ingredient-nutrition/ingredient-nutrition';
 import PropTypes from 'prop-types';
-//  import { ingredientType } from '../../utils/types';  //
 import ingredientDetailsStyle from './ingredient-details.module.css';
 
-//  Вложенный компонент КБЖУ свойства ингредиента - вынести в отдельный  //
-const IngredientNutrition = ({ type, amount }) => {
-  return (
-    <div className={ingredientDetailsStyle.nutrition}>
-      <p className='mb-2 text text_type_main-default text_color_inactive'>{type}</p>
-      <p className='text text_type_digits-default text_color_inactive'>{amount}</p>
-    </div>
-  )
-}
-
-//  Типизация есть  //
-IngredientNutrition.propTypes = {
-  type: PropTypes.string.isRequired,
-  amount: PropTypes.number.isRequired
-};
+//  Вложенный компонент КБЖУ свойства ингредиента - вынес в отдельный  //
 
 //  Сводный компонент с гридом свойств  //
-export const IngredientDetails = ({ item }) => {
-  return(
-    <div className={ingredientDetailsStyle.general}>
-      <img className={ingredientDetailsStyle.image} src={item.image} alt={item.name}></img>
-      <p className='mt-4 mb-8 text text_type_main-medium'>{item.name}</p>
-      <div className={ingredientDetailsStyle.details}>
-        <IngredientNutrition type={'Калории, ккал'} amount={item.calories} />
-        <IngredientNutrition type={'Белки, г'} amount={item.proteins} />
-        <IngredientNutrition type={'Жиры, г'} amount={item.fat} />
-        <IngredientNutrition type={'Углеводы, г'} amount={item.carbohydrates} />
-      </div>
-    </div>  
-  )    
+export const IngredientDetails = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const [item, setItem] = useState(null);
+  const { items } = useSelector((state) => state.ingredients);
+
+  //  При монтировании проверяю, есть ли ингредиент с этим id  //
+  //  Если нет, перевожу на главную. Если есть, беру из store  //
+  useEffect(() => {
+    if (items.length > 0) {
+      const ingredient = items.find((el) => el._id === id);
+      if (!ingredient) {
+        setItem(null);
+        navigate('/', { replace: true });
+      } else {
+        setItem(ingredient);
+      }
+    } else {
+      dispatch(getIngredients());
+    }
+  }, [id, items, dispatch, navigate]);  
+  
+  //  если есть item, отображаю карточку  //
+  if (item) {
+    return(
+      <div className={ingredientDetailsStyle.general}>
+        <img className={ingredientDetailsStyle.image} src={item.image} alt={item.name}></img>
+        <p className='mt-4 mb-8 text text_type_main-medium'>{item.name}</p>
+        <div className={ingredientDetailsStyle.details}>
+          <IngredientNutrition type={'Калории, ккал'} amount={item.calories} />
+          <IngredientNutrition type={'Белки, г'} amount={item.proteins} />
+          <IngredientNutrition type={'Жиры, г'} amount={item.fat} />
+          <IngredientNutrition type={'Углеводы, г'} amount={item.carbohydrates} />
+        </div>
+      </div>  
+    );
+  } 
 }
 
 //  Здесь есть пропсы, проверяю типизацию, но не через ingredientType  //

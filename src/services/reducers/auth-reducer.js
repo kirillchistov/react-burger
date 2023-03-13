@@ -32,7 +32,7 @@ const initialState = {
   user: null,
   request: false,
   requestFailed: false,
-  gotResetPassCode: false,
+  hasResetCode: false,
 };
 
 //  функциональность регистрации, авторизации, смены пароля, профиля, выхода  //
@@ -84,14 +84,14 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         request: false,
         requestFailed: false,
-        gotResetPassCode: true,
+        hasResetCode: true,
       };
     case PASSWORD_RESET_CODE_API_FAIL:
       return {
         ...state,
         request: false,
         requestFailed: true,
-        gotResetPassCode: false,
+        hasResetCode: false,
       };
     case PASSWORD_RESET_API:
       return {
@@ -103,7 +103,7 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         request: false,
         requestFailed: false,
-        gotResetPassCode: false,
+        hasResetCode: false,
       };
     case PASSWORD_RESET_API_FAIL:
       return {

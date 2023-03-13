@@ -14,7 +14,7 @@ import AppHeaderStyle from './app-header.module.css';
 export const AppHeader = () => {
   // const location = useLocation();  //
 
-  //  const aProfile = matchPath(location.pathname, "/profile");  //
+  //  const onProfile = matchPath(location.pathname, '/profile');  //
 
   // Нужен массив или объект с урлами страниц, чтобы подсвечивать активное меню  // 
   // const pageUrls = {

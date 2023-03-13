@@ -21,10 +21,23 @@ import { Modal } from './components/modal/modal';
 
 
 const App = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+/*  Вариант решения от Влада - чуть переработал
+  const ModalSwitch = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    let background = location.state && location.state.background;
 
-  const isHomeLocation = location.state && location.state.ingredientModal;
+  const handleModalClose = () => {
+   dispatch({
+    type: RESET_ITEM_TO_VIEW,
+   });
+   navigate(-1);
+ };
+*/
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isBackground = location.state && location.state.ingredientModal;
 
   return (
     <Routes>
@@ -47,10 +60,11 @@ const App = () => {
         element={<ResetPasswordPage />}
       />
       <Route
-        path="/profile"
+        path='/profile'
         element={
           <ProtectedRouteElement
             element={<ProfilePage />}
+            accessType="authorized"
           />
         }
       />
@@ -59,11 +73,12 @@ const App = () => {
         element={
           <ProtectedRouteElement
             element={<OrdersPage />}
+            accessType="authorized"
           />
         }
       />
       <Route path='/feed' element={<FeedPage />} />
-      {isHomeLocation && (
+      {isBackground && (
         <Route
           path='/ingredients/:id'
           element={

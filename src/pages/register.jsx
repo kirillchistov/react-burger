@@ -4,9 +4,9 @@
 В качестве минимальной работы необходимо настроить переходы:
 Клик на «Войти» направляет пользователя на маршрут /login .
 Клик на «Восстановить пароль» направляет пользователя на маршрут /forgot-password.
-Формат тела запроса: { "email": "", "password": "", "name": "" }
-Тело ответа, если успех: { "success": true, "user": { "email": "", "name": "" }, 
-"accessToken": "Bearer ...", "refreshToken": "" }
+Формат тела запроса: { 'email': '', 'password': '', 'name': '' }
+Тело ответа, если успех: { 'success': true, 'user': { 'email': '', 'name': '' }, 
+'accessToken': 'Bearer ...', 'refreshToken': '' }
 */
 //  Нужна шапка, хуки  //
 import { useDispatch } from 'react-redux';
@@ -37,7 +37,7 @@ export const RegisterPage = () => {
   };
 
   //  Обработка изменений в полях ввода  //
-  /* const handleChange = (e) => {
+  /* const handleDataChange = (e) => {
     e.preventDefault();
     const { value, name } = e.target;
     setData({ ...data, [name]: value });

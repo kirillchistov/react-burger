@@ -6,9 +6,9 @@ export const useForm = (inputData) => {
   const [data, setData] = useState(inputData);
   
   //  Вешаем сеттер-обработчик для рендера обновленных значений  //
-  const handleChange = (e) => {
+  const handleDataChange = (e) => {
     const { value, name } = e.target;
     setData({ ...data, [name]: value });
   };
-  return { data, handleChange, setData };
+  return { data, handleDataChange, setData };
 }

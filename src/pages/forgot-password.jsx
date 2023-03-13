@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 //  хук для работы с формами  //
 import { useForm } from '../hooks/useForm';
-import { requestCode } from '../services/actions/auth-actions';
+import { requestResetCode } from '../services/actions/auth-actions';
 //  Шапка и компоненты из UX-библиотеки  //
 import { AppHeader } from '../components/app-header/app-header';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -18,17 +18,17 @@ export const ForgotPasswordPage = () => {
   const dispatch = useDispatch();
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным пользователя. PROFIT!  //
-  const { gotResetPassCode } = useSelector((state) => state.auth);
-  const { data, handleChange,  } = useForm({ email: '' });
+  const { hasResetCode } = useSelector((state) => state.auth);
+  const { data, handleDataChange } = useForm({ email: '' });
   
   //  Обрабатываю нажатие кнопки Забыли пароль - отправляю экшен  //
   const submitForgotPassword = (e) => {
     e.preventDefault();
-    dispatch(requestCode(data));
+    dispatch(requestResetCode(data));
   };
 
   //  если уже есть код, отправляю на reset-password  //
-  if (gotResetPassCode) {
+  if (hasResetCode) {
     return <Navigate to={'/reset-password'} />;
   }
 
@@ -42,7 +42,7 @@ export const ForgotPasswordPage = () => {
           <Input
             type={'email'}
             placeholder={'Укажите e-mail'}
-            onChange={handleChange}
+            onChange={handleDataChange}
             value={data.email}
             name={'email'}
           />

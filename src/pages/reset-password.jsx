@@ -20,7 +20,7 @@ export const ResetPasswordPage = () => {
   const dispatch = useDispatch();
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным пользователя. PROFIT!  //
-  const { gotResetPassCode } = useSelector((state) => state.auth);
+  const { hasResetCode } = useSelector((state) => state.auth);
   const { data, handleChange,  } = useForm({ password: '', token: '' });
 
   const submitForgotPassword = (e) => {
@@ -29,7 +29,7 @@ export const ResetPasswordPage = () => {
     navigate('/login');
   };
 
-  if (!gotResetPassCode) {
+  if (!hasResetCode) {
     return <Navigate to={'/forgot-password'} />;
   }
 

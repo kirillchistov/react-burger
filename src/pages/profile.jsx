@@ -4,7 +4,7 @@
 2) Ссылка «Профиль» становится активной.
 3 позже) Клик по «История заказов» открывает /profile/orders => активная ссылка «История заказов»
 4 позже) Клик по заказу в «Истории заказов» открывает экран /profile/orders/:id.
-5 позже) Ссылка «Выход» пока ничего не делает. Потом logout наверное
+5 позже) Ссылка «Выход» пока ничего не делает. Потом logout 
 */
 //  хуки для состояний и обновления полей ввода формы  //
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,8 +25,8 @@ export const ProfilePage = () => {
   //  С помощью useSelector получаю доступ к данным об пользователе. PROFIT!  //
   //  Примерно как в тренажере  //
   const dispatch = useDispatch(); 
-  const passwordValue = '******';
   const user = useSelector((state) => state.auth.user);
+  const passwordValue = '******';
   const [isChanged, setIsChanged] = useState(false);
   console.log(user);
 

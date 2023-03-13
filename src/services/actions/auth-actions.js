@@ -161,7 +161,7 @@ export const getAccessToken = (refreshToken) => {
 };
 
 //  Action запроса на код для смены пароля - добавить propTypes? //
-export const requestCode = (email) => {
+export const requestResetCode = (email) => {
   return function (dispatch) {
     dispatch({
       type: PASSWORD_RESET_CODE_API,

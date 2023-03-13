@@ -1,19 +1,21 @@
 //  Карточка ингредиента, используемая в BurgerIngredients  //
 //  Из UI-библиотеки: счётчики, иконку валюты, типо, отступы  //
-import React, { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useCallback } from 'react';
+import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 
-import { IngredientDetails } from '../ingredient-details/ingredient-details';
+//  import { IngredientDetails } from '../ingredient-details/ingredient-details';
 import IngredientPrice from '../ingredient-price/ingredient-price';
-import { Modal } from '../modal/modal';
+//  import { Modal } from '../modal/modal';
 import { Counter } 
   from '@ya.praktikum/react-developer-burger-ui-components';
 // импортирую redux actions для модульного окна ингредиентов  //
-import {
+/*  import {
   OPEN_INGREDIENT_DETAILS,
   CLOSE_INGREDIENT_DETAILS,
 } from '../../services/actions/ingredient-actions';
+*/
 
 //  import { ingredientType } from '../../utils/types';
 import PropTypes from 'prop-types';
@@ -22,10 +24,14 @@ import IngredientItemStyle from './ingredient-item.module.css';
 export const IngredientItem = ( { ingredientData } ) => {
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным об ингридиенте. PROFIT!  //
-  const dispatch = useDispatch();
-  const ingredientDetails = useSelector(
+  const navigate = useNavigate();
+  const location = useLocation();
+  //  const dispatch = useDispatch();
+  
+  /* const ingredientDetails = useSelector(
     (state) => state.ingredientDetails.ingredientDetails
   );
+  */
   //  Получаю состояние (содержание) заказа из стора redux  //
   const orderData = useSelector((state) => state.order.orderData);
 
@@ -43,24 +49,28 @@ export const IngredientItem = ( { ingredientData } ) => {
 
   //  Перенес обработку клика по модальному окну в функцию с отправкой состава заказа в стор  //
   const handleOpenIngredientModal = () => {
-    dispatch({ type: OPEN_INGREDIENT_DETAILS, payload: ingredientData });
+    navigate(`/ingredients/${ingredientData._id}`, {
+      state: { ingredientModal: location },
+    });
   };
+     // Перенес dispatch({ type: OPEN_INGREDIENT_DETAILS, payload: ingredientData });
 
-  //  Заркытие модального окна с ингредиентами  //
-  const handleCloseIngredientModal = () => {
+  //  Закрытие модального окна с ингредиентами перенес  //
+  /* const handleCloseIngredientModal = () => {
     dispatch({ type: CLOSE_INGREDIENT_DETAILS });
   };
+  */
 
-  //  Делаем ингредиенты перетаскиваемыми  //
+  //  перетаскивание ингредиентов  //
   const [, dragRef] = useDrag({
     type: 'ingredient',
-    item: ingredientData,
+    item: ingredientData
   });
 
   //  Модальное окно открывается только когда массив ингредиентов не пуст  //
   //  Показываю счетчик ингредиента (сколько в конструкторе), если он > 0  //
   return (
-    <div>
+    <>
       <div className={IngredientItemStyle.ingredient} onClick={handleOpenIngredientModal} ref={dragRef}>
         {orderCount(ingredientData) > 0 &&
           <Counter className={IngredientItemStyle.counter} count={orderCount(ingredientData)} size='default' />
@@ -69,14 +79,16 @@ export const IngredientItem = ( { ingredientData } ) => {
         <IngredientPrice price={ingredientData.price} />
         <p className={`mb-6 text text_type_main-default ${IngredientItemStyle.name}`}>{ingredientData.name}</p>
       </div>
+    </>
+  );
+};
+/*    Логику с модалкой перенес    
       {ingredientDetails && (
         <Modal handleClose={handleCloseIngredientModal} title={'Детали ингредиента'}>
           <IngredientDetails item={ingredientDetails} />
         </Modal>
       )}
-    </div>
-  );
-};
+*/
 
 //  Здесь есть пропсы, проверяю типизацию  //
 IngredientItem.propTypes = {
