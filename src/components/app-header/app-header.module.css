@@ -17,15 +17,18 @@
   white-space: nowrap;
   align-items: center;
   justify-items: center;
+  color: #fff;
 }
 
 .navitem:active {
   color: #fff;
 }
 
+
 .navitem:first-child {
   color: #fff;
 }
+
 
 .logo {
   height: 40px;

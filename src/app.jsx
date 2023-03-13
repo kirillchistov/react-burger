@@ -21,7 +21,7 @@ import { Modal } from './components/modal/modal';
 
 
 const App = () => {
-/*  Вариант решения от Влада - чуть переработал
+/*  Вариант решения от Влада:
   const ModalSwitch = () => {
     const location = useLocation();
     const navigate = useNavigate();

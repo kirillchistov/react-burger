@@ -40,7 +40,7 @@ export const IngredientItem = ( { ingredientData } ) => {
     (ingredientData) => {
       const { _id, type } = ingredientData;
       const ingredientsCount = orderData.filter(
-        (element) => element._id === _id
+        (el) => el._id === _id
       ).length;
       return type === 'bun' ? ingredientsCount * 2 : ingredientsCount;
     },
@@ -48,12 +48,13 @@ export const IngredientItem = ( { ingredientData } ) => {
   );
 
   //  Перенес обработку клика по модальному окну в функцию с отправкой состава заказа в стор  //
-  const handleOpenIngredientModal = () => {
+  const handleOpenIngredientModal = useCallback(() => {
     navigate(`/ingredients/${ingredientData._id}`, {
       state: { ingredientModal: location },
     });
-  };
-     // Перенес dispatch({ type: OPEN_INGREDIENT_DETAILS, payload: ingredientData });
+  }, [navigate, location, ingredientData._id]);
+
+  // Перенес dispatch({ type: OPEN_INGREDIENT_DETAILS, payload: ingredientData });
 
   //  Закрытие модального окна с ингредиентами перенес  //
   /* const handleCloseIngredientModal = () => {

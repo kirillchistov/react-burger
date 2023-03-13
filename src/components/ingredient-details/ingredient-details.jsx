@@ -5,11 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 //  экшен получения ингридиентов из redux store  //
 import { getIngredients } from '../../services/actions/ingredient-actions';
+//  Компонент КБЖУ свойства ингредиента - вынес в отдельный  //
 import { IngredientNutrition } from '../ingredient-nutrition/ingredient-nutrition';
-import PropTypes from 'prop-types';
+//  import PropTypes from 'prop-types';  //
 import ingredientDetailsStyle from './ingredient-details.module.css';
-
-//  Вложенный компонент КБЖУ свойства ингредиента - вынес в отдельный  //
 
 //  Сводный компонент с гридом свойств  //
 export const IngredientDetails = () => {
@@ -52,8 +51,9 @@ export const IngredientDetails = () => {
   } 
 }
 
-//  Здесь есть пропсы, проверяю типизацию, но не через ingredientType  //
+//  Здесь больше нет пропсов, проверяю типизацию, но не через ingredientType  //
+/*
 IngredientDetails.propTypes = {
   item: PropTypes.object.isRequired,
 };
-
+*/

@@ -36,6 +36,7 @@ const initialState = {
 };
 
 //  функциональность регистрации, авторизации, смены пароля, профиля, выхода  //
+//  смотрю, какой прилетел action и решаю, какое состояние изменить и вернуть  //
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case REGISTER_USER_API:
