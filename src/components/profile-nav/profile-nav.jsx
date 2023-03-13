@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { useLocation, NavLink, matchPath } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import ProfileNavSyle from './profile-nav.module.css';
@@ -6,10 +6,12 @@ import ProfileNavSyle from './profile-nav.module.css';
 export const ProfileNav = ({ navTip }) => {
   //  Здесь будет dispatch  //
   //  Здесь будет refreshToken  //
-
-  /*
-    activeColor: '#F2F2F3',
-  */
+  const location = useLocation();
+  
+  //  вынести URLы в контстанты  //
+  const activeProfileHome = matchPath(location.pathname, "/profile");
+  const activeOrders = matchPath(location.pathname, "/profile/orders");
+  
   //  Здесь будет функция подсветки  //
 
   const logout = (e) => {
@@ -23,15 +25,19 @@ export const ProfileNav = ({ navTip }) => {
         <NavLink
           to='/profile'
           end
-          className={`text text_type_main-medium text_color_primary pt-4 pb-4 activeMenu ${ProfileNavSyle.link}`}
+          className={`text text_type_main-medium pt-4 pb-4 ${ProfileNavSyle.link}`}
         >
-          Профиль
+          <p className={activeProfileHome ? 'text_color_primary' : 'text_color_inactive'}>
+            Профиль
+          </p>
         </NavLink>
         <NavLink
           to='/profile/orders'
-          className={`text text_type_main-medium text_color_inactive pt-4 pb-4 ${ProfileNavSyle.link}`}
+          className={`text text_type_main-medium pt-4 pb-4 ${ProfileNavSyle.link}`}
         >
-          История заказов
+          <p className={activeOrders ? 'text_color_primary' : 'text_color_inactive'}>
+            История заказов
+          </p>
         </NavLink>
         <NavLink
           to='/login'
