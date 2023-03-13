@@ -27,3 +27,5 @@ export const IngredientPage = () => {
     </div>
   );
 }
+
+//  нет пропсов, нет типизации  //

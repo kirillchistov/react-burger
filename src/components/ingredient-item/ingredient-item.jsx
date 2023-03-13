@@ -57,10 +57,7 @@ export const IngredientItem = ( { ingredientData } ) => {
   // Перенес dispatch({ type: OPEN_INGREDIENT_DETAILS, payload: ingredientData });
 
   //  Закрытие модального окна с ингредиентами перенес  //
-  /* const handleCloseIngredientModal = () => {
-    dispatch({ type: CLOSE_INGREDIENT_DETAILS });
-  };
-  */
+
 
   //  перетаскивание ингредиентов  //
   const [, dragRef] = useDrag({
@@ -83,13 +80,7 @@ export const IngredientItem = ( { ingredientData } ) => {
     </>
   );
 };
-/*    Логику с модалкой перенес    
-      {ingredientDetails && (
-        <Modal handleClose={handleCloseIngredientModal} title={'Детали ингредиента'}>
-          <IngredientDetails item={ingredientDetails} />
-        </Modal>
-      )}
-*/
+//   Логику с модалкой перенес  //
 
 //  Здесь есть пропсы, проверяю типизацию  //
 IngredientItem.propTypes = {

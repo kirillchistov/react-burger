@@ -73,3 +73,5 @@ export const ResetPasswordPage = () => {
     </div>
   );
 }
+
+//  нет пропсов, нет типизации  //

@@ -124,3 +124,5 @@ export const ProfilePage = () => {
     </div>
   );
 }
+
+//  нет пропсов, нет типизации  //

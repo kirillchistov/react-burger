@@ -51,3 +51,4 @@ export const IngredientDetails = () => {
   } 
 }
 
+//  Типизация не нужна, нет пропсов  //

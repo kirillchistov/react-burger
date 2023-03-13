@@ -66,3 +66,5 @@ export const ForgotPasswordPage = () => {
     </div>
   );
 }
+
+//  нет пропсов, нет типизации  //

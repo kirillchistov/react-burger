@@ -77,7 +77,8 @@ export const ProtectedRouteElement = ({ element, showWhen }) => {
   return render();
 };
 
+//  есть пропсы, есть типизация  //
 ProtectedRouteElement.propTypes = {
   element: PropTypes.element.isRequired,
-  accessType: PropTypes.string,
+  showWhen: PropTypes.string,
 };

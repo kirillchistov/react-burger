@@ -24,3 +24,5 @@ export const NotFoundPage = () => {
     </div>
   );
 }
+
+//  нет пропсов, нет типизации  //

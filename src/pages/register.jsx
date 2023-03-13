@@ -93,3 +93,5 @@ export const RegisterPage = () => {
     </div>
   );
 }
+
+//  нет пропсов, нет типизации  //
