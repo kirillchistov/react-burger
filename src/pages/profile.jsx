@@ -28,7 +28,6 @@ export const ProfilePage = () => {
   const user = useSelector((state) => state.auth.user);
   const passwordValue = '******';
   const [isChanged, setIsChanged] = useState(false);
-  console.log(user);
 
   //  Задаю начальные значения для профиля  //
   const { data, setData } = useForm({

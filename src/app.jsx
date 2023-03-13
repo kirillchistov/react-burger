@@ -85,13 +85,13 @@ const App = () => {
         />
       } />
       { /* не ясно, что будет в ленте для неавторизованных - номера чужих заказов? */ }
-      {/* <Route path='/feed' element={<FeedPage />} /> */}
-      <Route path='/feed' element={
+      <Route path='/feed' element={<FeedPage />} />
+      {/* <Route path='/feed' element={
         <ProtectedRouteElement
           element={<FeedPage />}
           showWhen='notLoggedIn'
         />
-      } />
+      } /> */}
       {isBackground && (
         <Route path='/ingredients/:id' element={
           <Modal handleClose={() => navigate(-1)} title='Детали ингредиента'>

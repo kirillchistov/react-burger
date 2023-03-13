@@ -16,7 +16,7 @@ import { getUserProfile, getAccessToken } from '../../services/actions/auth-acti
 //  Есть пропсы, нужна типизация  //
 import PropTypes from 'prop-types';
 
-export const ProtectedRouteElement = ({ element, accessType }) => {
+export const ProtectedRouteElement = ({ element, showWhen }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const { state: locationState } = useLocation();
@@ -45,15 +45,15 @@ export const ProtectedRouteElement = ({ element, accessType }) => {
   //  
   const render = () => {
     let elementToRender = element;
-    switch (accessType) {
-      case 'authorized':
+    switch (showWhen) {
+      case 'loggedIn':
         if (!auth()) {
           elementToRender = (
             <Navigate to='/login' replace state={{ redirectTo: location }} />
           );
         }
         break;
-      case 'unauthorized':
+      case 'notLoggedIn':
         if (auth()) {
           if (locationState) {
             const { redirectTo } = locationState;
