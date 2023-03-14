@@ -50,3 +50,5 @@ Modal.propTypes = {
   title: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired
 }
+
+export default React.memo(Modal);

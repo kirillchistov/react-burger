@@ -1,6 +1,6 @@
 //  Компонент для отображения в модальном окне при клике на ингредиент  //
 //  Хуки react, router-dom и redux  //
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 //  Action для получения ингридиентов из redux store  //
@@ -52,3 +52,5 @@ export const IngredientDetails = () => {
 }
 
 //  Типизация не нужна, нет пропсов  //
+
+export default React.memo(IngredientDetails);

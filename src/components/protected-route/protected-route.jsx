@@ -6,7 +6,7 @@ ProtectedRouteElement принимает элемент, который надо
 //  import { Route } from 'react-router-dom';
 //  import { useEffect, useState } from 'react';
 //  Добавил хуки для монтирования, колбэка, переадресации и redux  //
-import { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 //  Нужны оба токена  //
@@ -82,3 +82,5 @@ ProtectedRouteElement.propTypes = {
   element: PropTypes.element.isRequired,
   showWhen: PropTypes.string,
 };
+
+export default React.memo(ProtectedRouteElement);

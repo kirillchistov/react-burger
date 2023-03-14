@@ -1,6 +1,6 @@
 //  Карточка ингредиента, используемая в BurgerIngredients  //
 //  Из UI-библиотеки: счётчики, иконку валюты, типо, отступы  //
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
@@ -86,3 +86,5 @@ export const IngredientItem = ( { ingredientData } ) => {
 IngredientItem.propTypes = {
   elementData: PropTypes.object
 };
+
+export default React.memo(IngredientItem);

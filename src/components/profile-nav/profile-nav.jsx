@@ -1,4 +1,5 @@
 //  Хуки для навигации и подсветки активного меню  //
+import React from 'react';
 import { useLocation, NavLink, matchPath } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authTokens } from '../../utils/auth';
@@ -61,3 +62,5 @@ export const ProfileNav = ({ navTip }) => {
 ProfileNav.propTypes = {
   navTip: PropTypes.string.isRequired,
 };
+
+export default React.memo(ProfileNav);

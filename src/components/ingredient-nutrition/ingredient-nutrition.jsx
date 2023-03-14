@@ -1,5 +1,6 @@
 //  Вынес КБЖУ свойств ингредиента в отдельный компонент  //
 //  import { ingredientType } from '../../utils/types';
+import React from 'react';
 import PropTypes from 'prop-types';
 import IngredientNutritionStyle from './ingredient-nutrition.module.css';
 
@@ -18,4 +19,4 @@ IngredientNutrition.propTypes = {
   amount: PropTypes.number.isRequired
 };
 
-
+export default React.memo(IngredientNutrition);

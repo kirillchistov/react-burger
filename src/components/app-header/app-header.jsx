@@ -47,3 +47,5 @@ export const AppHeader = () => {
 }
 
 //  Типизация не нужна, нет пропсов  //
+
+export default React.memo(AppHeader);

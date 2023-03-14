@@ -1,9 +1,10 @@
 //  Пока этот компонент не используем, все делаем внутри I-Item  //
+import React from 'react';
 import IngredientItem from '../ingredient-item/ingredient-item';
 import PropTypes from 'prop-types';
 import {ingredientType} from '../../utils/types';
 
-const IngredientFilter = ({ ingredients, type, openModal }) => {
+export const IngredientFilter = ({ ingredients, type, openModal }) => {
   const filteredIngredients = ingredients.filter(
     (ingredient) => ingredient.type === type
   );
@@ -29,4 +30,4 @@ IngredientFilter.propTypes = {
   openModal: PropTypes.func.isRequired,
 };
 
-export default IngredientFilter;
+export default React.memo(IngredientFilter);

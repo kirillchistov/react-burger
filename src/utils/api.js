@@ -110,9 +110,12 @@ export const getUserProfileApi = async () => {
 };
 
 //  Отправляю patch-запрос с данными для обновления профиля юзера  //
+//  Здесь надо учесть возможное протухание токена  //
+//  Если время жизни токена истекло, надо выполнить запрос обновления токена и  //
+//  повторить запрос, который не был выполнен успешно
 export const updateUserProfileApi = async ({ email, password, name }) => {
+  const { accessToken, refreshToken } = authTokens();
   try {
-    const { accessToken } = authTokens();
     return await fetch(`${BASEURL}/auth/user`, {
       method: 'PATCH',
       mode: 'cors',
@@ -127,7 +130,30 @@ export const updateUserProfileApi = async ({ email, password, name }) => {
       body: JSON.stringify({ email, password, name }),
     }).then(checkResponse);
   } catch (err) {
-    console.log(`Ошибка updateUserProfileApi: ${err}`);
+    if (err.message === "jwt expired") {
+        const refreshData = await accessTokenApi(refreshToken);
+        if (!refreshData.success) {
+          return Promise.reject(refreshData);
+        }
+        localStorage.setItem("refreshToken", refreshData.refreshToken);
+        localStorage.setItem("accessToken", refreshData.accessToken.split('Bearer ')[1]);
+        return await fetch(`${BASEURL}/auth/user`, {
+          method: 'PATCH',
+          mode: 'cors',
+          cache: 'no-cache',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + accessToken,
+          },
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer',
+          body: JSON.stringify({ email, password, name }),
+        }).then(checkResponse);
+    } else {
+      console.log(`Ошибка updateUserProfileApi: ${err}`);  
+      return Promise.reject(err);
+    }
   }
 };
 

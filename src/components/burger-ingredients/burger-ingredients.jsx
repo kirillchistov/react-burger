@@ -7,10 +7,13 @@
 //  Убрать все инлайн стили, добавить отступы, убрать SelectTab в отд.компонент  //
 
 import React, { useState, useEffect, useMemo } from 'react';
+//  Добавил хуки для навигации по каталогу ингридиентов и пр.  //
+//  import { useInView } from 'react-intersection-observer';
 //  Добавил хуки для работы с Redux  //
 import { useSelector, useDispatch } from 'react-redux';
 //  Modal, IngredientDetails и IngredientPrice теперь в IngredientItem  //
 //  IngredientItem теперь вложен в IngredientCategory для навигации  //
+
 import { IngredientCategory } from '../ingredient-category/ingredient-category';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import { getIngredients } from '../../services/actions/ingredient-actions';
@@ -78,9 +81,9 @@ export const BurgerIngredients = () => {
     <section className={`mr-10 ${BurgerIngredientsStyle.ingredients}`}> 
       <h1 className='mb-5 text text_type_main-large'>Соберите бургер</h1>
       <nav className={BurgerIngredientsStyle.navbar}>
-        <Tab active={current === 'bun'}>Булки</Tab>
-        <Tab active={current === 'sauce'}>Соусы</Tab>
-        <Tab active={current === 'main'}>Начинки</Tab>
+        <Tab active={current === 'bun'} onClick={setCurrent}>Булки</Tab>
+        <Tab active={current === 'sauce'} onClick={setCurrent}>Соусы</Tab>
+        <Tab active={current === 'main'} onClick={setCurrent}>Начинки</Tab>
       </nav>
       <div className={BurgerIngredientsStyle.ingredient_types} id='typeContainer' onScroll={scrollToCategory}>
         <IngredientCategory type={'Булки'} typeList={buns} id='bun' />
@@ -92,3 +95,5 @@ export const BurgerIngredients = () => {
 }
 
 //  propTypes и типизация не нужны, нет пропсов  //
+
+export default React.memo(BurgerIngredients);

@@ -14,7 +14,7 @@ export const getCookie = (name) => {
 
 //  Сохраняю полученный токен в куку  //
 export const setCookie = (name, value, props) => {
-  props = props || {};
+  props = {...props, path: '/'};
   let exp = props.expires;
   if (typeof exp == 'number' && exp) {
     const d = new Date();
@@ -47,7 +47,7 @@ export const setCookies = (accessToken, refreshToken) => {
 
 //  Удаляю куки и выставляю таймер, чтобы протухала сразу  //
 export const deleteCookie = (name) => {
-  setCookie(name, null, { expires: -1 });
+  setCookie(name, null, { expires: -1, path: '/' });
 }
 
 //  Получение токена и рефреш токена из куки  //
