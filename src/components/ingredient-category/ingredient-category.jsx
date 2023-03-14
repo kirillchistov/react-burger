@@ -1,11 +1,11 @@
 //  Компонент категории ингредиентов для работы с навигацией по табам  //
-
+import React from 'react';
 import PropTypes from 'prop-types';
 import { IngredientItem } from '../ingredient-item/ingredient-item';
 import IngredientCategoryStyle from './ingredient-category.module.css';
 
 //  В разметке div с заголовком и вложенным div-списком ингредиентов заданной категории  //
-export function IngredientCategory({ id, type, typeList }) {
+export const IngredientCategory = ({ id, type, typeList }) => {
   return (
     <div id={id}>
       <h2 className='text mt-10 mb-6 text_type_main-medium'>{type}</h2>
@@ -24,3 +24,5 @@ IngredientCategory.propTypes = {
   typeList: PropTypes.array.isRequired,
   id: PropTypes.string
 };
+
+export default React.memo(IngredientCategory);

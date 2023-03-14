@@ -18,4 +18,4 @@ ConstructorTotal.propTypes = {
   total: PropTypes.number.isRequired
 };
 
-export default ConstructorTotal;
+export default React.memo(ConstructorTotal);

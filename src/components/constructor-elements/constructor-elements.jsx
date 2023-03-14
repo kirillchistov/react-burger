@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import { MOVE_INGREDIENT } from '../../services/actions/order-actions';
 import ConstructorElementsStyle from './constructor-elements.module.css';
 
-const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName, index }) => {
+export const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName, index }) => {
 
   //  Убрал контекст функцию-диспетчер заменил на dispatch  //
   //  Активирую dispatch и ref  //
@@ -109,4 +109,4 @@ ConstructorElements.propTypes = {
   index: PropTypes.number.isRequired,
 };
 
-export default ConstructorElements;
+export default React.memo(ConstructorElements);

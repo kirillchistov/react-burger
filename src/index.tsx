@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-//  Добавляю поддержку redux  //
+//  Поддержка redux  //
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import App from './components/app/app';
-//  Подключаем корневой редьюсер и усилитель  //
+//  import App from './components/app/app';  //
+//  Переключился на корневой App  //
+import App from './app';
+
+//  Добавил поддержку роутера  // 
+import { BrowserRouter } from 'react-router-dom';
+//  Корневой редьюсер и усилитель  //
 import { rootReducer } from './services/reducers/root-reducer';
 import { enhancer } from './services/store/store';
 import './index.css';
@@ -15,11 +20,14 @@ const store = createStore(rootReducer, enhancer);
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-//  обернул App в провайдер redux для доступа к store  //
+//  обернул App в провайдер redux-стора  //
+//  добавил обертку browser router  //
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );

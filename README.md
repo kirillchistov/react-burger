@@ -6,10 +6,11 @@
 
 # Стек технологий
 * [x] HTML, CSS (БЭМ Flat, адаптив Flex + Grid)
-* [x] JavaScript (ES6, React)
+* [x] JavaScript (ES6, React, позже TypeScript)
 * [x] Back-end (Node.js, MongoDB, Express, Nginx)
-* [x] Git, WebPack, Babel (позже redux и пр.) и т.д.
+* [x] Git, WebPack, Babel, Redux
 
+## [Pull Request Sprint-3 Step-1](https://github.com/kirillchistov/react-burger/pull/51)
 ## [Pull Request Sprint-2 Step-2](https://github.com/kirillchistov/react-burger/pull/32)
 ## [Pull Request Sprint-2 Step-1](https://github.com/kirillchistov/react-burger/pull/22)
 ## [Pull Request Sprint-1 Step-2](https://github.com/kirillchistov/react-burger/pull/14)
@@ -21,18 +22,11 @@
 ## Навигация пока отсутствует
 * [x] `app.jsx` — точка входа
 * [x] `/components` — основные компоненты проекта
-* [x] `/hooks` — будут хуки 
+* [x] `/hooks` —  хуки 
 * [x] `/images` - все изображения проекта
 * [x] `/services` — actions, reducers etc. 
 * [x] `/utils` - константы, API и прочие утилиты
 * [x] `/vendor` - внешние скрипты, шрифты и прочие внешние ресурсы
-
-
-
-
-
-
-
 
 
 

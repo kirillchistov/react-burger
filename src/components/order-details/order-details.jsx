@@ -24,4 +24,4 @@ OrderDetails.propTypes = {
   orderNumber: PropTypes.number,
 };
 
-export default OrderDetails;
+export default React.memo(OrderDetails);

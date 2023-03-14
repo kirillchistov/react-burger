@@ -1,31 +1,37 @@
 //  Карточка ингредиента, используемая в BurgerIngredients  //
 //  Из UI-библиотеки: счётчики, иконку валюты, типо, отступы  //
 import React, { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 
-import IngredientDetails from '../ingredient-details/ingredient-details';
+//  import { IngredientDetails } from '../ingredient-details/ingredient-details';
 import IngredientPrice from '../ingredient-price/ingredient-price';
-import Modal from '../modal/modal';
+//  import { Modal } from '../modal/modal';
 import { Counter } 
   from '@ya.praktikum/react-developer-burger-ui-components';
 // импортирую redux actions для модульного окна ингредиентов  //
-import {
+/*  import {
   OPEN_INGREDIENT_DETAILS,
   CLOSE_INGREDIENT_DETAILS,
 } from '../../services/actions/ingredient-actions';
+*/
 
 //  import { ingredientType } from '../../utils/types';
 import PropTypes from 'prop-types';
 import IngredientItemStyle from './ingredient-item.module.css';
 
 export const IngredientItem = ( { ingredientData } ) => {
-  //  состояния [isOpen, setIsOpen] больше не нужны  //
-  //  Активирую хуки для работы с redux  //
-  const dispatch = useDispatch();
-  const ingredientDetails = useSelector(
+  //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
+  //  С помощью useSelector получаю доступ к данным об ингридиенте. PROFIT!  //
+  const navigate = useNavigate();
+  const location = useLocation();
+  //  const dispatch = useDispatch();
+  
+  /* const ingredientDetails = useSelector(
     (state) => state.ingredientDetails.ingredientDetails
   );
+  */
   //  Получаю состояние (содержание) заказа из стора redux  //
   const orderData = useSelector((state) => state.order.orderData);
 
@@ -34,7 +40,7 @@ export const IngredientItem = ( { ingredientData } ) => {
     (ingredientData) => {
       const { _id, type } = ingredientData;
       const ingredientsCount = orderData.filter(
-        (element) => element._id === _id
+        (el) => el._id === _id
       ).length;
       return type === 'bun' ? ingredientsCount * 2 : ingredientsCount;
     },
@@ -42,25 +48,27 @@ export const IngredientItem = ( { ingredientData } ) => {
   );
 
   //  Перенес обработку клика по модальному окну в функцию с отправкой состава заказа в стор  //
-  const handleOpenIngredientModal = () => {
-    dispatch({ type: OPEN_INGREDIENT_DETAILS, payload: ingredientData });
-  };
+  const handleOpenIngredientModal = useCallback(() => {
+    navigate(`/ingredients/${ingredientData._id}`, {
+      state: { ingredientModal: location },
+    });
+  }, [navigate, location, ingredientData._id]);
 
-  //  Заркытие модального окна с ингредиентами  //
-  const handleCloseIngredientModal = () => {
-    dispatch({ type: CLOSE_INGREDIENT_DETAILS });
-  };
+  // Перенес dispatch({ type: OPEN_INGREDIENT_DETAILS, payload: ingredientData });
 
-  //  Делаем ингредиенты перетаскиваемыми  //
+  //  Закрытие модального окна с ингредиентами перенес  //
+
+
+  //  перетаскивание ингредиентов  //
   const [, dragRef] = useDrag({
     type: 'ingredient',
-    item: ingredientData,
+    item: ingredientData
   });
 
   //  Модальное окно открывается только когда массив ингредиентов не пуст  //
   //  Показываю счетчик ингредиента (сколько в конструкторе), если он > 0  //
   return (
-    <div>
+    <>
       <div className={IngredientItemStyle.ingredient} onClick={handleOpenIngredientModal} ref={dragRef}>
         {orderCount(ingredientData) > 0 &&
           <Counter className={IngredientItemStyle.counter} count={orderCount(ingredientData)} size='default' />
@@ -69,16 +77,14 @@ export const IngredientItem = ( { ingredientData } ) => {
         <IngredientPrice price={ingredientData.price} />
         <p className={`mb-6 text text_type_main-default ${IngredientItemStyle.name}`}>{ingredientData.name}</p>
       </div>
-      {ingredientDetails && (
-        <Modal handleClose={handleCloseIngredientModal} title={'Детали ингредиента'}>
-          <IngredientDetails item={ingredientDetails} />
-        </Modal>
-      )}
-    </div>
+    </>
   );
 };
+//   Логику с модалкой перенес  //
 
 //  Здесь есть пропсы, проверяю типизацию  //
 IngredientItem.propTypes = {
   elementData: PropTypes.object
 };
+
+export default React.memo(IngredientItem);

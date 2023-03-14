@@ -2,33 +2,32 @@
 //  Блок (правый) с конструктором заказа бургера из выбранных ингредиентов  //
 
 import React, { useMemo } from 'react';
-//  Добавил хуки для работы с Redux  //
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 //  Добавил хуки для работы с DND  - здесь не нужен useDrag  //
 import { useDrop } from 'react-dnd';
-//  { ingredientType } из '../../utils/types' больше не нужен  //
 import ConstructorElements from '../constructor-elements/constructor-elements';
 import OrderDetails from '../order-details/order-details';
 import ConstructorTotal from '../constructor-total/constructor-total';
 import { Button, ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
-import Modal from '../modal/modal';
-//  вместо { postOrder } теперь берем actions из redux  //
+import { Modal } from '../modal/modal';
 import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../services/actions/order-actions';
 //  Импортировал actions для работы с ингредиентами в конструкторе заказа  //
 //  Добавил универсальный генератор уникальных идентификаторов для элементов без id  //
 import { v4 as uuidv4 } from 'uuid';
-import { selectorOrders } from "../../utils/constants";
-
+import { selectorOrders } from '../../utils/constants';
 import burgerConstructorStyle from './burger-constructor.module.css';
 
+export const BurgerConstructor = () => {
+  //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
+  //  С помощью useSelector получаю доступ к данным о заказах. PROFIT!  //
 
-const BurgerConstructor = () => {
-  //  Теперь состояния храню в сторе redux, а не в пропсах или контексте  //
-  //  Состояние [isOpen, setIsOpen] и контекст не нужны  //
-  //  Получаю из стора состояние для номера состава заказа  //
-  
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  //  Получаю из redux store данные заказа  //
   const { orderData, orderNumber } = useSelector(selectorOrders);
+  //  Получаю из redux store состояние авторизации пользователя  //
+  const user = useSelector((state) => state.auth.user);
   
   //  Редьюсеры со свитчем и действия вынес в отдельные файлы  //
   //  Вместо первых встречных теперь нахожу выбранные элементы  //
@@ -37,10 +36,7 @@ const BurgerConstructor = () => {
   });
   //  Пока что начинку и соус можно не разделять, т.к. логика едина  //
   const ingredientsMidStuff = orderData.filter((element) => element.type !== 'bun');
-  //  console.log(orderData);  //
   
-  //  Начальный массив заказа с булками без начинки больше не нужен  //
-
   //  Считаю сумму заказа с мемоизацией  //
   //  Прибавляю к старой сумме заказа (если не пуст) цены элементов (булки * 2)  //
   const totalAmount = useMemo(() => {
@@ -55,7 +51,7 @@ const BurgerConstructor = () => {
     }
   }, [orderData]);
     
-    const onDropIngredient = (ingredient) => {
+  const onDropIngredient = (ingredient) => {
     if (ingredient.type === 'bun') {
       dispatch({
         type: ADD_BUN,
@@ -74,14 +70,17 @@ const BurgerConstructor = () => {
     drop: (ingredientData) => onDropIngredient(ingredientData),
   });
 
+  //  Если авторизован, открываю окно с деталями заказа, если нет -> логин  //
   const handleOpenIngredientModal = () => {
-    dispatch(dispatchOrder(orderData.map((ingredient) => ingredient._id)));
+    (user) 
+    ? dispatch(dispatchOrder(orderData.map((ingredient) => ingredient._id)))
+    : navigate('/login')
   };
+
   const handleCloseOrderModal = () => {
     dispatch({ type: DELETE_ORDER });
   };
   
-  //  В конструкторе пока набор булок и по одному первому элементу начинки и соуса, не выбор  //
   //  Цены суммирую и вывожу в конструкторе, в попапе вывожу номер заказа  //
   //  Добавил ref, отключил контекст провайдер, теперь беру состояние из redux-стора  //
   //  Открытие окна с деталями ингредиента вынес в отдельную функцию handleOpenIngredientModal  //
@@ -161,4 +160,4 @@ const BurgerConstructor = () => {
 
 //  Типизация не нужна, нет пропсов  //
 
-export default BurgerConstructor;
+export default React.memo(BurgerConstructor);
