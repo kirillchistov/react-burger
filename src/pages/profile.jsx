@@ -26,7 +26,7 @@ export const ProfilePage = () => {
   //  Примерно как в тренажере  //
   const dispatch = useDispatch(); 
   const user = useSelector((state) => state.auth.user);
-  const passwordValue = '******';
+  let passwordValue = '******';
   const [isChanged, setIsChanged] = useState(false);
 
   //  Задаю начальные значения для профиля  //
@@ -48,8 +48,7 @@ export const ProfilePage = () => {
       updateUserProfile({
         email: data.email,
         name: data.name,
-        password:
-        data.password !== passwordValue ? data.password : 'abc123pass',
+        password: data.password !== passwordValue ? data.password : undefined
       })
     );
     setIsChanged(false);
