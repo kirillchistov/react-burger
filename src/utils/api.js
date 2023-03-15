@@ -2,20 +2,22 @@
 //  BASEURL = 'https://norma.nomoreparties.space/api' убрать в .env  //
 import {BASEURL} from './constants';
 //  Беру методы для получения токена и рефреш из куки
-import { getCookie, setCookie, authTokens } from './auth';
-//  import { getAccessToken } from '../services/actions/auth-actions';
+import { authTokens, setCookie } from './auth';
 
 //  Обрабатываю ответ сервера - возвращаю json или ошибку  //
-export const checkResponse = async (res) => {
-  try {
+export const checkResponse = async (res) => (
+/*  try {
     if (res.ok) {
       return await res.json();
     }
     return Promise.reject({statusCode: res.status, message: res.message});
   } catch (err) {
     console.log(`Ошибка запроса к серверу: ${err}`);
+    return err;
   }
-};
+*/  
+ res.ok ? await res.json() : Promise.reject({statusCode: res.status, message: res.message})
+);
 
 //  Получаю ингредиенты с сервера и записываю в массив  //
 export const fetchIngredients = async (setIngredients) => {
@@ -32,48 +34,25 @@ export const fetchIngredients = async (setIngredients) => {
 //  преобразую JSON с id ингредиентов в строку  //
 export const postOrder = async (ingredientsID) => {
   try {
-    return await fetch(`${BASEURL}/orders`, {
+    const { accessToken } = authTokens();
+    return await fetchWithRefresh(`${BASEURL}/orders`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + accessToken,
       },   
       body: JSON.stringify({
         ingredients: ingredientsID
       })   
     })
-    .then(checkResponse)
     //  Возвращаем номер заказа в createOrder в конструкторе  //
   } catch (err) {
     console.log(`Ошибка отправки заказа: ${err}`);
   }
 };
 
-//  Отправляю пост-запрос на получение / рефреш токена  //
-export const accessTokenApi = async (refreshToken) => {
-  try {
-    return await fetch(`${BASEURL}/auth/token`, {
-      method: 'POST',
-/*
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-*/
-      headers: {
-        'Content-Type': 'application/json',
-      },
-/*
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-*/      
-      body: JSON.stringify({ token: refreshToken }),
-    }).then(checkResponse);
-  } catch (err) {
-    console.log(`Ошибка accessTokenApi: ${err}`);
-  }
-};
-
 //  Получение токена и рефреш токена из куки  //
-export const refreshTokens = () => {
+export const refreshToken = () => {
   return fetch(`${BASEURL}/auth/token`, {
     method: 'POST',
     headers: {
@@ -85,10 +64,25 @@ export const refreshTokens = () => {
   }).then(checkResponse);
 };
 
-const saveTokens = (accessToken, refreshToken) => {
-  setCookie('accessToken', accessToken);
-  setCookie('refreshToken', refreshToken);
-  localStorage.setItem('refreshToken', refreshToken);
+export const fetchWithRefresh = async (url, options) => {
+  try {
+    const res = await fetch(url, options);
+    return await checkResponse(res);
+  } catch ({message, statusCode}) {
+    if (message === "jwt expired") {
+      const refreshData = await refreshToken();
+      if (!refreshData.success) {
+        Promise.reject(refreshData);
+      }
+      setCookie('accessToken', refreshData.accessToken.split('Bearer ')[1]);
+      setCookie('refreshToken', refreshData.refreshToken);
+      options.headers.authorization = refreshData.accessToken;
+      const res = await fetch(url, options);
+      return await checkResponse(res);
+    } else {
+      return Promise.reject(message);
+    }
+  }
 };
 
 //  Блок методов для авторизации и обработки токенов - как в тренажере  //
@@ -132,34 +126,21 @@ export const loginApi = async ({ email, password }) => {
   }
 };
 
-export const fetchWithRefresh = async (url, options) => {
-  try {
-    const res = await fetch(url, options);
-    return await checkResponse(res);
-  } catch (err) {
-    if (err.message === 'jwt expired') {
-      const { accessToken, refreshToken } = await refreshTokens();
-
-      saveTokens(accessToken, refreshToken);
-      options.headers.authorization = accessToken;
-      const res = await fetch(url, options);
-      return await checkResponse(res);
-    } else {
-      return Promise.reject(err);
-    }
-  }
-};
-
 //  Отправляю get-запрос для получения данных профиля юзера (сначала токен)  //
 export const getUserProfileApi = async () => {
   try {
     const { accessToken } = authTokens();
     return await fetch(`${BASEURL}/auth/user`, {
       method: 'GET',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + accessToken,
       },
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer',
     }).then(checkResponse);
   } catch (err) {
     console.log(`Ошибка getUserProfileApi: ${err}`);
@@ -167,39 +148,10 @@ export const getUserProfileApi = async () => {
 };
 
 //  Отправляю patch-запрос с данными для обновления профиля юзера  //
-//  Здесь надо учесть возможное протухание токена  //
-//  Если время жизни токена истекло, надо выполнить запрос обновления токена и  //
-//  повторить запрос, который не был выполнен успешно
-
-export const updateUserProfileApi = async ({ email, password, name }) => {
-  try {
-    return fetchWithRefresh(`${BASEURL}/auth/user`, {
-      method: 'PATCH',
-/*
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-*/
-      headers: {
-        "Content-Type": 'application/json;charset=utf-8',
-        authorization: getCookie('accessToken'),
-      },
-/*
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-*/
-      body: JSON.stringify({ email, password, name }),
-    });
-  } catch (err) {
-    console.log(`Ошибка updateUserProfileApi: ${err}`);
-  }
-};
-
-/*
 export const updateUserProfileApi = async ({ email, password, name }) => {
   try {
     const { accessToken } = authTokens();
-    return await fetch(`${BASEURL}/auth/user`, {
+    return await fetchWithRefresh(`${BASEURL}/auth/user`, {
       method: 'PATCH',
       mode: 'cors',
       cache: 'no-cache',
@@ -211,12 +163,31 @@ export const updateUserProfileApi = async ({ email, password, name }) => {
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
       body: JSON.stringify({ email, password, name }),
-    }).then(checkResponse);
+    })
   } catch (err) {
     console.log(`Ошибка updateUserProfileApi: ${err}`);
   }
 };
-*/
+
+//  Отправляю пост-запрос на получение / рефреш токена  //
+export const accessTokenApi = async (refreshToken) => {
+  try {
+    return await fetch(`${BASEURL}/auth/token`, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify({ token: refreshToken }),
+    }).then(checkResponse);
+  } catch (err) {
+    console.log(`Ошибка accessTokenApi: ${err}`);
+  }
+};
 
 //  Отправляю пост-запрос на получение кода для смены пароля на email  //
 export const codeRequestApi = async (email) => {
