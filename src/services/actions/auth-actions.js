@@ -138,8 +138,8 @@ export const updateUserProfile = ({ email, password, name }) => {
   };
 };
 
-//  Action доступа к токену / рефреш - добавить propTypes? //
-//  Второй токен — refreshToken — сохраняю в куки  //
+//  Action обновления токенов с помощью рефреш токена - добавить propTypes? //
+//  Оба токена (access и refresh) сохраняю в куки  //
 export const getAccessToken = (refreshToken) => {
   return function (dispatch) {
     dispatch({
@@ -201,7 +201,7 @@ export const changePassword = ({ password, token }) => {
 };
 
 //  Action запроса на выход из системы - добавить propTypes?  //
-//  Второй токен — refreshToken — удаляю из куки  //
+//  Для выхода использую refreshToken — удаляю из куки оба токена  //
 export const logoutUser = (refreshToken) => {
   return function (dispatch) {
     dispatch({
