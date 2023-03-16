@@ -155,7 +155,6 @@ export const getUserProfileApi = async () => {
 export const updateUserProfileApi = async ({ email, password, name }) => {
   try {
     const { accessToken } = authTokens();
-    console.log(accessToken);
     return await fetchWithRefresh(`${BASEURL}/auth/user`, {
       method: 'PATCH',
       mode: 'cors',
