@@ -16,7 +16,8 @@ export const checkResponse = async (res) => (
     return err;
   }
 */  
- res.ok ? await res.json() : Promise.reject({statusCode: res.status, message: res.message})
+ res.ok ? res.json() : res.json().then((err) => Promise.reject(err))
+ //  res.ok ? await res.json() : Promise.reject({statusCode: res.status, message: res.message})
 );
 
 //  Получаю ингредиенты с сервера и записываю в массив  //
@@ -110,7 +111,7 @@ export const loginApi = async ({ email, password }) => {
 //  Отправляю get-запрос для получения данных профиля юзера (сначала токен)  //
 export const getUserProfileApi = async () => {
   try {
-    const { accessToken } = authTokens();
+    //  const { accessToken } = authTokens();
     return await fetchWithRefresh(`${BASEURL}/auth/user`, {
       method: 'GET',
       mode: 'cors',
@@ -118,7 +119,7 @@ export const getUserProfileApi = async () => {
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + accessToken,
+        //  Authorization: 'Bearer ' + accessToken,
       },
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
@@ -132,6 +133,7 @@ export const getUserProfileApi = async () => {
 export const updateUserProfileApi = async ({ email, password, name }) => {
   try {
     const { accessToken } = authTokens();
+    console.log(accessToken);
     return await fetchWithRefresh(`${BASEURL}/auth/user`, {
       method: 'PATCH',
       mode: 'cors',
