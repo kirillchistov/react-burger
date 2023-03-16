@@ -3,15 +3,15 @@ export const modalsRoot = document.querySelector('#modals');
 export const selectorOrders = (store) => store.order;
 
 export const pageUrls = {
-  homePage: '/',
-  registerPage: '/register',
-  loginPage: '/login',
-  profilePage: '/profile',
-  forgotPassPage: '/forgot-password',
-  resetPasswordPage: '/reset-password',
-  ingredientsPage: '/ingredients',
-  feedPage: '/feed',
-  ordersPage: '/orders',
-  profileOrdersPage: '/profile/orders',
-  notFoundPage: '/*',
+  home: '/',
+  reg: '/register',
+  login: '/login',
+  profile: '/profile',
+  forgot: '/forgot-password',
+  reset: '/reset-password',
+  ingred: '/ingredients',
+  feed: '/feed',
+  orders: '/orders',
+  proforders: '/profile/orders',
+  notfound: '/*',
 };

@@ -38,7 +38,7 @@ export const setCookie = (name, value, props ={}) => {
 
 //  Сохраняю и обновляю куки, Срок жизни токена — 20 минут  //
 export const setCookies = (accessToken, refreshToken) => {
-  const expirationAt = new Date(new Date().getTime() + 20 * 60 * 1000);
+  const expirationAt = new Date(new Date().getTime() + 1 * 10 * 1000);
   setCookie('accessToken', accessToken.split('Bearer ')[1], {
     expires: expirationAt,
   });
