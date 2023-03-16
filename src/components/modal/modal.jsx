@@ -3,11 +3,11 @@
 //  При клике на кнопку открывает пока статичное окно заказа  //
 //  Окно должно закрываться при клике на x или Esc  //
 
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import ModalOverlay from '../modal-overlay/modal-overlay';
-import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import {modalsRoot} from '../../utils/constants';
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { modalsRoot } from '../../utils/constants';
 import PropTypes from 'prop-types';
 import modalStyle from './modal.module.css';
 
@@ -15,7 +15,7 @@ import modalStyle from './modal.module.css';
 //  При монтировании вешаю слушатель на Esc  //
 //  При размонтировании убираю слушатель //
 //  Удалил isOpen больше не нужен  //
-const Modal = ({children, handleClose, title}) => {
+export const Modal = ( {children, handleClose, title} ) => {
   useEffect(() => {
     const closeByEscape = (e) =>(e.key === 'Escape' ? handleClose() : null)
     document.body.addEventListener('keydown', closeByEscape);
@@ -51,4 +51,4 @@ Modal.propTypes = {
   handleClose: PropTypes.func.isRequired
 }
 
-export default Modal;
+export default React.memo(Modal);
