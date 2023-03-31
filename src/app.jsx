@@ -85,6 +85,24 @@ const App = () => {
         />
       } />
       { /* не ясно, что будет в ленте для неавторизованных - номера чужих заказов? */ }
+
+      {/* По аналогии с ингредиентами надо сделать заказы
+      {isBackground && (
+        <Route path='/profile/orders/:id' element={
+          <Modal handleClose={() => navigate(-1)} title='Детали заказа'>
+            <Order />
+          </Modal>
+        } />
+      )}
+      <Route path='/profile/orders/:id' element={
+        <ProtectedRouteElement
+          element={<OrderPage />}
+          showWhen='loggedIn'
+        />
+      } />
+      */}
+
+
       <Route path='/feed' element={<FeedPage />} />
       {/* <Route path='/feed' element={
         <ProtectedRouteElement
