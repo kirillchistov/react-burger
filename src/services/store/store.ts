@@ -1,6 +1,6 @@
 //  Создаю redux store и переношу сюда усилители  //
 import { applyMiddleware, compose, createStore } from 'redux';
-import { rootReducer } from "../reducers/root-reducer";
+import { rootReducer } from '../reducers/root-reducer';
 import thunk from 'redux-thunk';
 
 //  Подключаю Redux DevTools  //

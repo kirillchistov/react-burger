@@ -16,6 +16,8 @@ export const POST_ORDER_API_OK = 'POST_ORDER_API_OK';
 export const POST_ORDER_API_FAIL = 'POST_ORDER_API_FAIL';
 export const DELETE_ORDER = 'DELETE_ORDER';
 
+import { TIngredient } from '../../utils/types';
+
 //  Получение и обновление номера заказа в модальном окне O-Details  //
 export const dispatchOrder = (orderDataID) => {
   return function (dispatch) {

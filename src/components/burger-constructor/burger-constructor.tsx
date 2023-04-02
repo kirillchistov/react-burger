@@ -17,7 +17,7 @@ import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../serv
 import { v4 as uuidv4 } from 'uuid';
 import { selectorOrders } from '../../utils/constants';
 //  import { getUser, getBurgerData } from '../../utils/state';  //
-import { TIngredient } from "../../utils/types";
+import { TIngredient } from '../../utils/types';
 import burgerConstructorStyle from './burger-constructor.module.css';
 
 export const BurgerConstructor = () => {

@@ -52,8 +52,7 @@ export const setCookie = (name: string, value: string, props?:TCookieProps) => {
 };
 */
 
-export const setCookies = ({ accessToken, refreshToken 
-  } : { accessToken: string; refreshToken: string }) => {
+export const setCookies = ( accessToken: string, refreshToken: string) => {
   setCookie('accessToken', accessToken.split('Bearer ')[1]);
   setCookie('refreshToken', refreshToken);
 };

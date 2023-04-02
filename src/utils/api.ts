@@ -15,11 +15,13 @@ import {
  } from './types';
 
 //  Делаю интерфейс для запроса с обновлением токена  //
+/*
 interface IFetchWithRefresh {
   success: boolean;
   refreshToken: string;
   accessToken: string;
 }
+*/
 
 //  Обрабатываю ответ сервера - возвращаю json или ошибку  //
 //  Пока не получается через async try await catch типизировать  //
@@ -41,7 +43,7 @@ export const fetchIngredients = async () => {
 }
 
 //  Установка токенов - реализовали по месту в auth  //
-export const setTokens = (accessToken:string|undefined, refreshToken:string|undefined) => {
+export const setTokens = (accessToken: string, refreshToken: string) => {
   setCookie('accessToken', accessToken);
   setCookie('refreshToken', refreshToken);
 }
@@ -52,16 +54,21 @@ export const deleteTokens = () => {
   deleteCookie('refreshToken');
 }
 
+type TRefreshResponse = TServerResponse<{
+  refreshToken: string;
+  accessToken: string;
+}>;
+
 //  Получение токена и рефреш токена из куки  //
-export const refreshToken = async ():Promise<IFetchWithRefresh> => {
+export const refreshToken = async ():Promise<TRefreshResponse> => {
   return await fetch(`${BASEURL}/auth/token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
     },
-    body: JSON.stringify({'token': `${getCookie('refreshToken')}`})
+    body: JSON.stringify({'token': `${getCookie('accessToken')}`})
   })
-  .then((res) => checkResponse<IFetchWithRefresh>(res));
+  .then((res) => checkResponse<TRefreshResponse>(res))
   .then((refreshData) => {
     if (refreshData.success) {
       setTokens(refreshData.accessToken.split('Bearer ')[1], refreshData.refreshToken);
@@ -74,14 +81,16 @@ export const refreshToken = async ():Promise<IFetchWithRefresh> => {
 export const fetchWithRefresh = async <T>(url:string, options:RequestInit) => {
   try {
     const res = await fetch(url, options);
-    return await checkResponse(res);
+    return await checkResponse<T>(res);
   } catch (error) {
-    const errorPayload = await error.json()
-    if (errorPayload.message === 'jwt expired' || errorPayload.message === 'jwt malformed') {
+    /* const errorPayload = await error.json() */
+    if ((error as {message: string}).message === 'jwt expired') {
       const refreshData = await refreshToken();
-      options.headers.Authorization = refreshData.accessToken;
+      if (options.headers) {
+        (options.headers as { [key: string]: string}).Authorization = refreshData.accessToken;
+      }
       const res = await fetch(url, options);
-      return await checkResponse(res);
+      return await checkResponse<T>(res);
     } else {
       return Promise.reject(error);
     }
@@ -94,7 +103,7 @@ export const fetchWithRefresh = async (url, options) => {
     const res = await fetch(url, options);
     return await checkResponse(res);
   } catch ({message, statusCode}) {
-    if (message === "jwt expired") {
+    if (message === 'jwt expired') {
       const refreshData = await refreshToken();
       if (!refreshData.success) {
         Promise.reject(refreshData);
@@ -163,7 +172,7 @@ export const getUserProfileApi = async () => {
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: "Bearer " + accessToken
+        Authorization: 'Bearer ' + accessToken
       },
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
@@ -189,7 +198,7 @@ export const updateUserProfileApi = async ({ email, password, name }:TFormValues
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
       body: JSON.stringify({ email, password, name }),
-    })
+    }).then((res) => checkResponse<TUserResponse>(res));
   } catch (error) {
     console.log(`Ошибка updateUserProfileApi: ${error}`);
   }
@@ -209,7 +218,7 @@ export const accessTokenApi = async (refreshToken:string|undefined) => {
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
       body: JSON.stringify({ token: refreshToken }),
-    })
+    }).then((res) => checkResponse<TTokenResponse>(res));
   } catch (error) {
     console.log(`Ошибка accessTokenApi: ${error}`);
   }

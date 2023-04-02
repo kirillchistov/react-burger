@@ -53,7 +53,7 @@ export type TIngredient = {
 }
 
 //  Типизирую объект заказа  //
-export type TOrder = {
+/* export type TOrder = {
   _id: string;
   number: number;
   name: string;
@@ -61,6 +61,7 @@ export type TOrder = {
   createdAt: Date;
   ingredients: string[];
 }
+*/
 
 //  Типизирую функцию проверки ответа от сервера - буль  //
 export type TResponse<T> = {
@@ -87,6 +88,7 @@ export type TIngredientResponse = {
 };
 
 //  Типизирую функцию получения заказа - объект  //
+
 export type TOrderResponse = {
   order: TOrder;
 };

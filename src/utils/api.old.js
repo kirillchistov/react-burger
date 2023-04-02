@@ -11,7 +11,7 @@ import {
   TUserResponse,
   TIngredientResponse, 
   TOrderResponse, 
- } from "./constants";
+ } from './constants';
 
 //  Обрабатываю ответ сервера - возвращаю json или ошибку  //
 const checkResponse = async (res) => res.ok ? res.json() : Promise.reject(res);
@@ -81,7 +81,7 @@ export const fetchWithRefresh = async (url, options) => {
     const res = await fetch(url, options);
     return await checkResponse(res);
   } catch ({message, statusCode}) {
-    if (message === "jwt expired") {
+    if (message === 'jwt expired') {
       const refreshData = await refreshToken();
       if (!refreshData.success) {
         Promise.reject(refreshData);
@@ -150,7 +150,7 @@ export const getUserProfileApi = async () => {
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: "Bearer " + accessToken
+        Authorization: 'Bearer ' + accessToken
       },
       redirect: 'follow',
       referrerPolicy: 'no-referrer',

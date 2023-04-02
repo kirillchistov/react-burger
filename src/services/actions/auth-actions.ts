@@ -11,6 +11,7 @@ import {
   logoutApi,
 } from '../../utils/api';
 import { setCookies, deleteCookie } from '../../utils/auth';
+import { TFormValues, TUser, AppDispatch } from '../../utils/types';
 
 export const LOGIN_USER_API = 'LOGIN_USER_API';
 export const LOGIN_USER_API_OK = 'LOGIN_USER_API_OK';
@@ -47,6 +48,140 @@ export const PASSWORD_RESET_CODE_API_FAIL = 'PASSWORD_RESET_CODE_API_FAIL';
 export const LOGOUT_USER_API = 'LOGOUT_USER_API';
 export const LOGOUT_USER_API_OK = 'LOGOUT_USER_API_OK';
 export const LOGOUT_USER_API_FAIL = 'LOGOUT_USER_API_FAIL';
+
+export interface IRegisterUser {
+  readonly type: typeof REGISTER_USER_API;
+}
+export interface IRegisterUserOK {
+  readonly type: typeof REGISTER_USER_API_OK;
+  readonly user: TUser;
+}
+export interface IRegisterUserFail {
+  readonly type: typeof REGISTER_USER_API_FAIL;
+}
+export interface ILoginUser {
+  readonly type: typeof LOGIN_USER_API;
+}
+export interface ILoginUserOK {
+  readonly type: typeof LOGIN_USER_API_OK;
+  readonly user: TUser;
+}
+export interface ILoginUserFail {
+  readonly type: typeof LOGIN_USER_API_FAIL;
+}
+export interface IGetRefreshToken {
+  readonly type: typeof REFRESH_TOKEN_API;
+}
+export interface IGetRefreshTokenOK {
+  readonly type: typeof REFRESH_TOKEN_API_OK;
+}
+export interface IGetRefreshTokenFail {
+  readonly type: typeof REFRESH_TOKEN_API_FAIL;
+}
+export interface ILogoutUser {
+  readonly type: typeof LOGOUT_USER_API;
+}
+export interface ILogoutUserOK {
+  readonly type: typeof LOGOUT_USER_API_OK;
+}
+export interface ILogoutUserFail {
+  readonly type: typeof LOGOUT_USER_API_FAIL;
+}
+export interface IResetPassword {
+  readonly type: typeof PASSWORD_RESET_API;
+}
+export interface IResetPasswordOK {
+  readonly type: typeof PASSWORD_RESET_API_OK;
+}
+export interface IResetPasswordFail {
+  readonly type: typeof PASSWORD_RESET_API_FAIL;
+}
+export interface IGetPasswordResetCode {
+  readonly type: typeof PASSWORD_RESET_CODE_API;
+}
+export interface IGetPasswordResetCodeOK {
+  readonly type: typeof PASSWORD_RESET_CODE_API_OK;
+}
+export interface IGetPasswordResetCodeFail {
+  readonly type: typeof PASSWORD_RESET_CODE_API_FAIL;
+}
+export interface IGetUserProfile {
+  readonly type: typeof GET_USER_PROFILE_API;
+}
+export interface IGetUserProfileOK {
+  readonly type: typeof GET_USER_PROFILE_API_OK;
+  readonly user: TUser;
+}
+export interface IGetUserProfileFail {
+  readonly type: typeof GET_USER_PROFILE_API_FAIL;
+}
+export interface IUpdateUserProfile {
+  readonly type: typeof UPDATE_USER_PROFILE_API;
+}
+export interface IUpdateUserProfileOK {
+  readonly type: typeof UPDATE_USER_PROFILE_API_OK;
+  readonly user: TUser;
+}
+export interface IUpdateUserProfileFail {
+  readonly type: typeof UPDATE_USER_PROFILE_API_FAIL;
+}
+
+//  Создаю множественный тип для actions с авторизацией и регой  //
+export type TAuthActions =
+| IRegisterUser
+| IRegisterUserOK
+| IRegisterUserFail
+| ILoginUser
+| ILoginUserOK
+| ILoginUserFail
+| IGetRefreshToken
+| IGetRefreshTokenOK
+| IGetRefreshTokenFail
+| ILogoutUser
+| ILogoutUserOK
+| ILogoutUserFail
+| IResetPassword
+| IResetPasswordOK
+| IResetPasswordFail
+| IGetPasswordResetCode
+| IGetPasswordResetCodeOK
+| IGetPasswordResetCodeFail
+| IGetUserProfile
+| IGetUserProfileOK
+| IGetUserProfileFail
+| IUpdateUserProfile
+| IUpdateUserProfileOK
+| IUpdateUserProfileFail;
+
+
+export const registerUserOK = (
+  user: TUser
+): IRegisterUserOK => ({
+  type: REGISTER_USER_API_OK,
+  user,
+});
+
+export const loginUserOK = (
+  user: TUser
+): ILoginUserOK => ({
+  type: LOGIN_USER_API_OK,
+  user,
+});
+
+export const getUserProfileOK = (
+  user: TUser
+): IGetUserProfileOK => ({
+  type: GET_USER_PROFILE_API_OK,
+  user,
+});
+
+export const updateUserProfileOK = (
+  user: TUser
+): IUpdateUserProfileOK => ({
+  type: UPDATE_USER_PROFILE_API_OK,
+  user,
+});
+
 
 //  Action логина нового пользователя - добавить propTypes? //
 //  accessToken для внутренних запросов — получения / обновления данных о пользователе  //
@@ -125,10 +260,7 @@ export const updateUserProfile = ({ email, password, name }: TFormValues) => {
     });
     updateUserProfileApi({ email, password, name }).then((res) => {
       if (res && res.success) {
-        dispatch({
-          type: UPDATE_USER_PROFILE_API_OK,
-          payload: res.user,
-        });
+        dispatch(updateUserProfileOK(res.user));
       } else {
         dispatch({
           type: UPDATE_USER_PROFILE_API_FAIL,
@@ -140,7 +272,7 @@ export const updateUserProfile = ({ email, password, name }: TFormValues) => {
 
 //  Action обновления токенов с помощью рефреш токена - добавить propTypes? //
 //  Оба токена (access и refresh) сохраняю в куки  //
-export const getAccessToken = (refreshToken: string | undefined) => {
+export const getAccessToken = (refreshToken: string | undefined ) => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: REFRESH_TOKEN_API,
