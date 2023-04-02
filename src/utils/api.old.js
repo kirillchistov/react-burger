@@ -4,8 +4,17 @@ import {BASEURL} from './constants';
 //  Беру методы для получения токена и рефреш из куки
 import { getCookie, setCookie, deleteCookie, authTokens } from './auth';
 
+import { 
+  TResponse, 
+  TAuthResponse, 
+  TTokenResponse, 
+  TUserResponse,
+  TIngredientResponse, 
+  TOrderResponse, 
+ } from "./constants";
+
 //  Обрабатываю ответ сервера - возвращаю json или ошибку  //
-export const checkResponse = async (res) => res.ok ? res.json() : Promise.reject(res);
+const checkResponse = async (res) => res.ok ? res.json() : Promise.reject(res);
 
 //  Получаю ингредиенты с сервера и записываю в массив  //
 export const fetchIngredients = async (setIngredients) => {

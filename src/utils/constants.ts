@@ -1,6 +1,9 @@
+import { TIngredient, TOrder, TUser } from "../utils/types";
+
 export const BASEURL = 'https://norma.nomoreparties.space/api';
 export const modalsRoot = document.querySelector('#modals');
 export const selectorOrders = (store) => store.order;
+
 
 export const pageUrls = {
   home: '/',
@@ -37,3 +40,9 @@ export const GET_INGREDIENTS_API_FAIL = 'GET_INGREDIENTS_API_FAIL';
 //  Добавление, удаление данных о просматриваемом ингредиенте (попап с I-Details)  //
 export const OPEN_INGREDIENT_DETAILS = 'OPEN_INGREDIENT_DETAILS';
 export const CLOSE_INGREDIENT_DETAILS = 'CLOSE_INGREDIENT_DETAILS';
+
+//  Константы состояния  //
+export const getItems = (state: { ingredients: { items: TIngredient[]; }; }) => state.ingredients.items;
+export const getUser = (state: { auth: { user: TUser|null; }; }) => state.auth.user;
+export const getResetCode = (state: { auth: { gotResetPasswordCode: boolean; }; }) => state.auth.gotResetPasswordCode;
+export const getBurgerData = (state: { burger: { burgerData: TIngredient[]; }; }) => state.burger.burgerData;

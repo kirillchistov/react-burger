@@ -16,7 +16,8 @@ import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../serv
 //  Добавил универсальный генератор уникальных идентификаторов для элементов без id  //
 import { v4 as uuidv4 } from 'uuid';
 import { selectorOrders } from '../../utils/constants';
-// import { TIngredient } from "../../services/types/data";
+//  import { getUser, getBurgerData } from '../../utils/state';  //
+import { TIngredient } from "../../utils/types";
 import burgerConstructorStyle from './burger-constructor.module.css';
 
 export const BurgerConstructor = () => {
