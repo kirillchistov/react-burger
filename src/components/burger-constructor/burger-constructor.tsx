@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 //  Блок (правый) с конструктором заказа бургера из выбранных ингредиентов  //
 
-import React, { useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 //  Добавил хуки для работы с DND  - здесь не нужен useDrag  //
@@ -19,6 +19,15 @@ import { selectorOrders } from '../../utils/constants';
 //  import { getUser, getBurgerData } from '../../utils/state';  //
 import { TIngredient } from '../../utils/types';
 import burgerConstructorStyle from './burger-constructor.module.css';
+
+
+interface IBurgerComponentProps {
+  componentData: TIngredient;
+  index: number;
+  bunType?: "top"|"bottom";
+  isLocked: boolean;
+  bunTypeName: string;
+}
 
 export const BurgerConstructor = () => {
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //

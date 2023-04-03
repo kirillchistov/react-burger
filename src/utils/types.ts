@@ -10,8 +10,7 @@ import { TIngredientActions } from '../services/actions/ingredient-actions';
 import { TAuthActions } from '../services/actions/auth-actions';
 import { TOrderActions } from '../services/actions/order-actions';
 
-// 
-
+//  Типизирую actions  //
 type TAppActions = 
   | TIngredientActions
   | TOrderActions
@@ -53,7 +52,7 @@ export type TIngredient = {
 }
 
 //  Типизирую объект заказа  //
-/* export type TOrder = {
+export type TOrder = {
   _id: string;
   number: number;
   name: string;
@@ -61,7 +60,6 @@ export type TIngredient = {
   createdAt: Date;
   ingredients: string[];
 }
-*/
 
 //  Типизирую функцию проверки ответа от сервера - буль  //
 export type TResponse<T> = {
