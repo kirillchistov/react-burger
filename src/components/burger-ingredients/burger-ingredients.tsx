@@ -25,13 +25,12 @@ import BurgerIngredientsStyle from './burger-ingredients.module.css';
      
 export const BurgerIngredients = () => {
 
-  //  const items: TIngredient[] = useSelector(getItems);
-
   //  Теперь получаю состояние из redux, а не из контекста  //
   //  Включаю хуки для получения и отправки данные в redux  //
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным об ингридиентах. PROFIT!  //
-  const ingredients: TIngredient[] = useSelector(getItems);
+  //  Заменил useSelector и useDispatch на хуки  //
+  const items: TIngredient[] = useSelector(getItems);
   const dispatch = useDispatch();
   //  По умолчанию мой ингредиент = булка, без булки нельзя  //
   const [current, setCurrent] = useState('bun');
@@ -43,16 +42,16 @@ export const BurgerIngredients = () => {
 
   //  Фильтрую массив по типу нужного ингредиента  //
   const buns = useMemo(
-    () => ingredients.filter((item) => item.type === 'bun'),
-    [ingredients]
+    () => items.filter((item) => item.type === 'bun'),
+    [items]
   );
   const sauces = useMemo(
-    () => ingredients.filter((item) => item.type === 'sauce'),
-    [ingredients]
+    () => items.filter((item) => item.type === 'sauce'),
+    [items]
   );
   const mains = useMemo(
-    () => ingredients.filter((item) => item.type === 'main'),
-    [ingredients]
+    () => items.filter((item) => item.type === 'main'),
+    [items]
   );
 
   //  Здесь по тренажеру  //
@@ -60,11 +59,11 @@ export const BurgerIngredients = () => {
   const scrollToCategory = () => {
     const topTop = document
       .getElementById('typeContainer')
-      .getBoundingClientRect().top;
-    const bunTop = document.getElementById('bun').getBoundingClientRect().top;
+      ?.getBoundingClientRect().top ?? 0;
+    const bunTop = document.getElementById('bun')?.getBoundingClientRect().top ?? 0;
     const sauceTop = document
       .getElementById('sauce')
-      .getBoundingClientRect().top;
+      ?.getBoundingClientRect().top ?? 0;
 
     //  topTop - верх раздела, butTop - верх 'булок', sauceTop - соусов  //
     if (bunTop + topTop > topTop + 60) {

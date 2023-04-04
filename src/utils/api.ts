@@ -5,12 +5,12 @@ import {BASEURL} from './constants';
 import { getCookie, setCookie, deleteCookie, authTokens } from './auth';
 
 import { 
-  TResponse, 
+  TResponse,
   TAuthResponse, 
   TTokenResponse, 
   TUserResponse,
   TIngredientResponse, 
-  TOrderResponse,
+  // TOrderResponse,
   TFormValues,
  } from './types';
 
@@ -176,7 +176,7 @@ export const getUserProfileApi = async () => {
       },
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
-    }).then(res => checkResponse<TAuthResponse>(res));
+    }).then(res => checkResponse<TUserResponse>(res));
   } catch (error) {
     console.log(`Ошибка getUserProfileApi: ${error}`);
   }
@@ -198,7 +198,7 @@ export const updateUserProfileApi = async ({ email, password, name }:TFormValues
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
       body: JSON.stringify({ email, password, name }),
-    }).then((res) => checkResponse<TUserResponse>(res));
+    })
   } catch (error) {
     console.log(`Ошибка updateUserProfileApi: ${error}`);
   }

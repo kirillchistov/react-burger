@@ -33,18 +33,18 @@ export const IngredientItem = ( { ingredientData } ) => {
   );
   */
   //  Получаю состояние (содержание) заказа из стора redux  //
-  const orderData = useSelector((state) => state.order.orderData);
+  const burgerData = useSelector((state) => state.order.burgerData);
 
   //  Считаю сколько ингредиентов в заказе, булки на 2 //
   const orderCount = useCallback(
     (ingredientData) => {
       const { _id, type } = ingredientData;
-      const ingredientsCount = orderData.filter(
+      const ingredientsCount = burgerData.filter(
         (el) => el._id === _id
       ).length;
       return type === 'bun' ? ingredientsCount * 2 : ingredientsCount;
     },
-    [orderData]
+    [burgerData]
   );
 
   //  Перенес обработку клика по модальному окну в функцию с отправкой состава заказа в стор  //

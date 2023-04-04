@@ -11,7 +11,7 @@ import {
 //  Импортирую типы  //
 import { TIngredient } from '../../utils/types';
 import { AppDispatch } from '../../utils/types';
-import { TIngredientResponse, TResponse } from '../../utils/types';
+//  import { TIngredientResponse, TResponse } from '../../utils/types';
 
 //  Создаю интерфейсы  //
 export interface IGetIngredients {
@@ -37,7 +37,7 @@ export const getIngredientsOK = (
 });
 //  Добавил dispatch для получения результата запроса ингредиентов в API  //
 export const getIngredients = () => {
-  return function (dispatch) {
+  return function (dispatch:AppDispatch) {
     dispatch({
       type: GET_INGREDIENTS_API
     });

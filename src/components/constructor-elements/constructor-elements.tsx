@@ -1,23 +1,31 @@
 //  Компонент элемента/компонента бургера для конструктора заказа  //
 //  Может быть булка bun (верх / низ) или начинка main или соус sauce //
-import React from 'react';
+import React, { FC } from 'react';
 //  Добавил хуки для работы с Redux  //
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../hooks/useDispatch';
 //  Добавил хуки для работы с ReactDND  //
 import { useDrag, useDrop } from 'react-dnd';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
+//  import PropTypes from 'prop-types';
+import { TIngredient } from '../../utils/types';
 //  {ingredientType} from '../../utils/types' пока не нужен  //
-//  Контекст больше не нужен;
 import { MOVE_INGREDIENT } from '../../services/actions/order-actions';
 import ConstructorElementsStyle from './constructor-elements.module.css';
 
-export const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeName, index }) => {
+interface IConstructorElementProps {
+  elementData: TIngredient;
+  index: number;
+  bunType?: 'top'|'bottom';
+  isLocked: boolean;
+  bunTypeName: string;
+}
+
+export const ConstructorElements: FC<IConstructorElementProps> = ({ elementData, bunType, isLocked, bunTypeName, index }) => {
 
   //  Убрал контекст функцию-диспетчер заменил на dispatch  //
   //  Активирую dispatch и ref  //
   const dispatch = useDispatch();
-  const ref = React.useRef(null);
+  const ref = React.useRef<HTMLDivElement>(null);
   
   //  Все элементы, кроме булки, можно перетаскивать  //
   //  Refactor: переименовать функцию, она возвращает компонент, а не буль  //
@@ -26,11 +34,11 @@ export const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeNam
   //  Буду вычитать стоимость элемента при его удалении из заказа  //
   //  Заменил deductPrice на обработчик удаления ингредиента на dispatch - перенес  //
 
-  const onDeductIngredient = (elementDataUid) => {
+  const onDeductIngredient = (elementDataUid: string) => {
     dispatch({ type: 'REMOVE_INGREDIENT', payload: elementDataUid });
   };
 
-  //  Взять из тренажера  //
+  //  Взял из тренажера  //
   const [, dropRef] = useDrop({
     accept: 'ingredientInConstructor',
     collect(monitor) {
@@ -42,20 +50,31 @@ export const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeNam
       if (!ref.current) {
         return;
       }
-      if (item.elementData._uid === elementData._uid) {
+      //  проверяем тип элемента, нужны объекты c полным набором свойств  //
+      //  если элемент не такой, делаю быстрый return  //
+      let typedItem;
+      if (typeof item === 'object') {
+        typedItem = item as { index: number, elementData: (TIngredient & { _uid: string }) };
+      } else { 
         return;
       }
 
-      const dragIndex = item.index;
+      if (typedItem.elementData._uid === elementData._uid) {
+        return;
+      }
+
+      const dragIndex = typedItem.index;
       const hoverIndex = index;
 
       const hoverBoundingRect = ref.current
         ? ref.current.getBoundingClientRect()
         : undefined;
-      const hoverMiddleY =
-        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+      
+      const hoverMiddleY = hoverBoundingRect ?
+        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2 : 0;
       const clientOffset = monitor.getClientOffset();
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      const hoverClientY = clientOffset?.y && hoverBoundingRect 
+        ? clientOffset?.y - hoverBoundingRect.top : 0;
 
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return;
@@ -67,7 +86,7 @@ export const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeNam
       dispatch({
         type: MOVE_INGREDIENT,
         payload: {
-          whichIngredientDroppedUid: item.elementData._uid,
+          whichIngredientDroppedUid: typedItem.elementData._uid,
           onWhichIngredientDroppedUid: elementData._uid,
         },
       });
@@ -100,13 +119,6 @@ export const ConstructorElements = ({ elementData, bunType, isLocked, bunTypeNam
   );
 }; 
 
-//  Здесь есть пропсы, проверяю типизацию  //
-ConstructorElements.propTypes = {
-  elementData: PropTypes.object.isRequired,
-  bunType: PropTypes.string.isRequired,
-  bunTypeName: PropTypes.string.isRequired,
-  isLocked: PropTypes.bool.isRequired,
-  index: PropTypes.number.isRequired,
-};
+//  пропсы заменил на TS-типизацию  //
 
 export default React.memo(ConstructorElements);

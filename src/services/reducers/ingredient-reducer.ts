@@ -6,17 +6,29 @@ import {
   GET_INGREDIENTS_API_FAIL,
   OPEN_INGREDIENT_DETAILS,
   CLOSE_INGREDIENT_DETAILS,
+  TIngredientsActions
 } from '../actions/ingredient-actions';
+
+import { TIngredient } from '../../utils/types';
+
+type TIngredientsState = {
+  items: TIngredient[];
+  itemsRequest: boolean;
+  itemsFailed: boolean;
+};
 
 //  Начальное состояние стора ингредиентов: пустой массив, нет запроса, нет ошибок  //
 const initialIngredientsState = {
-  ingredients: [],
-  ingredientsRequest: false,
-  ingredientsFailed: false,
+  items: [],
+  itemsRequest: false,
+  itemsFailed: false
 };
 
 //  Меняю состояние в сторе в зависимости от типа action: запрос, успех, ошибка  //
-export const ingredientsReducer = (state = initialIngredientsState, action) => {
+export const ingredientsReducer = (
+  state = initialIngredientsState, 
+  action: TIngredientsActions
+):TIngredientsState => {
   switch (action.type) {
     case GET_INGREDIENTS_API: {
       return {

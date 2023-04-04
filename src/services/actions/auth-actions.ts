@@ -127,8 +127,7 @@ export interface IUpdateUserProfileFail {
 }
 
 //  Создаю множественный тип для actions с авторизацией и регой  //
-export type TAuthActions =
-| IRegisterUser
+export type TAuthActions = IRegisterUser
 | IRegisterUserOK
 | IRegisterUserFail
 | ILoginUser
@@ -172,14 +171,14 @@ export const getUserProfileOK = (
   user: TUser
 ): IGetUserProfileOK => ({
   type: GET_USER_PROFILE_API_OK,
-  user,
+  user
 });
 
 export const updateUserProfileOK = (
   user: TUser
 ): IUpdateUserProfileOK => ({
   type: UPDATE_USER_PROFILE_API_OK,
-  user,
+  user
 });
 
 
@@ -298,7 +297,7 @@ export const requestResetCode = ({email}: TFormValues) => {
     dispatch({
       type: PASSWORD_RESET_CODE_API,
     });
-    codeRequestApi(email).then((res) => {
+    codeRequestApi({email}).then((res) => {
       if (res && res.success) {
         dispatch({
           type: PASSWORD_RESET_CODE_API_OK,

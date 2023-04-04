@@ -4,7 +4,7 @@ import {BASEURL} from './constants';
 //  Беру методы для получения токена и рефреш из куки
 import { getCookie, setCookie, deleteCookie, authTokens } from './auth';
 
-import { 
+/* import { 
   TResponse, 
   TAuthResponse, 
   TTokenResponse, 
@@ -12,6 +12,7 @@ import {
   TIngredientResponse, 
   TOrderResponse, 
  } from './constants';
+ */
 
 //  Обрабатываю ответ сервера - возвращаю json или ошибку  //
 const checkResponse = async (res) => res.ok ? res.json() : Promise.reject(res);

@@ -1,22 +1,22 @@
-import { TIngredient, /* TOrder, */ TUser } from '../utils/types';
+import { TIngredient, TOrder, TUser } from '../utils/types';
 
 export const BASEURL = 'https://norma.nomoreparties.space/api';
 export const modalsRoot = document.querySelector('#modals');
-export const selectorOrders = (store) => store.order;
+// export const selectorOrders = (store) => store.order;
 
-
-export const pageUrls = {
-  home: '/',
-  reg: '/register',
-  login: '/login',
-  profile: '/profile',
-  forgot: '/forgot-password',
-  reset: '/reset-password',
-  ingred: '/ingredients',
-  feed: '/feed',
-  orders: '/orders',
-  proforders: '/profile/orders',
-  notfound: '/*',
+export enum pageUrls {
+  home = '/',
+  reg = '/register',
+  login = '/login',
+  profile = '/profile',
+  forgot = '/forgot-password',
+  reset = '/reset-password',
+  ingred = '/ingredients',
+  ingdetails = '/ingredients/:id',
+  feed = '/feed',
+  orders = '/orders',
+  proforders = '/profile/orders',
+  notfound = '/*',
 };
 
 //  Константы роутов  //
@@ -44,5 +44,6 @@ export const CLOSE_INGREDIENT_DETAILS = 'CLOSE_INGREDIENT_DETAILS';
 //  Константы состояния  //
 export const getItems = (state: { ingredients: { items: TIngredient[]; }; }) => state.ingredients.items;
 export const getUser = (state: { auth: { user: TUser|null; }; }) => state.auth.user;
-export const getResetCode = (state: { auth: { gotResetPasswordCode: boolean; }; }) => state.auth.gotResetPasswordCode;
-export const getBurgerData = (state: { burger: { burgerData: TIngredient[]; }; }) => state.burger.burgerData;
+export const getResetCode = (state: { auth: { hasResetCode: boolean; }; }) => state.auth.hasResetCode;
+export const getOrders = (state: { order: { orderData: TOrder[]; }; }) => state.order.orderData;
+export const getBurgerData = (state: { order: { burgerData: TIngredient[]; }; }) => state.order.burgerData;

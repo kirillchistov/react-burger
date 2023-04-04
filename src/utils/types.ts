@@ -11,10 +11,8 @@ import { TAuthActions } from '../services/actions/auth-actions';
 import { TOrderActions } from '../services/actions/order-actions';
 
 //  Типизирую actions  //
-type TAppActions = 
-  | TIngredientActions
-  | TOrderActions
-  | TAuthActions;
+type TAppActions = TIngredientActions | TOrderActions | TAuthActions;
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ActionCreator<
@@ -63,6 +61,7 @@ export type TOrder = {
 
 //  Типизирую функцию проверки ответа от сервера - буль  //
 export type TResponse<T> = {
+  user(user: any): import("../services/actions/auth-actions").IUpdateUserProfileOK;
   success: boolean;
 } & T;
 
