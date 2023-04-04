@@ -18,7 +18,7 @@ import {
 import { ProtectedRouteElement } from './components/protected-route/protected-route';
 import { IngredientDetails } from './components/ingredient-details/ingredient-details';
 import { Modal } from './components/modal/modal';
-import { Order } from "./components/order/order";
+//  import { Order } from "./components/order/order";
 
 
 const App = () => {
@@ -114,6 +114,8 @@ const App = () => {
       {isBackground && (
         <Route path='/ingredients/:id' element={
           <Modal handleClose={() => navigate(-1)} title='Детали ингредиента'>
+            {/* https://github.com/vercel/next.js/issues/42292 */}
+            {/* @ts-expect-error Server Component */}        
             <IngredientDetails />
           </Modal>
         } />

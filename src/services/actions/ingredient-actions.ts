@@ -26,7 +26,7 @@ export interface IGetIngredientsFail {
 }
 
 //  Создаю тип для actions с ингридиентами  //
-export type TIngredientActions = | IGetIngredients | IGetIngredientsOK | IGetIngredientsFail;
+export type TIngredientActions = IGetIngredients | IGetIngredientsOK | IGetIngredientsFail;
 
 //  Типизирую функцию успеха при получении массива ингридиентов  //
 export const getIngredientsOK = (

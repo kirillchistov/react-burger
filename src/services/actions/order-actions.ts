@@ -70,7 +70,7 @@ export const dispatchOrderOK = (
   payload: number
 ): IPostOrderOK => ({
   type: POST_ORDER_API_OK,
-  payload
+  payload,
 });
 
 //  Получение и обновление номера заказа в модальном окне O-Details  //
@@ -81,6 +81,8 @@ export const dispatchOrder = (orderDataID: string[]) => {
     });
     postOrder(orderDataID).then((res) => {
       if (res && res.success) {
+        /* https://github.com/vercel/next.js/issues/42292 */
+        /* @ts-expect-error Server Component */             
         dispatch(dispatchOrderOK(res.order.number));
       } else {
         dispatch({

@@ -259,7 +259,10 @@ export const updateUserProfile = ({ email, password, name }: TFormValues) => {
     });
     updateUserProfileApi({ email, password, name }).then((res) => {
       if (res && res.success) {
-        dispatch(updateUserProfileOK(res.user));
+        dispatch({
+          type: UPDATE_USER_PROFILE_API_OK,
+          payload: res.user,
+        });
       } else {
         dispatch({
           type: UPDATE_USER_PROFILE_API_FAIL,
