@@ -1,7 +1,8 @@
 import { TIngredient, TOrder, TUser } from '../utils/types';
 
 export const BASEURL = 'https://norma.nomoreparties.space/api';
-export const modalsRoot = document.querySelector('#modals');
+export const modalsRoot = document.getElementById('modals');
+export const modalRoot = modalsRoot!;
 // export const selectorOrders = (store) => store.order;
 
 export enum pageUrls {

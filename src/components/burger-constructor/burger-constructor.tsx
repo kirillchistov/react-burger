@@ -11,8 +11,8 @@ import { useSelector } from '../../hooks/useSelector';
 import { useDrop } from 'react-dnd';
 import ConstructorElements from '../constructor-elements/constructor-elements';
 import OrderDetails from '../order-details/order-details';
-import ConstructorTotal from '../constructor-total/constructor-total';
-import { Button, ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
+//  import ConstructorTotal from '../constructor-total/constructor-total';
+import { Button, ConstructorElement, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Modal } from '../modal/modal';
 import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../services/actions/order-actions';
 //  Импортировал actions для работы с ингредиентами в конструкторе заказа  //
@@ -22,16 +22,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { getUser, getBurgerData } from '../../utils/state';
 import { TIngredient } from '../../utils/types';
 import burgerConstructorStyle from './burger-constructor.module.css';
-
-/* 
-interface IBurgerComponentProps {
-  componentData: TIngredient;
-  index: number;
-  bunType?: 'top'|'bottom';
-  isLocked: boolean;
-  bunTypeName: string;
-}
-*/
 
 export const BurgerConstructor: FC = () => {
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
@@ -157,8 +147,11 @@ export const BurgerConstructor: FC = () => {
       </div>
       {ingredientsMidStuff.length > 0 && 
         <div className={`mt-10 ${burgerConstructorStyle.constructor_total}`}>
-          <ConstructorTotal total={totalAmount} />
-        
+          {/* <ConstructorTotal total={totalAmount} /> */}
+          <div className={burgerConstructorStyle.containerTotal}>
+            <p className='mr-2 text text_type_digits-medium'>{totalAmount}</p>
+            <CurrencyIcon type='primary' />
+          </div>    
           <Button type='primary' size='large' htmlType='button' onClick={handleOpenIngredientModal}>Оформить заказ</Button>
         </div>
       }

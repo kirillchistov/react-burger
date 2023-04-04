@@ -67,6 +67,11 @@
   background-color: #8585ad;
 }
 
+.containerTotal {
+  display: flex;
+  align-items: center;
+}
+
 .total {
   margin-right: 32px;
   padding: 0;

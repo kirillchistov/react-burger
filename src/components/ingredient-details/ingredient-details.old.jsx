@@ -1,34 +1,29 @@
 //  Компонент для отображения в модальном окне при клике на ингредиент  //
 //  Хуки react, router-dom и redux  //
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from '../../hooks/useDispatch';
-import { useSelector } from '../../hooks/useSelector';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 //  Action для получения ингридиентов из redux store  //
 import { getIngredients } from '../../services/actions/ingredient-actions';
 //  Компонент КБЖУ свойства ингредиента - вынес в отдельный  //
 import { IngredientNutrition } from '../ingredient-nutrition/ingredient-nutrition';
-import { getItems } from '../../utils/state';
-import { TIngredient } from '../../utils/types';
-
 import ingredientDetailsStyle from './ingredient-details.module.css';
-
 //  Сводный компонент с гридом свойств  //
-const IngredientDetails = () => {
+export const IngredientDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [item, setItem] = useState<TIngredient>();
-  const items = useSelector(getItems);
+  const [item, setItem] = useState(null);
+  const ingredients = useSelector(state => state.ingredients.ingredients);
   //  При монтировании проверяю, есть ли ингредиент с этим id  //
   //  Если нет, перевожу на главную. Если есть, беру из store  //
   //  Если нет вообще ингридиентов отправляю запрос в store  //
   useEffect(
     () => {
-      if (items.length > 0) {
-        const ingredient = items.find((el:TIngredient) => el._id === id);
+      if (ingredients.length > 0) {
+        const ingredient = ingredients.find(el => el._id === id);
         if (!ingredient) {
-          setItem(undefined);
+          setItem(null);
           navigate('/', { replace: true });
         } else {
           setItem(ingredient);
@@ -37,7 +32,7 @@ const IngredientDetails = () => {
         dispatch(getIngredients());
       }
     },
-    [id, items, dispatch, navigate]
+    [id, ingredients, dispatch, navigate]
   );
   //  если есть item, отображаю карточку КБЖУ  //
   if (item) {
@@ -55,4 +50,5 @@ const IngredientDetails = () => {
     );
   }
 };
-export default IngredientDetails;
+//  Типизация не нужна, нет пропсов  //
+export default React.memo(IngredientDetails);
