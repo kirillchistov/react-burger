@@ -5,13 +5,17 @@
     Пример тела запроса в ТЗ
 */
 //  Хуки для redux, навигации, авторизации  //
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+//  import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from '../hooks/useDispatch';
+import { useSelector } from '../hooks/useSelector';
 import { useForm } from '../hooks/useForm';
+
+import { Navigate, useNavigate } from 'react-router-dom';
 import { changePassword } from '../services/actions/auth-actions';
 //  Шапка и компоненты из библиотеки  //
 import { AppHeader } from '../components/app-header/app-header';
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
+import { getResetCode } from '../utils/state'
 //  Стили берем из login  //
 import PasswordStyles from './login.module.css';
 
@@ -20,10 +24,10 @@ export const ResetPasswordPage = () => {
   const dispatch = useDispatch();
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным пользователя. PROFIT!  //
-  const { hasResetCode } = useSelector((state) => state.auth);
+  const hasResetCode = useSelector(getResetCode);
   const { data, handleDataChange,  } = useForm({ password: '', token: '' });
 
-  const submitForgotPassword = (e) => {
+  const submitForgotPassword = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(changePassword(data));
     navigate('/login');
@@ -43,7 +47,7 @@ export const ResetPasswordPage = () => {
           <PasswordInput
             placeholder={'Введите новый пароль'}
             onChange={handleDataChange}
-            value={data.password}
+            value={data.password !== undefined ? data.password : ''}
             name={'password'}
             icon='ShowIcon'
           />
@@ -51,7 +55,7 @@ export const ResetPasswordPage = () => {
             type={'text'}
             placeholder={'Введите код из письма'}
             onChange={handleDataChange}
-            value={data.token}
+            value={data.token !== undefined ? data.token : ''}
             name={'token'}
           />
           <Button htmlType='submit' type='primary' size='medium'>

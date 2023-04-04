@@ -8,7 +8,7 @@
 //  Хуки react, router-dom, redux, useForm  //
 //  import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../hooks/useDispatch';
 import { useForm } from '../hooks/useForm';
 //  Нужна шапка  //
 import { AppHeader } from '../components/app-header/app-header';
@@ -30,13 +30,12 @@ export const LoginPage = () => {
     password: ''
   });
 
-  const submitLogin = (e) => {
+  const submitLogin = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(loginUser(data));
   };
 
 //  const handleChange = (e) => {};  //
-
 
   //  Разметка: шапка, flex-контейнер с grid-формой внутри  //
   return (
@@ -50,12 +49,12 @@ export const LoginPage = () => {
             type={'email'}
             placeholder={'E-mail'}
             onChange={handleDataChange}
-            value={data.email}
+            value={data.email !== undefined ? data.email : ''}
             name={'email'}
           />
           <PasswordInput
             onChange={handleDataChange}
-            value={data.password}
+            value={data.password !== undefined ? data.password : ''}
             name={'password'}
             icon='ShowIcon'
           />

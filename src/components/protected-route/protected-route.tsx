@@ -13,12 +13,12 @@ import { useDispatch } from '../../hooks/useDispatch';
 import { authTokens } from '../../utils/auth';
 //  Нужны экшены профиля и токена  //
 import { getUserProfile, getAccessToken } from '../../services/actions/auth-actions';
-//  Есть пропсы, нужна типизация  //
 
 interface IProtectedRoute {
   element: ReactElement;
   showWhen: string;
 }
+
 export const ProtectedRouteElement: FC<IProtectedRoute> = ({ element, showWhen }) => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -45,7 +45,6 @@ export const ProtectedRouteElement: FC<IProtectedRoute> = ({ element, showWhen }
     }
   }, [accessToken, dispatch, refreshToken, user]);
 
-  //  
   const render = () => {
     let elementToRender = element;
     switch (showWhen) {

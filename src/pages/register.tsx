@@ -9,7 +9,7 @@
 'accessToken': 'Bearer ...', 'refreshToken': '' }
 */
 //  Нужна шапка, хуки  //
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../hooks/useDispatch';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
 import { AppHeader } from '../components/app-header/app-header';
@@ -31,7 +31,7 @@ export const RegisterPage = () => {
   });
 
   //  Обработка нажатия на кнопку регистрации  //
-  const submitRegisterUser = (e) => {
+  const submitRegisterUser = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(registerUser(data));
   };
@@ -57,20 +57,19 @@ export const RegisterPage = () => {
             type={'text'}
             placeholder={'Имя'}
             onChange={handleDataChange}
-            value={data.name}
+            value={data.name !== undefined ? data.name : ''}
             name={'name'}
           />
           <Input
             type={'email'}
             placeholder={'E-mail'}
             onChange={handleDataChange}
-            value={data.email}
+            value={data.email !== undefined ? data.email : ''}
             name={'email'}
           />
           <PasswordInput
-            type={'password'}
             onChange={handleDataChange}
-            value={data.password}
+            value={data.password !== undefined ? data.password : ''}
             name={'password'}
             icon='ShowIcon'
           />

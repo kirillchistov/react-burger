@@ -7,8 +7,10 @@
 5 позже) Ссылка «Выход» пока ничего не делает. Потом logout 
 */
 //  хуки для состояний и обновления полей ввода формы  //
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useDispatch } from '../hooks/useDispatch';
+import { useSelector } from '../hooks/useSelector';
 import { useForm } from '../hooks/useForm';
 //  шапка и левая навигация профиля  //
 import { AppHeader } from '../components/app-header/app-header';
@@ -31,19 +33,19 @@ export const ProfilePage = () => {
 
   //  Задаю начальные значения для профиля  //
   const { data, setData } = useForm({
-    email: user.email,
+    email: user?.email,
     password: passwordValue,
-    name: user.name,
+    name: user?.name,
   });
 
   //  Обрабатываю изменения в поле ввода  //
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, [e.target.name]: e.target.value });
     setIsChanged(true);
   };
 
   //  Обрабатываю отправку формы  //
-  const submitForm = (e) => {
+  const submitForm = () => {
     dispatch(
       updateUserProfile({
         email: data.email,
@@ -78,7 +80,7 @@ export const ProfilePage = () => {
               type={'text'}
               placeholder={'Имя'}
               onChange={onChange}
-              value={data.name}
+              value={data.name !== undefined ? data.name : ''}
               name={'name'}
               icon='EditIcon'
             />
@@ -86,14 +88,13 @@ export const ProfilePage = () => {
               type={'email'}
               placeholder={'Логин'}
               onChange={onChange}
-              value={data.email}
+              value={data.email !== undefined ? data.email : ''}
               name={'email'}
               icon='EditIcon'
             />
             <PasswordInput
-              type={'password'}
               onChange={onChange}
-              value={data.password}
+              value={data.password !== undefined ? data.password : ''}
               name={'password'}
               icon='EditIcon'
             />

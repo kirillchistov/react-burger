@@ -8,6 +8,7 @@ import { ProfileNav } from '../components/profile-nav/profile-nav';
 import OrdersPageStyle from './profile.module.css';
 //  Здесь предстоит добавить функционал отображения заказов и подсветки меню  //
 //  Пока в разметке просто шапка и див с табом и подписью  //
+
 export const OrdersPage = () => {
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>

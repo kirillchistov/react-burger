@@ -8,7 +8,6 @@
 При прямом попадании на этот маршрут, открывается детальная страница ингредиента - как в макете
 Обратите внимание, что пользователь попадает на маршрут /ingredients/:id с маршрута конструктора бургера — /. 
 */
-import React from 'react';
 //  Импортирую шапку и детали ингридиента  //
 import { AppHeader } from '../components/app-header/app-header';
 import { IngredientDetails } from '../components/ingredient-details/ingredient-details';
@@ -17,17 +16,17 @@ import IngredientStyle from './login.module.css';
 
 export const IngredientPage = () => {
   //  В разметке пока обертка + шапка + Див с заголовком, внутри I-Details  //
-  if (IngredientDetails !== null) {
-    return (
-      <div className='pt-10 pr-10 pb-10 pl-10'>
-        <AppHeader />
-        <div className={IngredientStyle.container}>
-          <h1 className='text text_type_main-large'>Детали ингредиента</h1>
-          <><IngredientDetails /></>
-        </div>
+  return (
+    <div className='pt-10 pr-10 pb-10 pl-10'>
+      <AppHeader />
+      <div className={IngredientStyle.container}>
+        <h1 className='text text_type_main-large'>Детали ингредиента</h1>
+        {/* https://github.com/vercel/next.js/issues/42292 */}
+        {/* @ts-expect-error Server Component */}        
+        <IngredientDetails />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 //  нет пропсов, нет типизации  //

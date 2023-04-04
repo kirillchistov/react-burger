@@ -14,7 +14,7 @@ import { TIngredient } from '../../utils/types';
 import ingredientDetailsStyle from './ingredient-details.module.css';
 
 //  Сводный компонент с гридом свойств  //
-const IngredientDetails = () => {
+export const IngredientDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -42,17 +42,19 @@ const IngredientDetails = () => {
   //  если есть item, отображаю карточку КБЖУ  //
   if (item) {
     return (
-      <div className={ingredientDetailsStyle.general}>
-        <img className={ingredientDetailsStyle.image} src={item.image} alt={item.name} />
-        <p className="mt-4 mb-8 text text_type_main-medium">{item.name}</p>
-        <div className={ingredientDetailsStyle.details}>
-          <IngredientNutrition type={'Калории, ккал'} amount={item.calories} />
-          <IngredientNutrition type={'Белки, г'} amount={item.proteins} />
-          <IngredientNutrition type={'Жиры, г'} amount={item.fat} />
-          <IngredientNutrition type={'Углеводы, г'} amount={item.carbohydrates} />
+      <>
+        <div className={ingredientDetailsStyle.general}>
+          <img className={ingredientDetailsStyle.image} src={item.image} alt={item.name} />
+          <p className="mt-4 mb-8 text text_type_main-medium">{item.name}</p>
+          <div className={ingredientDetailsStyle.details}>
+            <IngredientNutrition type={'Калории, ккал'} amount={item.calories} />
+            <IngredientNutrition type={'Белки, г'} amount={item.proteins} />
+            <IngredientNutrition type={'Жиры, г'} amount={item.fat} />
+            <IngredientNutrition type={'Углеводы, г'} amount={item.carbohydrates} />
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 };
-export default IngredientDetails;
+//  export default IngredientDetails;
