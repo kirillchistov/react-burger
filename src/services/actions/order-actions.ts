@@ -1,23 +1,22 @@
 //  Начальные actions для обработки заказов O-DETAILS  //
-
 import { postOrder } from '../../utils/api';
-import { TIngredient } from '../../utils/types';
-import { AppDispatch } from '../../utils/types';
+import { TIngredient, AppDispatch } from '../../utils/types';
+
+//  Все константы экспортирую теперь из /utils/constants  //
+import {
+  ADD_INGREDIENT,
+  MOVE_INGREDIENT,
+  REMOVE_INGREDIENT,
+  ADD_BUN,
+  POST_ORDER_API,
+  POST_ORDER_API_OK,
+  POST_ORDER_API_FAIL,
+  DELETE_ORDER
+} from '../../utils/constants';
 
 //  Все константы экспортирую, потом, видимо, вынесу в отдельный файл  //
-//  Действия с ингредиентами в конструкторе: CruD  //
-//  Для булки только добавление - без булки нельзя собрать бургер, к сож  //
-export const ADD_INGREDIENT = 'ADD_INGREDIENT';
-export const MOVE_INGREDIENT = 'MOVE_INGREDIENT';
-export const REMOVE_INGREDIENT = 'REMOVE_INGREDIENT';
-export const ADD_BUN = 'ADD_BUN';
 
-//  Действия с заказом бургера: Отправка, ОК или ошибка, удаление  //
-export const POST_ORDER_API = 'POST_ORDER_API';
-export const POST_ORDER_API_OK = 'POST_ORDER_API_OK';
-export const POST_ORDER_API_FAIL = 'POST_ORDER_API_FAIL';
-export const DELETE_ORDER = 'DELETE_ORDER';
-
+//  Интерфейсы и типы для типизации actions  //
 export interface IAddIngredient {
   readonly type: typeof ADD_INGREDIENT;
   payload: TIngredient;
@@ -74,15 +73,16 @@ export const dispatchOrderOK = (
 });
 
 //  Получение и обновление номера заказа в модальном окне O-Details  //
+//  Была ошибка - пока исправил, обойдусь без ts-expect-error  //
+  /* https://github.com/vercel/next.js/issues/42292 */
+
 export const dispatchOrder = (orderDataID: string[]) => {
-  return function (dispatch:AppDispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: POST_ORDER_API
     });
     postOrder(orderDataID).then((res) => {
       if (res && res.success) {
-        /* https://github.com/vercel/next.js/issues/42292 */
-        /* @ts-expect-error Server Component */             
         dispatch(dispatchOrderOK(res.order.number));
       } else {
         dispatch({

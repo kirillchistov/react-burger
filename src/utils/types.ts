@@ -49,6 +49,16 @@ export type TIngredient = {
   carbohydrates: number;
 }
 
+//  Типизирую список ингредиентов  //
+
+export type TIngredients = {
+  ingredients: {
+    ingredients: TIngredient[];
+    ingredientsRequest: boolean;
+    ingredientsFailed: boolean;
+  };
+};
+
 //  Типизирую объект заказа  //
 export type TOrder = {
   _id: string;
@@ -61,7 +71,7 @@ export type TOrder = {
 
 //  Типизирую функцию проверки ответа от сервера - буль  //
 export type TResponse<T> = {
-  user(user: any): import("../services/actions/auth-actions").IUpdateUserProfileOK;
+  user(user: any): import('../services/actions/auth-actions').IUpdateUserProfileOK;
   success: boolean;
 } & T;
 

@@ -21,8 +21,6 @@ export const IngredientPage = () => {
       <AppHeader />
       <div className={IngredientStyle.container}>
         <h1 className='text text_type_main-large'>Детали ингредиента</h1>
-        {/* https://github.com/vercel/next.js/issues/42292 */}
-        {/* @ts-expect-error Server Component */}        
         <IngredientDetails />
       </div>
     </div>

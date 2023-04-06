@@ -25,7 +25,7 @@ import {
   LOGOUT_USER_API,
   LOGOUT_USER_API_OK,
   LOGOUT_USER_API_FAIL,
-} from '../actions/auth-actions';
+} from '../../utils/constants';
 
 //  Описываю начальное состояние для данных о пользователе  //
 const initialState = {

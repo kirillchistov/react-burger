@@ -12,42 +12,35 @@ import {
 } from '../../utils/api';
 import { setCookies, deleteCookie } from '../../utils/auth';
 import { TFormValues, TUser, AppDispatch } from '../../utils/types';
-
-export const LOGIN_USER_API = 'LOGIN_USER_API';
-export const LOGIN_USER_API_OK = 'LOGIN_USER_API_OK';
-export const LOGIN_USER_API_FAIL = 'LOGIN_USER_API_FAIL';
-
-export const REGISTER_USER_API = 'REGISTER_USER_API';
-export const REGISTER_USER_API_OK = 'REGISTER_USER_API_OK';
-export const REGISTER_USER_API_FAIL = 'REGISTER_USER_API_FAIL';
-
-export const GET_USER_PROFILE_API = 'GET_USER_PROFILE_API';
-export const GET_USER_PROFILE_API_OK = 'GET_USER_PROFILE_API_OK';
-export const GET_USER_PROFILE_API_FAIL = 'GET_USER_PROFILE_API_FAIL';
-
-export const UPDATE_USER_PROFILE_API = 'UPDATE_USER_PROFILE_API';
-export const UPDATE_USER_PROFILE_API_OK = 'UPDATE_USER_PROFILE_API_OK';
-export const UPDATE_USER_PROFILE_API_FAIL = 'UPDATE_USER_PROFILE_API_FAIL';
-
-export const ACCESS_TOKEN_API = 'ACCESS_TOKEN_API';
-export const ACCESS_TOKEN_API_OK = 'ACCESS_TOKEN_API_OK';
-export const ACCESS_TOKEN_API_FAIL = 'ACCESS_TOKEN_API_FAIL';
-
-export const REFRESH_TOKEN_API = 'REFRESH_TOKEN_API';
-export const REFRESH_TOKEN_API_OK = 'REFRESH_TOKEN_API_OK';
-export const REFRESH_TOKEN_API_FAIL = 'REFRESH_TOKEN_API_FAIL';
-
-export const PASSWORD_RESET_API = 'PASSWORD_RESET_API';
-export const PASSWORD_RESET_API_OK = 'PASSWORD_RESET_API_OK';
-export const PASSWORD_RESET_API_FAIL = 'PASSWORD_RESET_API_FAIL';
-
-export const PASSWORD_RESET_CODE_API = 'PASSWORD_RESET_CODE_API';
-export const PASSWORD_RESET_CODE_API_OK = 'PASSWORD_RESET_CODE_API_OK';
-export const PASSWORD_RESET_CODE_API_FAIL = 'PASSWORD_RESET_CODE_API_FAIL';
-
-export const LOGOUT_USER_API = 'LOGOUT_USER_API';
-export const LOGOUT_USER_API_OK = 'LOGOUT_USER_API_OK';
-export const LOGOUT_USER_API_FAIL = 'LOGOUT_USER_API_FAIL';
+import {
+  LOGIN_USER_API,
+  LOGIN_USER_API_OK,
+  LOGIN_USER_API_FAIL,
+  REGISTER_USER_API,
+  REGISTER_USER_API_OK,
+  REGISTER_USER_API_FAIL,
+  GET_USER_PROFILE_API,
+  GET_USER_PROFILE_API_OK,
+  GET_USER_PROFILE_API_FAIL,
+  UPDATE_USER_PROFILE_API,
+  UPDATE_USER_PROFILE_API_OK,
+  UPDATE_USER_PROFILE_API_FAIL,
+//  ACCESS_TOKEN_API,
+//  ACCESS_TOKEN_API_OK,
+//  ACCESS_TOKEN_API_FAIL,
+  REFRESH_TOKEN_API,
+  REFRESH_TOKEN_API_OK,
+  REFRESH_TOKEN_API_FAIL,
+  PASSWORD_RESET_API,
+  PASSWORD_RESET_API_OK,
+  PASSWORD_RESET_API_FAIL,
+  PASSWORD_RESET_CODE_API,
+  PASSWORD_RESET_CODE_API_OK,
+  PASSWORD_RESET_CODE_API_FAIL,
+  LOGOUT_USER_API,
+  LOGOUT_USER_API_OK,
+  LOGOUT_USER_API_FAIL
+} from '../../utils/constants';
 
 export interface IRegisterUser {
   readonly type: typeof REGISTER_USER_API;
@@ -181,8 +174,7 @@ export const updateUserProfileOK = (
   user
 });
 
-
-//  Action логина нового пользователя - добавить propTypes? //
+//  Action логина нового пользователя //
 //  accessToken для внутренних запросов — получения / обновления данных о пользователе  //
 //  Второй токен — refreshToken (если первый протух) — сохраняю в куки  //
 //  Рефреш-токен для выхода из системы и для нового accessToken, если просрочился  //

@@ -9,8 +9,7 @@ import {
 } from '../../utils/constants';
 
 //  Импортирую типы  //
-import { TIngredient } from '../../utils/types';
-import { AppDispatch } from '../../utils/types';
+import { TIngredient, AppDispatch } from '../../utils/types';
 //  import { TIngredientResponse, TResponse } from '../../utils/types';
 
 //  Создаю интерфейсы  //
@@ -36,16 +35,18 @@ export const getIngredientsOK = (
   items,
 });
 //  Добавил dispatch для получения результата запроса ингредиентов в API  //
-export const getIngredients = () => {
-  return function (dispatch:AppDispatch) {
+export const getIngredients = () => (dispatch: AppDispatch) => {
     dispatch({
       type: GET_INGREDIENTS_API
     });
-    fetchIngredients().then((res) => {
+    return fetchIngredients().then((res) => {
       if (res && res.success) {
+//         console.log('fetchI: ', res);
+//         console.log('fetchI: ', res?.data);
+
         dispatch({
           type: GET_INGREDIENTS_API_OK,
-          ingredients: res.data
+          items: res.data
         });
       } else {
         dispatch({
@@ -53,5 +54,4 @@ export const getIngredients = () => {
         });
       }
     });
-  };
 };

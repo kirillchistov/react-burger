@@ -8,8 +8,7 @@ import { useDrag, useDrop } from 'react-dnd';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 //  import PropTypes from 'prop-types';
 import { TIngredient } from '../../utils/types';
-//  {ingredientType} from '../../utils/types' пока не нужен  //
-import { MOVE_INGREDIENT } from '../../services/actions/order-actions';
+import { MOVE_INGREDIENT } from '../../utils/constants';
 import ConstructorElementsStyle from './constructor-elements.module.css';
 
 interface IConstructorElementProps {

@@ -6,20 +6,21 @@
 //  Затем в разметку вставляем карточки ингредиентов по типам  //
 //  Убрать все инлайн стили, добавить отступы, убрать SelectTab в отд.компонент  //
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 //  Добавил хуки для навигации по каталогу ингридиентов и пр.  //
 //  import { useInView } from 'react-intersection-observer';
 //  Добавил хуки для работы с Redux  //
-//  import { useSelector, useDispatch } from 'react-redux';  //
-import { useDispatch  } from '../../hooks/useDispatch';
-import { useSelector  } from '../../hooks/useSelector';
+import { useSelector } from 'react-redux';
+//  import { useSelector } from 'react-redux';
+//  import { useDispatch  } from '../../hooks/useDispatch';
+//  import { useSelector  } from '../../hooks/useSelector';
 //  Modal, IngredientDetails и IngredientPrice теперь в IngredientItem  //
 //  IngredientItem теперь вложен в IngredientCategory для навигации  //
 
 import { IngredientCategory } from '../ingredient-category/ingredient-category';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
-import { getIngredients } from '../../services/actions/ingredient-actions';
-import { getItems } from '../../utils/state';
+//  import { getIngredients } from '../../services/actions/ingredient-actions';
+//  import { getItems } from '../../utils/state';
 import { TIngredient } from '../../utils/types';
 import BurgerIngredientsStyle from './burger-ingredients.module.css';
      
@@ -30,28 +31,30 @@ export const BurgerIngredients = () => {
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным об ингридиентах. PROFIT!  //
   //  Заменил useSelector и useDispatch на хуки  //
-  const items: TIngredient[] = useSelector(getItems);
-  const dispatch = useDispatch();
+  const { items: ingredients } = useSelector((state: any) => state.ingredients);
+  // const ingredients: TIngredient[] = useSelector(getItems);
+  //  console.log(ingredients);
+  //  const dispatch = useDispatch();
   //  По умолчанию мой ингредиент = булка, без булки нельзя  //
   const [current, setCurrent] = useState('bun');
   
   //  При монтировании получаем список ингредиентов  //
-  useEffect(() => {
-    dispatch(getIngredients());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getIngredients());
+  // }, []);
 
   //  Фильтрую массив по типу нужного ингредиента  //
   const buns = useMemo(
-    () => items.filter((item) => item.type === 'bun'),
-    [items]
+    () => ingredients?.filter((item: TIngredient) => item.type === 'bun'),
+    [ingredients]
   );
   const sauces = useMemo(
-    () => items.filter((item) => item.type === 'sauce'),
-    [items]
+    () => ingredients?.filter((item: TIngredient) => item.type === 'sauce'),
+    [ingredients]
   );
   const mains = useMemo(
-    () => items.filter((item) => item.type === 'main'),
-    [items]
+    () => ingredients?.filter((item: TIngredient) => item.type === 'main'),
+    [ingredients]
   );
 
   //  Здесь по тренажеру  //
@@ -97,7 +100,5 @@ export const BurgerIngredients = () => {
     </section>
   );
 }
-
-//  propTypes и типизация не нужны, нет пропсов  //
 
 export default React.memo(BurgerIngredients);

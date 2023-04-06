@@ -18,7 +18,7 @@ import {
 import { ProtectedRouteElement } from './components/protected-route/protected-route';
 import { IngredientDetails } from './components/ingredient-details/ingredient-details';
 import { Modal } from './components/modal/modal';
-import { Order } from "./components/order/order";
+//  import { Order } from './components/order/order';
 
 
 const App = () => {

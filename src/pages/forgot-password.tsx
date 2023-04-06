@@ -48,7 +48,7 @@ export const ForgotPasswordPage = () => {
             type={'email'}
             placeholder={'Укажите e-mail'}
             onChange={handleDataChange}
-            value={data.email !== undefined ? data.email : ""}
+            value={data.email !== undefined ? data.email : ''}
             name={'email'}
           />
           <Button htmlType='submit' type='primary' size='medium'>

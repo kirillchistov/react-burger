@@ -14,11 +14,11 @@ import OrderDetails from '../order-details/order-details';
 //  import ConstructorTotal from '../constructor-total/constructor-total';
 import { Button, ConstructorElement, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Modal } from '../modal/modal';
-import { dispatchOrder, ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../services/actions/order-actions';
+import { dispatchOrder } from '../../services/actions/order-actions';
 //  Импортировал actions для работы с ингредиентами в конструкторе заказа  //
 //  Добавил универсальный генератор уникальных идентификаторов для элементов без id  //
 import { v4 as uuidv4 } from 'uuid';
-//  import { selectorOrders } from '../../utils/constants';  //
+import { ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../utils/constants';  //
 import { getUser, getBurgerData } from '../../utils/state';
 import { TIngredient } from '../../utils/types';
 import burgerConstructorStyle from './burger-constructor.module.css';

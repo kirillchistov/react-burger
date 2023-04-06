@@ -9,7 +9,7 @@ import {
   POST_ORDER_API_OK,
   POST_ORDER_API_FAIL,
   DELETE_ORDER
-} from '../actions/order-actions';
+} from '../../utils/constants';
 
 //  Начальное состояние заказа: пустой массив, null номер, нет запроса и ошибок  //
 const initialOrderState = {

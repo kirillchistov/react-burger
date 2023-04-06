@@ -33,7 +33,7 @@ export const Modal: FC<IModalProps> = ( {children, handleClose, title} ) => {
   }, [handleClose]);
 
 //  Пришлось делать non-null assertion  //
-//  const modalsRoot = document.getElementById("modals"); //
+//  const modalsRoot = document.getElementById('modals'); //
   
 //  Вначале рисую оверлей, поверх него размещаю окно  //
 //  Чтобы вставить модалку мимо основного корня, сделал в index #modals  //

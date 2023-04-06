@@ -1,7 +1,8 @@
 //  Вернул app.jsx в корень как разводяющую с роутингом по остальным  //
 //  Здесь добавил все для роутинга  //
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-
+// import { LOGINURL, REGURL, PROFILEURL, HOMEURL, FEEDURL, PROFILEORDERSURL,  } from './utils/constants';
+import { useDispatch } from './hooks/useDispatch';
 //  Импортирую все странички из разводящего index файла //
 import {
   RegisterPage,
@@ -17,8 +18,10 @@ import {
 } from './pages';
 import { ProtectedRouteElement } from './components/protected-route/protected-route';
 import { IngredientDetails } from './components/ingredient-details/ingredient-details';
+import { getIngredients } from './services/actions/ingredient-actions';
 import { Modal } from './components/modal/modal';
-//  import { Order } from "./components/order/order";
+import { useEffect } from 'react';
+//  import { Order } from './components/order/order';
 
 
 const App = () => {
@@ -37,6 +40,12 @@ const App = () => {
 */
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getIngredients());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   //  Смотрю как открывают ингридиент и показываю модалку или страницу  //
   const isBackground = location.state && location.state.ingredientModal;
@@ -114,8 +123,6 @@ const App = () => {
       {isBackground && (
         <Route path='/ingredients/:id' element={
           <Modal handleClose={() => navigate(-1)} title='Детали ингредиента'>
-            {/* https://github.com/vercel/next.js/issues/42292 */}
-            {/* @ts-expect-error Server Component */}        
             <IngredientDetails />
           </Modal>
         } />

@@ -10,7 +10,7 @@ import {
   TTokenResponse, 
   TUserResponse,
   TIngredientResponse, 
-  // TOrderResponse,
+  TOrderResponse,
   TFormValues,
  } from './types';
 
@@ -37,8 +37,8 @@ export type TServerResponse<T> = {
 } & T;
 
 //  Получаю ингредиенты с сервера и записываю в массив  //
-export const fetchIngredients = async () => {
-  return await fetch(`${BASEURL}/ingredients`)
+export const fetchIngredients = () => {
+  return fetch(`${BASEURL}/ingredients`)
   .then((res) => checkResponse<TIngredientResponse>(res));
 }
 
@@ -96,29 +96,6 @@ export const fetchWithRefresh = async <T>(url:string, options:RequestInit) => {
     }
   }
 }
-
-/*
-export const fetchWithRefresh = async (url, options) => {
-  try {
-    const res = await fetch(url, options);
-    return await checkResponse(res);
-  } catch ({message, statusCode}) {
-    if (message === 'jwt expired') {
-      const refreshData = await refreshToken();
-      if (!refreshData.success) {
-        Promise.reject(refreshData);
-      }
-      setCookie('accessToken', refreshData.accessToken.split('Bearer ')[1]);
-      setCookie('refreshToken', refreshData.refreshToken);
-      options.headers.authorization = refreshData.accessToken;
-      const res = await fetch(url, options);
-      return await checkResponse(res);
-    } else {
-      return Promise.reject(message);
-    }
-  }
-};
-*/
 
 //  Блок методов для авторизации и обработки токенов - как в тренажере  //
 //  Отправляю пост-запрос с данными для регистрации на сервер с учетом cookie  //
@@ -229,7 +206,7 @@ export const accessTokenApi = async (refreshToken:string|undefined) => {
 export const postOrder = async (ingredientsID: string[]) => {
   try {
     const { accessToken } = authTokens();
-    return await fetchWithRefresh(`${BASEURL}/orders`, {
+    return await fetch(`${BASEURL}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -237,8 +214,8 @@ export const postOrder = async (ingredientsID: string[]) => {
       },   
       body: JSON.stringify({
         ingredients: ingredientsID
-      })   
-    })
+      }),
+    }).then(res => checkResponse<TOrderResponse>(res));
     //  Возвращаем номер заказа в createOrder в конструкторе  //
   } catch (error) {
     console.log(`Ошибка отправки заказа: ${error}`);

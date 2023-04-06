@@ -39,7 +39,7 @@ export const IngredientDetails = () => {
     return (
       <div className={ingredientDetailsStyle.general}>
         <img className={ingredientDetailsStyle.image} src={item.image} alt={item.name} />
-        <p className="mt-4 mb-8 text text_type_main-medium">{item.name}</p>
+        <p className='mt-4 mb-8 text text_type_main-medium'>{item.name}</p>
         <div className={ingredientDetailsStyle.details}>
           <IngredientNutrition type={'Калории, ккал'} amount={item.calories} />
           <IngredientNutrition type={'Белки, г'} amount={item.proteins} />

@@ -1,10 +1,14 @@
-import { TIngredient, TOrder, TUser } from '../utils/types';
+//  Вынес все типы в отдельную функцию /utils/types  //
 
 export const BASEURL = 'https://norma.nomoreparties.space/api';
+
+//  Здесь защищаюсь от null значения через прокси-переменную  //
 export const modalsRoot = document.getElementById('modals');
 export const modalRoot = modalsRoot!;
-// export const selectorOrders = (store) => store.order;
+//  Селектор вынес в функцию /utils/state, но как-то криво  //
+//  selectorOrders надо переделать //
 
+//  экспериментирую с enum, пока не использую в таком виде  //
 export enum pageUrls {
   home = '/',
   reg = '/register',
@@ -33,18 +37,58 @@ export const ORDERSURL = '/orders';
 export const PROFILEORDERSURL = '/profile/orders';
 export const NOTFOUNDURL = '/*';
 
-//  Получение списка ингредиентов от API используется в B-I и  //
+//  Константы для API ингредиентов  //
 export const GET_INGREDIENTS_API = 'GET_INGREDIENTS_API';
 export const GET_INGREDIENTS_API_OK = 'GET_INGREDIENTS_API_OK';
 export const GET_INGREDIENTS_API_FAIL = 'GET_INGREDIENTS_API_FAIL';
 
-//  Добавление, удаление данных о просматриваемом ингредиенте (попап с I-Details)  //
+export const ADD_INGREDIENT = 'ADD_INGREDIENT';
+export const MOVE_INGREDIENT = 'MOVE_INGREDIENT';
+export const REMOVE_INGREDIENT = 'REMOVE_INGREDIENT';
+export const ADD_BUN = 'ADD_BUN';
+
+//  Константы для просмотра данных об ингредиенте (попап и страница)  //
 export const OPEN_INGREDIENT_DETAILS = 'OPEN_INGREDIENT_DETAILS';
 export const CLOSE_INGREDIENT_DETAILS = 'CLOSE_INGREDIENT_DETAILS';
 
-//  Константы состояния  //
-export const getItems = (state: { ingredients: { items: TIngredient[]; }; }) => state.ingredients.items;
-export const getUser = (state: { auth: { user: TUser|null; }; }) => state.auth.user;
-export const getResetCode = (state: { auth: { hasResetCode: boolean; }; }) => state.auth.hasResetCode;
-export const getOrders = (state: { order: { orderData: TOrder[]; }; }) => state.order.orderData;
-export const getBurgerData = (state: { order: { burgerData: TIngredient[]; }; }) => state.order.burgerData;
+//  Действия с заказом бургера: Отправка, ОК или ошибка, удаление  //
+export const POST_ORDER_API = 'POST_ORDER_API';
+export const POST_ORDER_API_OK = 'POST_ORDER_API_OK';
+export const POST_ORDER_API_FAIL = 'POST_ORDER_API_FAIL';
+export const DELETE_ORDER = 'DELETE_ORDER';
+
+//  Константы для API авторизации, регистрации и профиля  //
+export const LOGIN_USER_API = 'LOGIN_USER_API';
+export const LOGIN_USER_API_OK = 'LOGIN_USER_API_OK';
+export const LOGIN_USER_API_FAIL = 'LOGIN_USER_API_FAIL';
+export const REGISTER_USER_API = 'REGISTER_USER_API';
+export const REGISTER_USER_API_OK = 'REGISTER_USER_API_OK';
+export const REGISTER_USER_API_FAIL = 'REGISTER_USER_API_FAIL';
+export const GET_USER_PROFILE_API = 'GET_USER_PROFILE_API';
+export const GET_USER_PROFILE_API_OK = 'GET_USER_PROFILE_API_OK';
+export const GET_USER_PROFILE_API_FAIL = 'GET_USER_PROFILE_API_FAIL';
+export const UPDATE_USER_PROFILE_API = 'UPDATE_USER_PROFILE_API';
+export const UPDATE_USER_PROFILE_API_OK = 'UPDATE_USER_PROFILE_API_OK';
+export const UPDATE_USER_PROFILE_API_FAIL = 'UPDATE_USER_PROFILE_API_FAIL';
+export const ACCESS_TOKEN_API = 'ACCESS_TOKEN_API';
+export const ACCESS_TOKEN_API_OK = 'ACCESS_TOKEN_API_OK';
+export const ACCESS_TOKEN_API_FAIL = 'ACCESS_TOKEN_API_FAIL';
+export const REFRESH_TOKEN_API = 'REFRESH_TOKEN_API';
+export const REFRESH_TOKEN_API_OK = 'REFRESH_TOKEN_API_OK';
+export const REFRESH_TOKEN_API_FAIL = 'REFRESH_TOKEN_API_FAIL';
+export const PASSWORD_RESET_API = 'PASSWORD_RESET_API';
+export const PASSWORD_RESET_API_OK = 'PASSWORD_RESET_API_OK';
+export const PASSWORD_RESET_API_FAIL = 'PASSWORD_RESET_API_FAIL';
+export const PASSWORD_RESET_CODE_API = 'PASSWORD_RESET_CODE_API';
+export const PASSWORD_RESET_CODE_API_OK = 'PASSWORD_RESET_CODE_API_OK';
+export const PASSWORD_RESET_CODE_API_FAIL = 'PASSWORD_RESET_CODE_API_FAIL';
+export const LOGOUT_USER_API = 'LOGOUT_USER_API';
+export const LOGOUT_USER_API_OK = 'LOGOUT_USER_API_OK';
+export const LOGOUT_USER_API_FAIL = 'LOGOUT_USER_API_FAIL';
+
+//  Константы состояния вынес в отдельную /utils/state  //
+// export const getItems = (state: { ingredients: { items: TIngredient[]; }; }) => state.ingredients.items;
+// export const getUser = (state: { auth: { user: TUser|null; }; }) => state.auth.user;
+// export const getResetCode = (state: { auth: { hasResetCode: boolean; }; }) => state.auth.hasResetCode;
+// export const getOrders = (state: { order: { orderData: TOrder[]; }; }) => state.order.orderData;
+// export const getBurgerData = (state: { order: { burgerData: TIngredient[]; }; }) => state.order.burgerData;

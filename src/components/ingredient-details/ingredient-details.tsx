@@ -1,14 +1,14 @@
 //  Компонент для отображения в модальном окне при клике на ингредиент  //
 //  Хуки react, router-dom и redux  //
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from '../../hooks/useDispatch';
+//  import { useDispatch } from '../../hooks/useDispatch';
 import { useSelector } from '../../hooks/useSelector';
 import { useNavigate, useParams } from 'react-router-dom';
 //  Action для получения ингридиентов из redux store  //
-import { getIngredients } from '../../services/actions/ingredient-actions';
+//  import { getIngredients } from '../../services/actions/ingredient-actions';
 //  Компонент КБЖУ свойства ингредиента - вынес в отдельный  //
 import { IngredientNutrition } from '../ingredient-nutrition/ingredient-nutrition';
-import { getItems } from '../../utils/state';
+// import { getItems } from '../../utils/state';
 import { TIngredient } from '../../utils/types';
 
 import ingredientDetailsStyle from './ingredient-details.module.css';
@@ -16,10 +16,11 @@ import ingredientDetailsStyle from './ingredient-details.module.css';
 //  Сводный компонент с гридом свойств  //
 export const IngredientDetails = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  //  const dispatch = useDispatch();
   const { id } = useParams();
+  const { items } = useSelector((state: any) => state.ingredients);
   const [item, setItem] = useState<TIngredient>();
-  const items = useSelector(getItems);
+  // const items = useSelector(getItems);
   //  При монтировании проверяю, есть ли ингредиент с этим id  //
   //  Если нет, перевожу на главную. Если есть, беру из store  //
   //  Если нет вообще ингридиентов отправляю запрос в store  //
@@ -33,11 +34,11 @@ export const IngredientDetails = () => {
         } else {
           setItem(ingredient);
         }
-      } else {
-        dispatch(getIngredients());
+      // } else {
+      //   dispatch(getIngredients());
       }
     },
-    [id, items, dispatch, navigate]
+    [id, items, navigate]
   );
   //  если есть item, отображаю карточку КБЖУ  //
   if (item) {
@@ -45,7 +46,7 @@ export const IngredientDetails = () => {
       <>
         <div className={ingredientDetailsStyle.general}>
           <img className={ingredientDetailsStyle.image} src={item.image} alt={item.name} />
-          <p className="mt-4 mb-8 text text_type_main-medium">{item.name}</p>
+          <p className='mt-4 mb-8 text text_type_main-medium'>{item.name}</p>
           <div className={ingredientDetailsStyle.details}>
             <IngredientNutrition type={'Калории, ккал'} amount={item.calories} />
             <IngredientNutrition type={'Белки, г'} amount={item.proteins} />
@@ -55,6 +56,8 @@ export const IngredientDetails = () => {
         </div>
       </>
     );
+  } else {
+    return (<></>)
   }
 };
 //  export default IngredientDetails;

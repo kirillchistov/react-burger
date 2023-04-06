@@ -16,7 +16,7 @@ export const IngredientCategory:FC<IIngredientsCategory> = ({ id, type, typeList
     <div id={id}>
       <h2 className='text mt-10 mb-6 text_type_main-medium'>{type}</h2>
       <div className={IngredientCategoryStyle.ingredient_category}>
-        {typeList.map((element) => {
+        {typeList?.map((element) => {
           return <IngredientItem ingredientData={element} key={element._id} />;
         })}
       </div>
