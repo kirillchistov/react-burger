@@ -1,7 +1,17 @@
 //  Вернул app.jsx в корень как разводяющую с роутингом по остальным  //
 //  Здесь добавил все для роутинга  //
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-// import { LOGINURL, REGURL, PROFILEURL, HOMEURL, FEEDURL, PROFILEORDERSURL,  } from './utils/constants';
+import { 
+  LOGINURL, 
+  REGURL, 
+  PROFILEURL, 
+  HOMEURL, 
+  FEEDURL, 
+  RESETPASSURL, 
+  INGREDIENTSID, 
+  PROFILEORDERSURL, 
+  FORGOTURL 
+} from './utils/constants';
 import { useDispatch } from './hooks/useDispatch';
 //  Импортирую все странички из разводящего index файла //
 import {
@@ -55,40 +65,40 @@ const App = () => {
   //  ...для не-авторизованных: login, register?, forgot-password, reset-password?  //
   return (
     <Routes>
-      <Route path='/' element={<HomePage />} />
-      <Route path='/register' element={
+      <Route path={HOMEURL} element={<HomePage />} />
+      <Route path={REGURL} element={
         <ProtectedRouteElement
           element={<RegisterPage />}
           showWhen='notLoggedIn'
         />
       } />
-      <Route path='/login' element={
+      <Route path={LOGINURL} element={
         <ProtectedRouteElement
           element={<LoginPage />}
           showWhen='notLoggedIn'
         />
       } />
-      <Route path='/forgot-password' element={
+      <Route path={FORGOTURL} element={
         <ProtectedRouteElement
           element={<ForgotPasswordPage />}
           showWhen='notLoggedIn'
         />
       } />
       { /* здесь надо сделать развилку - авторизованных переспрашивать */ }
-      <Route path='/reset-password' element={
+      <Route path={RESETPASSURL} element={
         <ProtectedRouteElement
           element={<ResetPasswordPage />}
           showWhen='notLoggedIn'
         />
       } />
       { /* здесь надо сделать развилку - неавторизованных отправлять на логин */ }
-      <Route path='/profile' element={
+      <Route path={PROFILEURL} element={
         <ProtectedRouteElement
           element={<ProfilePage />}
           showWhen='loggedIn'
         />
       } />
-      <Route path='/profile/orders' element={
+      <Route path={PROFILEORDERSURL} element={
         <ProtectedRouteElement
           element={<OrdersPage />}
           showWhen='loggedIn'
@@ -98,13 +108,13 @@ const App = () => {
 
       {/* По аналогии с ингредиентами надо сделать заказы
       {isBackground && (
-        <Route path='/profile/orders/:id' element={
+        <Route path={ORDERSID} element={
           <Modal handleClose={() => navigate(-1)} title='Детали заказа'>
             <Order />
           </Modal>
         } />
       )}
-      <Route path='/profile/orders/:id' element={
+      <Route path={ORDERSID} element={
         <ProtectedRouteElement
           element={<OrderPage />}
           showWhen='loggedIn'
@@ -113,7 +123,7 @@ const App = () => {
       */}
 
 
-      <Route path='/feed' element={<FeedPage />} />
+      <Route path={FEEDURL} element={<FeedPage />} />
       {/* <Route path='/feed' element={
         <ProtectedRouteElement
           element={<FeedPage />}
@@ -121,13 +131,13 @@ const App = () => {
         />
       } /> */}
       {isBackground && (
-        <Route path='/ingredients/:id' element={
+        <Route path={INGREDIENTSID} element={
           <Modal handleClose={() => navigate(-1)} title='Детали ингредиента'>
             <IngredientDetails />
           </Modal>
         } />
       )}
-      <Route path='/ingredients/:id' element={<IngredientPage />} />
+      <Route path={INGREDIENTSID} element={<IngredientPage />} />
       <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );

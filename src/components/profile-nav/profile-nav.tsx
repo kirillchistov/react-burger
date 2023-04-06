@@ -4,6 +4,11 @@ import { useLocation, NavLink, matchPath } from 'react-router-dom';
 import { useDispatch } from '../../hooks/useDispatch';
 import { authTokens } from '../../utils/auth';
 import { logoutUser } from '../../services/actions/auth-actions';
+import { 
+  LOGINURL, 
+  PROFILEURL, 
+  PROFILEORDERSURL 
+} from '../../utils/constants';
 
 import ProfileNavSyle from './profile-nav.module.css';
 
@@ -33,7 +38,7 @@ export const ProfileNav:FC<IProfileNav> = ({ navTip }) => {
     <div className={ProfileNavSyle.container}>
       <nav className={`mb-20 ${ProfileNavSyle.navbar}`}>
         <NavLink
-          to='/profile'
+          to={PROFILEURL}
           end
           className={`text text_type_main-medium pt-4 pb-4 ${ProfileNavSyle.link}`}
         >
@@ -42,7 +47,7 @@ export const ProfileNav:FC<IProfileNav> = ({ navTip }) => {
           </p>
         </NavLink>
         <NavLink
-          to='/profile/orders'
+          to={PROFILEORDERSURL}
           className={`text text_type_main-medium pt-4 pb-4 ${ProfileNavSyle.link}`}
         >
           <p className={activeOrders ? 'text_color_primary' : 'text_color_inactive'}>
@@ -50,7 +55,7 @@ export const ProfileNav:FC<IProfileNav> = ({ navTip }) => {
           </p>
         </NavLink>
         <NavLink
-          to='/login'
+          to={LOGINURL}
           className={`text text_type_main-medium text_color_inactive pt-4 pb-4 ${ProfileNavSyle.link}`}
           onClick={logout}
         >

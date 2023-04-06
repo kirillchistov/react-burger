@@ -35,6 +35,8 @@ export const INGREDIENTSURL = '/ingredients';
 export const FEEDURL = '/feed';
 export const ORDERSURL = '/orders';
 export const PROFILEORDERSURL = '/profile/orders';
+export const ORDERSID = '/profile/orders/:id';
+export const INGREDIENTSID = '/ingredients/:id';
 export const NOTFOUNDURL = '/*';
 
 //  Константы для API ингредиентов  //
