@@ -6,10 +6,11 @@
 
 # Стек технологий
 * [x] HTML, CSS (БЭМ Flat, адаптив Flex + Grid)
-* [x] JavaScript (ES6, React, позже TypeScript)
+* [x] JavaScript (ES6, React, TypeScript)
 * [x] Back-end (Node.js, MongoDB, Express, Nginx)
 * [x] Git, WebPack, Babel, Redux
 
+## [Pull Request Sprint-4 Step-1](https://github.com/kirillchistov/react-burger/)
 ## [Pull Request Sprint-3 Step-1](https://github.com/kirillchistov/react-burger/pull/51)
 ## [Pull Request Sprint-2 Step-2](https://github.com/kirillchistov/react-burger/pull/32)
 ## [Pull Request Sprint-2 Step-1](https://github.com/kirillchistov/react-burger/pull/22)

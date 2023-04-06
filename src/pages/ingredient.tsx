@@ -8,7 +8,6 @@
 При прямом попадании на этот маршрут, открывается детальная страница ингредиента - как в макете
 Обратите внимание, что пользователь попадает на маршрут /ingredients/:id с маршрута конструктора бургера — /. 
 */
-
 //  Импортирую шапку и детали ингридиента  //
 import { AppHeader } from '../components/app-header/app-header';
 import { IngredientDetails } from '../components/ingredient-details/ingredient-details';

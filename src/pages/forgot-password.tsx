@@ -1,15 +1,19 @@
 //  Страница для воспоминаний о пароле  //
 /*  На /forgot-password пользователь вводит адрес email и нажимает «Восстановить». 
 После этого происходит POST запрос к эндпоинту /password-reset  */
+import React, {FormEvent} from 'react';
 //  Нужны хуки для redux  //
 import { Navigate, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-//  хук для работы с формами  //
+//  import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from '../hooks/useSelector';
+import { useDispatch } from '../hooks/useDispatch';
 import { useForm } from '../hooks/useForm';
 import { requestResetCode } from '../services/actions/auth-actions';
 //  Шапка и компоненты из UX-библиотеки  //
 import { AppHeader } from '../components/app-header/app-header';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
+import { getResetCode } from '../utils/state';
+
 //  Стили пока беру из login  //
 import PasswordStyles from './login.module.css';
 
@@ -18,11 +22,11 @@ export const ForgotPasswordPage = () => {
   const dispatch = useDispatch();
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным пользователя. PROFIT!  //
-  const { hasResetCode } = useSelector((state) => state.auth);
+  const hasResetCode = useSelector(getResetCode);
   const { data, handleDataChange } = useForm({ email: '' });
   
   //  Обрабатываю нажатие кнопки Забыли пароль - отправляю экшен  //
-  const submitForgotPassword = (e) => {
+  const submitForgotPassword = (e: FormEvent) => {
     e.preventDefault();
     dispatch(requestResetCode(data));
   };
@@ -44,7 +48,7 @@ export const ForgotPasswordPage = () => {
             type={'email'}
             placeholder={'Укажите e-mail'}
             onChange={handleDataChange}
-            value={data.email}
+            value={data.email !== undefined ? data.email : ''}
             name={'email'}
           />
           <Button htmlType='submit' type='primary' size='medium'>

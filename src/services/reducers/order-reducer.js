@@ -9,11 +9,11 @@ import {
   POST_ORDER_API_OK,
   POST_ORDER_API_FAIL,
   DELETE_ORDER
-} from '../actions/order-actions';
+} from '../../utils/constants';
 
 //  Начальное состояние заказа: пустой массив, null номер, нет запроса и ошибок  //
 const initialOrderState = {
-  orderData: [],
+  burgerData: [],
   orderNumber: null,
   orderRequest: false,
   orderRequestFailed: false
@@ -25,14 +25,14 @@ export const orderReducer = (state = initialOrderState, action) => {
     //  Для добавления булки нахожу ее индекс в заказе по типу элемента 'bun'  //
     case ADD_BUN: {
       //  Задаю текущую позицию булки для сортировки заказа  //
-      const bunIndex = state.orderData.findIndex(
+      const bunIndex = state.burgerData.findIndex(
         (elem) => elem.type === 'bun'
       );
       //  Запоминаю контент action с добавлением булки  //
       const bun = action.payload;
       
       //  Сначала создаю копию того, что есть в заказе сейчас  //
-      const orderIngredients = [...state.orderData];
+      const orderIngredients = [...state.burgerData];
       //  Если булка уже есть в заказе, заменяю ее на новую  //
       if (bunIndex >= 0) {
         orderIngredients.splice(bunIndex, 1, bun);
@@ -43,7 +43,7 @@ export const orderReducer = (state = initialOrderState, action) => {
       //  возвращаю в состояние новый массив с содержанием заказа  //
       return {
         ...state,
-        orderData: orderIngredients
+        burgerData: orderIngredients
       };
     }
     //  Для добавления другого ингредиента просто добавляю состав (payload) в копию массива  //
@@ -51,14 +51,14 @@ export const orderReducer = (state = initialOrderState, action) => {
     case ADD_INGREDIENT:
       return {
         ...state,
-        orderData: [...state.orderData, action.payload]
+        burgerData: [...state.burgerData, action.payload]
       };
     //  Для удаления ингредиента сокращаю массив фильтром по id удаленного ингредиента  //
     //  И возвращаю состояние с новым содержанием заказа  //
     case REMOVE_INGREDIENT: {
       return {
         ...state,
-        orderData: state.orderData.filter(
+        burgerData: state.burgerData.filter(
           (ingredient) => ingredient._uid !== action.payload
         ),
       };
@@ -68,23 +68,23 @@ export const orderReducer = (state = initialOrderState, action) => {
       const { whichIngredientDroppedUid, onWhichIngredientDroppedUid } =
         action.payload;
 
-      const orderData = [...state.orderData];
-      const draggedItemIndex = orderData.findIndex(
+      const burgerData = [...state.burgerData];
+      const draggedItemIndex = burgerData.findIndex(
         (ingredient) => ingredient._uid === whichIngredientDroppedUid
       );
-      const hoveredItemIndex = orderData.findIndex(
+      const hoveredItemIndex = burgerData.findIndex(
         (ingredient) => ingredient._uid === onWhichIngredientDroppedUid
       );
 
-      const draggedItem = orderData[draggedItemIndex];
-      const hoveredItem = orderData[hoveredItemIndex];
+      const draggedItem = burgerData[draggedItemIndex];
+      const hoveredItem = burgerData[hoveredItemIndex];
 
-      orderData[draggedItemIndex] = hoveredItem;
-      orderData[hoveredItemIndex] = draggedItem;
+      burgerData[draggedItemIndex] = hoveredItem;
+      burgerData[hoveredItemIndex] = draggedItem;
 
       return {
         ...state,
-        orderData,
+        burgerData,
       };
     }
     //  Для отправки заказа возвращаем новое состояние с содержанием и включаем запрос  //
@@ -112,7 +112,7 @@ export const orderReducer = (state = initialOrderState, action) => {
       return {
         ...state,
         orderNumber: null,
-        orderData: [],
+        burgerData: [],
         orderRequest: false
       };
     //  По умолчанию возвращаем текущее состояние без изменений  //    

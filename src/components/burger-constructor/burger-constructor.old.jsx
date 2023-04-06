@@ -25,31 +25,31 @@ export const BurgerConstructor = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   //  Получаю из redux store данные заказа  //
-  const { orderData, orderNumber } = useSelector(selectorOrders);
+  const { burgerData, orderNumber } = useSelector(selectorOrders);
   //  Получаю из redux store состояние авторизации пользователя  //
   const user = useSelector((state) => state.auth.user);
   
   //  Редьюсеры со свитчем и действия вынес в отдельные файлы  //
   //  Вместо первых встречных теперь нахожу выбранные элементы  //
-  const bun = orderData.find(function (element) {
+  const bun = burgerData.find(function (element) {
     return element.type === 'bun';
   });
   //  Пока что начинку и соус можно не разделять, т.к. логика едина  //
-  const ingredientsMidStuff = orderData.filter((element) => element.type !== 'bun');
+  const ingredientsMidStuff = burgerData.filter((element) => element.type !== 'bun');
   
   //  Считаю сумму заказа с мемоизацией  //
   //  Прибавляю к старой сумме заказа (если не пуст) цены элементов (булки * 2)  //
   const totalAmount = useMemo(() => {
-    //  let orderTotal = 0; переделал на объект orderData и reduce  //
-    if (orderData.length > 0) {
-      return orderData
+    //  let orderTotal = 0; переделал на объект burgerData и reduce  //
+    if (burgerData.length > 0) {
+      return burgerData
         .map((element) => element.price * (element.type === 'bun' ? 2 : 1))
         .reduce((sum, price) => sum + price, 0);
     } else {
       //  Если в заказе нет данных, то возвращаем 0  //
       return 0;
     }
-  }, [orderData]);
+  }, [burgerData]);
     
   const onDropIngredient = (ingredient) => {
     if (ingredient.type === 'bun') {
@@ -73,7 +73,7 @@ export const BurgerConstructor = () => {
   //  Если авторизован, открываю окно с деталями заказа, если нет -> логин  //
   const handleOpenIngredientModal = () => {
     (user) 
-    ? dispatch(dispatchOrder(orderData.map((ingredient) => ingredient._id)))
+    ? dispatch(dispatchOrder(burgerData.map((ingredient) => ingredient._id)))
     : navigate('/login')
   };
 

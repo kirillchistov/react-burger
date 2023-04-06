@@ -4,36 +4,49 @@ import {
   GET_INGREDIENTS_API,
   GET_INGREDIENTS_API_OK,
   GET_INGREDIENTS_API_FAIL,
+/*
   OPEN_INGREDIENT_DETAILS,
-  CLOSE_INGREDIENT_DETAILS,
-} from '../actions/ingredient-actions';
+  CLOSE_INGREDIENT_DETAILS
+*/
+} from '../../utils/constants';
+
+import { TIngredientActions } from '../actions/ingredient-actions'
+import { TIngredient } from '../../utils/types';
+
+type TIngredientsState = {
+  items: TIngredient[];
+  itemsRequest: boolean;
+  itemsFailed: boolean;
+};
 
 //  Начальное состояние стора ингредиентов: пустой массив, нет запроса, нет ошибок  //
 const initialIngredientsState = {
-  ingredients: [],
-  ingredientsRequest: false,
-  ingredientsFailed: false,
+  items: [],
+  itemsRequest: false,
+  itemsFailed: false
 };
 
 //  Меняю состояние в сторе в зависимости от типа action: запрос, успех, ошибка  //
-export const ingredientsReducer = (state = initialIngredientsState, action) => {
+export const ingredientsReducer = (
+  state = initialIngredientsState, 
+  action: TIngredientActions):TIngredientsState => {
   switch (action.type) {
     case GET_INGREDIENTS_API: {
       return {
         ...state,
-        ingredientsRequest: true,
+        itemsRequest: true,
       };
     }
     case GET_INGREDIENTS_API_OK: {
       return {
         ...state,
-        ingredients: action.ingredients,
-        ingredientsFailed: false,
-        ingredientsRequest: false,
+        items: action.items,
+        itemsFailed: false,
+        itemsRequest: false,
       };
     }
     case GET_INGREDIENTS_API_FAIL: {
-      return { ...state, ingredientsFailed: true, ingredientsRequest: false };
+      return { ...state, itemsFailed: true, itemsRequest: false };
     }
     default: {
       return state;
@@ -42,15 +55,16 @@ export const ingredientsReducer = (state = initialIngredientsState, action) => {
 };
 
 //  Обнуленное начальное состояние стора инфо по ингредиенту  //
-const initialIngredientDetailsState = {
-  ingredientDetails: null,
-};
+// const initialIngredientDetailsState = {
+//   ingredientDetails: null,
+// };
 
 //  Refactor: вынести редьюсер в отдельный файл  //
 //  Редьюсер для обработки действий с деталями ингредиента в redux store (открыть/закрыть)  //
+/* 
 export const ingredientDetailsReducer = (
   state = initialIngredientDetailsState,
-  action
+  action: TIngredientActions):TIngredientsState
 ) => {
   switch (action.type) {
     case OPEN_INGREDIENT_DETAILS: {
@@ -70,3 +84,4 @@ export const ingredientDetailsReducer = (
     }
   }
 };
+*/
