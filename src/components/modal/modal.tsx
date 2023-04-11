@@ -8,11 +8,11 @@ import ReactDOM from 'react-dom';
 import ModalOverlay from '../modal-overlay/modal-overlay';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { modalRoot } from '../../utils/constants';
-//  import { TOrder } from '../../utils/types';
 
 import modalStyle from './modal.module.css';
 
 //  Интерфейс для типизации свойств модального окна  //
+//  Refactor: Рекомендовано переделать на PropsWithChildren, но пока не понял как  //
 interface IModalProps {
   children: ReactNode,
   title: string,
@@ -22,7 +22,6 @@ interface IModalProps {
 //  Если уже открыто, ничего не делаю  //
 //  При монтировании вешаю слушатель на Esc  //
 //  При размонтировании убираю слушатель //
-//  Удалил isOpen больше не нужен  //
 export const Modal: FC<IModalProps> = ( {children, handleClose, title} ) => {
   useEffect(() => {
     const closeByEscape = (e:KeyboardEvent) =>(e.key === 'Escape' ? handleClose() : null)
@@ -31,9 +30,6 @@ export const Modal: FC<IModalProps> = ( {children, handleClose, title} ) => {
       document.body.removeEventListener('keydown', closeByEscape);  
     };
   }, [handleClose]);
-
-//  Пришлось делать non-null assertion  //
-//  const modalsRoot = document.getElementById('modals'); //
   
 //  Вначале рисую оверлей, поверх него размещаю окно  //
 //  Чтобы вставить модалку мимо основного корня, сделал в index #modals  //

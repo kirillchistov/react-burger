@@ -1,6 +1,51 @@
-.container {
-  margin-top: 180px;
+/* Главный контейнер */
+.main_container {
+  margin-right: calc((100vw - 1320px)/2);
+  margin-left: calc((100vw - 1320px)/2);
+}
+
+/* Контейнер секции */
+.section_container {
+  display: flex;
+}
+
+/* Контейнер ленты заказов */
+.order_container {
+  max-height: calc(100vh - 268px);
+  display: grid;
+  row-gap: 16px; 
+  overflow-y: scroll;
+}
+
+/* Контейнер заказов со скроллом по вертикали из вебкита */
+.order_container::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--color-scrollbar);
+}
+
+/* Курсор для контейнера заказов из вебкита */
+.order_container::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar-thumb);
+}
+
+/* Контейнер готовых заказов */
+.orders_list_done {
+  height: 152px;
+  padding: 0;
+  list-style: none;
+}
+
+/* Контейнер заказов в работе */
+.orders_list {
+  width: 272px;
+  height: calc((32px * 10) + 1px);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+/* Подсветка готового заказа */
+.done_order {
+  color: #00cccc;
 }

@@ -146,6 +146,7 @@ export type TAuthActions = IRegisterUser
 | IUpdateUserProfileFail;
 
 
+//  Типизирую action реги и авторизации  //
 export const registerUserOK = (
   user: TUser
 ): IRegisterUserOK => ({
@@ -328,7 +329,7 @@ export const changePassword = ({ password, token }: TFormValues) => {
 
 //  Action запроса на выход из системы - добавить propTypes?  //
 //  Для выхода использую refreshToken — удаляю из куки оба токена  //
-export const logoutUser = (refreshToken: string | undefined) => {
+export const logoutUser = (refreshToken?: string) => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: LOGOUT_USER_API,
