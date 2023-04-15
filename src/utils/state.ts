@@ -5,4 +5,6 @@ export const getItems = (state: { ingredients: { ingredients: TIngredient[]; }; 
 //  export const getItems = (state: { ingredients: TIngredient[]; }) => state.ingredients;
 export const getResetCode = (state: { auth: { hasResetCode: boolean; }; }) => state.auth.hasResetCode;
 export const getOrders = (state: { order: { orderData: TOrder[]; }; }) => state.order.orderData;
+export const getOrdersLogged = (state: { order: { orderData: TOrder[]; }; }) => state.order.orderData;
+
 export const getBurgerData = (state: { order: { burgerData: TIngredient[]; }; }) => state.order.burgerData;

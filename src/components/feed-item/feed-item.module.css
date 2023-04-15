@@ -15,9 +15,19 @@
   cursor: pointer;
 }
 
+.order_date {
+  margin-left: auto;
+}
+
 .order_name {
   max-height: 30px;
   overflow: hidden;
+}
+
+.order_price {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
 }
 
 .order_total {

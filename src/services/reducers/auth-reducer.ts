@@ -26,65 +26,121 @@ import {
   LOGOUT_USER_API_OK,
   LOGOUT_USER_API_FAIL,
 } from '../../utils/constants';
+import { TAuthActions } from '../actions/auth-actions';
+import { TUser } from '../../utils/types';
+
+//  Типизирую состояние для данных о пользователе  //
+//  Здесь вероятно надо типизировать все состояния запроса на reset/forgot  //
+//  Распутать это, чтобы не было ошибочных статусов по умолчанию  //
+export type TAuthState = {
+  user: TUser | null;
+  request?: boolean;
+  requestFailed?: boolean;
+  requestOK?: boolean;
+  
+  loginApi: boolean;
+  loginApiOK: boolean;
+  loginApiFail: boolean;
+  
+  registerApi: boolean;
+  registerApiOK: boolean;
+  registerApiFail: boolean;
+  
+  codeRequestApi: boolean;
+  resetPasswordApi: boolean;
+  hasResetCode: boolean;
+};
 
 //  Описываю начальное состояние для данных о пользователе  //
-const initialState = {
+const initialState: TAuthState = {
   user: null,
+
   request: false,
   requestFailed: false,
+  requestOK: false,
+
+  registerApi: false,
+  registerApiOK: false,
+  registerApiFail: false,
+  
+  loginApi: false,
+  loginApiOK: false,
+  loginApiFail: false,
+  
+  codeRequestApi: false,
+  resetPasswordApi: false,
   hasResetCode: false,
+
 };
 
 //  функциональность регистрации, авторизации, смены пароля, профиля, выхода  //
 //  смотрю, какой прилетел action и решаю, какое состояние изменить и вернуть  //
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action: TAuthActions) => {
   switch (action.type) {
     case REGISTER_USER_API:
       return {
         ...state,
         request: true,
+        registerApi: true,
+        registerApiOK: false,
+        registerApiFail: false,
       };
     case REGISTER_USER_API_OK:
       return {
         ...state,
+        user: action.user,
         request: false,
-        requestFailed: false,
-        user: action.payload,
+        registerApi: false,
+        registerApiOK: true,
+        registerApiFail: false,
       };
     case REGISTER_USER_API_FAIL:
       return {
         ...state,
         request: false,
-        requestFailed: true,
+        registerApi: false,
+        registerApiOK: false,
+        registerApiFail: true,
       };
     case LOGIN_USER_API:
       return {
         ...state,
         request: true,
+        loginApi: true,
+        loginApiOK: false,
+        loginApiFail: false,
       };
     case LOGIN_USER_API_OK:
       return {
         ...state,
+        user: action.user,
         request: false,
-        requestFailed: false,
-        user: action.payload,
+        loginApi: false,
+        loginApiOK: true,
+        loginApiFail: false,
       };
     case LOGIN_USER_API_FAIL:
       return {
         ...state,
         request: false,
-        requestFailed: true,
+        loginApi: false,
+        loginApiOK: false,
+        loginApiFail: true,
       };
     case PASSWORD_RESET_CODE_API:
       return {
         ...state,
         request: true,
+        codeRequestApi: true,
+        hasResetCode: false,
+
       };
     case PASSWORD_RESET_CODE_API_OK:
       return {
         ...state,
         request: false,
         requestFailed: false,
+        codeRequestApi: false,
         hasResetCode: true,
       };
     case PASSWORD_RESET_CODE_API_FAIL:
@@ -92,17 +148,20 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         request: false,
         requestFailed: true,
+        codeRequestApi: false,
         hasResetCode: false,
       };
     case PASSWORD_RESET_API:
       return {
         ...state,
         request: true,
+        resetPasswordApi: true,
       };
     case PASSWORD_RESET_API_OK:
       return {
         ...state,
         request: false,
+        requestOK: true,
         requestFailed: false,
         hasResetCode: false,
       };
@@ -111,11 +170,13 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         request: false,
         requestFailed: true,
+        hasResetCode: false,
       };
     case LOGOUT_USER_API:
       return {
         ...state,
-        request: true,
+        user: null,
+        loginApiOK: false,
       };
     case LOGOUT_USER_API_OK:
       return {
@@ -123,6 +184,7 @@ export const authReducer = (state = initialState, action) => {
         request: false,
         requestFailed: false,
         user: null,
+        loginApiOK: false,
       };
     case LOGOUT_USER_API_FAIL:
       return {
@@ -140,7 +202,7 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         request: false,
         requestFailed: false,
-        user: action.payload,
+        user: action.user,
       };
     case GET_USER_PROFILE_API_FAIL:
       return {
@@ -158,7 +220,7 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         request: false,
         requestFailed: false,
-        user: action.payload,
+        user: action.user,
       };
     case UPDATE_USER_PROFILE_API_FAIL:
       return {

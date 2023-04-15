@@ -11,7 +11,7 @@ import {
   logoutApi,
 } from '../../utils/api';
 import { setCookies, deleteCookie } from '../../utils/auth';
-import { TFormValues, TUser, AppDispatch } from '../../utils/types';
+import { TFormValues, TUser, AppThunk, AppDispatch } from '../../utils/types';
 import {
   LOGIN_USER_API,
   LOGIN_USER_API_OK,
@@ -145,7 +145,6 @@ export type TAuthActions = IRegisterUser
 | IUpdateUserProfileOK
 | IUpdateUserProfileFail;
 
-
 //  Типизирую action реги и авторизации  //
 export const registerUserOK = (
   user: TUser
@@ -179,7 +178,7 @@ export const updateUserProfileOK = (
 //  accessToken для внутренних запросов — получения / обновления данных о пользователе  //
 //  Второй токен — refreshToken (если первый протух) — сохраняю в куки  //
 //  Рефреш-токен для выхода из системы и для нового accessToken, если просрочился  //
-export const loginUser = ({ email, password }: TFormValues) => {
+export const loginUser: AppThunk = ({ email, password }: TFormValues) => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: LOGIN_USER_API,
@@ -202,7 +201,7 @@ export const loginUser = ({ email, password }: TFormValues) => {
 
 //  Action регистрации нового пользователя - добавить propTypes? //
 //  Второй токен — refreshToken — сохраняю в куки  //
-export const registerUser = ({ email, password, name }: TFormValues) => {
+export const registerUser: AppThunk = ({ email, password, name }: TFormValues) => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: REGISTER_USER_API,
@@ -224,7 +223,7 @@ export const registerUser = ({ email, password, name }: TFormValues) => {
 };
 
 //  Action запроса на получение профиля  //
-export const getUserProfile = () => {
+export const getUserProfile: AppThunk = () => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: GET_USER_PROFILE_API,
@@ -245,7 +244,7 @@ export const getUserProfile = () => {
 };
 
 //  Action запроса на обновление профиля - добавить propTypes?  //
-export const updateUserProfile = ({ email, password, name }: TFormValues) => {
+export const updateUserProfile: AppThunk = ({ email, password, name }: TFormValues) => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: UPDATE_USER_PROFILE_API,
@@ -288,7 +287,7 @@ export const getAccessToken = (refreshToken: string | undefined ) => {
 };
 
 //  Action запроса на код для смены пароля - добавить propTypes? //
-export const requestResetCode = ({email}: TFormValues) => {
+export const requestResetCode: AppThunk = ({email}: TFormValues) => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: PASSWORD_RESET_CODE_API,
@@ -307,8 +306,8 @@ export const requestResetCode = ({email}: TFormValues) => {
   };
 };
 
-//  Action запроса на смену пароля - добавить propTypes?  //
-export const changePassword = ({ password, token }: TFormValues) => {
+//  Action запроса на смену пароля  //
+export const changePassword: AppThunk = ({ password, token }: TFormValues) => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: PASSWORD_RESET_API,
@@ -329,7 +328,7 @@ export const changePassword = ({ password, token }: TFormValues) => {
 
 //  Action запроса на выход из системы - добавить propTypes?  //
 //  Для выхода использую refreshToken — удаляю из куки оба токена  //
-export const logoutUser = (refreshToken?: string) => {
+export const logoutUser: AppThunk = (refreshToken?: string) => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: LOGOUT_USER_API,
