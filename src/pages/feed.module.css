@@ -29,7 +29,7 @@
 }
 
 /* Контейнер готовых заказов */
-.orders_list_done {
+.orders_done {
   height: 152px;
   padding: 0;
   list-style: none;
@@ -46,6 +46,6 @@
 }
 
 /* Подсветка готового заказа */
-.done_order {
+.order_ready {
   color: #00cccc;
 }

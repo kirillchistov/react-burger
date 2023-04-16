@@ -328,7 +328,7 @@ export const changePassword: AppThunk = ({ password, token }: TFormValues) => {
 
 //  Action запроса на выход из системы - добавить propTypes?  //
 //  Для выхода использую refreshToken — удаляю из куки оба токена  //
-export const logoutUser: AppThunk = (refreshToken?: string) => {
+export const logoutUser: AppThunk  = (refreshToken?: string) => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: LOGOUT_USER_API,

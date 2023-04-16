@@ -1,4 +1,6 @@
 //  Здесь будет TSX  //
+//  Эндпоинт для получения деталей конкретного заказа GET /orders/:number  //
+
 
 import React, {useEffect, useState, useMemo} from 'react';
 import { useParams } from 'react-router-dom';

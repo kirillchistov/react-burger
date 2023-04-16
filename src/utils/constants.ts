@@ -88,9 +88,19 @@ export const LOGOUT_USER_API = 'LOGOUT_USER_API';
 export const LOGOUT_USER_API_OK = 'LOGOUT_USER_API_OK';
 export const LOGOUT_USER_API_FAIL = 'LOGOUT_USER_API_FAIL';
 
-//  Константы состояния вынес в отдельную /utils/state  //
-// export const getItems = (state: { ingredients: { items: TIngredient[]; }; }) => state.ingredients.items;
-// export const getUser = (state: { auth: { user: TUser|null; }; }) => state.auth.user;
-// export const getResetCode = (state: { auth: { hasResetCode: boolean; }; }) => state.auth.hasResetCode;
-// export const getOrders = (state: { order: { orderData: TOrder[]; }; }) => state.order.orderData;
-// export const getBurgerData = (state: { order: { burgerData: TIngredient[]; }; }) => state.order.burgerData;
+//  Константы для WebSockets по 7 для состояний LoggedIn и LoggedOut //
+export const WS_CONNECTION_START: "WS_CONNECTION_START" = "WS_CONNECTION_START";
+export const WS_CONNECTION_SUCCESS: "WS_CONNECTION_SUCCESS" = "WS_CONNECTION_SUCCESS";
+export const WS_CONNECTION_ERROR: "WS_CONNECTION_ERROR" = "WS_CONNECTION_ERROR";
+export const WS_CONNECTION_CLOSED: "WS_CONNECTION_CLOSED" = "WS_CONNECTION_CLOSED";
+export const WS_CONNECTION_CLOSE: "WS_CONNECTION_CLOSE" = "WS_CONNECTION_CLOSE";
+export const WS_GET_MESSAGE: "WS_GET_MESSAGE" = "WS_GET_MESSAGE";
+export const WS_SEND_MESSAGE: "WS_SEND_MESSAGE" = "WS_SEND_MESSAGE";
+
+export const WS_CONNECTION_START_AUTH: "WS_CONNECTION_START_AUTH" = "WS_CONNECTION_START_AUTH";
+export const WS_CONNECTION_SUCCESS_AUTH: "WS_CONNECTION_SUCCESS_AUTH" = "WS_CONNECTION_SUCCESS_AUTH";
+export const WS_CONNECTION_ERROR_AUTH: "WS_CONNECTION_ERROR_AUTH" = "WS_CONNECTION_ERROR_AUTH";
+export const WS_CONNECTION_CLOSED_AUTH: "WS_CONNECTION_CLOSED_AUTH" = "WS_CONNECTION_CLOSED_AUTH";
+export const WS_CONNECTION_CLOSE_AUTH: "WS_CONNECTION_CLOSE_AUTH" = "WS_CONNECTION_CLOSE_AUTH";
+export const WS_GET_MESSAGE_AUTH: "WS_GET_MESSAGE_AUTH" = "WS_GET_MESSAGE_AUTH";
+export const WS_SEND_MESSAGE_AUTH: "WS_SEND_MESSAGE_AUTH" = "WS_SEND_MESSAGE_AUTH";
