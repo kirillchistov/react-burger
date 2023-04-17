@@ -1,7 +1,6 @@
 //  Здесь будет TSX  //
 //  Эндпоинт для получения деталей конкретного заказа GET /orders/:number  //
 
-
 import React, {useEffect, useState, useMemo} from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from '../../hooks/useDispatch';
@@ -13,12 +12,8 @@ import { getIngredients } from '../../services/actions/ingredient-actions';
 import { TOrder, TIngredient } from '../../services/types';
 //  Где-то здесь будет импорт для WS  //
 
-import {
-  CurrencyIcon,
-  FormattedDate,
-} from '@ya.praktikum/react-developer-burger-ui-components';
+import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import orderStyles from './order.module.css';
-
 
 export const Order = () => {
   const { id } = useParams();

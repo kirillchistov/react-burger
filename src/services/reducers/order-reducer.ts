@@ -10,7 +10,7 @@ import {
   POST_ORDER_API_FAIL,
   DELETE_ORDER
 } from '../../utils/constants';
-import { TAppActions, TIngredient, TIngredients, TOrder } from '../types/index'
+import { TAppActions, TIngredient, TOrder } from '../types/index'
 
 export type TOrderState = {
   burgerData: TIngredient[],
@@ -31,8 +31,8 @@ const initialOrderState: TOrderState = {
   orderData: [],
   total: 0,
   totalToday: 0, 
-
 };
+
 //  Меняю состояние в сторе в зависимости от типа action  //
 export const orderReducer = (state = initialOrderState, action: TAppActions) => {
   switch (action.type) {
