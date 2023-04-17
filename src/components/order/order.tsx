@@ -10,7 +10,7 @@ import { useLocation } from 'react-router';
 // Здесь переделать работу с состояниями, переназвать  //
 import { getItems, getOrdersLogged, getOrders } from '../../utils/state';
 import { getIngredients } from '../../services/actions/ingredient-actions';
-import { TOrder, TIngredient } from '../../utils/types';
+import { TOrder, TIngredient } from '../../services/types';
 //  Где-то здесь будет импорт для WS  //
 
 import {

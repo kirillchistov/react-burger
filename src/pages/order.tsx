@@ -1,19 +1,20 @@
 //  Страница заказа по роуту /profile/orders/:id  //
-import React, { useEffect, useMemo } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 //  Хуки  //
 import { useSelector } from '../hooks/useSelector';
 import { useDispatch } from '../hooks/useDispatch';
-import { getOrders, getOrdersAuth } from '../utils/state';
+import { getOrders, getOrdersLogged } from '../utils/state';
 import { useLocation } from 'react-router';
-//  здесь будет импорт WS  //
+import { WS_CONNECTION_START_AUTH, WS_CONNECTION_CLOSE_AUTH } from '../utils/constants';
+
 import { AppHeader } from '../components/app-header/app-header';
 import { Order } from '../components/order/order';
-import { TOrder } from '../utils/types';
+import { TOrder } from '../services/types';
 import orderStyles from './order.module.css';
 
-export function OrderPage() {
-//  const dispatch = useDispatch();
+export const OrderPage:FC = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const location = useLocation();
   const ordersList = useSelector(getOrders);
@@ -23,19 +24,19 @@ export function OrderPage() {
     ? ordersList
     : ordersListLogged;
 
-//   useEffect(() => {
-//     dispatch({ type: WS_CONNECTION_START_AUTH });
-//     return () => {
-//       dispatch({ type: WS_CONNECTION_CLOSE_AUTH });
-//       return;
-//     };
-//   }, [dispatch]);
+  useEffect(() => {
+    dispatch({ type: WS_CONNECTION_START_AUTH });
+    return () => {
+      dispatch({ type: WS_CONNECTION_CLOSE_AUTH });
+      return;
+    };
+  }, [dispatch]);
 
   const order = useMemo(
     () => orders.find((order: TOrder) => order._id === id) || null,
     [orders, id]
   );
-
+  //  Вывожу номер заказа и под ним компонент с контентом заказа  //
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
       <AppHeader />

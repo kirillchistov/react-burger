@@ -1,4 +1,4 @@
-import React, { useState, FC, useMemo, useCallback } from 'react';
+import React, { FC, useEffect, useState, useMemo, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from '../../hooks/useSelector';
 import {
@@ -7,7 +7,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { v4 as uuidv4 } from 'uuid';
 import { getItems } from '../../utils/state';
-import { TOrder, TIngredient } from '../../utils/types';
+import { TOrder, TIngredient } from '../../services/types';
 import styles from './feed-status.module.css';
 
 interface IFeedItemProps {
@@ -62,13 +62,13 @@ export const FeedStatus: FC<IFeedItemProps> = ({ order, showOrderStatus }) => {
     }
   }, [navigate, location, order._id]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (order) {
       const { ingredients: orderIngredients } = order;
-      const ingredientsArr = Array.from(new Set(orderIngredients));
+      const ingredientsList = Array.from(new Set(orderIngredients));
 
       setOrderIngredients(
-        ingredientsArr
+        ingredientsList
           .map((orderIngredient: string) => {
             const ingredient = items.find(
               (item) => item._id === orderIngredient

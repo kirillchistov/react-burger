@@ -1,7 +1,7 @@
 //  Компонент категории ингредиентов для работы с навигацией по табам  //
 import React, { FC } from 'react';
 import { IngredientItem } from '../ingredient-item/ingredient-item';
-import { TIngredient } from '../../utils/types';
+import { TIngredient } from '../../services/types';
 import IngredientCategoryStyle from './ingredient-category.module.css';
 
 interface IIngredientsCategory {

@@ -1,6 +1,6 @@
 //  Начальные actions для обработки заказов O-DETAILS  //
 import { postOrder } from '../../utils/api';
-import { TIngredient, AppDispatch } from '../../utils/types';
+import { TIngredient, AppDispatch } from '../../services/types';
 
 //  Все константы экспортирую теперь из /utils/constants  //
 import {

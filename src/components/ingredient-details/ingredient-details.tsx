@@ -9,7 +9,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 //  Компонент КБЖУ свойства ингредиента - вынес в отдельный  //
 import { IngredientNutrition } from '../ingredient-nutrition/ingredient-nutrition';
 // import { getItems } from '../../utils/state';
-import { TIngredient } from '../../utils/types';
+import { TIngredient } from '../../services/types';
 
 import ingredientDetailsStyle from './ingredient-details.module.css';
 

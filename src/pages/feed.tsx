@@ -1,23 +1,25 @@
-import React from 'react';
+//  Страница с лентой заказов  //
+import React, { FC, useEffect, useMemo } from 'react';
 import { useDispatch } from '../hooks/useDispatch';
 import { useSelector } from '../hooks/useSelector';
 import { AppHeader } from '../components/app-header/app-header';
 import { FeedOrder } from '../components/feed-item/feed-item';
 import { getOrders } from '../utils/state';
-import { TOrder } from '../utils/types';
+import { TOrder } from '../services/types';
 import {
   WS_CONNECTION_START,
   WS_CONNECTION_CLOSE,
 } from '../utils/constants';
 import feedStyles from './feed.module.css';
 
-
-export function FeedPage() {
-  const { total, totalToday } = useSelector((store) => store.ws);
+export const FeedPage:FC = () => {
+  //  Не понимаю пока как это забирать из стора  //
+  const { total, totalToday } = useSelector((store) => store.order);
   const orders: TOrder[] = useSelector(getOrders);
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
+  //  При монтировании / размонтировании открываю / закрываю WS подключение  //
+  useEffect(() => {
     dispatch({ type: WS_CONNECTION_START });
     return () => {
       dispatch({ type: WS_CONNECTION_CLOSE });
@@ -25,12 +27,14 @@ export function FeedPage() {
     };
   }, [dispatch]);
 
-  const feedOrders = React.useMemo(
+  //  Получаю массив для ленты заказов  //
+  const feedOrders = useMemo(
     () => orders.filter((order) => order),
     [orders]
   );
 
-  const doneOrders = React.useMemo(
+  //  Собираю ленту из 20 номеров готовых заказов  //
+  const doneOrders = useMemo(
     () =>
       feedOrders
         .filter((order) => order.status === 'done')
@@ -39,8 +43,8 @@ export function FeedPage() {
     [feedOrders]
   );
 
-  const pendingOrders = React.useMemo(
-    () =>
+  //  Собираю ленту из 20 номеров готовящихся заказов  //
+  const pendingOrders = useMemo(() =>
       feedOrders
         .filter((order) => order.status === 'pending')
         .slice(0, 20)

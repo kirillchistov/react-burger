@@ -9,9 +9,8 @@ type TCookieProps = {
 
 //  Получаю куки  //
 export const getCookie = (name: string) => {
-  //  создаю массив cookie, подходящих под regex (линтер ругается, quick fixed)  //
+  //  создаю массив cookie, подходящих под regex  //
   const matches = document.cookie.match(
-  //  new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
     new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)')
   );
   //  если массив не нулевой, возвращаю второй элемент или undefined  //

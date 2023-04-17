@@ -10,7 +10,7 @@ import IngredientPrice from '../ingredient-price/ingredient-price';
 //  import { Modal } from '../modal/modal';
 import { Counter } 
   from '@ya.praktikum/react-developer-burger-ui-components';
-import { TIngredient } from '../../utils/types';
+import { TIngredient } from '../../services/types';
 import { getBurgerData } from '../../utils/state';
 import IngredientItemStyle from './ingredient-item.module.css';
 

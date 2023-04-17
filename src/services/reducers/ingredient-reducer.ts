@@ -11,7 +11,7 @@ import {
 } from '../../utils/constants';
 
 import { TIngredientActions } from '../actions/ingredient-actions'
-import { TIngredient } from '../../utils/types';
+import { TIngredient } from '../../services/types';
 
 type TIngredientsState = {
   items: TIngredient[];

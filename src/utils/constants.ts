@@ -1,12 +1,12 @@
-//  Вынес все типы в отдельную функцию /utils/types  //
+//  Вынес все типы в отдельную функцию /services/types  //
 
 export const BASEURL = 'https://norma.nomoreparties.space/api';
+export const WSURL = 'wss://norma.nomoreparties.space/orders/all';
+export const WSURLAUTH = 'wss://norma.nomoreparties.space/orders';
 
 //  Здесь защищаюсь от null значения через прокси-переменную  //
 export const modalsRoot = document.getElementById('modals');
 export const modalRoot = modalsRoot!;
-//  Селектор вынес в функцию /utils/state, но как-то криво  //
-//  selectorOrders надо переделать //
 
 //  экспериментирую с enum, пока не использую в таком виде  //
 export enum pageUrls {
@@ -59,7 +59,7 @@ export const POST_ORDER_API_OK = 'POST_ORDER_API_OK';
 export const POST_ORDER_API_FAIL = 'POST_ORDER_API_FAIL';
 export const DELETE_ORDER = 'DELETE_ORDER';
 
-//  Константы для API авторизации, регистрации и профиля  //
+//  Константы для API авторизации, регистрации, профиля, токена  //
 export const LOGIN_USER_API = 'LOGIN_USER_API';
 export const LOGIN_USER_API_OK = 'LOGIN_USER_API_OK';
 export const LOGIN_USER_API_FAIL = 'LOGIN_USER_API_FAIL';
@@ -89,18 +89,18 @@ export const LOGOUT_USER_API_OK = 'LOGOUT_USER_API_OK';
 export const LOGOUT_USER_API_FAIL = 'LOGOUT_USER_API_FAIL';
 
 //  Константы для WebSockets по 7 для состояний LoggedIn и LoggedOut //
-export const WS_CONNECTION_START: "WS_CONNECTION_START" = "WS_CONNECTION_START";
-export const WS_CONNECTION_SUCCESS: "WS_CONNECTION_SUCCESS" = "WS_CONNECTION_SUCCESS";
-export const WS_CONNECTION_ERROR: "WS_CONNECTION_ERROR" = "WS_CONNECTION_ERROR";
-export const WS_CONNECTION_CLOSED: "WS_CONNECTION_CLOSED" = "WS_CONNECTION_CLOSED";
-export const WS_CONNECTION_CLOSE: "WS_CONNECTION_CLOSE" = "WS_CONNECTION_CLOSE";
-export const WS_GET_MESSAGE: "WS_GET_MESSAGE" = "WS_GET_MESSAGE";
-export const WS_SEND_MESSAGE: "WS_SEND_MESSAGE" = "WS_SEND_MESSAGE";
+export const WS_CONNECTION_START: 'WS_CONNECTION_START' = 'WS_CONNECTION_START';
+export const WS_CONNECTION_SUCCESS: 'WS_CONNECTION_SUCCESS' = 'WS_CONNECTION_SUCCESS';
+export const WS_CONNECTION_ERROR: 'WS_CONNECTION_ERROR' = 'WS_CONNECTION_ERROR';
+export const WS_CONNECTION_CLOSE: 'WS_CONNECTION_CLOSE' = 'WS_CONNECTION_CLOSE';
+export const WS_CONNECTION_CLOSED: 'WS_CONNECTION_CLOSED' = 'WS_CONNECTION_CLOSED';
+export const WS_GET_MESSAGE: 'WS_GET_MESSAGE' = 'WS_GET_MESSAGE';
+export const WS_SEND_MESSAGE: 'WS_SEND_MESSAGE' = 'WS_SEND_MESSAGE';
 
-export const WS_CONNECTION_START_AUTH: "WS_CONNECTION_START_AUTH" = "WS_CONNECTION_START_AUTH";
-export const WS_CONNECTION_SUCCESS_AUTH: "WS_CONNECTION_SUCCESS_AUTH" = "WS_CONNECTION_SUCCESS_AUTH";
-export const WS_CONNECTION_ERROR_AUTH: "WS_CONNECTION_ERROR_AUTH" = "WS_CONNECTION_ERROR_AUTH";
-export const WS_CONNECTION_CLOSED_AUTH: "WS_CONNECTION_CLOSED_AUTH" = "WS_CONNECTION_CLOSED_AUTH";
-export const WS_CONNECTION_CLOSE_AUTH: "WS_CONNECTION_CLOSE_AUTH" = "WS_CONNECTION_CLOSE_AUTH";
-export const WS_GET_MESSAGE_AUTH: "WS_GET_MESSAGE_AUTH" = "WS_GET_MESSAGE_AUTH";
-export const WS_SEND_MESSAGE_AUTH: "WS_SEND_MESSAGE_AUTH" = "WS_SEND_MESSAGE_AUTH";
+export const WS_CONNECTION_START_AUTH: 'WS_CONNECTION_START_AUTH' = 'WS_CONNECTION_START_AUTH';
+export const WS_CONNECTION_SUCCESS_AUTH: 'WS_CONNECTION_SUCCESS_AUTH' = 'WS_CONNECTION_SUCCESS_AUTH';
+export const WS_CONNECTION_ERROR_AUTH: 'WS_CONNECTION_ERROR_AUTH' = 'WS_CONNECTION_ERROR_AUTH';
+export const WS_CONNECTION_CLOSE_AUTH: 'WS_CONNECTION_CLOSE_AUTH' = 'WS_CONNECTION_CLOSE_AUTH';
+export const WS_CONNECTION_CLOSED_AUTH: 'WS_CONNECTION_CLOSED_AUTH' = 'WS_CONNECTION_CLOSED_AUTH';
+export const WS_GET_MESSAGE_AUTH: 'WS_GET_MESSAGE_AUTH' = 'WS_GET_MESSAGE_AUTH';
+export const WS_SEND_MESSAGE_AUTH: 'WS_SEND_MESSAGE_AUTH' = 'WS_SEND_MESSAGE_AUTH';

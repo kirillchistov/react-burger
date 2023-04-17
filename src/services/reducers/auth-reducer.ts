@@ -27,7 +27,7 @@ import {
   LOGOUT_USER_API_FAIL,
 } from '../../utils/constants';
 import { TAuthActions } from '../actions/auth-actions';
-import { TUser } from '../../utils/types';
+import { TUser } from '../../services/types';
 
 //  Типизирую состояние для данных о пользователе  //
 //  Здесь вероятно надо типизировать все состояния запроса на reset/forgot  //
@@ -70,7 +70,6 @@ const initialState: TAuthState = {
   codeRequestApi: false,
   resetPasswordApi: false,
   hasResetCode: false,
-
 };
 
 //  функциональность регистрации, авторизации, смены пароля, профиля, выхода  //

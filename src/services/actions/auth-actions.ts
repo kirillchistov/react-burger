@@ -11,7 +11,7 @@ import {
   logoutApi,
 } from '../../utils/api';
 import { setCookies, deleteCookie } from '../../utils/auth';
-import { TFormValues, TUser, AppThunk, AppDispatch } from '../../utils/types';
+import { TFormValues, TUser, AppThunk, AppDispatch } from '../../services/types';
 import {
   LOGIN_USER_API,
   LOGIN_USER_API_OK,

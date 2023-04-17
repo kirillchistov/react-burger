@@ -1,5 +1,5 @@
 //  Вынес КБЖУ свойств ингредиента в отдельный компонент  //
-//  import { ingredientType } from '../../utils/types';
+//  import { ingredientType } from '../../services/types';
 import React, { FC } from 'react';
 import IngredientNutritionStyle from './ingredient-nutrition.module.css';
 

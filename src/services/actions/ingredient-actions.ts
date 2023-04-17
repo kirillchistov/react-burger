@@ -9,8 +9,8 @@ import {
 } from '../../utils/constants';
 
 //  Импортирую типы  //
-import { TIngredient, AppDispatch } from '../../utils/types';
-//  import { TIngredientResponse, TResponse } from '../../utils/types';
+import { TIngredient, AppDispatch } from '../../services/types';
+//  import { TIngredientResponse, TResponse } from '../../services/types';
 
 //  Создаю интерфейсы  //
 export interface IGetIngredients {

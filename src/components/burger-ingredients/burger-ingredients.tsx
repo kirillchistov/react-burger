@@ -21,7 +21,7 @@ import { IngredientCategory } from '../ingredient-category/ingredient-category';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 //  import { getIngredients } from '../../services/actions/ingredient-actions';
 //  import { getItems } from '../../utils/state';
-import { TIngredient } from '../../utils/types';
+import { TIngredient } from '../../services/types';
 import BurgerIngredientsStyle from './burger-ingredients.module.css';
      
 export const BurgerIngredients = () => {

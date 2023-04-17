@@ -1,62 +1,68 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import {
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
   WS_GET_MESSAGE,
-  TWSConnectionActions
+} from '../../utils/constants';
+
+import {
+  TWSConnectionActions,
 } from '../actions/ws-actions';
 
-import { TOrder } from '../../utils/types';
+import { TOrder } from '../../services/types';
 
 export type TWSState = {
   wsConnected: boolean;
   orders: Array<TOrder>;
-  error: undefined;
+  error?: PayloadAction | null,
   total: number | null;
   totalToday: number | null;
-  get: boolean;
+  //  get: boolean;
 };
 
 const WSInitialState: TWSState = {
   wsConnected: false,
   orders: [],
-  error: undefined,
+  error: null,
   total: null,
   totalToday: null,
-  get: false,
+  //  get: false,
 };
 
+//  Создал редьюсер для WebSocket по аналогии с тренажером  //
 const wsOrdersReducer = (
   state = WSInitialState,
   action: TWSConnectionActions
 ): TWSState => {
   switch (action.type) {
+    // экшен типа WS_CONNECTION_SUCCESS: wsConnected = true  //
     case WS_CONNECTION_SUCCESS:
       return {
         ...state,
         error: undefined,
         wsConnected: true,
       };
-
+    //  если типа WS_CONNECTION_ERROR: wsConnected = false, ошибку из payload  //
     case WS_CONNECTION_ERROR:
       return {
         ...state,
         error: action.payload,
         wsConnected: false,
       };
-
+    //  При WS_CONNECTION_CLOSED: wsConnected = false  //
     case WS_CONNECTION_CLOSED:
       return {
         ...state,
         error: undefined,
         wsConnected: false,
-        get: false,
+        //  get: false,
       };
-
+    //  Когда с сервера приходят данные WS_GET_MESSAGE, передаем их в orders, total, totalToday  //
     case WS_GET_MESSAGE:
       return {
         ...state,
-        get: true,
+        //  get: true,
         error: undefined,
         total: action.payload.total,
         totalToday: action.payload.totalToday,
