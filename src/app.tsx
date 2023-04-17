@@ -3,21 +3,21 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { 
   HOMEURL, 
   INGREDIENTSID, 
-  // FEEDURL,
+  FEEDURL,
   REGURL,
   LOGINURL,
   PROFILEURL,
   FORGOTURL,
   RESETPASSURL,
   PROFILEORDERSURL,
-  //  ORDERSID,
+  ORDERSID,
 } from './utils/constants';
 import { useDispatch } from './hooks/useDispatch';
 //  Импортирую все странички из разводящего index файла //
 import {
   HomePage,
   IngredientPage,
-  //  FeedPage,
+  FeedPage,
   RegisterPage,
   LoginPage,
   ProfilePage,
@@ -25,15 +25,14 @@ import {
   ResetPasswordPage,
   OrdersPage,
   NotFoundPage,
-  //  OrderPage
+  OrderPage
 } from './pages';
 import { ProtectedRouteElement } from './components/protected-route/protected-route';
 import { IngredientDetails } from './components/ingredient-details/ingredient-details';
 import { getIngredients } from './services/actions/ingredient-actions';
-// import { Order } from './components/order/order';
+import { Order } from './components/order/order';
 import { Modal } from './components/modal/modal';
 import { useEffect } from 'react';
-//  import { Order } from './components/order/order';
 
 
 const App = () => {
@@ -49,7 +48,7 @@ const App = () => {
 
   //  Смотрю как открывают ингридиент/заказ и показываю модалку/страницу  //
   const isHomeBackground = location.state && location.state.ingredientModal;
-  // const isFeedBackground = location.state && location.state.feedItemModal;
+  const isFeedBackground = location.state && location.state.feedItemModal;
 
   //  Маршруты для всех: /home, /ingredient, /feed, /feed/:id //
   //  ...для авторизованных: /profile, /profile/orders, /profile/orders/:id  //
@@ -98,27 +97,27 @@ const App = () => {
       { /* не ясно, что будет в ленте для неавторизованных - номера чужих заказов? */ }
 
       {/* По аналогии с ингредиентами надо сделать заказы */}
-      {/* {isFeedBackground && (
+      {isFeedBackground && (
         <Route path={ORDERSID} element={
           <Modal handleClose={() => navigate(-1)} title='Детали заказа'>
             <Order />
           </Modal>
         } />
-      )} */}
-      {/* <Route path={ORDERSID} element={
+      )}
+      <Route path={ORDERSID} element={
         <ProtectedRouteElement
           element={<OrderPage />}
           showWhen='loggedIn'
         />
-      } /> */}
+      } />
 
-      {/* <Route path={FEEDURL} element={<FeedPage />} /> */}
-      {/* <Route path='/feed' element={
+      <Route path={FEEDURL} element={<FeedPage />} />
+      <Route path='/feed' element={
         <ProtectedRouteElement
           element={<FeedPage />}
           showWhen='notLoggedIn'
         />
-      } /> */}
+      } />
       {isHomeBackground && (
         <Route path={INGREDIENTSID} element={
           <Modal handleClose={() => navigate(-1)} title='Детали ингредиента'>

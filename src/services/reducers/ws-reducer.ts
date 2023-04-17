@@ -35,6 +35,8 @@ const wsOrdersReducer = (
   state = WSInitialState,
   action: TWSConnectionActions
 ): TWSState => {
+
+//  console.log(action.payload);
   switch (action.type) {
     // экшен типа WS_CONNECTION_SUCCESS: wsConnected = true  //
     case WS_CONNECTION_SUCCESS:
@@ -74,4 +76,8 @@ const wsOrdersReducer = (
   }
 };
 
+
+
 export { wsOrdersReducer };
+
+

@@ -69,8 +69,8 @@ export const FeedOrder: FC<IFeedOrderProps> = ({ order, showOrderStatus }) => {
 
       setOrderIngredients(
         ingredientsList
-          .map((orderIngredient: string) => {
-            const ingredient = items.find(
+          ?.map((orderIngredient: string) => {
+            const ingredient = items?.find(
               (item) => item._id === orderIngredient
             );
 
@@ -78,7 +78,7 @@ export const FeedOrder: FC<IFeedOrderProps> = ({ order, showOrderStatus }) => {
               ? undefined
               : ingredient;
           })
-          .filter((ingredient) => ingredient !== undefined) as TIngredient[]
+          ?.filter((ingredient) => ingredient !== undefined) as TIngredient[]
       );
     }
   }, [items, order]);

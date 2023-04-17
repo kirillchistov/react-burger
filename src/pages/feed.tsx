@@ -14,8 +14,9 @@ import feedStyles from './feed.module.css';
 
 export const FeedPage:FC = () => {
   //  Не понимаю пока как это забирать из стора  //
-  const { total, totalToday } = useSelector((store) => store.order);
-  const orders: TOrder[] = useSelector(getOrders);
+  const { total, totalToday, orders } = useSelector((store) => store.ws);
+  //  const orders: TOrder[] = useSelector(getOrders);
+  console.log(orders);
   const dispatch = useDispatch();
 
   //  При монтировании / размонтировании открываю / закрываю WS подключение  //
@@ -60,7 +61,7 @@ export const FeedPage:FC = () => {
         <div className={feedStyles.section_container}>
           <section className={feedStyles.order_container}>
             {orders &&
-              feedOrders.map((order) => (
+              feedOrders?.map((order) => (
                 <FeedOrder
                   order={order}
                   key={order._id}

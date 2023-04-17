@@ -50,6 +50,7 @@ export const wsMiddleware = (wsUrl: string, wsActions: TWSAction, auth: boolean)
         const { data } = event;
         const parsedData = JSON.parse(data);
         const { success, ...restParsedData } = parsedData;
+        console.log(restParsedData);
         dispatch({ type: onMessage, payload: restParsedData });
       };
       //  функция, которая вызывается при закрытии соединения
