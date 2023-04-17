@@ -1,4 +1,4 @@
-import { TUser, TIngredient, TOrder  } from './types';
+import { TUser, TIngredient, TOrder  } from '../services/types';
 
 export const getUser = (state: { auth: { user: TUser|null; }; }) => state.auth.user;
 export const getItems = (state: { ingredients: { ingredients: TIngredient[]; }; }) => state.ingredients.ingredients;

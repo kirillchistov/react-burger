@@ -10,26 +10,40 @@ import {
   POST_ORDER_API_FAIL,
   DELETE_ORDER
 } from '../../utils/constants';
+import { TAppActions, TIngredient, TIngredients, TOrder } from '../types/index'
+
+export type TOrderState = {
+  burgerData: TIngredient[],
+  orderNumber: number|null,
+  orderRequest: boolean,
+  orderRequestFailed: boolean,
+  orderData: TOrder[],
+  total: number,
+  totalToday: number, 
+};
 
 //  Начальное состояние заказа: пустой массив, null номер, нет запроса и ошибок  //
-const initialOrderState = {
+const initialOrderState: TOrderState = {
   burgerData: [],
   orderNumber: null,
   orderRequest: false,
-  orderRequestFailed: false
-};
+  orderRequestFailed: false,
+  orderData: [],
+  total: 0,
+  totalToday: 0, 
 
+};
 //  Меняю состояние в сторе в зависимости от типа action  //
-export const orderReducer = (state = initialOrderState, action) => {
+export const orderReducer = (state = initialOrderState, action: TAppActions) => {
   switch (action.type) {
     //  Для добавления булки нахожу ее индекс в заказе по типу элемента 'bun'  //
     case ADD_BUN: {
       //  Задаю текущую позицию булки для сортировки заказа  //
       const bunIndex = state.burgerData.findIndex(
-        (elem) => elem.type === 'bun'
+        (elem: TIngredient) => elem.type === 'bun'
       );
       //  Запоминаю контент action с добавлением булки  //
-      const bun = action.payload;
+      const bun: TIngredient = action.payload;
       
       //  Сначала создаю копию того, что есть в заказе сейчас  //
       const orderIngredients = [...state.burgerData];

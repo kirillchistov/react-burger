@@ -47,7 +47,7 @@ export interface IRegisterUser {
 }
 export interface IRegisterUserOK {
   readonly type: typeof REGISTER_USER_API_OK;
-  readonly user: TUser;
+  readonly payload: TUser;
 }
 export interface IRegisterUserFail {
   readonly type: typeof REGISTER_USER_API_FAIL;
@@ -57,7 +57,7 @@ export interface ILoginUser {
 }
 export interface ILoginUserOK {
   readonly type: typeof LOGIN_USER_API_OK;
-  readonly user: TUser;
+  readonly payload: TUser;
 }
 export interface ILoginUserFail {
   readonly type: typeof LOGIN_USER_API_FAIL;
@@ -103,7 +103,7 @@ export interface IGetUserProfile {
 }
 export interface IGetUserProfileOK {
   readonly type: typeof GET_USER_PROFILE_API_OK;
-  readonly user: TUser;
+  readonly payload: TUser;
 }
 export interface IGetUserProfileFail {
   readonly type: typeof GET_USER_PROFILE_API_FAIL;
@@ -113,7 +113,7 @@ export interface IUpdateUserProfile {
 }
 export interface IUpdateUserProfileOK {
   readonly type: typeof UPDATE_USER_PROFILE_API_OK;
-  readonly user: TUser;
+  readonly payload: TUser;
 }
 export interface IUpdateUserProfileFail {
   readonly type: typeof UPDATE_USER_PROFILE_API_FAIL;
@@ -147,31 +147,31 @@ export type TAuthActions = IRegisterUser
 
 //  Типизирую action реги и авторизации  //
 export const registerUserOK = (
-  user: TUser
+  payload: TUser
 ): IRegisterUserOK => ({
   type: REGISTER_USER_API_OK,
-  user,
+  payload,
 });
 
 export const loginUserOK = (
-  user: TUser
+  payload: TUser
 ): ILoginUserOK => ({
   type: LOGIN_USER_API_OK,
-  user,
+  payload,
 });
 
 export const getUserProfileOK = (
-  user: TUser
+  payload: TUser
 ): IGetUserProfileOK => ({
   type: GET_USER_PROFILE_API_OK,
-  user
+  payload
 });
 
 export const updateUserProfileOK = (
-  user: TUser
+  payload: TUser
 ): IUpdateUserProfileOK => ({
   type: UPDATE_USER_PROFILE_API_OK,
-  user
+  payload
 });
 
 //  Action логина нового пользователя //

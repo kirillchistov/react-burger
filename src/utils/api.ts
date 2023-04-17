@@ -12,7 +12,7 @@ import {
   TIngredientResponse, 
   TOrderResponse,
   TFormValues,
- } from './types';
+ } from '../services/types';
 
 //  Делаю интерфейс для запроса с обновлением токена  //
 /*
@@ -163,7 +163,7 @@ export const getUserProfileApi = async () => {
 export const updateUserProfileApi = async ({ email, password, name }:TFormValues) => {
   try {
     const { accessToken } = authTokens();
-    return await fetchWithRefresh(`${BASEURL}/auth/user`, {
+    return await fetchWithRefresh<TUserResponse>(`${BASEURL}/auth/user`, {
       method: 'PATCH',
       mode: 'cors',
       cache: 'no-cache',

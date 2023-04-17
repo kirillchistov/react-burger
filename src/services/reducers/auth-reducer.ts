@@ -87,7 +87,7 @@ export const authReducer = (state = initialState, action: TAuthActions) => {
     case REGISTER_USER_API_OK:
       return {
         ...state,
-        user: action.user,
+        user: action.payload,
         request: false,
         registerApi: false,
         registerApiOK: true,
@@ -112,7 +112,7 @@ export const authReducer = (state = initialState, action: TAuthActions) => {
     case LOGIN_USER_API_OK:
       return {
         ...state,
-        user: action.user,
+        user: action.payload,
         request: false,
         loginApi: false,
         loginApiOK: true,
@@ -201,7 +201,7 @@ export const authReducer = (state = initialState, action: TAuthActions) => {
         ...state,
         request: false,
         requestFailed: false,
-        user: action.user,
+        user: action.payload,
       };
     case GET_USER_PROFILE_API_FAIL:
       return {
@@ -219,7 +219,7 @@ export const authReducer = (state = initialState, action: TAuthActions) => {
         ...state,
         request: false,
         requestFailed: false,
-        user: action.user,
+        user: action.payload,
       };
     case UPDATE_USER_PROFILE_API_FAIL:
       return {

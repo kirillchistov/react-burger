@@ -58,11 +58,13 @@ export const ProfilePage = () => {
 
   //  Обрабатываю отмену отправки формы  //
   const cancelSubmit = () => {
-    setData({
-      email: user.email,
-      name: user.name,
-      password: passwordValue,
-    });
+    if (user) {
+      setData({
+        email: user.email,
+        name: user.name,
+        password: passwordValue,
+      });
+    }
     setIsChanged(false);
   };
 

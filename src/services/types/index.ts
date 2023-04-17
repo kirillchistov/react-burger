@@ -16,7 +16,7 @@ import { TWSConnectionActions, TWSConnectionAuthActions } from '../actions/ws-ac
 import { wsActions, wsActionsAuth } from '../store'
 
 //  Типизирую actions  //
-type TAppActions = 
+export type TAppActions = 
  | TIngredientActions 
  | TOrderActions 
  | TAuthActions
