@@ -18,9 +18,9 @@ import orderStyles from './order.module.css';
 
 export const Order = () => {
   const { id } = useParams();
-  //  const items:TIngredient[] = useSelector(getItems);
-  const items:TIngredient[] = useSelector(state => state.ingredients.items);
-  const [orderIngredients, /* setOrderIngredients */] = useState<TIngredient[]>([]);
+  const items:TIngredient[] = useSelector(getItems);
+  //  const items:TIngredient[] = useSelector(state => state.ingredients.items);
+  //  const [orderIngredients, /* setOrderIngredients */] = useState<TIngredient[]>([]);
   const dispatch = useDispatch();
   const location = useLocation();
   const ordersList = useSelector(getOrders);
@@ -139,15 +139,15 @@ export const Order = () => {
   };
 
   //  Возвращаю сумму заказа = суммирую стоимость ингридиентов редьюсом  //
-  const totalSum = useMemo(() => {
-    if (orderIngredients !== undefined && orderIngredients.length > 0) {
-      return orderIngredients
-        .map((element) => element.price)
-        .reduce((sum, price) => sum + price, 0);
-    } else {
-      return 0;
-    }
-  }, [orderIngredients]);
+  // const totalSum = useMemo(() => {
+  //   if (orderIngredients !== undefined && orderIngredients.length > 0) {
+  //     return orderIngredients
+  //       .map((element) => element.price)
+  //       .reduce((sum, price) => sum + price, 0);
+  //   } else {
+  //     return 0;
+  //   }
+  // }, [orderIngredients]);
 
   return (
     <div className={orderStyles.container}>
@@ -159,20 +159,20 @@ export const Order = () => {
           </p>
           <p className='text text_type_main-medium mt-15'>Состав:</p>
           <div className={`mt-6 pr-6 ${orderStyles.ingredients}`}>
-            {orderIngredients !== undefined && orderIngredients.map((ingredient) => (
-              <div className={orderStyles.ingredient} key={ingredient._id}>
+            {orderIngredientInfo && Object.keys(orderIngredientInfo.ingredientsInfo).map((ingredient) => (
+              <div className={orderStyles.ingredient} key={orderIngredientInfo.ingredientsInfo[ingredient]._id}>
                 <div className={`mr-4 ${orderStyles.ingredient_image_container}`}>
                   <div
                     className={orderStyles.ingredient_image}
-                    style={{ backgroundImage: `url(${ingredient.image})` }}
+                    style={{ backgroundImage: `url(${orderIngredientInfo.ingredientsInfo[ingredient].image})` }}
                   />
                 </div>
                 <div className={`mr-4 ${orderStyles.ingredient_name}`}>
-                  {ingredient.name}
+                  {orderIngredientInfo.ingredientsInfo[ingredient].name}
                 </div>
                 <div className={orderStyles.ingredient_price}>
                   <p className='text text_type_digits-default mr-2'>
-                    {`${ingredient.quantity} x ${ingredient.price}`}
+                    {`${orderIngredientInfo.ingredientsInfo[ingredient].count} x ${orderIngredientInfo.ingredientsInfo[ingredient].price}`}
                   </p>
                   <CurrencyIcon type='primary' />
                 </div>
@@ -185,7 +185,7 @@ export const Order = () => {
               className='text text_type_main-default text_color_inactive'
             />
             <div className={orderStyles.order_price}>
-              <p className='text text_type_digits-default mr-2'>{totalSum}</p>
+              <p className='text text_type_digits-default mr-2'>{orderIngredientInfo?.total}</p>
               <CurrencyIcon type='primary' />
             </div>
           </div>
