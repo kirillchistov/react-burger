@@ -70,6 +70,11 @@ export type TIngredients = {
   };
 };
 
+export type TIngredientCount = {
+  [key: string]: TIngredient & { count: number };
+};
+
+
 //  Типизирую объект заказа  //
 export type TOrder = {
   _id: string;

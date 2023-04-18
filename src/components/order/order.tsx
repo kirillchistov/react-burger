@@ -6,10 +6,11 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from '../../hooks/useDispatch';
 import { useSelector } from '../../hooks/useSelector';
 import { useLocation } from 'react-router';
+import {WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../utils/constants'
 // Здесь переделать работу с состояниями, переназвать  //
 import { getItems, getOrdersLogged, getOrders } from '../../utils/state';
-import { getIngredients } from '../../services/actions/ingredient-actions';
-import { TOrder, TIngredient } from '../../services/types';
+//  import { getIngredients } from '../../services/actions/ingredient-actions';
+import { TOrder, TIngredient, TIngredientCount } from '../../services/types';
 //  Где-то здесь будет импорт для WS  //
 
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -17,8 +18,9 @@ import orderStyles from './order.module.css';
 
 export const Order = () => {
   const { id } = useParams();
-  const items:TIngredient[] = useSelector(getItems);
-  const [orderIngredients, setOrderIngredients] = useState<TIngredient[]>([]);
+  //  const items:TIngredient[] = useSelector(getItems);
+  const items:TIngredient[] = useSelector(state => state.ingredients.items);
+  const [orderIngredients, /* setOrderIngredients */] = useState<TIngredient[]>([]);
   const dispatch = useDispatch();
   const location = useLocation();
   const ordersList = useSelector(getOrders);
@@ -30,16 +32,16 @@ export const Order = () => {
     : ordersListLogged;
 
   useEffect(() => {
-    // dispatch({ type: WS_CONNECTION_START });
-    dispatch(getIngredients());
+    dispatch({ type: WS_CONNECTION_START });
+    // dispatch(getIngredients());
     return () => {
-      // dispatch({ type: WS_CONNECTION_CLOSE });
+      dispatch({ type: WS_CONNECTION_CLOSE });
       return;
     };
   }, [dispatch]);
 
   const order = useMemo(
-    () => orders.find((order) => order._id === id) || null,
+    () => orders?.find((order) => order._id === id) || null,
     [orders, id]
   );
 
@@ -54,31 +56,74 @@ export const Order = () => {
   //  При монтировании проверяю, есть ли заказ в состоянии  //
   //  Если есть, создаю массив из сета ингридиентов  //
   //  Потом в полученный массив записываю непустых элементов и кол-во в заказе  //
-  useEffect(() => {
-    if (order) {
-      const { ingredients: orderIngredients } = order;
-      const ingredientsList = Array.from(new Set(orderIngredients));
+  // useEffect(() => {
+  //   if (order) {
+  //     const { ingredients: orderIngredients } = order;
+  //     const ingredientsList = Array.from(new Set(orderIngredients));
 
-      setOrderIngredients(
-        ingredientsList
-          .map((orderIngredient: string) => {
-            const ingredient = items.find(
-              (item) => item._id === orderIngredient
-            );
+  //     setOrderIngredients(
+  //       ingredientsList
+  //         .map((orderIngredient: string) => {
+  //           const ingredient = items?.find(
+  //             (item) => item._id === orderIngredient
+  //           );
 
-            return ingredient === undefined
-              ? undefined
-              : {
-                  ...ingredient,
-                  quantity: orderIngredients.filter(
-                    (ingredientId) => ingredientId === ingredient._id
-                  ).length,
-                };
-          })
-          .filter((ingredient) => ingredient !== undefined) as TIngredient[]
-      );
-    }
-  }, [items, order]);
+  //           return ingredient === undefined
+  //             ? undefined
+  //             : {
+  //                 ...ingredient,
+  //                 quantity: orderIngredients.filter(
+  //                   (ingredientId) => ingredientId === ingredient._id
+  //                 ).length,
+  //               };
+  //         })
+  //         .filter((ingredient) => ingredient !== undefined) as TIngredient[]
+  //     );
+  //   }
+  // }, [items, order]);
+
+  //  Поменять переменные  //
+  const orderIngredientInfo = useMemo(() => {  
+    console.log(`items: ${items}, order: ${order}`)
+    if (!order || !items?.length) return null;
+    // 
+    const date = new Date(order.createdAt);
+    // Здесь возвращаю объект с ключами в виде id ингредиента заказа  //
+    // Значение ключа - данные ингредиента + количество в заказе  //
+    const ingredientsInfo = order.ingredients.reduce(
+      (prev: TIngredientCount, i) => {
+        if (!prev[i]) {
+          const ingredient = items?.find((ingredientItem) => ingredientItem._id === i);
+          if (ingredient) {
+            prev[i] = {
+              ...ingredient,
+              count: 1,
+            };
+          }
+        } else {
+          prev[i].count += 1;
+        }
+        return prev;
+      },
+      //  начальное значение аккумулятора  //
+      {}
+    );
+
+  const total = Object.values(ingredientsInfo).reduce(
+      (prev, i) => prev + i.price * i.count,
+      0
+    );
+
+    return {
+      ...order,
+      ingredientsInfo,
+      date,
+      total,
+    };
+  }, [order, items]);
+  console.log(orderIngredientInfo);
+
+
 
   //  Возвращаю строку со статусом заказа  //
   const getOrderStatus = () => {
@@ -123,7 +168,7 @@ export const Order = () => {
                   />
                 </div>
                 <div className={`mr-4 ${orderStyles.ingredient_name}`}>
-                  Название ингредиента
+                  {ingredient.name}
                 </div>
                 <div className={orderStyles.ingredient_price}>
                   <p className='text text_type_digits-default mr-2'>

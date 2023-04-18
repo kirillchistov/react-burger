@@ -34,7 +34,6 @@ export const wsAuthOrdersReducer = (
   action: TWSConnectionAuthActions
   ): TWSAuthState => {
 
-  //  console.log(action.payload);
   switch (action.type) {
     // экшен типа WS_CONNECTION_SUCCESS_AUTH: wsConnected = true  //
     case WS_CONNECTION_SUCCESS_AUTH:

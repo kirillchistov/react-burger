@@ -1,5 +1,4 @@
 //  Добавляю в API методы для авторизации, профиля и пароля  //
-//  BASEURL = 'https://norma.nomoreparties.space/api' убрать в .env  //
 import {BASEURL} from './constants';
 //  Беру методы для получения токена и рефреш из куки
 import { getCookie, setCookie, deleteCookie, authTokens } from './auth';
@@ -22,6 +21,12 @@ interface IFetchWithRefresh {
   accessToken: string;
 }
 */
+
+export type TOptions = {
+  headers: { authorization?: string; 'Content-Type': string };
+  method?: string;
+  body?: string;
+};
 
 //  Обрабатываю ответ сервера - возвращаю json или ошибку  //
 //  Пока не получается через async try await catch типизировать  //

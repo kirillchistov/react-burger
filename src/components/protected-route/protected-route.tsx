@@ -11,6 +11,7 @@ import { useSelector } from '../../hooks/useSelector';
 import { useDispatch } from '../../hooks/useDispatch';
 //  Нужны оба токена  //
 import { authTokens } from '../../utils/auth';
+import { getUser } from '../../utils/state';
 //  Нужны экшены профиля и токена  //
 import { getUserProfile, getAccessToken } from '../../services/actions/auth-actions';
 
@@ -26,7 +27,8 @@ export const ProtectedRouteElement: FC<IProtectedRoute> = ({ element, showWhen }
   
   //  Отправляю экшены, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным пользователя и токену. PROFIT!  //
-  const user = useSelector((state) => state.auth.user);
+  // const user = useSelector(state => state.auth.user);
+  const user = useSelector(getUser);
   const { accessToken, refreshToken } = authTokens();
 
   //  Колбэк по условию наличия токена и объекта user в глобальном состоянии  //
@@ -78,7 +80,5 @@ export const ProtectedRouteElement: FC<IProtectedRoute> = ({ element, showWhen }
   };
   return render();
 };
-
-//  Заменяю proptypes на TS-типизацию  //
 
 export default React.memo(ProtectedRouteElement);

@@ -10,16 +10,18 @@ import {
   POST_ORDER_API_FAIL,
   DELETE_ORDER
 } from '../../utils/constants';
-import { TAppActions, TIngredient, TOrder } from '../types/index'
+import { TOrderActions } from '../actions/order-actions';
+import { TIngredient } from '../types/index'
+
 
 export type TOrderState = {
   burgerData: TIngredient[],
   orderNumber: number|null,
   orderRequest: boolean,
   orderRequestFailed: boolean,
-  orderData: TOrder[],
-  total: number,
-  totalToday: number, 
+  // orderData: TOrder[],
+  // total: number,
+  // totalToday: number, 
 };
 
 //  Начальное состояние заказа: пустой массив, null номер, нет запроса и ошибок  //
@@ -28,19 +30,19 @@ const initialOrderState: TOrderState = {
   orderNumber: null,
   orderRequest: false,
   orderRequestFailed: false,
-  orderData: [],
-  total: 0,
-  totalToday: 0, 
+  // orderData: [],
+  // total: 0,
+  // totalToday: 0, 
 };
 
 //  Меняю состояние в сторе в зависимости от типа action  //
-export const orderReducer = (state = initialOrderState, action: TAppActions) => {
+export const orderReducer = (state = initialOrderState, action: TOrderActions):TOrderState => {
   switch (action.type) {
     //  Для добавления булки нахожу ее индекс в заказе по типу элемента 'bun'  //
     case ADD_BUN: {
       //  Задаю текущую позицию булки для сортировки заказа  //
       const bunIndex = state.burgerData.findIndex(
-        (elem: TIngredient) => elem.type === 'bun'
+        (i: TIngredient) => i.type === 'bun'
       );
       //  Запоминаю контент action с добавлением булки  //
       const bun: TIngredient = action.payload;
@@ -119,7 +121,11 @@ export const orderReducer = (state = initialOrderState, action: TAppActions) => 
     }
     //  В случае ошибки возвращаем новое состояние с ошибкой, выключаем запрос  //
     case POST_ORDER_API_FAIL: {
-      return { ...state, orderRequestFailed: true, orderRequest: false };
+      return { 
+        ...state, 
+        orderRequestFailed: true, 
+        orderRequest: false 
+      };
     }
     //  В случае удаления заказа возвращаем новое состояние с обнуленным номером и составом заказа  //
     case DELETE_ORDER:

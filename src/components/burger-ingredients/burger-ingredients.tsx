@@ -33,7 +33,6 @@ export const BurgerIngredients = () => {
   //  Заменил useSelector и useDispatch на хуки  //
   const { items: ingredients } = useSelector((state: any) => state.ingredients);
   // const ingredients: TIngredient[] = useSelector(getItems);
-  //  console.log(ingredients);
   //  const dispatch = useDispatch();
   //  По умолчанию мой ингредиент = булка, без булки нельзя  //
   const [current, setCurrent] = useState('bun');
@@ -88,9 +87,9 @@ export const BurgerIngredients = () => {
     <section className={`mr-10 ${BurgerIngredientsStyle.ingredients}`}> 
       <h1 className='mb-5 text text_type_main-large'>Соберите бургер</h1>
       <nav className={BurgerIngredientsStyle.navbar}>
-        <Tab active={current === 'bun'} value="bun" onClick={setCurrent}>Булки</Tab>
-        <Tab active={current === 'sauce'} value="sauce" onClick={setCurrent}>Соусы</Tab>
-        <Tab active={current === 'main'} value="main" onClick={setCurrent}>Начинки</Tab>
+        <Tab active={current === 'bun'} value='bun' onClick={setCurrent}>Булки</Tab>
+        <Tab active={current === 'sauce'} value='sauce' onClick={setCurrent}>Соусы</Tab>
+        <Tab active={current === 'main'} value='main' onClick={setCurrent}>Начинки</Tab>
       </nav>
       <div className={BurgerIngredientsStyle.ingredient_types} id='typeContainer' onScroll={scrollToCategory}>
         <IngredientCategory type={'Булки'} typeList={buns} id='bun' />

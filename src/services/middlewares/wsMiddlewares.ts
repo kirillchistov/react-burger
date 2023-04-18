@@ -9,7 +9,7 @@
 // } from '../actions/ws-actions';
 import { MiddlewareAPI, AnyAction } from 'redux';
 //  import type { AppActions, AppDispatch, RootState } from '../types';  //
-import { TWSAction } from "../../services/types";
+import { TWSAction } from '../../services/types';
 import { authTokens } from '../../utils/auth';
 
 export const wsMiddleware = (wsUrl: string, wsActions: TWSAction, auth: boolean) => (store: MiddlewareAPI) => {
@@ -50,17 +50,16 @@ export const wsMiddleware = (wsUrl: string, wsActions: TWSAction, auth: boolean)
         const { data } = event;
         const parsedData = JSON.parse(data);
         const { success, ...restParsedData } = parsedData;
-        console.log(restParsedData);
         dispatch({ type: onMessage, payload: restParsedData });
       };
       //  функция, которая вызывается при закрытии соединения
       socket.onclose = (event) => {
         dispatch({ type: onClose, payload: event });
-        console.log("socket closed with code: ", event.code);
+        console.log('socket closed with code: ', event.code);
       };
 
       if (wsClose && type === wsClose && socket) {
-        socket.close(1000, "socket closed");
+        socket.close(1000, 'socket closed');
         connected = false;
       }
       //  функция для отправки сообщения на сервер

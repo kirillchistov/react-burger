@@ -120,7 +120,8 @@ export interface IUpdateUserProfileFail {
 }
 
 //  Создаю множественный тип для actions с авторизацией и регой  //
-export type TAuthActions = IRegisterUser
+export type TAuthActions = 
+| IRegisterUser
 | IRegisterUserOK
 | IRegisterUserFail
 | ILoginUser
@@ -178,7 +179,7 @@ export const updateUserProfileOK = (
 //  accessToken для внутренних запросов — получения / обновления данных о пользователе  //
 //  Второй токен — refreshToken (если первый протух) — сохраняю в куки  //
 //  Рефреш-токен для выхода из системы и для нового accessToken, если просрочился  //
-export const loginUser: AppThunk = ({ email, password }: TFormValues) => {
+export const loginUser = ({ email, password }: TFormValues) => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: LOGIN_USER_API,
@@ -190,6 +191,7 @@ export const loginUser: AppThunk = ({ email, password }: TFormValues) => {
           type: LOGIN_USER_API_OK,
           payload: res.user,
         });
+        // dispatch(loginUserOK(res.user));
       } else {
         dispatch({
           type: LOGIN_USER_API_FAIL,
@@ -201,7 +203,7 @@ export const loginUser: AppThunk = ({ email, password }: TFormValues) => {
 
 //  Action регистрации нового пользователя - добавить propTypes? //
 //  Второй токен — refreshToken — сохраняю в куки  //
-export const registerUser: AppThunk = ({ email, password, name }: TFormValues) => {
+export const registerUser = ({ email, password, name }: TFormValues) => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: REGISTER_USER_API,
