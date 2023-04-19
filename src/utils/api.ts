@@ -13,21 +13,6 @@ import {
   TFormValues,
  } from '../services/types';
 
-//  Делаю интерфейс для запроса с обновлением токена  //
-/*
-interface IFetchWithRefresh {
-  success: boolean;
-  refreshToken: string;
-  accessToken: string;
-}
-*/
-
-export type TOptions = {
-  headers: { authorization?: string; 'Content-Type': string };
-  method?: string;
-  body?: string;
-};
-
 //  Обрабатываю ответ сервера - возвращаю json или ошибку  //
 //  Пока не получается через async try await catch типизировать  //
 const checkResponse = <T>(res: Response) => {

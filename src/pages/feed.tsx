@@ -66,7 +66,7 @@ export const FeedPage:FC = () => {
                 <FeedOrder
                   order={order}
                   key={order._id}
-                  showOrderStatus={false}
+                  isStatusVisible={false}
                 />
               ))}
           </section>

@@ -33,6 +33,7 @@ export const FORGOTURL = '/forgot-password';
 export const RESETPASSURL = '/reset-password';
 export const INGREDIENTSURL = '/ingredients';
 export const FEEDURL = '/feed';
+export const FEEDID = '/feed/:id';
 export const ORDERSURL = '/orders';
 export const PROFILEORDERSURL = '/profile/orders';
 export const ORDERSID = '/profile/orders/:id';

@@ -11,6 +11,7 @@
 
 /* Контейнер ленты заказов */
 .order_container {
+  height: 912px;
   max-height: calc(100vh - 268px);
   display: grid;
   row-gap: 16px; 

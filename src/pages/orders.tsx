@@ -28,7 +28,7 @@ export const OrdersPage:FC = () => {
   }, [dispatch]);
 
   const profileOrders = useMemo(
-    () => orders.filter((order:TOrder) => order),
+    () => orders?.filter((order:TOrder) => order),
     [orders]
   );
 
@@ -39,13 +39,12 @@ export const OrdersPage:FC = () => {
         <ProfileNav
           navTip={'В этом разделе вы можете просмотреть свою историю заказов'}
         />
-        <h1 className='text text_type_main-large'>История заказов</h1>
         <section className={`ml-15 ${OrdersPageStyle.order_container}`}>
           {orders &&
             profileOrders
               .reverse()
               .map((order:TOrder) => (
-                <FeedOrder order={order} key={order._id} showOrderStatus />
+                <FeedOrder order={order} key={order._id} isStatusVisible />
               ))}
         </section>
       </div>

@@ -4,6 +4,7 @@ import {
   HOMEURL, 
   INGREDIENTSID, 
   FEEDURL,
+  FEEDID,
   REGURL,
   LOGINURL,
   PROFILEURL,
@@ -94,9 +95,7 @@ const App = () => {
           showWhen='loggedIn'
         />
       } />
-      { /* не ясно, что будет в ленте для неавторизованных - номера чужих заказов? */ }
 
-      {/* По аналогии с ингредиентами надо сделать заказы */}
       {isFeedBackground && (
         <Route path={ORDERSID} element={
           <Modal handleClose={() => navigate(-1)} title='Детали заказа'>
@@ -118,6 +117,7 @@ const App = () => {
           showWhen='notLoggedIn'
         />
       } />
+      <Route path={FEEDID} element={<OrderPage />} />
       {isHomeBackground && (
         <Route path={INGREDIENTSID} element={
           <Modal handleClose={() => navigate(-1)} title='Детали ингредиента'>

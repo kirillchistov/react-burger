@@ -12,10 +12,10 @@ import feedStyles from './feed-item.module.css';
 
 interface IFeedOrderProps {
   order: TOrder;
-  showOrderStatus: boolean;
+  isStatusVisible: boolean;
 }
 
-export const FeedOrder: FC<IFeedOrderProps> = ({ order, showOrderStatus }) => {
+export const FeedOrder: FC<IFeedOrderProps> = ({ order, isStatusVisible }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const items = useSelector(getItems);
@@ -99,7 +99,7 @@ export const FeedOrder: FC<IFeedOrderProps> = ({ order, showOrderStatus }) => {
       <p className={`${feedStyles.order_name} text text_type_main-medium mt-6`}>
         {order.name}
       </p>
-      {showOrderStatus && (
+      {isStatusVisible && (
         <p className='text text_type_main-default mt-2' style={doneOrderStyle}>
           {getOrderStatus()}
         </p>
