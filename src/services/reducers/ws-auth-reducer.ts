@@ -55,7 +55,6 @@ export const wsAuthOrdersReducer = (
         ...state,
         error: undefined,
         wsConnected: false,
-        //  get: false,
       };
     //  Когда с сервера приходят данные WS_GET_MESSAGE_AUTH, передаем  //
     case WS_GET_MESSAGE_AUTH:
@@ -64,8 +63,7 @@ export const wsAuthOrdersReducer = (
         error: undefined,
         total: action.payload.total,
         totalToday: action.payload.totalToday,
-        orders: [...action.payload.orders],
-        //  get: true,
+        orders: action.payload.orders,
       };
     default:
       return state;

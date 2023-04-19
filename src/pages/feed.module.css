@@ -38,7 +38,8 @@
 /* Контейнер заказов в работе */
 .orders_list {
   width: 272px;
-  height: calc((32px * 10) + 1px);
+  /* height: calc((32px * 10) + 1px); */
+  height: 162px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

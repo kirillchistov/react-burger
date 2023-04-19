@@ -18,8 +18,8 @@ interface IFeedOrderProps {
 export const FeedOrder: FC<IFeedOrderProps> = ({ order, showOrderStatus }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  //  const items = useSelector(getItems);
-  const items:TIngredient[] = useSelector(state => state.ingredients.items);
+  const items = useSelector(getItems);
+  //  const items:TIngredient[] = useSelector(state => state.ingredients.items);
   const [orderIngredients, setOrderIngredients] = useState<TIngredient[]>([]);
   const ingredientNumber = 6;
 

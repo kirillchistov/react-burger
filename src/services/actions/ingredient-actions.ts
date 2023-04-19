@@ -41,8 +41,6 @@ export const getIngredients = () => (dispatch: AppDispatch) => {
     });
     return fetchIngredients().then((res) => {
       if (res && res.success) {
-//         console.log('fetchI: ', res);
-//         console.log('fetchI: ', res?.data);
 
         dispatch({
           type: GET_INGREDIENTS_API_OK,

@@ -13,10 +13,9 @@ import {
 import feedStyles from './feed.module.css';
 
 export const FeedPage:FC = () => {
-  //  Не понимаю пока как это забирать из стора  //
-  const { total, totalToday, orders } = useSelector(store => store.ws);
+  //  Пока забираю из стора по старинке, надо доделать getOrders  //
   //  const orders: TOrder[] = useSelector(getOrders);
-  console.log(orders);
+  const { total, totalToday, orders } = useSelector(store => store.ws);
   const dispatch = useDispatch();
 
   //  При монтировании / размонтировании открываю / закрываю WS подключение  //
@@ -34,17 +33,18 @@ export const FeedPage:FC = () => {
     [orders]
   );
 
-  //  Собираю ленту из 20 номеров готовых заказов  //
+  //  Собираю ленту из 10 номеров готовых заказов  //
   const doneOrders = useMemo(
     () =>
       feedOrders
         .filter((order) => order.status === 'done')
-        .slice(0, 20)
+        .slice(0, 10)
         .map((order) => order.number),
     [feedOrders]
   );
 
   //  Собираю ленту из 20 номеров готовящихся заказов  //
+  //  Надо переделать на 10 номеров  //
   const pendingOrders = useMemo(() =>
       feedOrders
         .filter((order) => order.status === 'pending')
@@ -53,6 +53,7 @@ export const FeedPage:FC = () => {
     [feedOrders]
   );
 
+  //  Надо переделать верстку - показывать не более 10 номеров по 5 в 2 колонках  //
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
       <AppHeader />

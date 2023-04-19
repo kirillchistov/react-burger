@@ -1,9 +1,11 @@
 /* Основной flex-контейнер */
 .container {
+  margin: 0 auto;
   padding-left: calc((100vw - 1320px)/2);
   padding-right: calc((100vw - 1320px)/2);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* grid-контейнер с информацией о заказах и верт. скроллом */

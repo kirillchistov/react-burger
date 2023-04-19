@@ -1,7 +1,7 @@
 //  Здесь будет TSX  //
 //  Эндпоинт для получения деталей конкретного заказа GET /orders/:number  //
 
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from '../../hooks/useDispatch';
 import { useSelector } from '../../hooks/useSelector';
@@ -45,14 +45,6 @@ export const Order = () => {
     [orders, id]
   );
 
-  const doneOrderColor = order
-    ? order.status === 'done'
-      ? {
-          color: '#00cccc',
-        }
-      : undefined
-    : undefined;
-
   //  При монтировании проверяю, есть ли заказ в состоянии  //
   //  Если есть, создаю массив из сета ингридиентов  //
   //  Потом в полученный массив записываю непустых элементов и кол-во в заказе  //
@@ -82,14 +74,15 @@ export const Order = () => {
   //   }
   // }, [items, order]);
 
-  //  Поменять переменные  //
+  //  Формирую состав заказа - вначале проверяю есть ли закза и ингридиенты в массиве  //
   const orderIngredientInfo = useMemo(() => {  
-    console.log(`items: ${items}, order: ${order}`)
+    //  console.log(`items: ${items}, order: ${order}`)
     if (!order || !items?.length) return null;
-    // 
+    // Получаю дату заказа  //
     const date = new Date(order.createdAt);
-    // Здесь возвращаю объект с ключами в виде id ингредиента заказа  //
+    // Возвращаю объект с ключами в виде id ингредиента заказа  //
     // Значение ключа - данные ингредиента + количество в заказе  //
+    // В редьюсе итерациями добавляю в объект ингридиенты и их count в заказе  //
     const ingredientsInfo = order.ingredients.reduce(
       (prev: TIngredientCount, i) => {
         if (!prev[i]) {
@@ -108,12 +101,10 @@ export const Order = () => {
       //  начальное значение аккумулятора  //
       {}
     );
-
+  //  Здесь же считаю общую сумму заказа  //
   const total = Object.values(ingredientsInfo).reduce(
-      (prev, i) => prev + i.price * i.count,
-      0
+      (prev, i) => prev + i.price * i.count, 0
     );
-
     return {
       ...order,
       ingredientsInfo,
@@ -121,9 +112,7 @@ export const Order = () => {
       total,
     };
   }, [order, items]);
-  console.log(orderIngredientInfo);
-
-
+  //  console.log(orderIngredientInfo);
 
   //  Возвращаю строку со статусом заказа  //
   const getOrderStatus = () => {
@@ -138,6 +127,15 @@ export const Order = () => {
     }
   };
 
+  //  в зависимости от статуса подсвечиваю готовый заказ  //
+  const doneOrderColor = order
+    ? order.status === 'done'
+      ? {
+          color: '#00cccc',
+        }
+      : undefined
+    : undefined;
+
   //  Возвращаю сумму заказа = суммирую стоимость ингридиентов редьюсом  //
   // const totalSum = useMemo(() => {
   //   if (orderIngredients !== undefined && orderIngredients.length > 0) {
@@ -149,19 +147,21 @@ export const Order = () => {
   //   }
   // }, [orderIngredients]);
 
+  //  Здесь с сервера приезжает шляпа с булками: число булок = 1, а не 2  //
   return (
     <div className={orderStyles.container}>
       {order && (
         <>
-          <p className='text text_type_main-medium mt-10' style={doneOrderColor}>{order.name}</p>
-          <p className='text text_type_main-default mt-3'>
-            {getOrderStatus()}
+          <p className={`text text_type_digits-default ${orderStyles.order_number}`}>
+            {`#${order.number}`}
           </p>
-          <p className='text text_type_main-medium mt-15'>Состав:</p>
+          <p className='mt-10 text text_type_main-medium' style={doneOrderColor}>{order.name}</p>
+          <p className='mt-3 text text_type_main-default'>{getOrderStatus()}</p>
+          <p className='mt-15 text text_type_main-medium'>Состав:</p>
           <div className={`mt-6 pr-6 ${orderStyles.ingredients}`}>
             {orderIngredientInfo && Object.keys(orderIngredientInfo.ingredientsInfo).map((ingredient) => (
               <div className={orderStyles.ingredient} key={orderIngredientInfo.ingredientsInfo[ingredient]._id}>
-                <div className={`mr-4 ${orderStyles.ingredient_image_container}`}>
+                <div className={`mr-4 ${orderStyles.image_container}`}>
                   <div
                     className={orderStyles.ingredient_image}
                     style={{ backgroundImage: `url(${orderIngredientInfo.ingredientsInfo[ingredient].image})` }}
@@ -171,7 +171,7 @@ export const Order = () => {
                   {orderIngredientInfo.ingredientsInfo[ingredient].name}
                 </div>
                 <div className={orderStyles.ingredient_price}>
-                  <p className='text text_type_digits-default mr-2'>
+                  <p className='mr-2 text text_type_digits-default'>
                     {`${orderIngredientInfo.ingredientsInfo[ingredient].count} x ${orderIngredientInfo.ingredientsInfo[ingredient].price}`}
                   </p>
                   <CurrencyIcon type='primary' />
@@ -179,12 +179,12 @@ export const Order = () => {
               </div>
             ))}
           </div>
-          <div className={`mt-10 ${orderStyles.footer}`}>
+          <div className={`mt-10 ${orderStyles.order_footer}`}>
             <FormattedDate
               date={new Date(order.createdAt)}
               className='text text_type_main-default text_color_inactive'
             />
-            <div className={orderStyles.order_price}>
+            <div className={orderStyles.order_total}>
               <p className='text text_type_digits-default mr-2'>{orderIngredientInfo?.total}</p>
               <CurrencyIcon type='primary' />
             </div>
