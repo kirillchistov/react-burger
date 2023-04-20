@@ -1,4 +1,4 @@
-import { PayloadAction } from '@reduxjs/toolkit';
+//  import { PayloadAction } from '@reduxjs/toolkit';
 import {
   WS_CONNECTION_SUCCESS_AUTH,
   WS_CONNECTION_ERROR_AUTH,
@@ -13,7 +13,7 @@ import { TOrder } from '../types';
 export type TWSAuthState = {
   wsConnected: boolean;
   orders: Array<TOrder>;
-  error?: PayloadAction | null,
+  error?: Event | null,
   total: number | null;
   totalToday: number | null;
   //  get: boolean;

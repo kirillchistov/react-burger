@@ -7,12 +7,13 @@
 //   WS_GET_MESSAGE,
 //   TWSConnectionActions,
 // } from '../actions/ws-actions';
-import { MiddlewareAPI, AnyAction } from 'redux';
-//  import type { AppActions, AppDispatch, RootState } from '../types';  //
+import { Middleware, MiddlewareAPI, AnyAction } from 'redux';
+//  import type { AppDispatch, RootState, TWsMessage } from '../types';  //
+import type { AppDispatch, RootState } from '../types';  //
 import { TWSAction } from '../../services/types';
 import { authTokens } from '../../utils/auth';
 
-export const wsMiddleware = (wsUrl: string, wsActions: TWSAction, auth: boolean) => (store: MiddlewareAPI) => {
+export const wsMiddleware = (wsUrl: string, wsActions: TWSAction, auth: boolean): Middleware => (store: MiddlewareAPI<AppDispatch, RootState>) => {
   let socket: WebSocket | undefined;
   let connected = false; // eslint-disable-line
   return (next: (i: AnyAction) => void) => (action: AnyAction) => {

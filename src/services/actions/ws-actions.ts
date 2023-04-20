@@ -1,4 +1,4 @@
-import { PayloadAction } from '@reduxjs/toolkit';
+// import { PayloadAction } from '@reduxjs/toolkit';
 //  import { TWSState } from '../reducers/ws-reducer';
 //  Перенес константы в /utils/constants  //
 import {
@@ -35,7 +35,7 @@ export interface IWsConnectionSuccessAction {
 }
 export interface IWsConnectionErrorAction {
   readonly type: typeof WS_CONNECTION_ERROR;
-  payload: PayloadAction
+  payload: Event
 }
 export interface IWsConnectionCloseAction {
   readonly type: typeof WS_CONNECTION_CLOSE;
@@ -59,7 +59,7 @@ export interface IWsConnectionSuccessAuthAction {
 }
 export interface IWsConnectionErrorAuthAction {
   readonly type: typeof WS_CONNECTION_ERROR_AUTH;
-  payload: PayloadAction
+  payload: Event
 }
 export interface IWsConnectionCloseAuthAction {
   readonly type: typeof WS_CONNECTION_CLOSE_AUTH;
