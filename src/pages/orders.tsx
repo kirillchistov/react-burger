@@ -2,7 +2,7 @@
 import React, { FC, useEffect, useMemo } from 'react';
 import { useSelector } from '../hooks/useSelector';
 import { useDispatch } from '../hooks/useDispatch';
-import { AppHeader } from '../components/app-header/app-header';
+//  import { AppHeader } from '../components/app-header/app-header';
 import { FeedOrder } from '../components/feed-item/feed-item';
 import { ProfileNav } from '../components/profile-nav/profile-nav';
 import { WS_CONNECTION_START_AUTH, WS_CONNECTION_CLOSE_AUTH } from '../utils/constants';
@@ -34,7 +34,6 @@ export const OrdersPage:FC = () => {
 
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
-      <AppHeader />
       <div className={OrdersPageStyle.profile__container}>
         <ProfileNav
           navTip={'В этом разделе вы можете просмотреть свою историю заказов'}
@@ -51,5 +50,3 @@ export const OrdersPage:FC = () => {
     </div>
   );
 }
-
-//  нет пропсов, нет типизации  //

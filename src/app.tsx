@@ -28,6 +28,7 @@ import {
   NotFoundPage,
   OrderPage
 } from './pages';
+import { AppHeader } from './components/app-header/app-header';
 import { ProtectedRouteElement } from './components/protected-route/protected-route';
 import { IngredientDetails } from './components/ingredient-details/ingredient-details';
 import { getIngredients } from './services/actions/ingredient-actions';
@@ -56,96 +57,99 @@ const App = () => {
   //  ...для авторизованных: /profile, /profile/orders, /profile/orders/:id  //
   //  ...для не-авторизованных: /login, /register?, /forgot-password, /reset-password?  //
   return (
-    <Routes>
-      <Route path={HOMEURL} element={<HomePage />} />
-      <Route path={REGURL} element={
-        <ProtectedRouteElement
-          element={<RegisterPage />}
-          showWhen='notLoggedIn'
-        />
-      } />
-      <Route path={LOGINURL} element={
-        <ProtectedRouteElement
-          element={<LoginPage />}
-          showWhen='notLoggedIn'
-        />
-      } />
-
-      <Route path={FEEDURL} element={<FeedPage />} />
-
-      <Route path={FORGOTURL} element={
-        <ProtectedRouteElement
-          element={<ForgotPasswordPage />}
-          showWhen='notLoggedIn'
-        />
-      } />
-      { /* здесь надо сделать развилку - авторизованных переспрашивать */ }
-      <Route path={RESETPASSURL} element={
-        <ProtectedRouteElement
-          element={<ResetPasswordPage />}
-          showWhen='notLoggedIn'
-        />
-      } />
-      
-      <Route path={PROFILEURL} element={
-        <ProtectedRouteElement
-          element={<ProfilePage />}
-          showWhen='loggedIn'
-        />
-      } />
-
-      <Route path={PROFILEURL} element={
-        <ProtectedRouteElement
-          element={<LoginPage />}
-          showWhen='notLoggedIn'
-        />
-      } />
-
-      <Route path={PROFILEORDERSURL} element={
-        <ProtectedRouteElement
-          element={<OrdersPage />}
-          showWhen='loggedIn'
-        />
-      } />
-
-      {isProfileBackground && (
-        <Route path={ORDERSID} element={
-          <Modal handleClose={() => navigate(-1)} title="Детали заказа">
-            <Order />
-          </Modal>
-        }
-        />
-      )}
-
-      {isFeedBackground && (
-        <Route path={ORDERSID} element={
-          <Modal handleClose={() => navigate(-1)} title='Детали заказа'>
-            <Order />
-          </Modal>
+    <>
+      <AppHeader />
+      <Routes>
+        <Route path={HOMEURL} element={<HomePage />} />
+        <Route path={REGURL} element={
+          <ProtectedRouteElement
+            element={<RegisterPage />}
+            showWhen='notLoggedIn'
+          />
         } />
-      )}
-
-      <Route path={ORDERSID} element={
-        <ProtectedRouteElement
-          element={<OrderPage />}
-          showWhen='loggedIn'
-        />
-      } />
-
-      <Route path={FEEDID} element={<OrderPage />} />
-
-      {isHomeBackground && (
-        <Route path={INGREDIENTSID} element={
-          <Modal handleClose={() => navigate(-1)} title='Детали ингредиента'>
-            <IngredientDetails />
-          </Modal>
+        <Route path={LOGINURL} element={
+          <ProtectedRouteElement
+            element={<LoginPage />}
+            showWhen='notLoggedIn'
+          />
         } />
-      )}
 
-      <Route path={INGREDIENTSID} element={<IngredientPage />} />
+        <Route path={FEEDURL} element={<FeedPage />} />
 
-      <Route path='*' element={<NotFoundPage />} />
-    </Routes>
+        <Route path={FORGOTURL} element={
+          <ProtectedRouteElement
+            element={<ForgotPasswordPage />}
+            showWhen='notLoggedIn'
+          />
+        } />
+        { /* здесь надо сделать развилку - авторизованных переспрашивать */ }
+        <Route path={RESETPASSURL} element={
+          <ProtectedRouteElement
+            element={<ResetPasswordPage />}
+            showWhen='notLoggedIn'
+          />
+        } />
+        
+        <Route path={PROFILEURL} element={
+          <ProtectedRouteElement
+            element={<ProfilePage />}
+            showWhen='loggedIn'
+          />
+        } />
+
+        <Route path={PROFILEURL} element={
+          <ProtectedRouteElement
+            element={<LoginPage />}
+            showWhen='notLoggedIn'
+          />
+        } />
+
+        <Route path={PROFILEORDERSURL} element={
+          <ProtectedRouteElement
+            element={<OrdersPage />}
+            showWhen='loggedIn'
+          />
+        } />
+
+        {isProfileBackground && (
+          <Route path={ORDERSID} element={
+            <Modal handleClose={() => navigate(-1)} title="Детали заказа">
+              <Order />
+            </Modal>
+          }
+          />
+        )}
+
+        {isFeedBackground && (
+          <Route path={ORDERSID} element={
+            <Modal handleClose={() => navigate(-1)} title='Детали заказа'>
+              <Order />
+            </Modal>
+          } />
+        )}
+
+        <Route path={ORDERSID} element={
+          <ProtectedRouteElement
+            element={<OrderPage />}
+            showWhen='loggedIn'
+          />
+        } />
+
+        <Route path={FEEDID} element={<OrderPage />} />
+
+        {isHomeBackground && (
+          <Route path={INGREDIENTSID} element={
+            <Modal handleClose={(): void => navigate(-1)} title='Детали ингредиента'>
+              <IngredientDetails />
+            </Modal>
+          } />
+        )}
+
+        <Route path={INGREDIENTSID} element={<IngredientPage />} />
+
+        <Route path='*' element={<NotFoundPage />} />
+      </Routes>
+    </>
   );
 }
 

@@ -2,7 +2,7 @@
 import React, { FC, useEffect, useMemo } from 'react';
 import { useDispatch } from '../hooks/useDispatch';
 import { useSelector } from '../hooks/useSelector';
-import { AppHeader } from '../components/app-header/app-header';
+//  import { AppHeader } from '../components/app-header/app-header';
 import { FeedOrder } from '../components/feed-item/feed-item';
 //  import { getOrders } from '../utils/state';
 //  import { TOrder } from '../services/types';
@@ -56,7 +56,6 @@ export const FeedPage:FC = () => {
   //  Надо переделать верстку - показывать не более 10 номеров по 5 в 2 колонках  //
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
-      <AppHeader />
       <div className={feedStyles.main_container}>
         <h1 className=' mb-5 text text_type_main-large'>Лента заказов</h1>
         <div className={feedStyles.section_container}>

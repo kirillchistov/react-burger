@@ -7,11 +7,12 @@
 */
 //  Хуки react, router-dom, redux, useForm  //
 //  import { useState } from 'react';
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from '../hooks/useDispatch';
 import { useForm } from '../hooks/useForm';
 //  Нужна шапка  //
-import { AppHeader } from '../components/app-header/app-header';
+//  import { AppHeader } from '../components/app-header/app-header';
 //  Из библиотеки беру кнопку, поле ввода обычный инпут и поле пароля  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 //  action логина для redux  //
@@ -19,7 +20,7 @@ import { loginUser } from '../services/actions/auth-actions';
 //  Стиль  //
 import LoginStyle from './login.module.css';
 
-export const LoginPage = () => {
+export const LoginPage:FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -41,7 +42,6 @@ export const LoginPage = () => {
   //  Хром требует для пароля autocomplete="current-password"  //
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
-      <AppHeader />
       <div className={LoginStyle.container}>
         <form className={LoginStyle.form} onSubmit={submitLogin}>
           <h1 className='text text_type_main-medium'>Вход</h1>

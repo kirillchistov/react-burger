@@ -5,6 +5,7 @@
     Пример тела запроса в ТЗ
 */
 //  Хуки для redux, навигации, авторизации  //
+import { FC } from 'react';
 import { useDispatch } from '../hooks/useDispatch';
 import { useSelector } from '../hooks/useSelector';
 import { useForm } from '../hooks/useForm';
@@ -12,19 +13,19 @@ import { useForm } from '../hooks/useForm';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { changePassword } from '../services/actions/auth-actions';
 //  Шапка и компоненты из библиотеки  //
-import { AppHeader } from '../components/app-header/app-header';
+//  import { AppHeader } from '../components/app-header/app-header';
 import { getResetCode } from '../utils/state'
 //  Стили берем из login  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import PasswordStyles from './login.module.css';
 
-export const ResetPasswordPage = () => {
+export const ResetPasswordPage:FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным пользователя. PROFIT!  //
   const hasResetCode = useSelector(getResetCode);
-  const { data, handleDataChange,  } = useForm({ password: '', token: '' });
+  const { data, handleDataChange } = useForm({ password: '', token: '' });
 
   const submitForgotPassword = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,7 +40,6 @@ export const ResetPasswordPage = () => {
   //  Разметка: шапка, flex-контейнер с grid-формой внутри  //
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
-      <AppHeader />
       <div className={PasswordStyles.container}>
         <form className={PasswordStyles.form} onSubmit={submitForgotPassword}>
           <h1 className='text text_type_main-medium'>Восстановление пароля</h1>
