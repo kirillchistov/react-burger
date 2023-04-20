@@ -113,7 +113,7 @@ export const FeedOrder: FC<IFeedOrderProps> = ({ order, isStatusVisible }) => {
               return (
                 <li
                   className={feedStyles.ingredient_image_container}
-                  key={order._id}
+                  key={index}
                 >
                   <div
                     className={`${feedStyles.ingredient_image} ${
