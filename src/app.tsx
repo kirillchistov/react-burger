@@ -50,6 +50,7 @@ const App = () => {
   //  Смотрю как открывают ингридиент/заказ и показываю модалку/страницу  //
   const isHomeBackground = location.state && location.state.ingredientModal;
   const isFeedBackground = location.state && location.state.feedItemModal;
+  const isProfileBackground = location.state && location.state.profileOrderModal;
 
   //  Маршруты для всех: /home, /ingredient, /feed, /feed/:id //
   //  ...для авторизованных: /profile, /profile/orders, /profile/orders/:id  //
@@ -69,6 +70,9 @@ const App = () => {
           showWhen='notLoggedIn'
         />
       } />
+
+      <Route path={FEEDURL} element={<FeedPage />} />
+
       <Route path={FORGOTURL} element={
         <ProtectedRouteElement
           element={<ForgotPasswordPage />}
@@ -82,19 +86,36 @@ const App = () => {
           showWhen='notLoggedIn'
         />
       } />
-      { /* здесь надо сделать развилку - неавторизованных отправлять на логин */ }
+      
       <Route path={PROFILEURL} element={
         <ProtectedRouteElement
           element={<ProfilePage />}
           showWhen='loggedIn'
         />
       } />
+
+      <Route path={PROFILEURL} element={
+        <ProtectedRouteElement
+          element={<LoginPage />}
+          showWhen='notLoggedIn'
+        />
+      } />
+
       <Route path={PROFILEORDERSURL} element={
         <ProtectedRouteElement
           element={<OrdersPage />}
           showWhen='loggedIn'
         />
       } />
+
+      {isProfileBackground && (
+        <Route path={ORDERSID} element={
+          <Modal handleClose={() => navigate(-1)} title="Детали заказа">
+            <Order />
+          </Modal>
+        }
+        />
+      )}
 
       {isFeedBackground && (
         <Route path={ORDERSID} element={
@@ -103,6 +124,7 @@ const App = () => {
           </Modal>
         } />
       )}
+
       <Route path={ORDERSID} element={
         <ProtectedRouteElement
           element={<OrderPage />}
@@ -110,14 +132,8 @@ const App = () => {
         />
       } />
 
-      <Route path={FEEDURL} element={<FeedPage />} />
-      <Route path='/feed' element={
-        <ProtectedRouteElement
-          element={<FeedPage />}
-          showWhen='notLoggedIn'
-        />
-      } />
       <Route path={FEEDID} element={<OrderPage />} />
+
       {isHomeBackground && (
         <Route path={INGREDIENTSID} element={
           <Modal handleClose={() => navigate(-1)} title='Детали ингредиента'>
@@ -125,7 +141,9 @@ const App = () => {
           </Modal>
         } />
       )}
+
       <Route path={INGREDIENTSID} element={<IngredientPage />} />
+
       <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );

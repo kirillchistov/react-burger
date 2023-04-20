@@ -111,13 +111,13 @@ export const BurgerConstructor: FC = () => {
             <ul className={`${burgerConstructorStyle.element_midstuff}`}>
             {ingredientsMidStuff.map((element, index) => { 
               return (
-                <li key={element._id} className={burgerConstructorStyle.element}>
+                <li key={element._uid} className={burgerConstructorStyle.element}>
                   <ConstructorElements 
                     elementData={element}
                     bunTypeName={''} 
                     isLocked={false} 
                     index={index}
-                    key={element._id} 
+                    key={element._uid} 
                   />
                 </li>
               );

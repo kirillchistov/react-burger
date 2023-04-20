@@ -1,7 +1,7 @@
 import React, { FC, useState, useMemo, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from '../../hooks/useSelector';
-import { v4 as uuidv4 } from 'uuid';
+//  import { v4 as uuidv4 } from 'uuid';
 import { getItems } from '../../utils/state';
 import { TOrder, TIngredient } from '../../services/types';
 import {
@@ -51,7 +51,7 @@ export const FeedOrder: FC<IFeedOrderProps> = ({ order, isStatusVisible }) => {
     }
   };
 
-  const handleOpenOrderModal = useCallback(() => {
+  const handleOrderModal = useCallback(() => {
     if (location.pathname === '/feed') {
       navigate(`/feed/${order._id}`, {
         state: { feedOrderModal: location },
@@ -87,7 +87,7 @@ export const FeedOrder: FC<IFeedOrderProps> = ({ order, isStatusVisible }) => {
   return (
     <div
       className={`mr-2 ${feedStyles.order_container}`}
-      onClick={handleOpenOrderModal}
+      onClick={handleOrderModal}
     >
       <div className={feedStyles.header}>
         <p className='text text_type_digits-default'>{`#${order.number}`}</p>
@@ -113,7 +113,7 @@ export const FeedOrder: FC<IFeedOrderProps> = ({ order, isStatusVisible }) => {
               return (
                 <li
                   className={feedStyles.ingredient_image_container}
-                  key={uuidv4()}
+                  key={order._id}
                 >
                   <div
                     className={`${feedStyles.ingredient_image} ${

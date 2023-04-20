@@ -5,7 +5,6 @@
     Пример тела запроса в ТЗ
 */
 //  Хуки для redux, навигации, авторизации  //
-//  import { useDispatch, useSelector } from 'react-redux';
 import { useDispatch } from '../hooks/useDispatch';
 import { useSelector } from '../hooks/useSelector';
 import { useForm } from '../hooks/useForm';
@@ -14,9 +13,9 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { changePassword } from '../services/actions/auth-actions';
 //  Шапка и компоненты из библиотеки  //
 import { AppHeader } from '../components/app-header/app-header';
-import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getResetCode } from '../utils/state'
 //  Стили берем из login  //
+import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import PasswordStyles from './login.module.css';
 
 export const ResetPasswordPage = () => {

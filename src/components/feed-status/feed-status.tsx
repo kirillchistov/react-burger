@@ -50,7 +50,7 @@ export const FeedStatus: FC<IFeedItemProps> = ({ order, isStatusVisible }) => {
     }
   };
 
-  const handleOpenOrderModal = useCallback(() => {
+  const handleOrderModal = useCallback(() => {
     if (location.pathname === '/feed') {
       navigate(`/feed/${order._id}`, {
         state: { feedOrderModal: location },
@@ -86,7 +86,7 @@ export const FeedStatus: FC<IFeedItemProps> = ({ order, isStatusVisible }) => {
   return (
     <div
       className={`${styles.order_container} mr-2`}
-      onClick={handleOpenOrderModal}
+      onClick={handleOrderModal}
     >
       <div className={styles.header}>
         <p className='text text_type_digits-default'>{`#${order.number}`}</p>
@@ -112,7 +112,7 @@ export const FeedStatus: FC<IFeedItemProps> = ({ order, isStatusVisible }) => {
               return (
                 <li
                   className={styles.ingredient_image_container}
-                  key={uuidv4()}
+                  key={ingredient._id}
                 >
                   <div
                     className={`${styles.ingredient_image} ${

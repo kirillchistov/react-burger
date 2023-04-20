@@ -1,9 +1,20 @@
 .container {
   width: 100vw;
   height: 100vh;
+  margin: 0;
+  padding: 0;
   position: fixed;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
+  /* opacity: 1; */ 
+  z-index: 1;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, .6);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.container:active {
+  opacity: 0.6;
+  pointer-events: auto;
 }

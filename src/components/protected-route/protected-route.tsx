@@ -6,7 +6,6 @@ ProtectedRouteElement принимает элемент, который надо
 //  Добавил хуки для монтирования, колбэка, переадресации и redux  //
 import React, { useEffect, useCallback, FC, ReactElement } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-//  import { useSelector, useDispatch } from 'react-redux';
 import { useSelector } from '../../hooks/useSelector';
 import { useDispatch } from '../../hooks/useDispatch';
 //  Нужны оба токена  //
