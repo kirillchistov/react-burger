@@ -54,11 +54,11 @@ export const FeedOrder: FC<IFeedOrderProps> = ({ order, isStatusVisible }) => {
   const handleOrderModal = useCallback(() => {
     if (location.pathname === '/feed') {
       navigate(`/feed/${order._id}`, {
-        state: { feedOrderModal: location },
+        state: { background: location },
       });
     } else if (location.pathname === '/profile/orders') {
       navigate(`/profile/orders/${order._id}`, {
-        state: { profileOrderModal: location },
+        state: { background: location },
       });
     }
   }, [navigate, location, order._id]);

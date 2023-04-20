@@ -42,11 +42,11 @@ export const IngredientItem: FC<IIngredientProps> = ( { ingredientData } ) => {
   );
 
   //  Перенес обработку клика по модальному окну в функцию с отправкой состава заказа в стор  //
-  const handleOpenIngredientModal = useCallback(() => {
+  const handleOpenIngredientModal = () => {
     navigate(`/ingredients/${ingredientData._id}`, {
-      state: { ingredientModal: location },
+      state: { background: location },
     });
-  }, [navigate, location, ingredientData._id]);
+  };
 
   // Перенес dispatch({ type: OPEN_INGREDIENT_DETAILS, payload: ingredientData });
 
