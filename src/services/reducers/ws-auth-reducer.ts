@@ -16,7 +16,6 @@ export type TWSAuthState = {
   error?: Event | null,
   total: number | null;
   totalToday: number | null;
-  //  get: boolean;
 };
 
 const WSInitialAuthState: TWSAuthState = {
@@ -25,7 +24,6 @@ const WSInitialAuthState: TWSAuthState = {
   error: null,
   total: null,
   totalToday: null,
-  //  get: false,
 };
 
 //  Создал редьюсер для WebSocket по аналогии с тренажером  //

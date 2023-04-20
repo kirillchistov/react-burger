@@ -84,11 +84,12 @@ export const dispatchOrder = (orderDataID: string[]) => {
     postOrder(orderDataID).then((res) => {
       if (res && res.success) {
         dispatch(dispatchOrderOK(res.order.number));
-      } else {
-        dispatch({
-          type: POST_ORDER_API_FAIL,
-        });
-      }
+      } 
+    })
+    .catch((err: { message: string }) => {
+      dispatch({
+        type: POST_ORDER_API_FAIL,
+      });
     });
   };
 };

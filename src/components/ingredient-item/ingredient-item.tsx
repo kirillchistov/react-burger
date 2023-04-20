@@ -48,11 +48,6 @@ export const IngredientItem: FC<IIngredientProps> = ( { ingredientData } ) => {
     });
   };
 
-  // Перенес dispatch({ type: OPEN_INGREDIENT_DETAILS, payload: ingredientData });
-
-  //  Закрытие модального окна с ингредиентами перенес  //
-
-
   //  перетаскивание ингредиентов  //
   const [, dragRef] = useDrag({
     type: 'ingredient',

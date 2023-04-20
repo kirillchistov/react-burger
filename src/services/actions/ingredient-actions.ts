@@ -34,22 +34,24 @@ export const getIngredientsOK = (
   type: GET_INGREDIENTS_API_OK,
   items,
 });
+
 //  Добавил dispatch для получения результата запроса ингредиентов в API  //
 export const getIngredients = () => (dispatch: AppDispatch) => {
-    dispatch({
-      type: GET_INGREDIENTS_API
-    });
-    return fetchIngredients().then((res) => {
+  dispatch({
+    type: GET_INGREDIENTS_API
+  });
+  return fetchIngredients()
+    .then((res) => {
       if (res && res.success) {
-
         dispatch({
           type: GET_INGREDIENTS_API_OK,
           items: res.data
         });
-      } else {
-        dispatch({
-          type: GET_INGREDIENTS_API_FAIL
-        });
       }
+    })
+    .catch((err: { message: string }) => {
+      dispatch({
+        type: GET_INGREDIENTS_API_FAIL,
+      });
     });
 };
