@@ -67,6 +67,4 @@ export const ProfileNav:FC<IProfileNav> = ({ navTip }) => {
   );
 }
 
-//  Заменяю proptypes на TS-типизацию  //
-
 export default React.memo(ProfileNav);

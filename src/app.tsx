@@ -131,7 +131,7 @@ const App = () => {
           />
           <Route
             path={FEEDID} element={
-              <Modal handleClose={() => navigate(-1)} title='Детали заказа'>
+              <Modal handleClose={() => navigate(-1)} title=''>
                 <Order />
               </Modal>
             }
