@@ -13,7 +13,6 @@ import { useForm } from '../hooks/useForm';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { changePassword } from '../services/actions/auth-actions';
 //  Шапка и компоненты из библиотеки  //
-//  import { AppHeader } from '../components/app-header/app-header';
 import { getResetCode } from '../utils/state'
 //  Стили берем из login  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';

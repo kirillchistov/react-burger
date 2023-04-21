@@ -12,7 +12,6 @@ import { useDispatch } from '../hooks/useDispatch';
 import { useSelector } from '../hooks/useSelector';
 import { useForm } from '../hooks/useForm';
 //  шапка и левая навигация профиля  //
-//  import { AppHeader } from '../components/app-header/app-header';
 import { ProfileNav } from '../components/profile-nav/profile-nav';
 //  нужен action для обновления профиля через redux  //
 import { updateUserProfile } from '../services/actions/auth-actions';
@@ -125,5 +124,3 @@ export const ProfilePage:FC = () => {
     </div>
   );
 }
-
-//  нет пропсов, нет типизации  //

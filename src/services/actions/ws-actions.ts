@@ -1,5 +1,3 @@
-// import { PayloadAction } from '@reduxjs/toolkit';
-//  import { TWSState } from '../reducers/ws-reducer';
 //  Перенес константы в /utils/constants  //
 import {
   WS_CONNECTION_START,
@@ -17,13 +15,6 @@ import {
   WS_GET_MESSAGE_AUTH,
   WS_SEND_MESSAGE_AUTH,
 } from '../../utils/constants';
-
-// const WS_CONNECTION_START = 'WS_CONNECTION_START';
-// const WS_CONNECTION_START_AUTH = 'WS_CONNECTION_START_AUTH';
-// const WS_CONNECTION_SUCCESS = 'WS_CONNECTION_SUCCESS';
-// const WS_CONNECTION_ERROR = 'WS_CONNECTION_ERROR';
-// const WS_CONNECTION_CLOSED = 'WS_CONNECTION_CLOSED';
-// const WS_GET_MESSAGE = 'WS_GET_MESSAGE';
 
 import { TWsMessage } from '../types/';
 

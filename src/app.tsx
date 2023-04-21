@@ -55,7 +55,6 @@ const App = () => {
   // const background = isHomeBackground || isFeedBackground || isProfileBackground;
   const background = location.state && location.state.background;
   
-  console.log(location.state);
   //  Маршруты для всех: /home, /ingredient, /feed, /feed/:id //
   //  ...для авторизованных: /profile, /profile/orders, /profile/orders/:id  //
   //  ...для не-авторизованных: /login, /register?, /forgot-password, /reset-password?  //
@@ -113,32 +112,7 @@ const App = () => {
             showWhen='loggedIn'
           />
         } />
-
-        {/* {background && (
-          <Route path={ORDERSID} element={
-            <Modal handleClose={() => navigate(-1)} title="Детали заказа">
-              <Order />
-            </Modal>
-          }
-          />
-        )}
-
-        {background && (
-          <Route path={FEEDID} element={
-            <Modal handleClose={() => navigate(-1)} title='Детали заказа'>
-              <Order />
-            </Modal>
-          } />
-        )}
-
-        {background && (
-          <Route path={INGREDIENTSID} element={
-            <Modal handleClose={(): void => navigate(-1)} title='Детали ингредиента'>
-              <IngredientDetails />
-            </Modal>
-          } />
-        )} */}
-
+        
         <Route path={ORDERSID} element={
           <ProtectedRouteElement
             element={<OrderPage />}
@@ -171,7 +145,7 @@ const App = () => {
           />
           <Route
             path={ORDERSID} element={
-              <Modal handleClose={() => navigate(-1)} title="Детали заказа">
+              <Modal handleClose={() => navigate(-1)} title='Детали заказа'>
                 <Order />
               </Modal>
             }

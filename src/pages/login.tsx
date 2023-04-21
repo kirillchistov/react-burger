@@ -6,13 +6,11 @@
 Клик на «Восстановить пароль» направляет пользователя на маршрут /forgot-password.
 */
 //  Хуки react, router-dom, redux, useForm  //
-//  import { useState } from 'react';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from '../hooks/useDispatch';
 import { useForm } from '../hooks/useForm';
 //  Нужна шапка  //
-//  import { AppHeader } from '../components/app-header/app-header';
 //  Из библиотеки беру кнопку, поле ввода обычный инпут и поле пароля  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 //  action логина для redux  //
@@ -36,8 +34,6 @@ export const LoginPage:FC = () => {
     dispatch(loginUser(data));
   };
 
-//  const handleChange = (e) => {};  //
-
   //  Разметка: шапка, flex-контейнер с grid-формой внутри  //
   //  Хром требует для пароля autocomplete="current-password"  //
   return (
@@ -45,7 +41,6 @@ export const LoginPage:FC = () => {
       <div className={LoginStyle.container}>
         <form className={LoginStyle.form} onSubmit={submitLogin}>
           <h1 className='text text_type_main-medium'>Вход</h1>
-
           <Input
             type={'email'}
             placeholder={'E-mail'}
@@ -69,8 +64,7 @@ export const LoginPage:FC = () => {
             onClick={() => navigate('/register')}
             htmlType='button'
             type='secondary'
-            size='medium'
-            
+            size='medium'           
           >
             Зарегистрироваться
           </Button>
@@ -82,7 +76,6 @@ export const LoginPage:FC = () => {
             htmlType='button'
             type='secondary'
             size='medium'
-
           >
             Восстановить пароль
           </Button>
@@ -91,5 +84,3 @@ export const LoginPage:FC = () => {
     </div>
   );
 }
-
-//  нет пропсов, нет типизации  //

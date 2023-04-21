@@ -66,14 +66,10 @@ const wsOrdersReducer = (
         totalToday: action.payload.totalToday,
         orders: [...action.payload.orders],
       };
-
     default:
       return state;
   }
 };
 
-
-
 export { wsOrdersReducer };
-
 

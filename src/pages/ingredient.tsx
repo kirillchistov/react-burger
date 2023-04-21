@@ -10,7 +10,6 @@
 */
 //  Импортирую шапку и детали ингридиента  //
 import { FC } from 'react';
-// import { AppHeader } from '../components/app-header/app-header';
 import { IngredientDetails } from '../components/ingredient-details/ingredient-details';
 //  Стили пока беру из логина  //
 import IngredientStyle from './login.module.css';
@@ -26,5 +25,3 @@ export const IngredientPage:FC = () => {
     </div>
   );
 }
-
-//  нет пропсов, нет типизации  //

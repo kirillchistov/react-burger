@@ -25,5 +25,3 @@ export const NotFoundPage:FC = () => {
     </div>
   );
 }
-
-//  нет пропсов, нет типизации  //

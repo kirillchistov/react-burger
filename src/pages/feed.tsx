@@ -2,10 +2,7 @@
 import React, { FC, useEffect, useMemo } from 'react';
 import { useDispatch } from '../hooks/useDispatch';
 import { useSelector } from '../hooks/useSelector';
-//  import { AppHeader } from '../components/app-header/app-header';
 import { FeedOrder } from '../components/feed-item/feed-item';
-//  import { getOrders } from '../utils/state';
-//  import { TOrder } from '../services/types';
 import {
   WS_CONNECTION_START,
   WS_CONNECTION_CLOSE,
@@ -14,7 +11,6 @@ import feedStyles from './feed.module.css';
 
 export const FeedPage:FC = () => {
   //  Пока забираю из стора по старинке, надо доделать getOrders  //
-  //  const orders: TOrder[] = useSelector(getOrders);
   const { total, totalToday, orders } = useSelector(store => store.ws);
   const dispatch = useDispatch();
 

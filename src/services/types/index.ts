@@ -124,4 +124,3 @@ export type TWsMessage = {
   total: number|null;
   totalToday: number|null;
 };
-

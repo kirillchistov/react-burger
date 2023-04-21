@@ -1,14 +1,4 @@
-// import {
-//   WS_CONNECTION_START,
-//   WS_CONNECTION_START_AUTH,
-//   WS_CONNECTION_SUCCESS,
-//   WS_CONNECTION_ERROR,
-//   WS_CONNECTION_CLOSED,
-//   WS_GET_MESSAGE,
-//   TWSConnectionActions,
-// } from '../actions/ws-actions';
 import { Middleware, MiddlewareAPI, AnyAction } from 'redux';
-//  import type { AppDispatch, RootState, TWsMessage } from '../types';  //
 import type { AppDispatch, RootState } from '../types';  //
 import { TWSAction } from '../../services/types';
 import { authTokens } from '../../utils/auth';

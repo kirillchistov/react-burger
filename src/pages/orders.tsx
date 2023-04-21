@@ -2,7 +2,6 @@
 import React, { FC, useEffect, useMemo } from 'react';
 import { useSelector } from '../hooks/useSelector';
 import { useDispatch } from '../hooks/useDispatch';
-//  import { AppHeader } from '../components/app-header/app-header';
 import { FeedOrder } from '../components/feed-item/feed-item';
 import { ProfileNav } from '../components/profile-nav/profile-nav';
 import { WS_CONNECTION_START_AUTH, WS_CONNECTION_CLOSE_AUTH } from '../utils/constants';

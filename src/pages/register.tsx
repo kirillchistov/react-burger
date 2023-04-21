@@ -13,7 +13,6 @@ import { FC } from 'react';
 import { useDispatch } from '../hooks/useDispatch';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
-//  import { AppHeader } from '../components/app-header/app-header';
 //  Из библиотеки беру кнопку, поле ввода обычно и поле пароля  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 //  action регистрации для redux  //
@@ -36,14 +35,6 @@ export const RegisterPage:FC = () => {
     e.preventDefault();
     dispatch(registerUser(data));
   };
-
-  //  Обработка изменений в полях ввода  //
-  /* const handleDataChange = (e) => {
-    e.preventDefault();
-    const { value, name } = e.target;
-    setData({ ...data, [name]: value });
-  };
-  */
 
   //  Разметка: шапка, flex-контейнер с grid-формой внутри  //
   //  Стили заимствовал из логина  //
@@ -92,5 +83,3 @@ export const RegisterPage:FC = () => {
     </div>
   );
 }
-
-//  нет пропсов, нет типизации  //

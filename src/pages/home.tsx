@@ -1,6 +1,5 @@
 //  Главная страница - пока что полная копия /components/app  //
 import { FC } from 'react';
-//  import { AppHeader } from '../components/app-header/app-header';
 import { BurgerIngredients } from '../components/burger-ingredients/burger-ingredients';
 import { BurgerConstructor } from '../components/burger-constructor/burger-constructor';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -19,5 +18,3 @@ export const HomePage:FC = () => {
     </div>
   );
 }
-
-//  нет пропсов, нет типизации  //

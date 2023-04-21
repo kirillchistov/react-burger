@@ -8,10 +8,8 @@ import { useSelector } from '../hooks/useSelector';
 import { useDispatch } from '../hooks/useDispatch';
 import { useForm } from '../hooks/useForm';
 import { requestResetCode } from '../services/actions/auth-actions';
-//  Шапка и компоненты из UX-библиотеки  //
-//  import { AppHeader } from '../components/app-header/app-header';
 import { getResetCode } from '../utils/state';
-
+//  Шапка и компоненты из UX-библиотеки  //
 //  Стили пока беру из login  //
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import PasswordStyles from './login.module.css';
@@ -68,5 +66,3 @@ export const ForgotPasswordPage:FC = () => {
     </div>
   );
 }
-
-//  нет пропсов, нет типизации  //

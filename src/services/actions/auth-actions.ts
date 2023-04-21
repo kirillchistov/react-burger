@@ -25,9 +25,6 @@ import {
   UPDATE_USER_PROFILE_API,
   UPDATE_USER_PROFILE_API_OK,
   UPDATE_USER_PROFILE_API_FAIL,
-//  ACCESS_TOKEN_API,
-//  ACCESS_TOKEN_API_OK,
-//  ACCESS_TOKEN_API_FAIL,
   REFRESH_TOKEN_API,
   REFRESH_TOKEN_API_OK,
   REFRESH_TOKEN_API_FAIL,
@@ -362,24 +359,3 @@ export const logoutUser: AppThunk  = (refreshToken?: string) => {
     });
   };
 };
-
-// export const logoutUser: AppThunk  = (refreshToken?: string) => {
-//   return function (dispatch: AppDispatch) {
-//     dispatch({
-//       type: LOGOUT_USER_API,
-//     });
-//     logoutApi(refreshToken).then((res) => {
-//       if (res && res.success) {
-//         dispatch({
-//           type: LOGOUT_USER_API_OK,
-//         });
-//         deleteCookie('refreshToken');
-//         deleteCookie('accessToken');
-//       } else {
-//         dispatch({
-//           type: LOGOUT_USER_API_FAIL,
-//         });
-//       }
-//     });
-//   };
-// };

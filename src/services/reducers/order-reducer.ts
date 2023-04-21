@@ -19,9 +19,6 @@ export type TOrderState = {
   orderNumber: number|null,
   orderRequest: boolean,
   orderRequestFailed: boolean,
-  // orderData: TOrder[],
-  // total: number,
-  // totalToday: number, 
 };
 
 //  Начальное состояние заказа: пустой массив, null номер, нет запроса и ошибок  //
@@ -30,9 +27,6 @@ const initialOrderState: TOrderState = {
   orderNumber: null,
   orderRequest: false,
   orderRequestFailed: false,
-  // orderData: [],
-  // total: 0,
-  // totalToday: 0, 
 };
 
 //  Меняю состояние в сторе в зависимости от типа action  //
