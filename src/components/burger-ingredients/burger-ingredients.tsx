@@ -29,18 +29,13 @@ export const BurgerIngredients = () => {
   //  Включаю хуки для получения и отправки данные в redux  //
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным об ингридиентах. PROFIT!  //
-  //  Заменил useSelector и useDispatch на хуки  //
 
   const ingredients: TIngredient[] = useSelector(getItems);
-  // const ingredients: TIngredient[] = useSelector(getItems);
-  //  const dispatch = useDispatch();
+  
   //  По умолчанию мой ингредиент = булка, без булки нельзя  //
   const [current, setCurrent] = useState('bun');
   
-  //  При монтировании получаем список ингредиентов  //
-  // useEffect(() => {
-  //   dispatch(getIngredients());
-  // }, []);
+  //  При монтировании получаем список ингредиентов -> в App //
 
   //  Фильтрую массив по типу нужного ингредиента  //
   const buns = useMemo(
