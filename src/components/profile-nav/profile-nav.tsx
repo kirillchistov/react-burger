@@ -22,10 +22,10 @@ export const ProfileNav:FC<IProfileNav> = ({ navTip }) => {
   
   const location = useLocation();
   
-  //  вынести URLы в контстанты  //
-  //  Определяем активный маршрут для подсветки меню  //
-  const activeProfileHome = matchPath(location.pathname, '/profile');
-  const activeOrders = matchPath(location.pathname, '/profile/orders');
+  //  Refactor: вынести URLы в контстанты  //
+  //  Определяю активный маршрут для подсветки меню  //
+  const activeProfileHome = matchPath(location.pathname, PROFILEURL);
+  const activeOrders = matchPath(location.pathname, PROFILEORDERSURL);
   
   //  Выход из системы при клкие, отправляю action в redux  //
   const logout = (e: React.FormEvent) => {
@@ -56,7 +56,7 @@ export const ProfileNav:FC<IProfileNav> = ({ navTip }) => {
         </NavLink>
         <NavLink
           to={LOGINURL}
-          className={`text text_type_main-medium text_color_inactive pt-4 pb-4 ${ProfileNavSyle.link}`}
+          className={`pt-4 pb-4 text text_type_main-medium text_color_inactive ${ProfileNavSyle.link}`}
           onClick={logout}
         >
           Выход
@@ -66,7 +66,5 @@ export const ProfileNav:FC<IProfileNav> = ({ navTip }) => {
     </div>
   );
 }
-
-//  Заменяю proptypes на TS-типизацию  //
 
 export default React.memo(ProfileNav);

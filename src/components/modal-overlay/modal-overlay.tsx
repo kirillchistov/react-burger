@@ -3,6 +3,7 @@ import React, { FC, ReactNode } from 'react';
 import modalOverlayStyles from './modal-overlay.module.css';
 
 //  Интерфейс для типизации свойств модального окна  //
+//  Refactor: Рекомендовано переделать на PropsWithChildren, но пока не понял как  //
 interface IModalOverlayProps {
   children: ReactNode,
   handleClose: () => void

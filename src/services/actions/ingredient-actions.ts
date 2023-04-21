@@ -9,8 +9,7 @@ import {
 } from '../../utils/constants';
 
 //  Импортирую типы  //
-import { TIngredient, AppDispatch } from '../../utils/types';
-//  import { TIngredientResponse, TResponse } from '../../utils/types';
+import { TIngredient, AppThunk } from '../../services/types';
 
 //  Создаю интерфейсы  //
 export interface IGetIngredients {
@@ -34,24 +33,24 @@ export const getIngredientsOK = (
   type: GET_INGREDIENTS_API_OK,
   items,
 });
-//  Добавил dispatch для получения результата запроса ингредиентов в API  //
-export const getIngredients = () => (dispatch: AppDispatch) => {
-    dispatch({
-      type: GET_INGREDIENTS_API
-    });
-    return fetchIngredients().then((res) => {
-      if (res && res.success) {
-//         console.log('fetchI: ', res);
-//         console.log('fetchI: ', res?.data);
 
+//  Добавил dispatch для получения результата запроса ингредиентов в API  //
+export const getIngredients: AppThunk = () => (dispatch) => {
+  dispatch({
+    type: GET_INGREDIENTS_API
+  });
+  return fetchIngredients()
+    .then((res) => {
+      if (res && res.success) {
         dispatch({
           type: GET_INGREDIENTS_API_OK,
           items: res.data
         });
-      } else {
-        dispatch({
-          type: GET_INGREDIENTS_API_FAIL
-        });
       }
+    })
+    .catch((err: { message: string }) => {
+      dispatch({
+        type: GET_INGREDIENTS_API_FAIL,
+      });
     });
 };

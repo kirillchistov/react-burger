@@ -10,19 +10,18 @@ import React, { useState, useMemo } from 'react';
 //  Добавил хуки для навигации по каталогу ингридиентов и пр.  //
 //  import { useInView } from 'react-intersection-observer';
 //  Добавил хуки для работы с Redux  //
-import { useSelector } from 'react-redux';
-//  import { useSelector } from 'react-redux';
 //  import { useDispatch  } from '../../hooks/useDispatch';
-//  import { useSelector  } from '../../hooks/useSelector';
+import { useSelector  } from '../../hooks/useSelector';
 //  Modal, IngredientDetails и IngredientPrice теперь в IngredientItem  //
 //  IngredientItem теперь вложен в IngredientCategory для навигации  //
 
 import { IngredientCategory } from '../ingredient-category/ingredient-category';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 //  import { getIngredients } from '../../services/actions/ingredient-actions';
-//  import { getItems } from '../../utils/state';
-import { TIngredient } from '../../utils/types';
+import { getItems } from '../../utils/state';
+import { TIngredient } from '../../services/types';
 import BurgerIngredientsStyle from './burger-ingredients.module.css';
+
      
 export const BurgerIngredients = () => {
 
@@ -30,18 +29,13 @@ export const BurgerIngredients = () => {
   //  Включаю хуки для получения и отправки данные в redux  //
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным об ингридиентах. PROFIT!  //
-  //  Заменил useSelector и useDispatch на хуки  //
-  const { items: ingredients } = useSelector((state: any) => state.ingredients);
-  // const ingredients: TIngredient[] = useSelector(getItems);
-  //  console.log(ingredients);
-  //  const dispatch = useDispatch();
+
+  const ingredients: TIngredient[] = useSelector(getItems);
+  
   //  По умолчанию мой ингредиент = булка, без булки нельзя  //
   const [current, setCurrent] = useState('bun');
   
-  //  При монтировании получаем список ингредиентов  //
-  // useEffect(() => {
-  //   dispatch(getIngredients());
-  // }, []);
+  //  При монтировании получаем список ингредиентов -> в App //
 
   //  Фильтрую массив по типу нужного ингредиента  //
   const buns = useMemo(
@@ -88,9 +82,9 @@ export const BurgerIngredients = () => {
     <section className={`mr-10 ${BurgerIngredientsStyle.ingredients}`}> 
       <h1 className='mb-5 text text_type_main-large'>Соберите бургер</h1>
       <nav className={BurgerIngredientsStyle.navbar}>
-        <Tab active={current === 'bun'} value="bun" onClick={setCurrent}>Булки</Tab>
-        <Tab active={current === 'sauce'} value="sauce" onClick={setCurrent}>Соусы</Tab>
-        <Tab active={current === 'main'} value="main" onClick={setCurrent}>Начинки</Tab>
+        <Tab active={current === 'bun'} value='bun' onClick={setCurrent}>Булки</Tab>
+        <Tab active={current === 'sauce'} value='sauce' onClick={setCurrent}>Соусы</Tab>
+        <Tab active={current === 'main'} value='main' onClick={setCurrent}>Начинки</Tab>
       </nav>
       <div className={BurgerIngredientsStyle.ingredient_types} id='typeContainer' onScroll={scrollToCategory}>
         <IngredientCategory type={'Булки'} typeList={buns} id='bun' />

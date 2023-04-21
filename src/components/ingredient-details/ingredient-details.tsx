@@ -8,8 +8,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 //  import { getIngredients } from '../../services/actions/ingredient-actions';
 //  Компонент КБЖУ свойства ингредиента - вынес в отдельный  //
 import { IngredientNutrition } from '../ingredient-nutrition/ingredient-nutrition';
-// import { getItems } from '../../utils/state';
-import { TIngredient } from '../../utils/types';
+import { getItems } from '../../utils/state';
+import { TIngredient } from '../../services/types';
 
 import ingredientDetailsStyle from './ingredient-details.module.css';
 
@@ -18,7 +18,7 @@ export const IngredientDetails = () => {
   const navigate = useNavigate();
   //  const dispatch = useDispatch();
   const { id } = useParams();
-  const { items } = useSelector((state: any) => state.ingredients);
+  const ingredients: TIngredient[] = useSelector(getItems);
   const [item, setItem] = useState<TIngredient>();
   // const items = useSelector(getItems);
   //  При монтировании проверяю, есть ли ингредиент с этим id  //
@@ -26,8 +26,8 @@ export const IngredientDetails = () => {
   //  Если нет вообще ингридиентов отправляю запрос в store  //
   useEffect(
     () => {
-      if (items.length > 0) {
-        const ingredient = items.find((el:TIngredient) => el._id === id);
+      if (ingredients.length > 0) {
+        const ingredient = ingredients?.find((el:TIngredient) => el._id === id);
         if (!ingredient) {
           setItem(undefined);
           navigate('/', { replace: true });
@@ -38,7 +38,7 @@ export const IngredientDetails = () => {
       //   dispatch(getIngredients());
       }
     },
-    [id, items, navigate]
+    [id, ingredients, navigate]
   );
   //  если есть item, отображаю карточку КБЖУ  //
   if (item) {

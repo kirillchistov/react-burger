@@ -10,26 +10,36 @@ import {
   POST_ORDER_API_FAIL,
   DELETE_ORDER
 } from '../../utils/constants';
+import { TOrderActions } from '../actions/order-actions';
+import { TIngredient } from '../types/index'
+
+
+export type TOrderState = {
+  burgerData: TIngredient[],
+  orderNumber: number|null,
+  orderRequest: boolean,
+  orderRequestFailed: boolean,
+};
 
 //  Начальное состояние заказа: пустой массив, null номер, нет запроса и ошибок  //
-const initialOrderState = {
+const initialOrderState: TOrderState = {
   burgerData: [],
   orderNumber: null,
   orderRequest: false,
-  orderRequestFailed: false
+  orderRequestFailed: false,
 };
 
 //  Меняю состояние в сторе в зависимости от типа action  //
-export const orderReducer = (state = initialOrderState, action) => {
+export const orderReducer = (state = initialOrderState, action: TOrderActions):TOrderState => {
   switch (action.type) {
     //  Для добавления булки нахожу ее индекс в заказе по типу элемента 'bun'  //
     case ADD_BUN: {
       //  Задаю текущую позицию булки для сортировки заказа  //
       const bunIndex = state.burgerData.findIndex(
-        (elem) => elem.type === 'bun'
+        (i: TIngredient) => i.type === 'bun'
       );
       //  Запоминаю контент action с добавлением булки  //
-      const bun = action.payload;
+      const bun: TIngredient = action.payload;
       
       //  Сначала создаю копию того, что есть в заказе сейчас  //
       const orderIngredients = [...state.burgerData];
@@ -105,7 +115,11 @@ export const orderReducer = (state = initialOrderState, action) => {
     }
     //  В случае ошибки возвращаем новое состояние с ошибкой, выключаем запрос  //
     case POST_ORDER_API_FAIL: {
-      return { ...state, orderRequestFailed: true, orderRequest: false };
+      return { 
+        ...state, 
+        orderRequestFailed: true, 
+        orderRequest: false 
+      };
     }
     //  В случае удаления заказа возвращаем новое состояние с обнуленным номером и составом заказа  //
     case DELETE_ORDER:

@@ -1,18 +1,30 @@
-//  Пока что общий файл для TS типов  //
+//  Пока что общий файл для TS типов - вынести типизацию данных в data.ts //
 
-//  Импортирую store, колбэк, action и функцию для его создания в redux store  //
-import { store } from '../services/store/store';
+//  Импортирую actions для redux  //
 import { Action, ActionCreator } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
+//  Импортирую store, колбэк, action и функцию для его создания в redux store  //
+import { store } from '../store';
+
 //  Импортирую actions для redux  //
-import { TIngredientActions } from '../services/actions/ingredient-actions';
-import { TAuthActions } from '../services/actions/auth-actions';
-import { TOrderActions } from '../services/actions/order-actions';
+import { TIngredientActions } from '../actions/ingredient-actions';
+import { TAuthActions } from '../actions/auth-actions';
+import { TOrderActions } from '../actions/order-actions';
+import { TWSConnectionActions, TWSConnectionAuthActions } from '../actions/ws-actions';
+
+import { wsActions, wsActionsAuth } from '../store'
 
 //  Типизирую actions  //
-type TAppActions = TIngredientActions | TOrderActions | TAuthActions;
+export type TAppActions = 
+ | TIngredientActions 
+ | TOrderActions 
+ | TAuthActions
+ | TWSConnectionActions
+ | TWSConnectionAuthActions;
 
+//  Типизирую state и dispatch как в тренажере  //
+//  export type AppDispatch = ThunkDispatch<RootState, unknown, AppActions>;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ActionCreator<
@@ -50,7 +62,6 @@ export type TIngredient = {
 }
 
 //  Типизирую список ингредиентов  //
-
 export type TIngredients = {
   ingredients: {
     ingredients: TIngredient[];
@@ -58,6 +69,11 @@ export type TIngredients = {
     ingredientsFailed: boolean;
   };
 };
+
+export type TIngredientCount = {
+  [key: string]: TIngredient & { count: number };
+};
+
 
 //  Типизирую объект заказа  //
 export type TOrder = {
@@ -71,7 +87,7 @@ export type TOrder = {
 
 //  Типизирую функцию проверки ответа от сервера - буль  //
 export type TResponse<T> = {
-  user(user: any): import('../services/actions/auth-actions').IUpdateUserProfileOK;
+  user(user: any): import('../actions/auth-actions').IUpdateUserProfileOK;
   success: boolean;
 } & T;
 
@@ -95,8 +111,16 @@ export type TIngredientResponse = {
 };
 
 //  Типизирую функцию получения заказа - объект  //
-
 export type TOrderResponse = {
   order: TOrder;
 };
 
+//  Типизирую action для WS до и после логина  //
+export type TWSAction = typeof wsActions | typeof wsActionsAuth;
+
+//  Типизирую сообщения WS по заказам  //
+export type TWsMessage = {
+  orders: TOrder[];
+  total: number|null;
+  totalToday: number|null;
+};

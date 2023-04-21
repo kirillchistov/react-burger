@@ -1,5 +1,5 @@
 # react-burger
-Репозиторий фронтенда дипломного проекта Stellar Burgers. Это приложение для заказа космических бургеров и заодно учебный проект в курсе react-разработчик ЯП.
+Репозиторий фронтенда учебного проекта Stellar Burgers. Это приложение для заказа космических бургеров и заодно учебный проект в курсе react-разработчик ЯП.
 
 # Автор
 * [Кирилл Чистов](https://github.com/kirillchistov), студент (когорта 23)
@@ -10,7 +10,8 @@
 * [x] Back-end (Node.js, MongoDB, Express, Nginx)
 * [x] Git, WebPack, Babel, Redux
 
-## [Pull Request Sprint-4 Step-1](https://github.com/kirillchistov/react-burger/)
+## [Pull Request Sprint-5 Step-1](https://github.com/kirillchistov/react-burger/pull/)
+## [Pull Request Sprint-4 Step-1](https://github.com/kirillchistov/react-burger/pull/63)
 ## [Pull Request Sprint-3 Step-1](https://github.com/kirillchistov/react-burger/pull/51)
 ## [Pull Request Sprint-2 Step-2](https://github.com/kirillchistov/react-burger/pull/32)
 ## [Pull Request Sprint-2 Step-1](https://github.com/kirillchistov/react-burger/pull/22)
@@ -23,9 +24,10 @@
 ## Навигация пока отсутствует
 * [x] `app.jsx` — точка входа
 * [x] `/components` — основные компоненты проекта
+* [x] `/pages` — страницы проекта
 * [x] `/hooks` —  хуки 
 * [x] `/images` - все изображения проекта
-* [x] `/services` — actions, reducers etc. 
+* [x] `/services` — actions, reducers, store, types etc. 
 * [x] `/utils` - константы, API и прочие утилиты
 * [x] `/vendor` - внешние скрипты, шрифты и прочие внешние ресурсы
 

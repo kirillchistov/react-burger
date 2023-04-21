@@ -1,6 +1,6 @@
 //  Хуки для обработки изменений в рег. форме и профиле  //
 import { useState, ChangeEvent } from 'react';
-import { TFormValues } from '../utils/types';
+import { TFormValues } from '../services/types';
 
 export const useForm = (inputData: TFormValues) => {
   //  Создаем состояние для обновления значений в поле ввода  //

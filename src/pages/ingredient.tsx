@@ -9,16 +9,15 @@
 Обратите внимание, что пользователь попадает на маршрут /ingredients/:id с маршрута конструктора бургера — /. 
 */
 //  Импортирую шапку и детали ингридиента  //
-import { AppHeader } from '../components/app-header/app-header';
+import { FC } from 'react';
 import { IngredientDetails } from '../components/ingredient-details/ingredient-details';
 //  Стили пока беру из логина  //
 import IngredientStyle from './login.module.css';
 
-export const IngredientPage = () => {
+export const IngredientPage:FC = () => {
   //  В разметке пока обертка + шапка + Див с заголовком, внутри I-Details  //
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
-      <AppHeader />
       <div className={IngredientStyle.container}>
         <h1 className='text text_type_main-large'>Детали ингредиента</h1>
         <IngredientDetails />
@@ -26,5 +25,3 @@ export const IngredientPage = () => {
     </div>
   );
 }
-
-//  нет пропсов, нет типизации  //

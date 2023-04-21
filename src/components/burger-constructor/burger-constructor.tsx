@@ -2,25 +2,23 @@
 //  Блок (правый) с конструктором заказа бургера из выбранных ингредиентов  //
 
 import React, { FC, useMemo } from 'react';
+
 import { useNavigate } from 'react-router';
 import { useDispatch } from '../../hooks/useDispatch';
 import { useSelector } from '../../hooks/useSelector';
-
-//  import { useDispatch, useSelector } from 'react-redux';
-//  Добавил хуки для работы с DND  - здесь не нужен useDrag  //
 import { useDrop } from 'react-dnd';
+//  универсальный генератор уникальных id для элементов без id  //
+import { v4 as uuidv4 } from 'uuid';
+
 import ConstructorElements from '../constructor-elements/constructor-elements';
 import OrderDetails from '../order-details/order-details';
-//  import ConstructorTotal from '../constructor-total/constructor-total';
-import { Button, ConstructorElement, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Modal } from '../modal/modal';
 import { dispatchOrder } from '../../services/actions/order-actions';
 //  Импортировал actions для работы с ингредиентами в конструкторе заказа  //
-//  Добавил универсальный генератор уникальных идентификаторов для элементов без id  //
-import { v4 as uuidv4 } from 'uuid';
 import { ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../utils/constants';  //
 import { getUser, getBurgerData } from '../../utils/state';
-import { TIngredient } from '../../utils/types';
+import { TIngredient } from '../../services/types';
+import { Button, ConstructorElement, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import burgerConstructorStyle from './burger-constructor.module.css';
 
 export const BurgerConstructor: FC = () => {
@@ -41,7 +39,7 @@ export const BurgerConstructor: FC = () => {
   const bun = burgerData.find(function (element) {
     return element.type === 'bun';
   });
-  //  Пока что начинку и соус можно не разделять, т.к. логика едина  //
+  
   const ingredientsMidStuff = burgerData.filter((element) => element.type !== 'bun');
   
   //  Считаю сумму заказа с мемоизацией  //
@@ -113,13 +111,13 @@ export const BurgerConstructor: FC = () => {
             <ul className={`${burgerConstructorStyle.element_midstuff}`}>
             {ingredientsMidStuff.map((element, index) => { 
               return (
-                <li key={element._id} className={burgerConstructorStyle.element}>
+                <li key={element._uid} className={burgerConstructorStyle.element}>
                   <ConstructorElements 
                     elementData={element}
                     bunTypeName={''} 
                     isLocked={false} 
                     index={index}
-                    key={element._id} 
+                    key={element._uid} 
                   />
                 </li>
               );

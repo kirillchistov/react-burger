@@ -1,0 +1,35 @@
+/* Основной flex-контейнер */
+.container {
+  margin: 0 auto;
+  padding-left: calc((100vw - 1320px)/2);
+  padding-right: calc((100vw - 1320px)/2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile__container {
+  margin-top: 120px;
+  padding-left: calc((100vw - 1320px)/2);
+  padding-right: calc((100vw - 1320px)/2);
+  display: flex;
+  flex-direction: row;
+}
+
+/* grid-контейнер с информацией о заказах и верт. скроллом */
+.order_container {
+  max-height: calc(100vh - 208px);
+  display: grid;
+  row-gap: 24px;
+  overflow-y: scroll;
+}
+
+/* скрол из вебкита */
+.order_container::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--color-scrollbar);
+}
+
+.order_container::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar-thumb);
+}

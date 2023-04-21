@@ -1,5 +1,4 @@
 //  Добавляю в API методы для авторизации, профиля и пароля  //
-//  BASEURL = 'https://norma.nomoreparties.space/api' убрать в .env  //
 import {BASEURL} from './constants';
 //  Беру методы для получения токена и рефреш из куки
 import { getCookie, setCookie, deleteCookie, authTokens } from './auth';
@@ -12,16 +11,7 @@ import {
   TIngredientResponse, 
   TOrderResponse,
   TFormValues,
- } from './types';
-
-//  Делаю интерфейс для запроса с обновлением токена  //
-/*
-interface IFetchWithRefresh {
-  success: boolean;
-  refreshToken: string;
-  accessToken: string;
-}
-*/
+ } from '../services/types';
 
 //  Обрабатываю ответ сервера - возвращаю json или ошибку  //
 //  Пока не получается через async try await catch типизировать  //
@@ -83,7 +73,6 @@ export const fetchWithRefresh = async <T>(url:string, options:RequestInit) => {
     const res = await fetch(url, options);
     return await checkResponse<T>(res);
   } catch (error) {
-    /* const errorPayload = await error.json() */
     if ((error as {message: string}).message === 'jwt expired') {
       const refreshData = await refreshToken();
       if (options.headers) {
@@ -163,7 +152,7 @@ export const getUserProfileApi = async () => {
 export const updateUserProfileApi = async ({ email, password, name }:TFormValues) => {
   try {
     const { accessToken } = authTokens();
-    return await fetchWithRefresh(`${BASEURL}/auth/user`, {
+    return await fetchWithRefresh<TUserResponse>(`${BASEURL}/auth/user`, {
       method: 'PATCH',
       mode: 'cors',
       cache: 'no-cache',
@@ -206,7 +195,7 @@ export const accessTokenApi = async (refreshToken:string|undefined) => {
 export const postOrder = async (ingredientsID: string[]) => {
   try {
     const { accessToken } = authTokens();
-    return await fetch(`${BASEURL}/orders`, {
+    return await fetchWithRefresh<TOrderResponse>(`${BASEURL}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -215,7 +204,7 @@ export const postOrder = async (ingredientsID: string[]) => {
       body: JSON.stringify({
         ingredients: ingredientsID
       }),
-    }).then(res => checkResponse<TOrderResponse>(res));
+    })
     //  Возвращаем номер заказа в createOrder в конструкторе  //
   } catch (error) {
     console.log(`Ошибка отправки заказа: ${error}`);

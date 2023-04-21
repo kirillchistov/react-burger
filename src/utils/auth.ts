@@ -9,9 +9,8 @@ type TCookieProps = {
 
 //  Получаю куки  //
 export const getCookie = (name: string) => {
-  //  создаю массив cookie, подходящих под regex (линтер ругается, quick fixed)  //
+  //  создаю массив cookie, подходящих под regex  //
   const matches = document.cookie.match(
-  //  new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
     new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)')
   );
   //  если массив не нулевой, возвращаю второй элемент или undefined  //
@@ -42,16 +41,6 @@ export const setCookie = (name: string, value: string, props?:TCookieProps) => {
   document.cookie = updatedCookie;
 }
 
-//  Сохраняю и обновляю куки, Срок жизни токена — 20 минут  //
-/* export const setCookies = (accessToken: string, refreshToken: string) => {
-  const expirationAt = new Date(new Date().getTime() + 20 * 60 * 1000);
-  setCookie('accessToken', accessToken.split('Bearer ')[1], 
-    { exp: expirationAt }
-  );
-  setCookie('refreshToken', refreshToken);
-};
-*/
-
 export const setCookies = ( accessToken: string, refreshToken: string) => {
   setCookie('accessToken', accessToken.split('Bearer ')[1]);
   setCookie('refreshToken', refreshToken);
@@ -69,22 +58,3 @@ export const authTokens = () => {
   const refreshToken = getCookie('refreshToken');
   return { accessToken, refreshToken };
 };
-
-//  Пока не использую хранение данных в лок.хранилище  //
-/*
-export const setLStorage = <T>(key: string, value: T) => {
-  window.localStorage.setItem(key, JSON.stringify(value));
-};
-
-export const deleteLStorage = (key: string) => {
-  window.localStorage.removeItem(key);
-};
-
-export const getLStorage = (key: string) => {
-  const value = window.localStorage.getItem(key);
-  if (typeof value === 'string') {
-    return JSON.parse(value);
-  }
-  return null;
-};
-*/

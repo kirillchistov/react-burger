@@ -1,14 +1,15 @@
 //  Компонент элемента/компонента бургера для конструктора заказа  //
 //  Может быть булка bun (верх / низ) или начинка main или соус sauce //
-import React, { FC } from 'react';
-//  Добавил хуки для работы с Redux  //
+import React, { FC, useRef } from 'react';
+//  Хуки для Redux, DND  //
 import { useDispatch } from '../../hooks/useDispatch';
-//  Добавил хуки для работы с ReactDND  //
 import { useDrag, useDrop } from 'react-dnd';
+
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-//  import PropTypes from 'prop-types';
-import { TIngredient } from '../../utils/types';
+
+import { TIngredient } from '../../services/types';
 import { MOVE_INGREDIENT } from '../../utils/constants';
+
 import ConstructorElementsStyle from './constructor-elements.module.css';
 
 interface IConstructorElementProps {
@@ -19,20 +20,15 @@ interface IConstructorElementProps {
   bunTypeName: string;
 }
 
-export const ConstructorElements: FC<IConstructorElementProps> = ({ elementData, bunType, isLocked, bunTypeName, index }) => {
+const ConstructorElements: FC<IConstructorElementProps> = ({ elementData, bunType, isLocked, bunTypeName, index }) => {
 
-  //  Убрал контекст функцию-диспетчер заменил на dispatch  //
   //  Активирую dispatch и ref  //
   const dispatch = useDispatch();
-  const ref = React.useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   
   //  Все элементы, кроме булки, можно перетаскивать  //
-  //  Refactor: переименовать функцию, она возвращает компонент, а не буль  //
-  //  Убрал функцию isDraggable за ненадобностью  //
   
   //  Буду вычитать стоимость элемента при его удалении из заказа  //
-  //  Заменил deductPrice на обработчик удаления ингредиента на dispatch - перенес  //
-
   const onDeductIngredient = (elementDataUid: string) => {
     dispatch({ type: 'REMOVE_INGREDIENT', payload: elementDataUid });
   };
@@ -100,7 +96,7 @@ export const ConstructorElements: FC<IConstructorElementProps> = ({ elementData,
   dragRef(dropRef(ref));
   
   //  Возвращаю конструкцию в зависимости от типа ингредиента  //
-  //  Если iDraggable, то слева от элемента рисую иконку
+  //  Если isDraggable, то слева от элемента рисую иконку
   return (
     <div className={ConstructorElementsStyle.element} ref={ref}>
       <DragIcon type='primary' />
@@ -117,7 +113,5 @@ export const ConstructorElements: FC<IConstructorElementProps> = ({ elementData,
     </div>
   );
 }; 
-
-//  пропсы заменил на TS-типизацию  //
 
 export default React.memo(ConstructorElements);

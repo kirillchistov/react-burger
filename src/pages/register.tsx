@@ -9,17 +9,17 @@
 'accessToken': 'Bearer ...', 'refreshToken': '' }
 */
 //  Нужна шапка, хуки  //
+import { FC } from 'react';
 import { useDispatch } from '../hooks/useDispatch';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
-import { AppHeader } from '../components/app-header/app-header';
 //  Из библиотеки беру кнопку, поле ввода обычно и поле пароля  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 //  action регистрации для redux  //
 import { registerUser } from '../services/actions/auth-actions';
 import RegisterStyle from './login.module.css';
 
-export const RegisterPage = () => {
+export const RegisterPage:FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
@@ -36,19 +36,10 @@ export const RegisterPage = () => {
     dispatch(registerUser(data));
   };
 
-  //  Обработка изменений в полях ввода  //
-  /* const handleDataChange = (e) => {
-    e.preventDefault();
-    const { value, name } = e.target;
-    setData({ ...data, [name]: value });
-  };
-  */
-
   //  Разметка: шапка, flex-контейнер с grid-формой внутри  //
   //  Стили заимствовал из логина  //
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
-      <AppHeader />
       <div className={RegisterStyle.container}>
         <form className={RegisterStyle.form} onSubmit={submitRegisterUser}>
           <h1 className='text text_type_main-medium'>Регистрация</h1>
@@ -92,5 +83,3 @@ export const RegisterPage = () => {
     </div>
   );
 }
-
-//  нет пропсов, нет типизации  //

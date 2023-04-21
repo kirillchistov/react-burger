@@ -1,8 +1,5 @@
 //  Компонент шапка  //
-//  Из UI-библиотеки: лого, иконки, типо, отступы  //
-//  @ya.praktikum/react-developer-burger-ui-components  //
 //  Адаптив и бургер-меню под мобилку сделаем позже  //
-//  Переделал на NavLink для роутинга, нужны еще тоглы активного меню  //
 
 import React, { FC } from 'react';
 //  Позже сделаем импорт хуков для управления состоянием меню  //
@@ -46,7 +43,5 @@ export const AppHeader: FC = () => {
     </header>
   );
 }
-
-//  Типизация не нужна, нет пропсов  //
 
 export default React.memo(AppHeader);

@@ -7,21 +7,20 @@
 5 позже) Ссылка «Выход» пока ничего не делает. Потом logout 
 */
 //  хуки для состояний и обновления полей ввода формы  //
-// import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { useDispatch } from '../hooks/useDispatch';
 import { useSelector } from '../hooks/useSelector';
 import { useForm } from '../hooks/useForm';
 //  шапка и левая навигация профиля  //
-import { AppHeader } from '../components/app-header/app-header';
 import { ProfileNav } from '../components/profile-nav/profile-nav';
-//  кнопка, поле ввода и поле пароля из библиотеки  //
-import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 //  нужен action для обновления профиля через redux  //
 import { updateUserProfile } from '../services/actions/auth-actions';
+
+//  кнопка, поле ввода и поле пароля из библиотеки  //
+import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import ProfileStyle from './profile.module.css';
 
-export const ProfilePage = () => {
+export const ProfilePage:FC = () => {
   //  по ТЗ пока не делаю реальный пароль и валидацию  //
   //  Отправляю экшен, после успешного запроса, записываю данные в Redux  //
   //  С помощью useSelector получаю доступ к данным об пользователе. PROFIT!  //
@@ -58,18 +57,19 @@ export const ProfilePage = () => {
 
   //  Обрабатываю отмену отправки формы  //
   const cancelSubmit = () => {
-    setData({
-      email: user.email,
-      name: user.name,
-      password: passwordValue,
-    });
+    if (user) {
+      setData({
+        email: user.email,
+        name: user.name,
+        password: passwordValue,
+      });
+    }
     setIsChanged(false);
   };
 
   //  Разметка: контейнер, шапка, навменю, форма с полями ввода, кнопка  //
   return (
     <div className='pt-10 pr-10 pb-10 pl-10'>
-      <AppHeader />
       <div className={ProfileStyle.profile__container}>
         <ProfileNav
           navTip={'В этом разделе вы можете изменить свои персональные данные'}
@@ -124,5 +124,3 @@ export const ProfilePage = () => {
     </div>
   );
 }
-
-//  нет пропсов, нет типизации  //

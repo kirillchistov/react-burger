@@ -4,14 +4,10 @@ import {
   GET_INGREDIENTS_API,
   GET_INGREDIENTS_API_OK,
   GET_INGREDIENTS_API_FAIL,
-/*
-  OPEN_INGREDIENT_DETAILS,
-  CLOSE_INGREDIENT_DETAILS
-*/
 } from '../../utils/constants';
 
 import { TIngredientActions } from '../actions/ingredient-actions'
-import { TIngredient } from '../../utils/types';
+import { TIngredient } from '../../services/types';
 
 type TIngredientsState = {
   items: TIngredient[];
@@ -20,7 +16,7 @@ type TIngredientsState = {
 };
 
 //  Начальное состояние стора ингредиентов: пустой массив, нет запроса, нет ошибок  //
-const initialIngredientsState = {
+const initialIngredientsState:TIngredientsState = {
   items: [],
   itemsRequest: false,
   itemsFailed: false
@@ -54,34 +50,3 @@ export const ingredientsReducer = (
   }
 };
 
-//  Обнуленное начальное состояние стора инфо по ингредиенту  //
-// const initialIngredientDetailsState = {
-//   ingredientDetails: null,
-// };
-
-//  Refactor: вынести редьюсер в отдельный файл  //
-//  Редьюсер для обработки действий с деталями ингредиента в redux store (открыть/закрыть)  //
-/* 
-export const ingredientDetailsReducer = (
-  state = initialIngredientDetailsState,
-  action: TIngredientActions):TIngredientsState
-) => {
-  switch (action.type) {
-    case OPEN_INGREDIENT_DETAILS: {
-      return {
-        ...state,
-        ingredientDetails: action.payload,
-      };
-    }
-    case CLOSE_INGREDIENT_DETAILS: {
-      return {
-        ...state,
-        ingredientDetails: null,
-      };
-    }
-    default: {
-      return state;
-    }
-  }
-};
-*/

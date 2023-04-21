@@ -1,6 +1,6 @@
 //  Начальные actions для обработки заказов O-DETAILS  //
 import { postOrder } from '../../utils/api';
-import { TIngredient, AppDispatch } from '../../utils/types';
+import { TIngredient, AppThunk } from '../../services/types';
 
 //  Все константы экспортирую теперь из /utils/constants  //
 import {
@@ -76,19 +76,20 @@ export const dispatchOrderOK = (
 //  Была ошибка - пока исправил, обойдусь без ts-expect-error  //
   /* https://github.com/vercel/next.js/issues/42292 */
 
-export const dispatchOrder = (orderDataID: string[]) => {
-  return function (dispatch: AppDispatch) {
+export const dispatchOrder: AppThunk = (orderDataID: string[]) => {
+  return function (dispatch) {
     dispatch({
       type: POST_ORDER_API
     });
     postOrder(orderDataID).then((res) => {
       if (res && res.success) {
         dispatch(dispatchOrderOK(res.order.number));
-      } else {
-        dispatch({
-          type: POST_ORDER_API_FAIL,
-        });
-      }
+      } 
+    })
+    .catch((err: { message: string }) => {
+      dispatch({
+        type: POST_ORDER_API_FAIL,
+      });
     });
   };
 };

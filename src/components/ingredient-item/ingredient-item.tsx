@@ -10,7 +10,7 @@ import IngredientPrice from '../ingredient-price/ingredient-price';
 //  import { Modal } from '../modal/modal';
 import { Counter } 
   from '@ya.praktikum/react-developer-burger-ui-components';
-import { TIngredient } from '../../utils/types';
+import { TIngredient } from '../../services/types';
 import { getBurgerData } from '../../utils/state';
 import IngredientItemStyle from './ingredient-item.module.css';
 
@@ -42,16 +42,11 @@ export const IngredientItem: FC<IIngredientProps> = ( { ingredientData } ) => {
   );
 
   //  Перенес обработку клика по модальному окну в функцию с отправкой состава заказа в стор  //
-  const handleOpenIngredientModal = useCallback(() => {
+  const handleOpenIngredientModal = () => {
     navigate(`/ingredients/${ingredientData._id}`, {
-      state: { ingredientModal: location },
+      state: { background: location },
     });
-  }, [navigate, location, ingredientData._id]);
-
-  // Перенес dispatch({ type: OPEN_INGREDIENT_DETAILS, payload: ingredientData });
-
-  //  Закрытие модального окна с ингредиентами перенес  //
-
+  };
 
   //  перетаскивание ингредиентов  //
   const [, dragRef] = useDrag({
