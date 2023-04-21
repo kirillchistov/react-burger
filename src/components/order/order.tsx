@@ -45,34 +45,6 @@ export const Order = () => {
     [orders, id]
   );
 
-  //  При монтировании проверяю, есть ли заказ в состоянии  //
-  //  Если есть, создаю массив из сета ингридиентов  //
-  //  Потом в полученный массив записываю непустых элементов и кол-во в заказе  //
-  // useEffect(() => {
-  //   if (order) {
-  //     const { ingredients: orderIngredients } = order;
-  //     const ingredientsList = Array.from(new Set(orderIngredients));
-
-  //     setOrderIngredients(
-  //       ingredientsList
-  //         .map((orderIngredient: string) => {
-  //           const ingredient = items?.find(
-  //             (item) => item._id === orderIngredient
-  //           );
-
-  //           return ingredient === undefined
-  //             ? undefined
-  //             : {
-  //                 ...ingredient,
-  //                 quantity: orderIngredients.filter(
-  //                   (ingredientId) => ingredientId === ingredient._id
-  //                 ).length,
-  //               };
-  //         })
-  //         .filter((ingredient) => ingredient !== undefined) as TIngredient[]
-  //     );
-  //   }
-  // }, [items, order]);
 
   //  Формирую состав заказа - вначале проверяю есть ли закза и ингридиенты в массиве  //
   const orderIngredientInfo = useMemo(() => {  
@@ -135,17 +107,6 @@ export const Order = () => {
         }
       : undefined
     : undefined;
-
-  //  Возвращаю сумму заказа = суммирую стоимость ингридиентов редьюсом  //
-  // const totalSum = useMemo(() => {
-  //   if (orderIngredients !== undefined && orderIngredients.length > 0) {
-  //     return orderIngredients
-  //       .map((element) => element.price)
-  //       .reduce((sum, price) => sum + price, 0);
-  //   } else {
-  //     return 0;
-  //   }
-  // }, [orderIngredients]);
 
   //  Здесь с сервера приезжает шляпа с булками: число булок = 1, а не 2  //
   return (

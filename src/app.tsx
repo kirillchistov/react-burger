@@ -84,7 +84,7 @@ const App = () => {
             showWhen='notLoggedIn'
           />
         } />
-        { /* здесь надо сделать развилку - авторизованных переспрашивать */ }
+
         <Route path={RESETPASSURL} element={
           <ProtectedRouteElement
             element={<ResetPasswordPage />}
@@ -96,13 +96,6 @@ const App = () => {
           <ProtectedRouteElement
             element={<ProfilePage />}
             showWhen='loggedIn'
-          />
-        } />
-
-        <Route path={PROFILEURL} element={
-          <ProtectedRouteElement
-            element={<LoginPage />}
-            showWhen='notLoggedIn'
           />
         } />
 
@@ -145,7 +138,7 @@ const App = () => {
           />
           <Route
             path={ORDERSID} element={
-              <Modal handleClose={() => navigate(-1)} title='Детали заказа'>
+              <Modal handleClose={() => navigate(-1)} title=''>
                 <Order />
               </Modal>
             }

@@ -56,7 +56,7 @@ export const ProfileNav:FC<IProfileNav> = ({ navTip }) => {
         </NavLink>
         <NavLink
           to={LOGINURL}
-          className={`text text_type_main-medium text_color_inactive pt-4 pb-4 ${ProfileNavSyle.link}`}
+          className={`pt-4 pb-4 text text_type_main-medium text_color_inactive ${ProfileNavSyle.link}`}
           onClick={logout}
         >
           Выход
