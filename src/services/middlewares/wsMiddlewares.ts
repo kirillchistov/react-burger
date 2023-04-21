@@ -1,12 +1,12 @@
-import { Middleware, MiddlewareAPI, AnyAction } from 'redux';
+import { Middleware, MiddlewareAPI } from 'redux';
 import type { AppDispatch, RootState } from '../types';  //
 import { TWSAction } from '../../services/types';
 import { authTokens } from '../../utils/auth';
 
 export const wsMiddleware = (wsUrl: string, wsActions: TWSAction, auth: boolean): Middleware => (store: MiddlewareAPI<AppDispatch, RootState>) => {
   let socket: WebSocket | undefined;
-  let connected = false; // eslint-disable-line
-  return (next: (i: AnyAction) => void) => (action: AnyAction) => {
+  //  let connected = false;
+  return (next) => (action) => {
     const { dispatch } = store;
     const { type, payload } = action;
     const {
@@ -28,7 +28,7 @@ export const wsMiddleware = (wsUrl: string, wsActions: TWSAction, auth: boolean)
     }
     //  функция, которая вызывается при открытии сокета
     if (socket) {
-      connected = true;
+      //  connected = true;
       socket.onopen = (event) => {
         dispatch({ type: onOpen, payload: event });
       };
@@ -51,7 +51,7 @@ export const wsMiddleware = (wsUrl: string, wsActions: TWSAction, auth: boolean)
 
       if (wsClose && type === wsClose && socket) {
         socket.close(1000, 'socket closed');
-        connected = false;
+        //  connected = false;
       }
       //  функция для отправки сообщения на сервер
       if (wsSendMessage && type === wsSendMessage && socket) {

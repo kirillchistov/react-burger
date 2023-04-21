@@ -9,7 +9,7 @@ import {
 } from '../../utils/constants';
 
 //  Импортирую типы  //
-import { TIngredient, AppDispatch } from '../../services/types';
+import { TIngredient, AppThunk } from '../../services/types';
 
 //  Создаю интерфейсы  //
 export interface IGetIngredients {
@@ -35,7 +35,7 @@ export const getIngredientsOK = (
 });
 
 //  Добавил dispatch для получения результата запроса ингредиентов в API  //
-export const getIngredients = () => (dispatch: AppDispatch) => {
+export const getIngredients: AppThunk = () => (dispatch) => {
   dispatch({
     type: GET_INGREDIENTS_API
   });
