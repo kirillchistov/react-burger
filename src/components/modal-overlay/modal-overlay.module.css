@@ -13,8 +13,3 @@
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.6);
 }
-
-.container:active {
-  opacity: 0.6;
-  pointer-events: auto;
-}
