@@ -344,12 +344,13 @@ export const logoutUser: AppThunk = (refreshToken?: string) => {
       type: LOGOUT_USER_API,
     });
     logoutApi(refreshToken).then((res) => {
+      console.log(res?.success);
       if (res && res.success) {
+        deleteCookie('refreshToken');
+        deleteCookie('accessToken');
         dispatch({
           type: LOGOUT_USER_API_OK,
         });
-        deleteCookie('refreshToken');
-        deleteCookie('accessToken');
       }
     })
     .catch((err: { message: string }) => {

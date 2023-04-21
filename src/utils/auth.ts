@@ -23,7 +23,7 @@ export const setCookie = (name: string, value: string, props?:TCookieProps) => {
   let exp = props.expires;
   if (typeof exp == 'number' && exp) {
     const d = new Date();
-    d.setTime(d.getTime() + exp * 20 * 600 * 1000);
+    d.setTime(d.getTime() + exp * 20 * 60 * 1000);
     exp = props.expires = d;
   }
   if (exp instanceof Date && exp) {

@@ -195,7 +195,7 @@ export const accessTokenApi = async (refreshToken:string|undefined) => {
 export const postOrder = async (ingredientsID: string[]) => {
   try {
     const { accessToken } = authTokens();
-    return await fetch(`${BASEURL}/orders`, {
+    return await fetchWithRefresh<TOrderResponse>(`${BASEURL}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -204,7 +204,7 @@ export const postOrder = async (ingredientsID: string[]) => {
       body: JSON.stringify({
         ingredients: ingredientsID
       }),
-    }).then(res => checkResponse<TOrderResponse>(res));
+    })
     //  Возвращаем номер заказа в createOrder в конструкторе  //
   } catch (error) {
     console.log(`Ошибка отправки заказа: ${error}`);
