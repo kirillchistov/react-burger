@@ -9,7 +9,7 @@
 Обратите внимание, что пользователь попадает на маршрут /ingredients/:id с маршрута конструктора бургера — /. 
 */
 //  Импортирую шапку и детали ингридиента  //
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { IngredientDetails } from '../components/ingredient-details/ingredient-details';
 //  Стили пока беру из логина  //
 import IngredientStyle from './login.module.css';

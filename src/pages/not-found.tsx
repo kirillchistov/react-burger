@@ -1,5 +1,5 @@
 //  Компонент 'Страница не найдена' реализую самостоятельно   //
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 //  Стили пока беру из логина  //

@@ -9,7 +9,7 @@
 'accessToken': 'Bearer ...', 'refreshToken': '' }
 */
 //  Нужна шапка, хуки  //
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useDispatch } from '../hooks/useDispatch';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
