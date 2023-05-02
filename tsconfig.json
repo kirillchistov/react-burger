@@ -18,11 +18,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    // "jsx": "react-jsx,"
-    "jsx": "react",
+    "jsx": "react-jsx",
+    // "jsx": "react",
     "types": ["cypress"]
   },
   "include": [
-    "src"
+    "src",
+    "react-app-env.d.ts",
   ]
 }

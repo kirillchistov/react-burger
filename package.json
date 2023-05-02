@@ -29,6 +29,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.2.3",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.4.0",
     "@types/node": "^18.13.0",
