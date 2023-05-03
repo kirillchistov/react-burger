@@ -36,8 +36,8 @@ export const Modal: FC<IModalProps> = ( {children, handleClose, title} ) => {
   return ReactDOM.createPortal (
     (<>
       <ModalOverlay handleClose={handleClose}>
-        <div className={`pt-10 pr-10 pb-15 pl-10 ${modalStyle.container}`} onClick={(e) => e.stopPropagation()}>
-          <div className={`pt-3 pb-3 ${modalStyle.header}`}>  
+        <div className={`${modalStyle.container} pt-10 pr-10 pb-15 pl-10`} onClick={(e) => e.stopPropagation()}>
+          <div className={`${modalStyle.header} pt-3 pb-3`}>  
             <p className='text text_type_main-large'>{title}</p> 
             <button className={modalStyle.button_close} onClick={handleClose}>
               <CloseIcon type='primary'/> 

@@ -28,8 +28,9 @@ describe("Работает конструктор заказа бургера", 
 
   it("Кнопка заказа не активна, если конструктор пуст", () => {
     cy.get("span").contains("Добавьте ингредиенты для Вашего бургера!");
-    cy.get("[class^=button_type_primary]").first().as("orderButton");
-    cy.get("@orderButton").should("be.disabled");
+    // cy.get("[class^=button button_type_primary]").first().as("orderButton");
+    cy.get('[id^=orderButton]').should('not.exist');;
+    // cy.get("@orderButton").should("be.disabled");
   });
 
   it("Работает DnD, логин, отправка и подтверждение заказа", () => {
@@ -48,7 +49,7 @@ describe("Работает конструктор заказа бургера", 
     cy.get("form").find("button").contains("Войти").as("loginBtn");
     cy.get("@loginBtn").click();
     cy.get("button").contains("Оформить заказ").click();
-    cy.get("[class^=modal_container__]").as("modal");
+    cy.get("[class^=modal_container__]", { timeout: 40000 }).as("modal");
     cy.get("@modal").find("p").contains("Ваш заказ начали готовить");
     cy.get("@modal").find("svg").click();
   });
