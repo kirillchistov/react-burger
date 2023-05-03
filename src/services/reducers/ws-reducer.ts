@@ -20,7 +20,7 @@ export type TWSState = {
   totalToday: number | null;
 };
 
-const WSInitialState: TWSState = {
+export const WSInitialState: TWSState = {
   wsConnected: false,
   orders: [],
   error: null,

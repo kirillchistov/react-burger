@@ -26,6 +26,13 @@ describe("Работает конструктор заказа бургера", 
     cy.get("@modal").find("svg").click();
   });
 
+  it("список ингредиентов содержит булки", () => {
+    cy.get("[class^=ingredient-item_ingredient]").first().as("firstBun");
+    cy.get("@firstBun").contains("булка").should('exist');
+    cy.get("[class^=ingredient-item_ingredient]").eq(1).as("secondBun");
+    cy.get("@secondBun").contains("булка").should('exist');
+  });
+
   it("Кнопка заказа не активна, если конструктор пуст", () => {
     cy.get("span").contains("Добавьте ингредиенты для Вашего бургера!");
     // cy.get("[class^=button button_type_primary]").first().as("orderButton");
@@ -33,7 +40,7 @@ describe("Работает конструктор заказа бургера", 
     // cy.get("@orderButton").should("be.disabled");
   });
 
-  it("Работает DnD, логин, отправка и подтверждение заказа", () => {
+  it("Работает DnD, замена, логин, отправка и подтверждение заказа", () => {
     cy.get("[class^=ingredient-item_ingredient]").as("ingredient");
     cy.get("[class^=burger-constructor_element__list__]").as("elementList");    
     cy.get("@ingredient").eq(0).drag("@elementList");
@@ -42,6 +49,8 @@ describe("Работает конструктор заказа бургера", 
     cy.get("@ingredient").eq(11).drag("@elementList");
     cy.get("@ingredient").eq(13).drag("@elementList");
     cy.get("@ingredient").eq(14).drag("@elementList");
+    cy.get("[class^=burger-constructor_containerTotal]").should('exist');
+    cy.get("@ingredient").eq(1).drag("@elementList");
     cy.get("button").contains("Оформить заказ").click();
     cy.get("form").find("h1").contains("Вход");
     cy.get('input[type="email"]').type("ben@mail.ru").should("have.value", "ben@mail.ru");
