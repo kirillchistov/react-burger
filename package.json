@@ -46,6 +46,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "deploy-script": "npm run build && scp -r ./build/* kirillchistov@62.84.123.141:/home/react-burger",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
