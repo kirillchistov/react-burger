@@ -16,12 +16,13 @@
 * [Кирилл Чистов](https://github.com/kirillchistov), студент (когорта 23)
 
 # Стек технологий
+* [x] Figma (дизайн))
 * [x] HTML, CSS (БЭМ Flat, адаптив Flex + Grid)
 * [x] JavaScript (ES6, React, TypeScript)
 * [x] Back-end (Node.js, MongoDB, Express, Nginx)
-* [x] Git, WebPack, Babel, Redux
+* [x] Git, WebPack, Babel, Redux, Cypress, Jest
 
-## [Pull Request Sprint-6 Step-1](https://github.com/kirillchistov/react-burger/pull/)
+## [Pull Request Sprint-6 Step-1](https://github.com/kirillchistov/react-burger/pull/95)
 ## [Pull Request Sprint-5 Step-1](https://github.com/kirillchistov/react-burger/pull/77)
 ## [Pull Request Sprint-4 Step-1](https://github.com/kirillchistov/react-burger/pull/63)
 ## [Pull Request Sprint-3 Step-1](https://github.com/kirillchistov/react-burger/pull/51)
@@ -32,9 +33,13 @@
 * [x] [Макет в Figma](общий)
 # Репозитории:
 * [x] [Main] (https://github.com/kirillchistov/react-burger/)
+# Деплой:
+* [x] [Vercel] (https://react-burger-wheat.vercel.app/)
+* [ ] [GH-Pages] (https://kirillchistov.github.io/react-burger/index.html)
+* [ ] [Я.Домен. IP: 62.84.123.141] (https://kirburger.nomoredomains.monster)
 
-## Навигация пока отсутствует
-* [x] `app.jsx` — точка входа
+## Навигация по репозиторию
+* [x] `app.tsx` — точка входа
 * [x] `/components` — основные компоненты проекта
 * [x] `/pages` — страницы проекта
 * [x] `/hooks` —  хуки 
