@@ -335,10 +335,16 @@ export const WS_ORDER = {
   updatedAt: "2023-05-03T08:44:40.759Z",
 };
 
+export const WSORDERDATA_SIMPLE = {
+  orders: [WS_ORDER],
+  total: 1,
+  totalToday: 1,
+};
+
 export const WSORDERDATA = {
   success: true,
   orders: [WS_ORDER],
   total: 1,
   totalToday: 1,
 };
-export {}
+

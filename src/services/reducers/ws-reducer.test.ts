@@ -14,7 +14,7 @@ import {
 // import { TWSAction, TAppActions } from '../types';
 // import { wsActions, wsActionsAuth } from '../store'
 
-import { WSORDERDATA } from '../../utils/testdata';
+import { WSORDERDATA, WSORDERDATA_SIMPLE } from '../../utils/testdata';
 
 describe('wsOrdersReducer test', () => {
   it("should return initial state", () => {
@@ -35,7 +35,7 @@ describe('wsOrdersReducer test', () => {
       wsOrdersReducer(WSInitialState, {
         type: WS_CONNECTION_SUCCESS,
       })
-    ).toEqual({ ...WSInitialState, error: undefined, wsConnected: true });
+    ).toEqual({ ...WSInitialState, error: null, wsConnected: true });
   });
 
   it("should handle WS_CONNECTION_ERROR", () => {
@@ -52,15 +52,21 @@ describe('wsOrdersReducer test', () => {
       wsOrdersReducer(WSInitialState, {
         type: WS_CONNECTION_CLOSED,
       })
-    ).toEqual({ ...WSInitialState, error: undefined, wsConnected: false, data: [] });
+    ).toEqual({ ...WSInitialState, error: undefined, wsConnected: false });
   });
 
   it("should handle WS_GET_MESSAGE", () => {
     expect(
       wsOrdersReducer(WSInitialState, {
         type: WS_GET_MESSAGE,
-        payload: {} as any,
+          payload: { 
+            success: WSORDERDATA.success,
+            orders: WSORDERDATA.orders,
+            total: WSORDERDATA.total,
+            totalToday: WSORDERDATA.totalToday
+          },
       })
-    ).toEqual({ ...WSInitialState, error: undefined, data: [WSORDERDATA] });
+    ).toEqual({ ...WSInitialState, error: undefined, ...WSORDERDATA_SIMPLE });
   });
 });
+

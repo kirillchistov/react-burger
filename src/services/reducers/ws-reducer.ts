@@ -22,7 +22,7 @@ export type TWSState = {
 export const WSInitialState: TWSState = {
   wsConnected: false,
   orders: [],
-  error: null,
+  error: undefined,
   total: 0,
   totalToday: 0,
 };
@@ -38,7 +38,7 @@ const wsOrdersReducer = (
     case WS_CONNECTION_SUCCESS:
       return {
         ...state,
-        error: undefined,
+        error: null,
         wsConnected: true,
       };
     //  если типа WS_CONNECTION_ERROR: wsConnected = false, ошибку из payload  //
@@ -59,7 +59,6 @@ const wsOrdersReducer = (
     case WS_GET_MESSAGE:
       return {
         ...state,
-        //  get: true,
         error: undefined,
         total: action.payload.total,
         totalToday: action.payload.totalToday,

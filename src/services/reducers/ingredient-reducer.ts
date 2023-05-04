@@ -16,7 +16,7 @@ type TIngredientsState = {
 };
 
 //  Начальное состояние стора ингредиентов: пустой массив, нет запроса, нет ошибок  //
-const initialIngredientsState:TIngredientsState = {
+export const initialIngredientsState:TIngredientsState = {
   items: [],
   itemsRequest: false,
   itemsFailed: false

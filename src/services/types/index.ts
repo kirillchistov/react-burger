@@ -81,7 +81,7 @@ export type TOrder = {
   number: number;
   name: string;
   status: string;
-  createdAt: Date;
+  createdAt: string;
   ingredients: string[];
 }
 
@@ -120,6 +120,7 @@ export type TWSAction = typeof wsActions | typeof wsActionsAuth;
 
 //  Типизирую сообщения WS по заказам  //
 export type TWsMessage = {
+  success?: boolean;
   orders: TOrder[];
   total: number|null;
   totalToday: number|null;
