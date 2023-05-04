@@ -4,15 +4,9 @@ import {
   WS_CONNECTION_START,
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
-  // WS_CONNECTION_CLOSE,
   WS_CONNECTION_CLOSED,
   WS_GET_MESSAGE,
-  // WS_SEND_MESSAGE,
 } from '../../utils/constants';
-
-// import { TWSConnectionActions } from '../actions/ws-actions';
-// import { TWSAction, TAppActions } from '../types';
-// import { wsActions, wsActionsAuth } from '../store'
 
 import { WSORDERDATA, WSORDERDATA_SIMPLE } from '../../utils/testdata';
 
