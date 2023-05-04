@@ -166,6 +166,4 @@ export const BurgerConstructor: FC = () => {
   )
 }
 
-//  Типизация не нужна, нет пропсов  //
-
 export default React.memo(BurgerConstructor);
