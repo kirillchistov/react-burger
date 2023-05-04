@@ -1,4 +1,5 @@
 //  import { PayloadAction } from '@reduxjs/toolkit';
+
 import {
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
@@ -6,9 +7,7 @@ import {
   WS_GET_MESSAGE,
 } from '../../utils/constants';
 
-import {
-  TWSConnectionActions,
-} from '../actions/ws-actions';
+import { TWSConnectionActions } from '../actions/ws-actions';
 
 import { TOrder } from '../../services/types';
 
@@ -20,12 +19,12 @@ export type TWSState = {
   totalToday: number | null;
 };
 
-const WSInitialState: TWSState = {
+export const WSInitialState: TWSState = {
   wsConnected: false,
   orders: [],
-  error: null,
-  total: null,
-  totalToday: null,
+  error: undefined,
+  total: 0,
+  totalToday: 0,
 };
 
 //  Создал редьюсер для WebSocket по аналогии с тренажером  //
@@ -39,7 +38,7 @@ const wsOrdersReducer = (
     case WS_CONNECTION_SUCCESS:
       return {
         ...state,
-        error: undefined,
+        error: null,
         wsConnected: true,
       };
     //  если типа WS_CONNECTION_ERROR: wsConnected = false, ошибку из payload  //
@@ -60,7 +59,6 @@ const wsOrdersReducer = (
     case WS_GET_MESSAGE:
       return {
         ...state,
-        //  get: true,
         error: undefined,
         total: action.payload.total,
         totalToday: action.payload.totalToday,

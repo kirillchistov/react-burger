@@ -18,7 +18,7 @@ export type TWSAuthState = {
   totalToday: number | null;
 };
 
-const WSInitialAuthState: TWSAuthState = {
+export const WSInitialAuthState: TWSAuthState = {
   wsConnected: false,
   orders: [],
   error: null,

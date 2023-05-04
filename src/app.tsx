@@ -1,4 +1,5 @@
 //  Вернул app.jsx в корень как разводяющую с роутингом по остальным  //
+import React, { FC } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { 
   HOMEURL, 
@@ -36,9 +37,14 @@ import { Order } from './components/order/order';
 import { Modal } from './components/modal/modal';
 import { useEffect } from 'react';
 
+//  Попытка внедрить улучшение по ревью с PropsWithChildren  //
+// declare module 'react' {
+//   interface FunctionComponent<P = {}> {
+//     (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
+//   }
+// }
 
-const App = () => {
-
+const App:FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -46,13 +52,14 @@ const App = () => {
   useEffect(() => {
     dispatch(getIngredients());
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   //  Смотрю как открывают ингридиент/заказ и показываю модалку/страницу  //
   // const isHomeBackground = location.state && location.state.ingredientModal;
   // const isFeedBackground = location.state && location.state.feedItemModal;
   // const isProfileBackground = location.state && location.state.profileOrderModal;
   // const background = isHomeBackground || isFeedBackground || isProfileBackground;
+
   const background = location.state && location.state.background;
   
   //  Маршруты для всех: /home, /ingredient, /feed, /feed/:id //
@@ -119,6 +126,7 @@ const App = () => {
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
+
       {background && (
         <Routes>
           <Route

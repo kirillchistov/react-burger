@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
@@ -18,9 +18,23 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    // "jsx": "react",
+    "types": [
+      "node",
+      "cypress",
+      "jest"
+    ]
   },
   "include": [
-    "src"
+    "src",
+    "react-app-env.d.ts",
+  ],
+  "exclude": [
+    "./cypress.config.ts",
+    "cypress",
+    "**/*.cy.tsx",
+    "**/*.spec.ts"
   ]
 }
+

@@ -6,7 +6,7 @@
 Клик на «Восстановить пароль» направляет пользователя на маршрут /forgot-password.
 */
 //  Хуки react, router-dom, redux, useForm  //
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from '../hooks/useDispatch';
 import { useForm } from '../hooks/useForm';

@@ -5,7 +5,7 @@
     Пример тела запроса в ТЗ
 */
 //  Хуки для redux, навигации, авторизации  //
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useDispatch } from '../hooks/useDispatch';
 import { useSelector } from '../hooks/useSelector';
 import { useForm } from '../hooks/useForm';

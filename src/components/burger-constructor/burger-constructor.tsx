@@ -27,6 +27,7 @@ export const BurgerConstructor: FC = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // const ref = useRef(null);
   //  Получаю из redux store данные заказа  //
   const { orderNumber } = useSelector((state) => state.order);
   const burgerData: TIngredient[] = useSelector(getBurgerData);
@@ -150,7 +151,7 @@ export const BurgerConstructor: FC = () => {
             <p className='mr-2 text text_type_digits-medium'>{totalAmount}</p>
             <CurrencyIcon type='primary' />
           </div>    
-          <Button type='primary' size='large' htmlType='button' onClick={handleOpenIngredientModal}>Оформить заказ</Button>
+          <Button id='orderButton' type='primary' size='large' htmlType='button' onClick={handleOpenIngredientModal}>Оформить заказ</Button>
         </div>
       }
       </section>
@@ -164,7 +165,5 @@ export const BurgerConstructor: FC = () => {
    </>
   )
 }
-
-//  Типизация не нужна, нет пропсов  //
 
 export default React.memo(BurgerConstructor);

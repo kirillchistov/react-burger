@@ -22,7 +22,7 @@ export type TOrderState = {
 };
 
 //  Начальное состояние заказа: пустой массив, null номер, нет запроса и ошибок  //
-const initialOrderState: TOrderState = {
+export const initialOrderState: TOrderState = {
   burgerData: [],
   orderNumber: null,
   orderRequest: false,

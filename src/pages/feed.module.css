@@ -51,3 +51,12 @@
 .order_ready {
   color: #00cccc;
 }
+
+@media screen and (max-width: 1024px) {
+  .order_container {
+    display: flex;
+    flex-direction:column-reverse;
+    align-items: center;
+    gap: 40px;
+  }
+}

@@ -52,7 +52,7 @@ export type TAuthState = {
 };
 
 //  Описываю начальное состояние для данных о пользователе  //
-const initialState: TAuthState = {
+export const initialState: TAuthState = {
   user: null,
 
   request: false,

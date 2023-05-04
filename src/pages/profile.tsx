@@ -7,7 +7,7 @@
 5 позже) Ссылка «Выход» пока ничего не делает. Потом logout 
 */
 //  хуки для состояний и обновления полей ввода формы  //
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useDispatch } from '../hooks/useDispatch';
 import { useSelector } from '../hooks/useSelector';
 import { useForm } from '../hooks/useForm';

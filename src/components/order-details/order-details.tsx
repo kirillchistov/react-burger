@@ -9,7 +9,6 @@ interface IOrderNumber {
 }
 const OrderDetails: FC<IOrderNumber> = ({ orderNumber }) => {
   
-  //  Теперь не использую контекст заказа для получения номера заказа  //
   //  Вставляю в разметку номер заказа из пропс  //
   return(
     <div className={orderDetailsStyle.container}>
