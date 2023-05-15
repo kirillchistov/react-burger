@@ -2,7 +2,7 @@ describe("Application", () => {
   beforeEach(() => {
     let email = "ben123@mail.ru";
     let password = "12345678";
-    cy.visit("http://localhost:3000/");
+    cy.visit({testUrl});
     cy.get("[data-testid=email_input]").type(`${email}{enter}`);
     cy.get("[data-testid=password_input]").type(`${password}{enter}`);
   });
