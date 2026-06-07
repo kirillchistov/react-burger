@@ -2,6 +2,7 @@
 import {BASEURL} from './constants';
 //  Беру методы для получения токена и рефреш из куки
 import { getCookie, setCookie, deleteCookie, authTokens } from './auth';
+import { devLog } from './devLog';
 
 import { 
   TResponse,
@@ -56,7 +57,7 @@ export const refreshToken = async ():Promise<TRefreshResponse> => {
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
     },
-    body: JSON.stringify({'token': `${getCookie('accessToken')}`})
+    body: JSON.stringify({'token': `${getCookie('refreshToken')}`})
   })
   .then((res) => checkResponse<TRefreshResponse>(res))
   .then((refreshData) => {
@@ -103,7 +104,7 @@ export const registrationApi = async ({ email, password, name }:TFormValues) => 
       body: JSON.stringify({ email, password, name }),
     }).then(res => checkResponse<TAuthResponse>(res));
   } catch (error) {
-    console.log(`Ошибка regApi: ${error}`);
+    devLog(`Ошибка regApi: ${error}`);
   }
 };
 
@@ -123,7 +124,7 @@ export const loginApi = async ({ email, password }:TFormValues) => {
       body: JSON.stringify({ email, password }),
     }).then(res => checkResponse<TAuthResponse>(res));
   } catch (error) {
-    console.log(`Ошибка loginApi: ${error}`);
+    devLog(`Ошибка loginApi: ${error}`);
   }
 };
 
@@ -144,7 +145,7 @@ export const getUserProfileApi = async () => {
       referrerPolicy: 'no-referrer',
     }).then(res => checkResponse<TUserResponse>(res));
   } catch (error) {
-    console.log(`Ошибка getUserProfileApi: ${error}`);
+    devLog(`Ошибка getUserProfileApi: ${error}`);
   }
 };
 
@@ -166,7 +167,7 @@ export const updateUserProfileApi = async ({ email, password, name }:TFormValues
       body: JSON.stringify({ email, password, name }),
     })
   } catch (error) {
-    console.log(`Ошибка updateUserProfileApi: ${error}`);
+    devLog(`Ошибка updateUserProfileApi: ${error}`);
   }
 };
 
@@ -186,7 +187,7 @@ export const accessTokenApi = async (refreshToken:string|undefined) => {
       body: JSON.stringify({ token: refreshToken }),
     }).then((res) => checkResponse<TTokenResponse>(res));
   } catch (error) {
-    console.log(`Ошибка accessTokenApi: ${error}`);
+    devLog(`Ошибка accessTokenApi: ${error}`);
   }
 };
 
@@ -207,7 +208,7 @@ export const postOrder = async (ingredientsID: string[]) => {
     })
     //  Возвращаем номер заказа в createOrder в конструкторе  //
   } catch (error) {
-    console.log(`Ошибка отправки заказа: ${error}`);
+    devLog(`Ошибка отправки заказа: ${error}`);
   }
 };
 
@@ -227,7 +228,7 @@ export const codeRequestApi = async ({ email }:TFormValues) => {
       body: JSON.stringify(email),
     }).then(res => checkResponse<TAuthResponse>(res));
   } catch (error) {
-    console.log(`Ошибка codeRequestApi: ${error}`);
+    devLog(`Ошибка codeRequestApi: ${error}`);
   }
 };
 
@@ -247,7 +248,7 @@ export const resetPasswordApi = async ({ password, token }:TFormValues) => {
       body: JSON.stringify({ password, token }),
     }).then(res => checkResponse<TAuthResponse>(res));
   } catch (error) {
-    console.log(`Ошибка resetPasswordApi: ${error}`);
+    devLog(`Ошибка resetPasswordApi: ${error}`);
   }
 };
 
@@ -267,6 +268,6 @@ export const logoutApi = async (refreshToken:string|undefined) => {
       body: JSON.stringify({ token: refreshToken }),
     }).then(res => checkResponse<TAuthResponse>(res));
   } catch (error) {
-    console.log(`Ошибка logoutApi: ${error}`);
+    devLog(`Ошибка logoutApi: ${error}`);
   }
 };

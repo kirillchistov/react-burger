@@ -4,9 +4,19 @@ export const BASEURL = 'https://norma.nomoreparties.space/api';
 export const WSURL = 'wss://norma.nomoreparties.space/orders/all';
 export const WSURLAUTH = 'wss://norma.nomoreparties.space/orders';
 
-//  Здесь защищаюсь от null значения через прокси-переменную  //
-export const modalsRoot = document.getElementById('modals');
-export const modalRoot = modalsRoot!;
+export const getModalRoot = (): HTMLElement => {
+  if (typeof document === 'undefined') {
+    throw new Error('Modal root is unavailable outside the browser');
+  }
+
+  const root = document.getElementById('modals');
+
+  if (!root) {
+    throw new Error('Modal root element #modals not found');
+  }
+
+  return root;
+};
 
 //  экспериментирую с enum, пока не использую в таком виде  //
 export enum pageUrls {

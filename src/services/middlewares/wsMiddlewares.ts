@@ -2,6 +2,7 @@ import { Middleware, MiddlewareAPI } from 'redux';
 import type { AppDispatch, RootState } from '../types';  //
 import { TWSAction } from '../../services/types';
 import { authTokens } from '../../utils/auth';
+import { devLog } from '../../utils/devLog';
 
 export const wsMiddleware = (wsUrl: string, wsActions: TWSAction, auth: boolean): Middleware => (store: MiddlewareAPI<AppDispatch, RootState>) => {
   let socket: WebSocket | undefined;
@@ -46,7 +47,7 @@ export const wsMiddleware = (wsUrl: string, wsActions: TWSAction, auth: boolean)
       //  функция, которая вызывается при закрытии соединения
       socket.onclose = (event) => {
         dispatch({ type: onClose, payload: event });
-        console.log('socket closed with code: ', event.code);
+        devLog('socket closed with code: ', event.code);
       };
 
       if (wsClose && type === wsClose && socket) {

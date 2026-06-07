@@ -11,6 +11,7 @@ import {
   logoutApi,
 } from '../../utils/api';
 import { setCookies, deleteCookie } from '../../utils/auth';
+import { devLog } from '../../utils/devLog';
 import { TFormValues, TUser, AppThunk } from '../../services/types';
 import {
   LOGIN_USER_API,
@@ -192,7 +193,7 @@ export const loginUser: AppThunk = ({ email, password }: TFormValues) => {
         }
       })
       .catch((err: { message: string }) => {
-        console.log(err.message);
+        devLog(err.message);
         dispatch({
           type: LOGIN_USER_API_FAIL,
         });
@@ -344,7 +345,6 @@ export const logoutUser: AppThunk = (refreshToken?: string) => {
       type: LOGOUT_USER_API,
     });
     logoutApi(refreshToken).then((res) => {
-      console.log(res?.success);
       if (res && res.success) {
         deleteCookie('refreshToken');
         deleteCookie('accessToken');

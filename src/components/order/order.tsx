@@ -2,10 +2,9 @@
 //  Эндпоинт для получения деталей конкретного заказа GET /orders/:number  //
 
 import React, {useEffect, useMemo} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useDispatch } from '../../hooks/useDispatch';
 import { useSelector } from '../../hooks/useSelector';
-import { useLocation } from 'react-router';
 import {WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../utils/constants'
 // Здесь переделать работу с состояниями, переназвать  //
 import { getItems, getOrdersLogged, getOrders } from '../../utils/state';

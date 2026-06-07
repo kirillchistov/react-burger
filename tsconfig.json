@@ -20,6 +20,12 @@
     "noEmit": true,
     "jsx": "react-jsx",
     // "jsx": "react",
+    "baseUrl": "src",
+    "paths": {
+      "@/*": [
+        "*"
+      ]
+    },
     "types": [
       "node",
       "cypress",
