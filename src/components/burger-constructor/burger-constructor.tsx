@@ -3,7 +3,7 @@
 
 import React, { FC, useMemo } from 'react';
 
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from '../../hooks/useDispatch';
 import { useSelector } from '../../hooks/useSelector';
 import { useDrop } from 'react-dnd';
