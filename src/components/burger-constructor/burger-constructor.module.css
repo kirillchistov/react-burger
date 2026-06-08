@@ -1,5 +1,5 @@
 .element__section {
-  width: 600px;
+  width: min(100%, 600px);
   margin: 60px 0 0;
   padding: 0;
   display: grid;
@@ -8,8 +8,8 @@
 }
 
 .element__container {
-  width: 568px;
-  height: 656px;
+  width: min(100%, 568px);
+  height: min(656px, calc(100vh - 256px));
   margin: 0 auto 0;
   padding: 0 0 40px;
 }
@@ -24,7 +24,7 @@
 }
 
 .element__bun {
-  width: 568px;
+  width: min(100%, 568px);
   margin: 0 16px 0 0;
   padding: 0;
   display: flex;
@@ -33,10 +33,15 @@
   cursor: pointer;
 }
 
+.element__bun_bottom img {
+  transform: rotate(180deg);
+}
+
 .element {
   margin: 0;
   padding: 0;
-  min-width: 560px;
+  width: min(100%, 560px);
+  min-width: 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -45,7 +50,8 @@
 }
 
 .element_midstuff {
-  max-height: 454px;
+  width: 100%;
+  max-height: min(454px, calc(100vh - 456px));
   margin: 0;
   padding-right: 8px;
   display: flex;
@@ -103,6 +109,85 @@
   grid-template-columns: auto auto;
   gap: 40px;
   justify-content: flex-end;
+}
+
+.nutrition_total {
+  margin: 0 32px 0 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 1279px) {
+  .element__section {
+    max-width: 560px;
+  }
+
+  .element__container,
+  .element__bun {
+    max-width: 536px;
+  }
+
+  .element {
+    max-width: 528px;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .element__section {
+    width: 100%;
+    max-width: 680px;
+    margin-top: 16px;
+    scroll-margin-top: 88px;
+  }
+
+  .element__container {
+    width: 100%;
+    height: auto;
+    min-height: 360px;
+    padding-bottom: 16px;
+  }
+
+  .element__list {
+    align-items: center;
+  }
+
+  .element__bun {
+    width: 100%;
+    margin-right: 0;
+    justify-content: center;
+  }
+
+  .element {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .element_midstuff {
+    max-height: 40vh;
+    padding-right: 4px;
+  }
+
+  .nutrition_total {
+    margin-right: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .constructor_total {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 16px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .element_midstuff {
+    max-height: 36vh;
+  }
 }
 
 .icon_midstuff{

@@ -47,15 +47,29 @@ export const BurgerConstructor: FC = () => {
   //  Прибавляю к старой сумме заказа (если не пуст) цены элементов (булки * 2)  //
   const totalAmount = useMemo(() => {
     //  let orderTotal = 0; переделал на объект burgerData и reduce  //
-    if (burgerData.length > 0) {
-      return burgerData
-        .map((element) => element.price * (element.type === 'bun' ? 2 : 1))
-        .reduce((sum, price) => sum + price, 0);
-    } else {
-      //  Если в заказе нет данных, то возвращаем 0  //
-      return 0;
-    }
+    return burgerData.reduce((sum, element) => (
+      sum + element.price * (element.type === 'bun' ? 2 : 1)
+    ), 0);
   }, [burgerData]);
+
+  const totalNutrition = useMemo(() => burgerData.reduce(
+    (total, element) => {
+      const multiplier = element.type === 'bun' ? 2 : 1;
+
+      return {
+        calories: total.calories + element.calories * multiplier,
+        proteins: total.proteins + element.proteins * multiplier,
+        fat: total.fat + element.fat * multiplier,
+        carbohydrates: total.carbohydrates + element.carbohydrates * multiplier,
+      };
+    },
+    {
+      calories: 0,
+      proteins: 0,
+      fat: 0,
+      carbohydrates: 0,
+    }
+  ), [burgerData]);
     
   const onDropIngredient = (ingredient: TIngredient) => {
     if (ingredient.type === 'bun') {
@@ -94,7 +108,11 @@ export const BurgerConstructor: FC = () => {
   //  Показываю сумму заказа и кнопку, только если выбраны ингредиенты (кроме булок)  //
   return (
     <>
-      <section className={`${burgerConstructorStyle.element__section}`} ref={dropTarget}>
+      <section
+        className={`${burgerConstructorStyle.element__section}`}
+        id='burger-constructor'
+        ref={dropTarget}
+      >
         <div className={`${burgerConstructorStyle.element__container}`}>
           <ul className={`${burgerConstructorStyle.element__list}`}>
           {bun && (
@@ -132,7 +150,7 @@ export const BurgerConstructor: FC = () => {
             )}
             </ul>
           {bun && (
-            <li className={`${burgerConstructorStyle.element__bun}`}>
+            <li className={`${burgerConstructorStyle.element__bun} ${burgerConstructorStyle.element__bun_bottom}`}>
               <ConstructorElement 
                 type={'bottom'} 
                 isLocked={true} 
@@ -145,14 +163,23 @@ export const BurgerConstructor: FC = () => {
         </ul>
       </div>
       {ingredientsMidStuff.length > 0 && 
-        <div className={`mt-10 ${burgerConstructorStyle.constructor_total}`}>
-          {/* <ConstructorTotal total={totalAmount} /> */}
-          <div className={burgerConstructorStyle.containerTotal}>
-            <p className='mr-2 text text_type_digits-medium'>{totalAmount}</p>
-            <CurrencyIcon type='primary' />
-          </div>    
-          <Button id='orderButton' type='primary' size='large' htmlType='button' onClick={handleOpenIngredientModal}>Оформить заказ</Button>
-        </div>
+        <>
+          <div className={burgerConstructorStyle.nutrition_total}>
+            <span className='text text_type_main-default text_color_inactive'>КБЖУ:</span>
+            <span className='text text_type_digits-default'>{totalNutrition.calories}</span>
+            <span className='text text_type_digits-default'>{totalNutrition.proteins}</span>
+            <span className='text text_type_digits-default'>{totalNutrition.fat}</span>
+            <span className='text text_type_digits-default'>{totalNutrition.carbohydrates}</span>
+          </div>
+          <div className={`mt-10 ${burgerConstructorStyle.constructor_total}`}>
+            {/* <ConstructorTotal total={totalAmount} /> */}
+            <div className={burgerConstructorStyle.containerTotal}>
+              <p className='mr-2 text text_type_digits-medium'>{totalAmount}</p>
+              <CurrencyIcon type='primary' />
+            </div>    
+            <Button id='orderButton' type='primary' size='large' htmlType='button' onClick={handleOpenIngredientModal}>Оформить заказ</Button>
+          </div>
+        </>
       }
       </section>
       {orderNumber && 

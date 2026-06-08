@@ -23,5 +23,22 @@
 }
 
 .elementShrink {
-  width: 530px;
+  width: min(100%, 530px);
+}
+
+@media screen and (max-width: 1279px) {
+  .elementShrink {
+    max-width: 500px;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .element {
+    width: 100%;
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+
+  .elementShrink {
+    width: 100%;
+  }
 }

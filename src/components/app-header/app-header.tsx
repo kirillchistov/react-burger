@@ -26,18 +26,18 @@ export const AppHeader: FC = () => {
       <nav className={AppHeaderStyle.navbar}>
         <NavLink to={HOMEURL} className={`mt-4 mr-7 mb-4 ${AppHeaderStyle.navitem}`}>
           <BurgerIcon type={activeHome ? 'primary' : 'secondary'} />
-          <p className={activeHome ? 'ml-2 text text_type_main-default' : 'ml-2 text text_type_main-default text_color_inactive'}>Конструктор</p>
+          <p className={`${AppHeaderStyle.navText} ${activeHome ? 'ml-2 text text_type_main-default' : 'ml-2 text text_type_main-default text_color_inactive'}`}>Конструктор</p>
         </NavLink>
         <NavLink to={FEEDURL} className={`mt-4 mr-5 mb-4 ml-5 ${AppHeaderStyle.navitem}`}>
           <ListIcon type={activeFeed ? 'primary' : 'secondary'} />
-          <p className={activeFeed ? 'ml-2 text text_type_main-default' : 'ml-2 text text_type_main-default text_color_inactive'}>Лента заказов</p>
+          <p className={`${AppHeaderStyle.navText} ${activeFeed ? 'ml-2 text text_type_main-default' : 'ml-2 text text_type_main-default text_color_inactive'}`}>Лента заказов</p>
         </NavLink>
         <NavLink to={HOMEURL} className={AppHeaderStyle.logo}>  
           <Logo />
         </NavLink>
         <NavLink to={PROFILEURL} className={`mt-4 mb-4 ml-5 ${AppHeaderStyle.navitem}`}>
           <ProfileIcon type={activeProfile ? 'primary' : 'secondary'} />
-          <p className={activeProfile ? 'ml-2 text text_type_main-default' : 'ml-2 text text_type_main-default text_color_inactive'}>Личный кабинет</p>
+          <p className={`${AppHeaderStyle.navText} ${AppHeaderStyle.profileText} ${activeProfile ? 'ml-2 text text_type_main-default' : 'ml-2 text text_type_main-default text_color_inactive'}`}>Личный кабинет</p>
         </NavLink>
       </nav>
     </header>

@@ -1,6 +1,6 @@
 .ingredients {
-  width: 600px;
-  height: 912px;
+  width: min(100%, 600px);
+  height: min(912px, calc(100vh - 136px));
   margin: 0;
 }
 
@@ -26,8 +26,9 @@
 
 .ingredient_types {
   /* height: calc(100vh - 324px); */
-  height: 756px;
+  height: min(756px, calc(100vh - 292px));
   overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .ingredient_types::-webkit-scrollbar {
@@ -43,4 +44,31 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+
+@media screen and (max-width: 1279px) {
+  .ingredients {
+    max-width: 560px;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .ingredients {
+    width: 100%;
+    max-width: 680px;
+    height: auto;
+  }
+
+  .ingredients h1 {
+    font-size: clamp(28px, 7vw, 36px);
+    line-height: 1.15;
+  }
+
+  .navbar {
+    justify-content: center;
+  }
+
+  .ingredient_types {
+    height: min(58vh, 620px);
+  }
 }

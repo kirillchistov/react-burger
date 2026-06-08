@@ -1,14 +1,15 @@
 .header {
-  padding-left: calc((100vw - 1320px)/2);
-  padding-right: calc((100vw - 1320px)/2);
+  padding-left: max(16px, calc((100vw - 1320px)/2));
+  padding-right: max(16px, calc((100vw - 1320px)/2));
   background-color: var(--color-header);
 }
   
 .navbar {
   display: flex;  
   flex-direction: row;
-  justify-items: center;
+  justify-content: center;
   align-items: center;
+  gap: clamp(12px, 2vw, 40px);
 }
 
 .navitem {
@@ -32,9 +33,57 @@
 
 .logo {
   height: 40px;
-  margin: 8px 289px 8px 112px;
+  margin: 8px clamp(24px, 8vw, 112px);
+  flex-shrink: 0;
+}
+
+.navText {
+  transition: font-size 0.2s ease, opacity 0.2s ease;
 }
 
 .activeMenu {
   color: #f2f2f3;
+}
+
+@media screen and (max-width: 1279px) {
+  .navbar {
+    gap: clamp(8px, 1.5vw, 24px);
+  }
+
+  .navText {
+    font-size: clamp(14px, 1.3vw, 16px);
+  }
+
+  .profileText {
+    display: none;
+  }
+
+  .logo {
+    margin-right: clamp(16px, 5vw, 64px);
+    margin-left: clamp(16px, 5vw, 64px);
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .header {
+    margin-bottom: 16px !important;
+  }
+
+  .navbar {
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .navitem {
+    margin: 4px !important;
+  }
+
+  .navText {
+    display: none;
+  }
+
+  .logo {
+    margin: 4px 8px;
+    transform: scale(0.84);
+  }
 }

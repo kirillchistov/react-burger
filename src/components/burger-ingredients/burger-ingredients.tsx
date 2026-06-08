@@ -6,7 +6,7 @@
 //  Затем в разметку вставляем карточки ингредиентов по типам  //
 //  Убрать все инлайн стили, добавить отступы, убрать SelectTab в отд.компонент  //
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 //  Добавил хуки для навигации по каталогу ингридиентов и пр.  //
 //  import { useInView } from 'react-intersection-observer';
 //  Добавил хуки для работы с Redux  //
@@ -22,6 +22,8 @@ import { getItems } from '@/utils/state';
 import { TIngredient } from '@/services/types';
 import BurgerIngredientsStyle from './burger-ingredients.module.css';
 
+type TIngredientTab = 'bun' | 'sauce' | 'main';
+
      
 export const BurgerIngredients = () => {
 
@@ -33,7 +35,8 @@ export const BurgerIngredients = () => {
   const ingredients: TIngredient[] = useSelector(getItems);
   
   //  По умолчанию мой ингредиент = булка, без булки нельзя  //
-  const [current, setCurrent] = useState('bun');
+  const [current, setCurrent] = useState<TIngredientTab>('bun');
+  const typeContainerRef = useRef<HTMLDivElement>(null);
   
   //  При монтировании получаем список ингредиентов -> в App //
 
@@ -51,24 +54,48 @@ export const BurgerIngredients = () => {
     [ingredients]
   );
 
-  //  Здесь по тренажеру  //
-  //  Нахожу по id контейнер, привязываюсь к его координатам, чтобы выделять разделы  //
-  const scrollToCategory = () => {
-    const topTop = document
-      .getElementById('typeContainer')
-      ?.getBoundingClientRect().top ?? 0;
-    const bunTop = document.getElementById('bun')?.getBoundingClientRect().top ?? 0;
-    const sauceTop = document
-      .getElementById('sauce')
-      ?.getBoundingClientRect().top ?? 0;
+  const handleTabClick = (value: string) => {
+    const nextTab = value as TIngredientTab;
+    const container = typeContainerRef.current;
+    const category = document.getElementById(nextTab);
 
-    //  topTop - верх раздела, butTop - верх 'булок', sauceTop - соусов  //
-    if (bunTop + topTop > topTop + 60) {
-      setCurrent('bun');
-    } else if (sauceTop + topTop > 110) {
-      setCurrent('sauce');
-    } else {
-      setCurrent('main');
+    setCurrent(nextTab);
+
+    if (!container || !category) {
+      return;
+    }
+
+    container.scrollTo({
+      top: category.offsetTop - container.offsetTop,
+      behavior: 'smooth',
+    });
+  };
+
+  const scrollToCategory = () => {
+    const container = typeContainerRef.current;
+
+    if (!container) {
+      return;
+    }
+
+    const categories = (['bun', 'sauce', 'main'] as TIngredientTab[])
+      .map((id) => ({
+        id,
+        element: document.getElementById(id),
+      }))
+      .filter((category): category is { id: TIngredientTab; element: HTMLElement } =>
+        Boolean(category.element)
+      );
+
+    const closestCategory = categories.reduce((closest, category) => {
+      const closestDistance = Math.abs(closest.element.offsetTop - container.offsetTop - container.scrollTop);
+      const categoryDistance = Math.abs(category.element.offsetTop - container.offsetTop - container.scrollTop);
+
+      return categoryDistance < closestDistance ? category : closest;
+    }, categories[0]);
+
+    if (closestCategory) {
+      setCurrent(closestCategory.id);
     }
   };
 
@@ -82,11 +109,16 @@ export const BurgerIngredients = () => {
     <section className={`mr-10 ${BurgerIngredientsStyle.ingredients}`}> 
       <h1 className='mb-5 text text_type_main-large'>Соберите бургер</h1>
       <nav className={BurgerIngredientsStyle.navbar}>
-        <Tab active={current === 'bun'} value='bun' onClick={setCurrent}>Булки</Tab>
-        <Tab active={current === 'sauce'} value='sauce' onClick={setCurrent}>Соусы</Tab>
-        <Tab active={current === 'main'} value='main' onClick={setCurrent}>Начинки</Tab>
+        <Tab active={current === 'bun'} value='bun' onClick={handleTabClick}>Булки</Tab>
+        <Tab active={current === 'sauce'} value='sauce' onClick={handleTabClick}>Соусы</Tab>
+        <Tab active={current === 'main'} value='main' onClick={handleTabClick}>Начинки</Tab>
       </nav>
-      <div className={BurgerIngredientsStyle.ingredient_types} id='typeContainer' onScroll={scrollToCategory}>
+      <div
+        className={BurgerIngredientsStyle.ingredient_types}
+        id='typeContainer'
+        onScroll={scrollToCategory}
+        ref={typeContainerRef}
+      >
         <IngredientCategory type={'Булки'} typeList={buns} id='bun' />
         <IngredientCategory type={'Соусы'} typeList={sauces} id='sauce' />
         <IngredientCategory type={'Начинки'} typeList={mains} id='main' />

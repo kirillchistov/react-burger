@@ -1,13 +1,105 @@
 /*  Пока скопировал все из App  */
 
+.page {
+  box-sizing: border-box;
+}
+
 .mainContainer {
-  margin-right: calc((100vw - 1320px)/2);
-  margin-left: calc((100vw - 1320px)/2);
+  width: min(100%, 1320px);
+  margin-right: auto;
+  margin-left: auto;
   display: flex;
+  justify-content: center;
+  gap: 40px;
 }
 
 .loading {
   padding-top: 40px;
   grid-area: loading;
   justify-self: center;
+}
+
+.burgerPreview {
+  display: none;
+}
+
+.mobileDivider {
+  display: none;
+}
+
+@media screen and (max-width: 1279px) {
+  .mainContainer {
+    gap: clamp(16px, 3vw, 32px);
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .page {
+    padding-right: 16px !important;
+    padding-left: 16px !important;
+  }
+
+  .mainContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .mobileDivider {
+    width: min(100%, 680px);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #8585ad;
+  }
+
+  .mobileDivider::before,
+  .mobileDivider::after {
+    content: '';
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(90deg, rgba(76, 76, 255, 0), #4c4cff, rgba(128, 26, 178, 0.85));
+  }
+
+  .mobileDivider::after {
+    background: linear-gradient(90deg, rgba(128, 26, 178, 0.85), #4c4cff, rgba(76, 76, 255, 0));
+  }
+
+  .mobileDividerText {
+    padding: 6px 14px;
+    border: 1px solid rgba(76, 76, 255, 0.45);
+    border-radius: 999px;
+    background: rgba(28, 28, 33, 0.88);
+    box-shadow: 0 0 24px rgba(76, 76, 255, 0.18);
+    color: #f2f2f3;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .burgerPreview {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 20;
+    min-width: 136px;
+    padding: 8px 12px;
+    border: 1px solid #4c4cff;
+    border-radius: 999px;
+    background: rgba(28, 28, 33, 0.94);
+    color: #f2f2f3;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  .burgerPreviewImage {
+    width: 48px;
+    height: 32px;
+    object-fit: contain;
+  }
 }

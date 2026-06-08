@@ -1,1 +1,1 @@
-export { getCookie, setCookie, setCookies, deleteCookie, authTokens } from './auth';
+export { authTokens, deleteCookie, getCookie, setCookie, setCookies } from './auth';

@@ -1,5 +1,6 @@
 .ingredient {
   max-width: 272px;
+  width: 100%;
   display: grid;
   justify-items: center;
   align-content: center;
@@ -8,6 +9,12 @@
   gap: 4px;
   position: relative;
   cursor: pointer;
+}
+
+.ingredient img {
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.2s ease;
 }
 
 .counter {
@@ -19,6 +26,23 @@
 .name {
   text-decoration: none;
   align-content: center;
+}
+
+@media screen and (max-width: 1279px) {
+  .ingredient img {
+    transform: scale(0.94);
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .ingredient {
+    max-width: 100%;
+  }
+
+  .name {
+    font-size: clamp(14px, 3.4vw, 16px);
+    line-height: 1.25;
+  }
 }
 
 /*
