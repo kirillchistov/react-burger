@@ -34,11 +34,21 @@ jobs:
           node-version: 20
           cache: pnpm
 
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm run build
+
+      - name: Verify Pages artifact
+        run: |
+          test -f dist/index.html
+          ! grep -q '%BASE_URL%' dist/index.html
+          ! grep -q '/src/index.tsx' dist/index.html
+          grep -q '/react-burger/assets/' dist/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
