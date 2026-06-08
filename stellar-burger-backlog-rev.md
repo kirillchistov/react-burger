@@ -159,6 +159,19 @@ pnpm build   # tsc + vite build → dist/
 
 ---
 
+## Выполнено (API-01)
+
+| ID | Статус | Что сделано |
+|---|---|---|
+| API-01 | ✅ | Новый адрес API: `BURGER_API_URL` из `.env`, единый слой `burger-api.ts`, Redux actions переведены на новые «ручки», WS URL выводится из API URL |
+| API-02 | ✅ | Авторизация и protected routes: cookies + store, refresh при `jwt expired`, прелоадер при восстановлении сессии, редирект при ошибке |
+
+**Файлы:** `src/utils/burger-api.ts`, `.env.example`, `auth-actions.ts`, `ingredient-actions.ts`, `order-actions.ts`, `protected-route.tsx`, `constants.ts`
+
+**Удалено:** `src/utils/api.ts` (старый URL `norma.nomoreparties.space`), `src/utils/burdger-api.ts` (черновик с неверными импортами)
+
+---
+
 ## Скорректированная сводная таблица (фрагмент)
 
 | # | Задача | Было | Стало |
@@ -169,6 +182,8 @@ pnpm build   # tsc + vite build → dist/
 | BUG-04 | react-router импорт | — | ✅ Done |
 | INFRA-01 | CRA → Vite | 🟠 P2, 1–1.5 дня | ✅ Done |
 | INFRA-03 | Alias `@/` в сборщике | 🟠 P2, 1–2 ч | ✅ Done |
+| API-01 | Починка API (новый URL) | 🔴 P1 | ✅ Done |
+| API-02 | Auth + protected routes | 🟠 P2 | ✅ Done |
 | TEST-01 | Vitest + unit-тесты | «первые тесты» | ✅ Vitest настроен, 30 тестов |
 | UX-05 | NavLink активный пункт | 🟡 P3, 1–2 ч | 🟢 P4, рефактор |
 | UX-03 | Страница 404 | 🟡 P3 | 🟢 P4 |
@@ -179,8 +194,8 @@ pnpm build   # tsc + vite build → dist/
 
 ## Рекомендуемый порядок следующих шагов
 
-1. **INFRA-02** — ESLint + Prettier + husky
-2. **UX-01** — ошибки API в UI (до RTK, чтобы пользователь видел фидбек)
+1. **UX-01** — ошибки API в UI
+2. **INFRA-02** — ESLint + Prettier + husky
 3. **RTK-01** — миграция Redux
 4. **TEST-02** — расширить Cypress E2E (auth, оформление заказа)
 5. **DEVOPS-01** — GitHub Actions CI

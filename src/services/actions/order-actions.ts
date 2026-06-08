@@ -1,5 +1,5 @@
 //  Начальные actions для обработки заказов O-DETAILS  //
-import { postOrder } from '@/utils/api';
+import { orderBurgerApi } from '@/utils/burger-api';
 import { TIngredient, AppThunk } from '@/services/types';
 
 //  Все константы экспортирую теперь из /utils/constants  //
@@ -81,10 +81,10 @@ export const dispatchOrder: AppThunk = (orderDataID: string[]) => {
     dispatch({
       type: POST_ORDER_API
     });
-    postOrder(orderDataID).then((res) => {
-      if (res && res.success) {
+    orderBurgerApi(orderDataID).then((res) => {
+      if (res?.success) {
         dispatch(dispatchOrderOK(res.order.number));
-      } 
+      }
     })
     .catch((err: { message: string }) => {
       dispatch({

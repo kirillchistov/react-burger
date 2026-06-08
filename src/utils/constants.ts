@@ -1,8 +1,13 @@
 //  Вынес все типы в отдельную функцию /services/types  //
 
-export const BASEURL = 'https://norma.nomoreparties.space/api';
-export const WSURL = 'wss://norma.nomoreparties.space/orders/all';
-export const WSURLAUTH = 'wss://norma.nomoreparties.space/orders';
+import { BURGER_API_URL } from './burger-api';
+
+export const BASEURL = BURGER_API_URL;
+
+const wsOrigin = BURGER_API_URL.replace(/\/api\/?$/, '').replace(/^https:/, 'wss:');
+
+export const WSURL = `${wsOrigin}/orders/all`;
+export const WSURLAUTH = `${wsOrigin}/orders`;
 
 export const getModalRoot = (): HTMLElement => {
   if (typeof document === 'undefined') {

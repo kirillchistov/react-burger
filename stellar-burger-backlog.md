@@ -89,6 +89,33 @@ body: JSON.stringify({'token': `${getCookie('accessToken')}`})  // ← BUG
 
 ## НЕДЕЛЯ 1 — Критические исправления и сборка
 
+### 🔴 API-01 · Актуализировать API: новый адрес сервера
+
+**Проблема:** старый URL `https://norma.nomoreparties.space/api` больше не работает.  
+**Новый URL:** `https://norma.education-services.ru/api`  
+**Решение:**
+- переменная окружения `BURGER_API_URL` в `.env`
+- единый слой запросов `src/utils/burger-api.ts`
+- Redux actions (`auth`, `ingredients`, `order`) используют новые «ручки»
+- WS URL (`orders/all`, `orders`) выводится из `BURGER_API_URL`
+
+**Оценка:** 2–3 часа
+
+---
+
+### 🟠 API-02 · Актуализировать авторизацию и protected routes
+
+**Проблема:** после смены API сессия и защищённые маршруты работают некорректно.  
+**Решение:**
+- refresh token через cookies (не localStorage)
+- восстановление сессии при загрузке (`getAccessToken` → `getUserProfile`)
+- `ProtectedRouteElement`: прелоадер при проверке, редирект на `/login` при ошибке
+- logout через `burger-api.ts` + очистка store и cookies
+
+**Оценка:** 1–2 часа (в рамках API-01)
+
+---
+
 ### 🔴 BUG-01 · Исправить refreshToken: передаётся accessToken вместо refreshToken
 
 **Файл:** `utils/api.ts`, функция `refreshToken`  
@@ -398,6 +425,8 @@ VITE_WS_URL=wss://norma.nomoreparties.space/orders
 
 | # | Задача | Приоритет | Неделя | Оценка |
 |---|---|---|---|---|
+| API-01 | Актуализировать API (новый URL) | 🔴 P1 | 1 | 2–3 ч |
+| API-02 | Auth + protected routes | 🟠 P2 | 1 | в API-01 |
 | BUG-01 | Исправить refreshToken bug | 🔴 P1 | 1 | 30 мин |
 | BUG-02 | Side-effect в constants.ts | 🔴 P1 | 1 | 30 мин |
 | BUG-03 | console.log в продакшн | 🔴 P1 | 1 | 30 мин |

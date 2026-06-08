@@ -1,6 +1,6 @@
 //  Начальные actions для ингредиентов B-Ingredients и B-Constructor  //
 
-import { fetchIngredients } from '@/utils/api';
+import { getIngredientsApi } from '@/utils/burger-api';
 //  Все константы экспортирую теперь из констант  //
 import {
   GET_INGREDIENTS_API,
@@ -39,14 +39,12 @@ export const getIngredients: AppThunk = () => (dispatch) => {
   dispatch({
     type: GET_INGREDIENTS_API
   });
-  return fetchIngredients()
-    .then((res) => {
-      if (res && res.success) {
-        dispatch({
-          type: GET_INGREDIENTS_API_OK,
-          items: res.data
-        });
-      }
+  return getIngredientsApi()
+    .then((items) => {
+      dispatch({
+        type: GET_INGREDIENTS_API_OK,
+        items,
+      });
     })
     .catch((err: { message: string }) => {
       dispatch({

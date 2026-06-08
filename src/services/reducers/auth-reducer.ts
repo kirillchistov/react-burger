@@ -208,6 +208,7 @@ export const authReducer = (state = initialState, action: TAuthActions) => {
         ...state,
         request: false,
         requestFailed: true,
+        user: null,
       };
     case UPDATE_USER_PROFILE_API:
       return {
@@ -243,6 +244,7 @@ export const authReducer = (state = initialState, action: TAuthActions) => {
         ...state,
         request: false,
         requestFailed: true,
+        user: null,
       };
     default:
       return state;

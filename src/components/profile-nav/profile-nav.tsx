@@ -2,7 +2,6 @@
 import React, { FC } from 'react';
 import { useLocation, NavLink, matchPath } from 'react-router-dom';
 import { useDispatch } from '@/hooks/useDispatch';
-import { authTokens } from '@/utils/auth';
 import { logoutUser } from '@/services/actions/auth-actions';
 import { 
   LOGINURL, 
@@ -18,8 +17,6 @@ interface IProfileNav {
 
 export const ProfileNav:FC<IProfileNav> = ({ navTip }) => {
   const dispatch = useDispatch();
-  const { refreshToken } = authTokens();
-  
   const location = useLocation();
   
   //  Refactor: вынести URLы в контстанты  //
@@ -30,7 +27,7 @@ export const ProfileNav:FC<IProfileNav> = ({ navTip }) => {
   //  Выход из системы при клкие, отправляю action в redux  //
   const logout = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(logoutUser(refreshToken));
+    dispatch(logoutUser());
   };
   //  В разметке использую prop end для NavLink, чтобы учитывать вложенность  //
   //  В зависимости от пути / URL строки, подсвечиваю активное меню  //
