@@ -120,13 +120,42 @@
 
 ---
 
-## Выполнено в этой сессии
+## Выполнено (BUG-01..03)
+
+| ID | Статус | Что сделано | Файлы |
+|---|---|---|---|
+| BUG-01 | ✅ | `refreshToken` отправляет `getCookie('refreshToken')` | `src/utils/api.ts` |
+| BUG-02 | ✅ | `getModalRoot()` вместо side-effect при импорте; `Modal` вызывает функцию | `src/utils/constants.ts`, `src/components/modal/modal.tsx` |
+| BUG-03 | ✅ | Утилита `devLog` с guard `NODE_ENV === 'development'`; prod-путь без `console.log` | `src/utils/devLog.ts`, `src/utils/api.ts`, `src/services/actions/auth-actions.ts`, `src/services/middlewares/wsMiddlewares.ts` |
+| BUG-04 | ✅ | `useNavigate` из `react-router-dom` (было `react-router`) | `src/components/burger-constructor/burger-constructor.tsx` |
+
+### Проверка целостности (07.06.2026)
+
+```bash
+pnpm test    # 5 suites, 30 tests passed (Vitest)
+pnpm build   # tsc + vite build → dist/
+```
+
+---
+
+## Выполнено (INFRA-01, INFRA-03)
 
 | ID | Статус | Что сделано |
 |---|---|---|
-| BUG-01 | ✅ | `refreshToken` отправляет `getCookie('refreshToken')` |
-| BUG-02 | ✅ | `getModalRoot()` вместо side-effect при импорте |
-| BUG-03 | ✅ | `devLog` — логи только в `development`; убраны `console.log` из prod-пути |
+| INFRA-01 | ✅ | CRA → Vite: `vite.config.ts`, корневой `index.html`, скрипты `start`/`build`/`preview`, Vitest вместо Jest, `dist/` вместо `build/` |
+| INFRA-03 | ✅ | Alias `@/` в Vite (`resolve.alias`) + `tsconfig paths`; импорты в `src/` переведены на `@/...` |
+
+**Удалено:** `react-scripts`, `public/index.html`, `babel.config.js`, `src/react-app-env.d.ts`, пустой `src/__tests__/redux.js`
+
+**Скрипты:**
+| Было | Стало |
+|---|---|
+| `react-scripts start` | `vite` (порт 3000 — Cypress без изменений) |
+| `react-scripts build` | `tsc --noEmit && vite build` |
+| `react-scripts test` | `vitest run` |
+| `gh-pages -d build` | `gh-pages -d dist` |
+
+**Проверка (08.06.2026):** `pnpm test` — 30/30, `pnpm build` — успешно (~640 ms).
 
 ---
 
@@ -137,7 +166,10 @@
 | BUG-01 | refreshToken bug | 🔴 P1 | ✅ Done |
 | BUG-02 | Side-effect constants | 🔴 P1 | ✅ Done |
 | BUG-03 | console.log в прод | 🔴 P1 | ✅ Done |
-| BUG-04 | react-router импорт | — | 🔴 P1, 15 мин |
+| BUG-04 | react-router импорт | — | ✅ Done |
+| INFRA-01 | CRA → Vite | 🟠 P2, 1–1.5 дня | ✅ Done |
+| INFRA-03 | Alias `@/` в сборщике | 🟠 P2, 1–2 ч | ✅ Done |
+| TEST-01 | Vitest + unit-тесты | «первые тесты» | ✅ Vitest настроен, 30 тестов |
 | UX-05 | NavLink активный пункт | 🟡 P3, 1–2 ч | 🟢 P4, рефактор |
 | UX-03 | Страница 404 | 🟡 P3 | 🟢 P4 |
 | TEST-01 | Unit-тесты редьюсеров | «первые тесты» | «дописать + Vitest» |
@@ -147,11 +179,11 @@
 
 ## Рекомендуемый порядок следующих шагов
 
-1. **BUG-04** — поправить импорты `react-router` → `react-router-dom`
-2. **INFRA-03** — alias `@/` в webpack (или сразу **INFRA-01** Vite, где alias проще)
-3. **UX-01** — ошибки API в UI (до RTK, чтобы пользователь видел фидбек)
-4. **INFRA-01** — миграция CRA → Vite
-5. **RTK-01** — миграция Redux
+1. **INFRA-02** — ESLint + Prettier + husky
+2. **UX-01** — ошибки API в UI (до RTK, чтобы пользователь видел фидбек)
+3. **RTK-01** — миграция Redux
+4. **TEST-02** — расширить Cypress E2E (auth, оформление заказа)
+5. **DEVOPS-01** — GitHub Actions CI
 
 ---
 

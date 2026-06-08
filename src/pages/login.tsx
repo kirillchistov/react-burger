@@ -8,13 +8,13 @@
 //  Хуки react, router-dom, redux, useForm  //
 import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from '../hooks/useDispatch';
-import { useForm } from '../hooks/useForm';
+import { useDispatch } from '@/hooks/useDispatch';
+import { useForm } from '@/hooks/useForm';
 //  Нужна шапка  //
 //  Из библиотеки беру кнопку, поле ввода обычный инпут и поле пароля  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 //  action логина для redux  //
-import { loginUser } from '../services/actions/auth-actions';
+import { loginUser } from '@/services/actions/auth-actions';
 //  Стиль  //
 import LoginStyle from './login.module.css';
 

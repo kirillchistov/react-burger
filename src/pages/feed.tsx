@@ -1,12 +1,12 @@
 //  Страница с лентой заказов  //
 import React, { FC, useEffect, useMemo } from 'react';
-import { useDispatch } from '../hooks/useDispatch';
-import { useSelector } from '../hooks/useSelector';
-import { FeedOrder } from '../components/feed-item/feed-item';
+import { useDispatch } from '@/hooks/useDispatch';
+import { useSelector } from '@/hooks/useSelector';
+import { FeedOrder } from '@/components/feed-item/feed-item';
 import {
   WS_CONNECTION_START,
   WS_CONNECTION_CLOSE,
-} from '../utils/constants';
+} from '@/utils/constants';
 import feedStyles from './feed.module.css';
 
 export const FeedPage:FC = () => {

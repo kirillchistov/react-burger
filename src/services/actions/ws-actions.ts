@@ -14,9 +14,9 @@ import {
   WS_CONNECTION_CLOSED_AUTH,
   WS_GET_MESSAGE_AUTH,
   WS_SEND_MESSAGE_AUTH,
-} from '../../utils/constants';
+} from '@/utils/constants';
 
-import { TWsMessage } from '../types/';
+import { TWsMessage } from '@/services/types';
 
 export interface IWsConnectionStartAction {
   readonly type: typeof WS_CONNECTION_START;

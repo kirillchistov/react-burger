@@ -1,8 +1,8 @@
 import { Middleware, MiddlewareAPI } from 'redux';
-import type { AppDispatch, RootState } from '../types';  //
-import { TWSAction } from '../../services/types';
-import { authTokens } from '../../utils/auth';
-import { devLog } from '../../utils/devLog';
+import type { AppDispatch, RootState } from '@/services/types';  //
+import { TWSAction } from '@/services/types';
+import { authTokens } from '@/utils/auth';
+import { devLog } from '@/utils/devLog';
 
 export const wsMiddleware = (wsUrl: string, wsActions: TWSAction, auth: boolean): Middleware => (store: MiddlewareAPI<AppDispatch, RootState>) => {
   let socket: WebSocket | undefined;

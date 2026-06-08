@@ -1,4 +1,3 @@
-import { expect } from '@jest/globals';
 import { wsOrdersReducer, WSInitialState } from './ws-reducer';
 import {
   WS_CONNECTION_START,
@@ -6,9 +5,9 @@ import {
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
   WS_GET_MESSAGE,
-} from '../../utils/constants';
+} from '@/utils/constants';
 
-import { WSORDERDATA, WSORDERDATA_SIMPLE } from '../../utils/testdata';
+import { WSORDERDATA, WSORDERDATA_SIMPLE } from '@/utils/testdata';
 
 describe('wsOrdersReducer test', () => {
   it("should return initial state", () => {

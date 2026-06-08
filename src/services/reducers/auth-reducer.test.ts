@@ -1,4 +1,3 @@
-import { expect } from '@jest/globals';
 import { authReducer, initialState } from './auth-reducer';
 import {
 //   REGISTER_USER_API,
@@ -25,7 +24,7 @@ import {
 //   LOGOUT_USER_API,
   LOGOUT_USER_API_OK,
 //   LOGOUT_USER_API_FAIL,
-} from '../../utils/constants';
+} from '@/utils/constants';
 import { USER } from "../../utils/testdata";
 
 describe("authReducer test", () => {

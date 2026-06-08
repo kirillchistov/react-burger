@@ -1,4 +1,4 @@
-import { RootState } from '../services/types';
+import { RootState } from '@/services/types';
 
 export const getUser = (state: RootState) => state.auth.user;
 export const getItems = (state: RootState) => state.ingredients.items;

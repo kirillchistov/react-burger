@@ -1,4 +1,3 @@
-import { expect } from '@jest/globals';
 import { orderReducer, initialOrderState } from './order-reducer';
 // import { orderActions } from '../../types';
 
@@ -11,11 +10,11 @@ import {
   // POST_ORDER_API_OK,
   // POST_ORDER_API_FAIL,
   // DELETE_ORDER
-} from '../../utils/constants';
-// import { TOrderActions } from '../actions/order-actions';
-// import { TIngredient } from '../types/index'
-import { ORDER, ORDER_SORTED, INGREDIENT_SAUCE, CARD_BUN } from '../../utils/testdata';
-// import { WSORDERDATA, INGREDIENT_MAIN } from '../../utils/testdata';
+} from '@/utils/constants';
+// import { TOrderActions } from '@/services/actions/order-actions';
+// import { TIngredient } from '@/services/types'
+import { ORDER, ORDER_SORTED, INGREDIENT_SAUCE, CARD_BUN } from '@/utils/testdata';
+// import { WSORDERDATA, INGREDIENT_MAIN } from '@/utils/testdata';
 
 describe('orderReducer', () => {
   it('should return initial state', () => {

@@ -10,7 +10,7 @@
 */
 //  Импортирую шапку и детали ингридиента  //
 import React, { FC } from 'react';
-import { IngredientDetails } from '../components/ingredient-details/ingredient-details';
+import { IngredientDetails } from '@/components/ingredient-details/ingredient-details';
 //  Стили пока беру из логина  //
 import IngredientStyle from './login.module.css';
 

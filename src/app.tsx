@@ -13,8 +13,8 @@ import {
   RESETPASSURL,
   PROFILEORDERSURL,
   ORDERSID,
-} from './utils/constants';
-import { useDispatch } from './hooks/useDispatch';
+} from '@/utils/constants';
+import { useDispatch } from '@/hooks/useDispatch';
 //  Импортирую все странички из разводящего index файла //
 import {
   HomePage,
@@ -28,13 +28,13 @@ import {
   OrdersPage,
   NotFoundPage,
   OrderPage
-} from './pages';
-import { AppHeader } from './components/app-header/app-header';
-import { ProtectedRouteElement } from './components/protected-route/protected-route';
-import { IngredientDetails } from './components/ingredient-details/ingredient-details';
-import { getIngredients } from './services/actions/ingredient-actions';
-import { Order } from './components/order/order';
-import { Modal } from './components/modal/modal';
+} from '@/pages';
+import { AppHeader } from '@/components/app-header/app-header';
+import { ProtectedRouteElement } from '@/components/protected-route/protected-route';
+import { IngredientDetails } from '@/components/ingredient-details/ingredient-details';
+import { getIngredients } from '@/services/actions/ingredient-actions';
+import { Order } from '@/components/order/order';
+import { Modal } from '@/components/modal/modal';
 import { useEffect } from 'react';
 
 //  Попытка внедрить улучшение по ревью с PropsWithChildren  //

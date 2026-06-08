@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 //  Поддержка redux  //
-import { store } from './services/store';
+import { store } from '@/services/store';
 import { Provider } from 'react-redux';
 //  Переключился на корневой App  //
-import App from './app';
+import App from '@/app';
 
 //  Добавил поддержку роутера  // 
 import { BrowserRouter } from 'react-router-dom';

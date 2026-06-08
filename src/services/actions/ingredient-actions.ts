@@ -1,15 +1,15 @@
 //  Начальные actions для ингредиентов B-Ingredients и B-Constructor  //
 
-import { fetchIngredients } from '../../utils/api';
+import { fetchIngredients } from '@/utils/api';
 //  Все константы экспортирую теперь из констант  //
 import {
   GET_INGREDIENTS_API,
   GET_INGREDIENTS_API_OK,
   GET_INGREDIENTS_API_FAIL,
-} from '../../utils/constants';
+} from '@/utils/constants';
 
 //  Импортирую типы  //
-import { TIngredient, AppThunk } from '../../services/types';
+import { TIngredient, AppThunk } from '@/services/types';
 
 //  Создаю интерфейсы  //
 export interface IGetIngredients {

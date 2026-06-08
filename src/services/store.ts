@@ -22,7 +22,7 @@ import {
   WS_CONNECTION_ERROR_AUTH,
   WS_CONNECTION_CLOSED_AUTH,
   WS_GET_MESSAGE_AUTH,
-} from '../utils/constants';
+} from '@/utils/constants';
 
 //  Типизирую глобальный интерфейс Window  //
 declare global {

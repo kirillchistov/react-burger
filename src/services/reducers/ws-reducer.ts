@@ -5,11 +5,11 @@ import {
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
   WS_GET_MESSAGE,
-} from '../../utils/constants';
+} from '@/utils/constants';
 
-import { TWSConnectionActions } from '../actions/ws-actions';
+import { TWSConnectionActions } from '@/services/actions/ws-actions';
 
-import { TOrder } from '../../services/types';
+import { TOrder } from '@/services/types';
 
 export type TWSState = {
   wsConnected: boolean;

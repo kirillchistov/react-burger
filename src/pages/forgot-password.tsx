@@ -4,11 +4,11 @@
 import React, { FC, FormEvent } from 'react';
 //  хуки  //
 import { Navigate, useNavigate } from 'react-router-dom';
-import { useSelector } from '../hooks/useSelector';
-import { useDispatch } from '../hooks/useDispatch';
-import { useForm } from '../hooks/useForm';
-import { requestResetCode } from '../services/actions/auth-actions';
-import { getResetCode } from '../utils/state';
+import { useSelector } from '@/hooks/useSelector';
+import { useDispatch } from '@/hooks/useDispatch';
+import { useForm } from '@/hooks/useForm';
+import { requestResetCode } from '@/services/actions/auth-actions';
+import { getResetCode } from '@/utils/state';
 //  Шапка и компоненты из UX-библиотеки  //
 //  Стили пока беру из login  //
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';

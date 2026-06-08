@@ -4,11 +4,11 @@ import {
   WS_CONNECTION_ERROR_AUTH,
   WS_CONNECTION_CLOSED_AUTH,
   WS_GET_MESSAGE_AUTH,
-} from '../../utils/constants';
+} from '@/utils/constants';
 
-import { TWSConnectionAuthActions } from '../actions/ws-actions';
+import { TWSConnectionAuthActions } from '@/services/actions/ws-actions';
 
-import { TOrder } from '../types';
+import { TOrder } from '@/services/types';
 
 export type TWSAuthState = {
   wsConnected: boolean;

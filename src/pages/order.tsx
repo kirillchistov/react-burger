@@ -1,10 +1,10 @@
 //  Страница заказа по роуту /profile/orders/:id  //
 import React, { FC, useEffect } from 'react';
 //  Хуки  //
-import { useDispatch } from '../hooks/useDispatch';
+import { useDispatch } from '@/hooks/useDispatch';
 
-import { WS_CONNECTION_START_AUTH, WS_CONNECTION_CLOSE_AUTH } from '../utils/constants';
-import { Order } from '../components/order/order';
+import { WS_CONNECTION_START_AUTH, WS_CONNECTION_CLOSE_AUTH } from '@/utils/constants';
+import { Order } from '@/components/order/order';
 
 export const OrderPage:FC = () => {
   const dispatch = useDispatch();    

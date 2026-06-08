@@ -25,9 +25,9 @@ import {
   LOGOUT_USER_API,
   LOGOUT_USER_API_OK,
   LOGOUT_USER_API_FAIL,
-} from '../../utils/constants';
-import { TAuthActions } from '../actions/auth-actions';
-import { TUser } from '../../services/types';
+} from '@/utils/constants';
+import { TAuthActions } from '@/services/actions/auth-actions';
+import { TUser } from '@/services/types';
 
 //  Типизирую состояние для данных о пользователе  //
 //  Здесь вероятно надо типизировать все состояния запроса на reset/forgot  //

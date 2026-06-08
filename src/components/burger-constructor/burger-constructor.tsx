@@ -4,8 +4,8 @@
 import React, { FC, useMemo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from '../../hooks/useDispatch';
-import { useSelector } from '../../hooks/useSelector';
+import { useDispatch } from '@/hooks/useDispatch';
+import { useSelector } from '@/hooks/useSelector';
 import { useDrop } from 'react-dnd';
 //  универсальный генератор уникальных id для элементов без id  //
 import { v4 as uuidv4 } from 'uuid';
@@ -13,11 +13,11 @@ import { v4 as uuidv4 } from 'uuid';
 import ConstructorElements from '../constructor-elements/constructor-elements';
 import OrderDetails from '../order-details/order-details';
 import { Modal } from '../modal/modal';
-import { dispatchOrder } from '../../services/actions/order-actions';
+import { dispatchOrder } from '@/services/actions/order-actions';
 //  Импортировал actions для работы с ингредиентами в конструкторе заказа  //
-import { ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '../../utils/constants';  //
-import { getUser, getBurgerData } from '../../utils/state';
-import { TIngredient } from '../../services/types';
+import { ADD_BUN, ADD_INGREDIENT, DELETE_ORDER } from '@/utils/constants';  //
+import { getUser, getBurgerData } from '@/utils/state';
+import { TIngredient } from '@/services/types';
 import { Button, ConstructorElement, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import burgerConstructorStyle from './burger-constructor.module.css';
 

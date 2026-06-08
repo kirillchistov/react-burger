@@ -2,7 +2,7 @@
 //  Из UI-библиотеки: счётчики, иконку валюты, типо, отступы  //
 import React, { useCallback, FC } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useSelector } from '../../hooks/useSelector';
+import { useSelector } from '@/hooks/useSelector';
 import { useDrag } from 'react-dnd';
 
 //  import { IngredientDetails } from '../ingredient-details/ingredient-details';
@@ -10,8 +10,8 @@ import IngredientPrice from '../ingredient-price/ingredient-price';
 //  import { Modal } from '../modal/modal';
 import { Counter } 
   from '@ya.praktikum/react-developer-burger-ui-components';
-import { TIngredient } from '../../services/types';
-import { getBurgerData } from '../../utils/state';
+import { TIngredient } from '@/services/types';
+import { getBurgerData } from '@/utils/state';
 import IngredientItemStyle from './ingredient-item.module.css';
 
 //  Интерфейс объекта ингридиентов  //

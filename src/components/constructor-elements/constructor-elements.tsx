@@ -2,13 +2,13 @@
 //  Может быть булка bun (верх / низ) или начинка main или соус sauce //
 import React, { FC, useRef } from 'react';
 //  Хуки для Redux, DND  //
-import { useDispatch } from '../../hooks/useDispatch';
+import { useDispatch } from '@/hooks/useDispatch';
 import { useDrag, useDrop } from 'react-dnd';
 
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import { TIngredient } from '../../services/types';
-import { MOVE_INGREDIENT } from '../../utils/constants';
+import { TIngredient } from '@/services/types';
+import { MOVE_INGREDIENT } from '@/utils/constants';
 
 import ConstructorElementsStyle from './constructor-elements.module.css';
 

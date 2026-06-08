@@ -8,13 +8,13 @@
 */
 //  хуки для состояний и обновления полей ввода формы  //
 import React, { FC, useState } from 'react';
-import { useDispatch } from '../hooks/useDispatch';
-import { useSelector } from '../hooks/useSelector';
-import { useForm } from '../hooks/useForm';
+import { useDispatch } from '@/hooks/useDispatch';
+import { useSelector } from '@/hooks/useSelector';
+import { useForm } from '@/hooks/useForm';
 //  шапка и левая навигация профиля  //
-import { ProfileNav } from '../components/profile-nav/profile-nav';
+import { ProfileNav } from '@/components/profile-nav/profile-nav';
 //  нужен action для обновления профиля через redux  //
-import { updateUserProfile } from '../services/actions/auth-actions';
+import { updateUserProfile } from '@/services/actions/auth-actions';
 
 //  кнопка, поле ввода и поле пароля из библиотеки  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';

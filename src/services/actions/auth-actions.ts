@@ -9,10 +9,10 @@ import {
   codeRequestApi,
   resetPasswordApi,
   logoutApi,
-} from '../../utils/api';
-import { setCookies, deleteCookie } from '../../utils/auth';
-import { devLog } from '../../utils/devLog';
-import { TFormValues, TUser, AppThunk } from '../../services/types';
+} from '@/utils/api';
+import { setCookies, deleteCookie } from '@/utils/auth';
+import { devLog } from '@/utils/devLog';
+import { TFormValues, TUser, AppThunk } from '@/services/types';
 import {
   LOGIN_USER_API,
   LOGIN_USER_API_OK,
@@ -38,7 +38,7 @@ import {
   LOGOUT_USER_API,
   LOGOUT_USER_API_OK,
   LOGOUT_USER_API_FAIL
-} from '../../utils/constants';
+} from '@/utils/constants';
 
 export interface IRegisterUser {
   readonly type: typeof REGISTER_USER_API;

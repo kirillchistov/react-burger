@@ -1,9 +1,9 @@
 import React, { FC, useState, useMemo, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useSelector } from '../../hooks/useSelector';
+import { useSelector } from '@/hooks/useSelector';
 //  import { v4 as uuidv4 } from 'uuid';
-import { getItems } from '../../utils/state';
-import { TOrder, TIngredient } from '../../services/types';
+import { getItems } from '@/utils/state';
+import { TOrder, TIngredient } from '@/services/types';
 import {
   CurrencyIcon,
   FormattedDate,

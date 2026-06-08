@@ -10,16 +10,16 @@ import React, { useState, useMemo } from 'react';
 //  Добавил хуки для навигации по каталогу ингридиентов и пр.  //
 //  import { useInView } from 'react-intersection-observer';
 //  Добавил хуки для работы с Redux  //
-//  import { useDispatch  } from '../../hooks/useDispatch';
-import { useSelector  } from '../../hooks/useSelector';
+//  import { useDispatch  } from '@/hooks/useDispatch';
+import { useSelector  } from '@/hooks/useSelector';
 //  Modal, IngredientDetails и IngredientPrice теперь в IngredientItem  //
 //  IngredientItem теперь вложен в IngredientCategory для навигации  //
 
 import { IngredientCategory } from '../ingredient-category/ingredient-category';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
-//  import { getIngredients } from '../../services/actions/ingredient-actions';
-import { getItems } from '../../utils/state';
-import { TIngredient } from '../../services/types';
+//  import { getIngredients } from '@/services/actions/ingredient-actions';
+import { getItems } from '@/utils/state';
+import { TIngredient } from '@/services/types';
 import BurgerIngredientsStyle from './burger-ingredients.module.css';
 
      

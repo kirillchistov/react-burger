@@ -1,6 +1,6 @@
 //  Начальные actions для обработки заказов O-DETAILS  //
-import { postOrder } from '../../utils/api';
-import { TIngredient, AppThunk } from '../../services/types';
+import { postOrder } from '@/utils/api';
+import { TIngredient, AppThunk } from '@/services/types';
 
 //  Все константы экспортирую теперь из /utils/constants  //
 import {
@@ -12,7 +12,7 @@ import {
   POST_ORDER_API_OK,
   POST_ORDER_API_FAIL,
   DELETE_ORDER
-} from '../../utils/constants';
+} from '@/utils/constants';
 
 //  Все константы экспортирую, потом, видимо, вынесу в отдельный файл  //
 

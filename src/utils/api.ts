@@ -12,7 +12,7 @@ import {
   TIngredientResponse, 
   TOrderResponse,
   TFormValues,
- } from '../services/types';
+ } from '@/services/types';
 
 //  Обрабатываю ответ сервера - возвращаю json или ошибку  //
 //  Пока не получается через async try await catch типизировать  //

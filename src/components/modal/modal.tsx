@@ -7,7 +7,7 @@ import React, { useEffect, FC, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 import ModalOverlay from '../modal-overlay/modal-overlay';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { getModalRoot } from '../../utils/constants';
+import { getModalRoot } from '@/utils/constants';
 
 import modalStyle from './modal.module.css';
 

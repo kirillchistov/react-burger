@@ -6,14 +6,14 @@
 */
 //  Хуки для redux, навигации, авторизации  //
 import React, { FC } from 'react';
-import { useDispatch } from '../hooks/useDispatch';
-import { useSelector } from '../hooks/useSelector';
-import { useForm } from '../hooks/useForm';
+import { useDispatch } from '@/hooks/useDispatch';
+import { useSelector } from '@/hooks/useSelector';
+import { useForm } from '@/hooks/useForm';
 
 import { Navigate, useNavigate } from 'react-router-dom';
-import { changePassword } from '../services/actions/auth-actions';
+import { changePassword } from '@/services/actions/auth-actions';
 //  Шапка и компоненты из библиотеки  //
-import { getResetCode } from '../utils/state'
+import { getResetCode } from '@/utils/state'
 //  Стили берем из login  //
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import PasswordStyles from './login.module.css';

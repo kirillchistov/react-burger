@@ -4,10 +4,10 @@ import {
   GET_INGREDIENTS_API,
   GET_INGREDIENTS_API_OK,
   GET_INGREDIENTS_API_FAIL,
-} from '../../utils/constants';
+} from '@/utils/constants';
 
-import { TIngredientActions } from '../actions/ingredient-actions'
-import { TIngredient } from '../../services/types';
+import { TIngredientActions } from '@/services/actions/ingredient-actions'
+import { TIngredient } from '@/services/types';
 
 type TIngredientsState = {
   items: TIngredient[];

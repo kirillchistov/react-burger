@@ -5,7 +5,7 @@ import React, { FC } from 'react';
 //  Позже сделаем импорт хуков для управления состоянием меню  //
 import { useLocation, NavLink, matchPath } from 'react-router-dom';
 import { Logo, BurgerIcon, ListIcon,  ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import { LOGINURL, REGURL, PROFILEURL, HOMEURL, FEEDURL, PROFILEORDERSURL,  } from '../../utils/constants';
+import { LOGINURL, REGURL, PROFILEURL, HOMEURL, FEEDURL, PROFILEORDERSURL,  } from '@/utils/constants';
 import AppHeaderStyle from './app-header.module.css';
 
 export const AppHeader: FC = () => {

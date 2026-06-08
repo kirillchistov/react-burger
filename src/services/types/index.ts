@@ -5,15 +5,15 @@ import { Action, ActionCreator } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
 //  Импортирую store, колбэк, action и функцию для его создания в redux store  //
-import { store } from '../store';
+import { store } from '@/services/store';
 
 //  Импортирую actions для redux  //
-import { TIngredientActions } from '../actions/ingredient-actions';
-import { TAuthActions } from '../actions/auth-actions';
-import { TOrderActions } from '../actions/order-actions';
-import { TWSConnectionActions, TWSConnectionAuthActions } from '../actions/ws-actions';
+import { TIngredientActions } from '@/services/actions/ingredient-actions';
+import { TAuthActions } from '@/services/actions/auth-actions';
+import { TOrderActions } from '@/services/actions/order-actions';
+import { TWSConnectionActions, TWSConnectionAuthActions } from '@/services/actions/ws-actions';
 
-import { wsActions, wsActionsAuth } from '../store'
+import { wsActions, wsActionsAuth } from '@/services/store'
 
 //  Типизирую actions  //
 export type TAppActions = 

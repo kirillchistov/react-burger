@@ -9,9 +9,9 @@ import {
   POST_ORDER_API_OK,
   POST_ORDER_API_FAIL,
   DELETE_ORDER
-} from '../../utils/constants';
-import { TOrderActions } from '../actions/order-actions';
-import { TIngredient } from '../types/index'
+} from '@/utils/constants';
+import { TOrderActions } from '@/services/actions/order-actions';
+import { TIngredient } from '@/services/types'
 
 
 export type TOrderState = {

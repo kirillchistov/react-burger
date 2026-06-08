@@ -1,7 +1,7 @@
 //  Компонент для показа в модальном окне по нажатию кнопки 'Заказать' //
 import React, { FC } from 'react';
 import orderDetailsStyle from './order-details.module.css';
-import orderStatusImage from '../../images/graphics.svg'
+import orderStatusImage from '@/images/graphics.svg'
 
 //  Интерфейс для КБЖУ свойств ингридиента  //
 interface IOrderNumber {

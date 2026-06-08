@@ -3,13 +3,13 @@
 
 import React, {useEffect, useMemo} from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { useDispatch } from '../../hooks/useDispatch';
-import { useSelector } from '../../hooks/useSelector';
-import {WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../utils/constants'
+import { useDispatch } from '@/hooks/useDispatch';
+import { useSelector } from '@/hooks/useSelector';
+import {WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '@/utils/constants'
 // Здесь переделать работу с состояниями, переназвать  //
-import { getItems, getOrdersLogged, getOrders } from '../../utils/state';
-//  import { getIngredients } from '../../services/actions/ingredient-actions';
-import { TOrder, TIngredient, TIngredientCount } from '../../services/types';
+import { getItems, getOrdersLogged, getOrders } from '@/utils/state';
+//  import { getIngredients } from '@/services/actions/ingredient-actions';
+import { TOrder, TIngredient, TIngredientCount } from '@/services/types';
 //  Где-то здесь будет импорт для WS  //
 
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';

@@ -1,14 +1,14 @@
 //  Хуки для навигации и подсветки активного меню  //
 import React, { FC } from 'react';
 import { useLocation, NavLink, matchPath } from 'react-router-dom';
-import { useDispatch } from '../../hooks/useDispatch';
-import { authTokens } from '../../utils/auth';
-import { logoutUser } from '../../services/actions/auth-actions';
+import { useDispatch } from '@/hooks/useDispatch';
+import { authTokens } from '@/utils/auth';
+import { logoutUser } from '@/services/actions/auth-actions';
 import { 
   LOGINURL, 
   PROFILEURL, 
   PROFILEORDERSURL 
-} from '../../utils/constants';
+} from '@/utils/constants';
 
 import ProfileNavSyle from './profile-nav.module.css';
 

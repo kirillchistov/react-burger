@@ -1,4 +1,3 @@
-import { expect } from '@jest/globals';
 import { wsAuthOrdersReducer, WSInitialAuthState } from './ws-auth-reducer';
 import {
   WS_CONNECTION_START_AUTH,
@@ -8,13 +7,13 @@ import {
   WS_CONNECTION_CLOSED_AUTH,
   WS_GET_MESSAGE_AUTH,
   // WS_SEND_MESSAGE_AUTH,
-} from '../../utils/constants';
+} from '@/utils/constants';
 
-// import { TWSConnectionActions } from '../actions/ws-actions';
-// import { TWSAction, TAppActions } from '../types';
-// import { wsActions, wsActionsAuth } from '../store'
+// import { TWSConnectionActions } from '@/services/actions/ws-actions';
+// import { TWSAction, TAppActions } from '@/services/types';
+// import { wsActions, wsActionsAuth } from '@/services/store'
 
-import { WSORDERDATA, WSORDERDATA_SIMPLE } from '../../utils/testdata';
+import { WSORDERDATA, WSORDERDATA_SIMPLE } from '@/utils/testdata';
 
 describe('wsAuthOrdersReducer', () => {
   it("should return initial auth state", () => {

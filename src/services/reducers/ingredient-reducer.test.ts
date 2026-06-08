@@ -1,4 +1,3 @@
-import { expect } from '@jest/globals';
 import { ingredientsReducer, initialIngredientsState } from './ingredient-reducer';
 
 import { GET_INGREDIENTS_API, GET_INGREDIENTS_API_OK, GET_INGREDIENTS_API_FAIL } from "../../utils/constants";

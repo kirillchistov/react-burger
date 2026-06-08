@@ -6,13 +6,13 @@ ProtectedRouteElement принимает элемент, который надо
 //  Добавил хуки для монтирования, колбэка, переадресации и redux  //
 import React, { useEffect, useCallback, FC, ReactElement } from 'react';
 import { Navigate, Location, useLocation } from 'react-router-dom';
-import { useSelector } from '../../hooks/useSelector';
-import { useDispatch } from '../../hooks/useDispatch';
+import { useSelector } from '@/hooks/useSelector';
+import { useDispatch } from '@/hooks/useDispatch';
 //  Нужны оба токена  //
-import { authTokens } from '../../utils/auth';
-import { getUser } from '../../utils/state';
+import { authTokens } from '@/utils/auth';
+import { getUser } from '@/utils/state';
 //  Нужны экшены профиля и токена  //
-import { getUserProfile, getAccessToken } from '../../services/actions/auth-actions';
+import { getUserProfile, getAccessToken } from '@/services/actions/auth-actions';
 
 interface IProtectedRoute {
   element: ReactElement;
