@@ -53,7 +53,7 @@
     "deploy-script": "pnpm run build && scp -r ./dist/* kirillchistov@62.84.123.141:/home/react-burger",
     "start": "vite",
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && node -e \"require('fs').copyFileSync('dist/index.html', 'dist/404.html')\"",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",

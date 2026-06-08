@@ -14,12 +14,14 @@ import './index.css';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, '') || undefined;
+
 //  обернул App в провайдер redux-стора  //
 //  добавил обертку browser router  //
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename={routerBasename}>
         <App />
       </BrowserRouter>
     </Provider>
