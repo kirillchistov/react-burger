@@ -36,10 +36,10 @@ export const Modal: FC<IModalProps> = ( {children, handleClose, title} ) => {
   return ReactDOM.createPortal (
     (<>
       <ModalOverlay handleClose={handleClose}>
-        <div className={`${modalStyle.container} pt-10 pr-10 pb-15 pl-10`} onClick={(e) => e.stopPropagation()}>
-          <div className={`${modalStyle.header} pt-3 pb-3`}>  
-            <p className='text text_type_main-large'>{title}</p> 
-            <button className={modalStyle.button_close} onClick={handleClose}>
+        <div className={modalStyle.container} onClick={(e) => e.stopPropagation()}>
+          <div className={modalStyle.header}>  
+            <p className={`text text_type_main-large ${modalStyle.title}`}>{title}</p> 
+            <button className={modalStyle.button_close} type='button' onClick={handleClose} aria-label='Закрыть модальное окно'>
               <CloseIcon type='primary'/> 
             </button>
           </div>

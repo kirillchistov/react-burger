@@ -51,9 +51,9 @@ export const FeedPage:FC = () => {
 
   //  Надо переделать верстку - показывать не более 10 номеров по 5 в 2 колонках  //
   return (
-    <div className='pt-10 pr-10 pb-10 pl-10'>
+    <div className={`pt-10 pr-10 pb-10 pl-10 ${feedStyles.page}`}>
       <div className={feedStyles.main_container}>
-        <h1 className=' mb-5 text text_type_main-large'>Лента заказов</h1>
+        <h1 className={`mb-5 text text_type_main-large ${feedStyles.title}`}>Лента заказов</h1>
         <div className={feedStyles.section_container}>
           <section className={feedStyles.order_container}>
             {orders &&
@@ -65,9 +65,9 @@ export const FeedPage:FC = () => {
                 />
               ))}
           </section>
-          <section className='ml-15'>
-            <div className={feedStyles.section_container}>
-              <div>
+          <section className={feedStyles.stats_container}>
+            <div className={feedStyles.status_container}>
+              <div className={feedStyles.status_column}>
                 <p className='mb-6 text text_type_main-medium'>Готовы:</p>
                 <div
                   className={`text text_type_digits-default ${feedStyles.orders_list} ${feedStyles.orders_done}`}
@@ -82,7 +82,7 @@ export const FeedPage:FC = () => {
                   ))}
                 </div>
               </div>
-              <div className='ml-9'>
+              <div className={feedStyles.status_column}>
                 <p className='mb-6 text text_type_main-medium'>В работе:</p>
                 <div
                   className={`${feedStyles.orders_list} text text_type_digits-default`}
@@ -98,17 +98,17 @@ export const FeedPage:FC = () => {
                 </div>
               </div>
             </div>
-            <div className={` mt-15`}>
+            <div className={feedStyles.total_block}>
               <p className='text text_type_main-medium'>
                 Выполнено за всё время:
               </p>
-              <p className='text text_type_digits-large'>{total}</p>
+              <p className={`text text_type_digits-large ${feedStyles.total_number}`}>{total}</p>
             </div>
-            <div className={`mt-15`}>
+            <div className={feedStyles.total_block}>
               <p className='text text_type_main-medium'>
                 Выполнено за сегодня:
               </p>
-              <p className='text text_type_digits-large'>{totalToday}</p>
+              <p className={`text text_type_digits-large ${feedStyles.total_number}`}>{totalToday}</p>
             </div>
           </section>
         </div>

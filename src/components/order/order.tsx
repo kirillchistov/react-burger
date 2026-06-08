@@ -115,19 +115,19 @@ export const Order = () => {
           <p className={`text text_type_digits-default ${orderStyles.order_number}`}>
             {`#${order.number}`}
           </p>
-          <p className='mt-10 text text_type_main-medium' style={doneOrderColor}>{order.name}</p>
-          <p className='mt-3 text text_type_main-default'>{getOrderStatus()}</p>
-          <p className='mt-15 text text_type_main-medium'>Состав:</p>
-          <div className={`mt-6 pr-6 ${orderStyles.ingredients}`}>
+          <p className={`mt-10 text text_type_main-medium ${orderStyles.order_name}`} style={doneOrderColor}>{order.name}</p>
+          <p className={`mt-3 text text_type_main-default ${orderStyles.order_status}`}>{getOrderStatus()}</p>
+          <p className={`mt-15 text text_type_main-medium ${orderStyles.section_title}`}>Состав:</p>
+          <div className={`mt-6 ${orderStyles.ingredients}`}>
             {orderIngredientInfo && Object.keys(orderIngredientInfo.ingredientsInfo).map((ingredient) => (
               <div className={orderStyles.ingredient} key={orderIngredientInfo.ingredientsInfo[ingredient]._id}>
-                <div className={`mr-4 ${orderStyles.image_container}`}>
+                <div className={orderStyles.image_container}>
                   <div
                     className={orderStyles.ingredient_image}
                     style={{ backgroundImage: `url(${orderIngredientInfo.ingredientsInfo[ingredient].image})` }}
                   />
                 </div>
-                <div className={`mr-4 ${orderStyles.ingredient_name}`}>
+                <div className={orderStyles.ingredient_name}>
                   {orderIngredientInfo.ingredientsInfo[ingredient].name}
                 </div>
                 <div className={orderStyles.ingredient_price}>

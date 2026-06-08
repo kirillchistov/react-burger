@@ -1,21 +1,49 @@
 /* Главный контейнер */
+.page {
+  box-sizing: border-box;
+}
+
 .main_container {
-  margin-right: calc((100vw - 1320px)/2);
-  margin-left: calc((100vw - 1320px)/2);
+  width: min(100%, 1320px);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.title {
+  margin-top: 0;
 }
 
 /* Контейнер секции */
 .section_container {
   display: flex;
+  gap: 60px;
 }
 
 /* Контейнер ленты заказов */
 .order_container {
+  width: min(100%, 608px);
   height: 912px;
   max-height: calc(100vh - 268px);
   display: grid;
   row-gap: 16px; 
   overflow-y: scroll;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar);
+}
+
+.stats_container {
+  width: min(100%, 580px);
+  display: flex;
+  flex-direction: column;
+}
+
+.status_container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 36px;
+}
+
+.status_column {
+  min-width: 0;
 }
 
 /* Контейнер заказов со скроллом по вертикали из вебкита */
@@ -38,7 +66,7 @@
 
 /* Контейнер заказов в работе */
 .orders_list {
-  width: 272px;
+  width: 100%;
   /* height: calc((32px * 10) + 1px); */
   height: 162px;
   display: flex;
@@ -52,11 +80,93 @@
   color: #00cccc;
 }
 
-@media screen and (max-width: 1024px) {
-  .order_container {
-    display: flex;
-    flex-direction:column-reverse;
+.total_block {
+  margin-top: 60px;
+}
+
+.total_number {
+  overflow-wrap: anywhere;
+  text-shadow: 0 0 18px rgba(51, 51, 255, 0.22);
+}
+
+@media screen and (max-width: 1279px) {
+  .section_container {
+    gap: clamp(24px, 4vw, 40px);
+  }
+
+  .total_number {
+    font-size: clamp(72px, 8vw, 112px);
+    line-height: 0.95;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .page {
+    padding-right: 16px !important;
+    padding-left: 16px !important;
+  }
+
+  .title {
+    font-size: clamp(28px, 7vw, 36px);
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .section_container {
+    flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 32px;
+  }
+
+  .order_container {
+    width: 100%;
+    max-width: 680px;
+    max-height: min(62vh, 640px);
+    padding-right: 4px;
+  }
+
+  .stats_container {
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .status_container {
+    gap: 20px;
+  }
+
+  .total_block {
+    margin-top: 32px;
+  }
+
+  .total_number {
+    font-size: clamp(48px, 16vw, 84px);
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .order_container {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .status_container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .orders_list {
+    height: auto;
+    max-height: 144px;
+    overflow-y: auto;
+    font-size: 22px;
+    line-height: 1.25;
+  }
+
+  .total_block {
+    margin-top: 24px;
+  }
+
+  .total_number {
+    font-size: clamp(42px, 18vw, 64px);
   }
 }
