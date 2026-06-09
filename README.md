@@ -1,20 +1,35 @@
-# react-burger
-Репозиторий фронтенда учебного проекта Stellar Burgers. Это приложение для заказа космических бургеров и заодно учебный проект в курсе react-разработчик ЯП.
+# Обзор проекта
+
+Stellar Burgers — клиентское React-приложение для сборки космических бургеров, оформления заказов, просмотра общей ленты заказов и работы с профилем пользователя. Проект собирается как Vite SPA, front-end развернут на [GitHub Pages](https://kirillchistov.github.io/react-burger).
 
 <img src="https://user-images.githubusercontent.com/96661925/182873767-70ca8d82-22d2-4d93-b8a8-54e46a597d46.png" alt="Скриншот главной страницы" height="400">
-# Что можно делать в приложении:
-  - зарегистрироваться и авторизоваться с полученным логином (и токеном)
-  - сделать заказ на бургер (перетащить ингредиенты из списка слева в заказ справа и заказать)
-  - посмотреть состав и КБЖУ любого ингридиента в модальном окне или на отдельной странице
-  - добавлять или заменять ингредиенты в заказе с помощью drag and drop
-  - при добавлении ингредиентов увидеть в общем списке какое кол-во есть в заказе
-  - показываем суммарнубю стоимость заказа (сумма цен всех ингредиентов с учетом количества)
-  - удалить ингредиент из заказа
-  - посмотреть ленту всех заказов (без авторизации) и историю своих заказов
-  - посмотреть детали заказа (найденного в ленте или в истории своих заказов)
+
+## Что делает приложение
+
+- Загружает ингредиенты из Norma API.
+- Позволяет собрать бургер с помощью drag-and-drop.
+- Поддерживает регистрацию, вход, редактирование профиля, восстановление пароля и выход.
+- Хранит JWT-токены в cookies и обновляет access token при необходимости.
+- Отправляет заказы авторизованных пользователей через REST API.
+- Показывает общую и пользовательскую ленты заказов через WebSocket.
+- Использует модальные маршруты для деталей ингредиента и деталей заказа.
+
+> Схема: [`project-overview.svg`](./project-overview.svg)
+
+
+# Что есть в приложении:
+  - Регистрация и авторизация с полученным логином (и токеном)
+  - Конструктор заказа бургера (можно собрать бургер, перетащив ингредиенты из списка в зону сборки)
+  - Посмотреть состав и КБЖУ каждого ингридиента в модальном окне или на отдельной странице
+  - Добавлять, заменять, удалять ингредиенты заказа перетаскиванием
+  - Увидеть в общем списке какое кол-во ингридиентов уже есть в заказе
+  - Посмотреть суммарную стоимость и суммарные КБЖУ заказа
+  - Оформить заказ (отправить его на космическую бургер-кухню)
+  - Посмотреть ленту всех заказов и историю своих заказов
+  - Посмотреть детали интересующего заказа в ленте
 
 # Автор
-* [Кирилл Чистов](https://github.com/kirillchistov), студент (когорта 23)
+* [Кирилл Чистов](https://github.com/kirillchistov), студент (когорта 23 ЯП)
 
 # Стек технологий
 * [x] Figma (дизайн))
@@ -23,21 +38,15 @@
 * [x] Back-end (Node.js, MongoDB, Express, Nginx)
 * [x] Git, WebPack, Babel, Redux, Cypress, Jest
 
-## [Pull Request Sprint-6 Step-1](https://github.com/kirillchistov/react-burger/pull/95)
-## [Pull Request Sprint-5 Step-1](https://github.com/kirillchistov/react-burger/pull/77)
-## [Pull Request Sprint-4 Step-1](https://github.com/kirillchistov/react-burger/pull/63)
-## [Pull Request Sprint-3 Step-1](https://github.com/kirillchistov/react-burger/pull/51)
-## [Pull Request Sprint-2 Step-2](https://github.com/kirillchistov/react-burger/pull/32)
-## [Pull Request Sprint-2 Step-1](https://github.com/kirillchistov/react-burger/pull/22)
-## [Pull Request Sprint-1 Step-2](https://github.com/kirillchistov/react-burger/pull/14)
+
 
 * [x] [Макет в Figma](общий)
 # Репозитории:
 * [x] [Main] (https://github.com/kirillchistov/react-burger/)
 # Деплой:
-* [x] [Vercel] (https://react-burger-wheat.vercel.app/)
-* [ ] [GH-Pages] (https://kirillchistov.github.io/react-burger/index.html)
-* [ ] [Я.Домен. IP: 62.84.123.141] (https://kirburger.nomoredomains.monster)
+* [ ] [Vercel] (https://react-burger-wheat.vercel.app/). Отключен
+* [x] [GH-Pages] (https://kirillchistov.github.io/react-burger)
+* [ ] [Я.Домен. IP: 62.84.123.141] (https://kirburger.nomoredomains.monster). Отключен
 
 ## Навигация по репозиторию
 * [x] `app.tsx` — точка входа
@@ -49,22 +58,22 @@
 * [x] `/utils` - константы, API и прочие утилиты
 * [x] `/vendor` - внешние скрипты, шрифты и прочие внешние ресурсы
 
-### Собрано с помощью [Create React App](https://github.com/facebook/create-react-app).
+### Исходно собрано с помощью [Create React App](https://github.com/react/create-react-app). Переделано на [Vite SPA](https://vite.dev/guide/).
 
 
 ### 🔧 Инструкция по сборке проекта:
 
-1. Установить [Node.js](https://nodejs.org/en/ 'ссылка на сайт Node.js')
-2. Установить [Git](https://git-scm.com/ 'ссылка на сайт Git')
+1. Установите [Node.js](https://nodejs.org/en/ 'ссылка на сайт Node.js')
+2. Установите [Git](https://git-scm.com/ 'ссылка на сайт Git')
 3. Скачайте или клонируйте себе командой:
 ```sh
-    git clone https://github.com/cactys/react-burger.git
+    git clone https://github.com/kirillchistov/react-burger.git
 ```
 5. Установите зависимости:
 ```sh
-    npm i
+    pnpm i
 ```
-6. Запустить проект:
+6. Запустите проект в dev-режиме:
 ```sh
-    npm run start
+    pnpm dev
 ```

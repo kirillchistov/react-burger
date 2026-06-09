@@ -1,0 +1,128 @@
+<svg width="1280" height="840" viewBox="0 0 1280 840" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#131316"/>
+      <stop offset="1" stop-color="#1C1C21"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#801AB3"/>
+      <stop offset="1" stop-color="#4C4CFF"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.32"/>
+    </filter>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M1.5 1.5L7 4L1.5 6.5" stroke="#8585AD" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .title { font: 700 34px Arial, sans-serif; fill: #F2F2F3; }
+      .subtitle { font: 400 18px Arial, sans-serif; fill: #8585AD; }
+      .group-title { font: 700 16px Arial, sans-serif; fill: #8585AD; letter-spacing: 0.08em; }
+      .box-title { font: 700 19px Arial, sans-serif; fill: #F2F2F3; }
+      .box-text { font: 400 14px Arial, sans-serif; fill: #CFCFDF; }
+      .small { font: 400 12px Arial, sans-serif; fill: #8585AD; }
+      .box { fill: #1C1C21; stroke: rgba(76,76,255,0.55); stroke-width: 1.5; filter: url(#shadow); }
+      .box-alt { fill: #24242C; stroke: rgba(128,26,179,0.55); stroke-width: 1.5; filter: url(#shadow); }
+      .group { fill: rgba(255,255,255,0.025); stroke: rgba(133,133,173,0.25); stroke-width: 1; }
+      .line { fill: none; stroke: #8585AD; stroke-width: 2; marker-end: url(#arrow); }
+      .line-accent { fill: none; stroke: url(#accent); stroke-width: 3; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1280" height="840" fill="url(#bg)"/>
+  <circle cx="1120" cy="130" r="210" fill="#4C4CFF" opacity="0.08"/>
+  <circle cx="140" cy="760" r="250" fill="#801AB3" opacity="0.08"/>
+
+  <text x="60" y="64" class="title">Stellar Burgers: &#1072;&#1088;&#1093;&#1080;&#1090;&#1077;&#1082;&#1090;&#1091;&#1088;&#1072;</text>
+  <text x="60" y="96" class="subtitle">React Router + Redux + REST API + WebSocket middleware &#1074; &#1082;&#1083;&#1080;&#1077;&#1085;&#1090;&#1089;&#1082;&#1086;&#1081; Vite SPA.</text>
+
+  <rect x="50" y="135" width="1180" height="130" rx="28" class="group"/>
+  <text x="80" y="166" class="group-title">&#1050;&#1051;&#1048;&#1045;&#1053;&#1058;&#1057;&#1050;&#1048;&#1049; RUNTIME</text>
+
+  <rect x="90" y="185" width="190" height="58" rx="18" class="box"/>
+  <text x="115" y="221" class="box-title">&#1041;&#1088;&#1072;&#1091;&#1079;&#1077;&#1088;</text>
+
+  <rect x="340" y="185" width="210" height="58" rx="18" class="box"/>
+  <text x="365" y="221" class="box-title">Vite Bundle</text>
+
+  <rect x="610" y="185" width="220" height="58" rx="18" class="box"/>
+  <text x="635" y="221" class="box-title">React Router</text>
+
+  <rect x="890" y="185" width="250" height="58" rx="18" class="box"/>
+  <text x="915" y="221" class="box-title">Pages, Components</text>
+
+  <line x1="280" y1="214" x2="340" y2="214" class="line"/>
+  <line x1="550" y1="214" x2="610" y2="214" class="line"/>
+  <line x1="830" y1="214" x2="890" y2="214" class="line"/>
+
+  <rect x="50" y="315" width="530" height="276" rx="28" class="group"/>
+  <text x="80" y="346" class="group-title">&#1057;&#1051;&#1054;&#1049; &#1057;&#1054;&#1057;&#1058;&#1054;&#1071;&#1053;&#1048;&#1071;</text>
+
+  <rect x="90" y="375" width="190" height="82" rx="18" class="box-alt"/>
+  <text x="115" y="405" class="box-title">Actions</text>
+  <text x="115" y="428" class="box-text">thunks +</text>
+  <text x="115" y="448" class="box-text">plain objects</text>
+
+  <rect x="340" y="375" width="190" height="82" rx="18" class="box-alt"/>
+  <text x="365" y="405" class="box-title">Middleware</text>
+  <text x="365" y="428" class="box-text">wsMiddleware,</text>
+  <text x="365" y="448" class="box-text">thunk</text>
+
+  <rect x="90" y="475" width="190" height="72" rx="18" class="box-alt"/>
+  <text x="115" y="505" class="box-title">Reducers</text>
+  <text x="115" y="528" class="box-text">ingredients, order, auth</text>
+
+  <rect x="340" y="475" width="190" height="72" rx="18" class="box-alt"/>
+  <text x="365" y="505" class="box-title">Redux Store</text>
+  <text x="365" y="528" class="box-text">selectors &#1087;&#1080;&#1090;&#1072;&#1102;&#1090; UI</text>
+
+  <line x1="280" y1="411" x2="340" y2="411" class="line"/>
+  <line x1="435" y1="447" x2="435" y2="475" class="line"/>
+  <line x1="340" y1="511" x2="280" y2="511" class="line"/>
+
+  <rect x="700" y="315" width="530" height="276" rx="28" class="group"/>
+  <text x="730" y="346" class="group-title">&#1042;&#1053;&#1045;&#1064;&#1053;&#1048;&#1045; &#1057;&#1045;&#1056;&#1042;&#1048;&#1057;&#1067;</text>
+
+  <rect x="740" y="375" width="205" height="82" rx="18" class="box"/>
+  <text x="765" y="405" class="box-title">REST API</text>
+  <text x="765" y="428" class="box-text">&#1080;&#1085;&#1075;&#1088;&#1077;&#1076;&#1080;&#1077;&#1085;&#1090;&#1099;, auth</text>
+  <text x="765" y="448" class="box-text">&#1079;&#1072;&#1082;&#1072;&#1079;&#1099;, &#1087;&#1088;&#1086;&#1092;&#1080;&#1083;&#1100;</text>
+
+  <rect x="980" y="375" width="180" height="82" rx="18" class="box"/>
+  <text x="1005" y="405" class="box-title">Cookies</text>
+  <text x="1005" y="428" class="box-text">accessToken</text>
+  <text x="1005" y="448" class="box-text">refreshToken</text>
+
+  <rect x="740" y="485" width="205" height="62" rx="18" class="box"/>
+  <text x="765" y="522" class="box-title">Public WS</text>
+
+  <rect x="980" y="485" width="180" height="62" rx="18" class="box"/>
+  <text x="1005" y="522" class="box-title">Authorised WS</text>
+
+  <line x1="530" y1="411" x2="740" y2="416" class="line-accent"/>
+  <path d="M435 375V326H1070V375" class="line-accent"/>
+  <line x1="530" y1="511" x2="740" y2="516" class="line-accent"/>
+  <path d="M435 547V576H1070V547" class="line-accent"/>
+
+  <rect x="50" y="615" width="1180" height="150" rx="28" class="group"/>
+  <text x="80" y="646" class="group-title">&#1050;&#1051;&#1070;&#1063;&#1045;&#1042;&#1067;&#1045; &#1055;&#1054;&#1058;&#1054;&#1050;&#1048;</text>
+
+  <rect x="90" y="685" width="230" height="54" rx="18" class="box"/>
+  <text x="115" y="718" class="box-title">Auth Guard</text>
+
+  <rect x="370" y="685" width="230" height="54" rx="18" class="box"/>
+  <text x="395" y="718" class="box-title">Modal Routes</text>
+
+  <rect x="650" y="685" width="230" height="54" rx="18" class="box"/>
+  <text x="675" y="718" class="box-title">Refresh Token</text>
+
+  <rect x="930" y="685" width="230" height="54" rx="18" class="box"/>
+  <text x="955" y="718" class="box-title">Realtime Feeds</text>
+
+  <path d="M1140 214H1176V667H205V685" class="line"/>
+  <path d="M1140 214H1176V667H485V685" class="line"/>
+  <path d="M1140 214H1176V667H765V685" class="line"/>
+  <path d="M1140 214H1176V667H1045V685" class="line"/>
+
+  <text x="60" y="808" class="small">CSR. GitHub Pages &#1086;&#1090;&#1076;&#1072;&#1105;&#1090; index.html/404.html, &#1072; &#1087;&#1088;&#1080;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1077; &#1079;&#1072;&#1087;&#1091;&#1089;&#1082;&#1072;&#1077;&#1090;&#1089;&#1103; &#1074; &#1073;&#1088;&#1072;&#1091;&#1079;&#1077;&#1088;&#1077;.</text>
+</svg>
